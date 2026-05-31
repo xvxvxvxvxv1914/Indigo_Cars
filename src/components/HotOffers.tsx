@@ -161,6 +161,17 @@ export default function HotOffers() {
                   <div className={`absolute top-2 right-2 text-xs px-2 py-0.5 rounded-full border font-medium ${conditionColor(offer.condition)}`}>
                     {offer.condition}
                   </div>
+                  {/* Carfax badge */}
+                  {offer.carfax_verified && (
+                    <div className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: 'rgba(0,0,0,0.75)', border: '1px solid rgba(255,255,255,0.15)' }}>
+                      <svg width="10" height="12" viewBox="0 0 10 12" fill="none">
+                        <path d="M5 0L10 2V6C10 9 7.5 11.5 5 12C2.5 11.5 0 9 0 6V2L5 0Z" fill="#e8252a"/>
+                        <path d="M3 6L4.5 7.5L7 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span style={{ color: '#e8252a', letterSpacing: '0.05em' }}>CARFAX</span>
+                      <span className="text-white/70">✓</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}

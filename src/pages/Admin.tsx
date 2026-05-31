@@ -12,6 +12,7 @@ const emptyForm: FormState = {
   images: [],
   copart_url: '',
   active: true,
+  carfax_verified: false,
 };
 
 export default function Admin() {
@@ -80,6 +81,7 @@ export default function Admin() {
       images: offer.images || [],
       copart_url: offer.copart_url || '',
       active: offer.active,
+      carfax_verified: offer.carfax_verified ?? false,
     });
     setEditId(offer.id);
     setShowForm(true);
@@ -292,16 +294,29 @@ export default function Admin() {
                 )}
               </div>
 
-              <div className="md:col-span-2 flex items-center gap-3">
+              <div className="md:col-span-2 flex flex-wrap items-center gap-6">
                 <label className="flex items-center gap-2 cursor-pointer select-none">
                   <div
-                    className={`w-10 h-5 rounded-full transition-colors relative cursor-pointer`}
+                    className="w-10 h-5 rounded-full transition-colors relative cursor-pointer"
                     style={{ background: form.active ? 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' : '#2a2850' }}
                     onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
                   >
                     <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.active ? 'left-5' : 'left-0.5'}`} />
                   </div>
                   <span className="text-sm text-white font-medium">Активно (показва се на сайта)</span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <div
+                    className="w-10 h-5 rounded-full transition-colors relative cursor-pointer"
+                    style={{ background: form.carfax_verified ? '#e8252a' : '#2a2850' }}
+                    onClick={() => setForm((f) => ({ ...f, carfax_verified: !f.carfax_verified }))}
+                  >
+                    <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.carfax_verified ? 'left-5' : 'left-0.5'}`} />
+                  </div>
+                  <span className="text-sm font-medium" style={{ color: form.carfax_verified ? '#e8252a' : '#a0a0b8' }}>
+                    CARFAX проверен
+                  </span>
                 </label>
               </div>
             </div>

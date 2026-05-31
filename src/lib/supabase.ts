@@ -14,5 +14,6 @@ export type HotOffer = {
   images: string[];
   copart_url: string | null;
   active: boolean;
+  carfax_verified: boolean;
   created_at: string;
 };
