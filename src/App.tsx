@@ -91,6 +91,7 @@ import WhyUs from './components/WhyUs';
 import RouteMap from './components/RouteMap';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
+import Calculator from './components/Calculator';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
@@ -111,6 +112,7 @@ function HomePage() {
         <RouteMap />
         <Testimonials />
         <FAQ />
+        <Calculator />
         <Contact />
       </main>
       <Footer />
