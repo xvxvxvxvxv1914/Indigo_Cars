@@ -67,9 +67,10 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section id="how-it-works" className="py-24 relative" ref={sectionRef}>
-      {/* Subtle section bg */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/40 to-[#0a0a1a]" />
+    <section id="how-it-works" className="py-24 relative" ref={sectionRef} style={{ background: '#0e0d20' }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/60 to-[#0a0a1a]" />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 animate-on-scroll">

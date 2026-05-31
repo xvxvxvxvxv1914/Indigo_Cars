@@ -150,8 +150,9 @@ export default function Hero() {
           alt="Purple cars in a row"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/97 via-[#0a0a1a]/88 to-[#0a0a1a]/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/85 via-transparent to-[#0a0a1a]/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/[0.97] via-[#0a0a1a]/[0.82] to-[#0a0a1a]/[0.35]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/90 via-transparent to-[#0a0a1a]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/60 via-transparent to-transparent" />
         {/* Ambient glow orbs */}
         <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(124,58,237,0.1)' }} />
         <div className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-[100px]" style={{ background: 'rgba(79,70,229,0.08)' }} />

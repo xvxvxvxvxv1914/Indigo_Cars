@@ -58,7 +58,8 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section id="faq" className="py-24" style={{ background: 'rgba(26,24,48,0.5)' }} ref={sectionRef}>
+    <section id="faq" className="py-24 relative" style={{ background: '#0a0a1a' }} ref={sectionRef}>
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.2), transparent)' }} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-on-scroll">
           <p className="section-label">Въпроси и отговори</p>

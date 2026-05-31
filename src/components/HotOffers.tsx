@@ -68,11 +68,50 @@ export default function HotOffers() {
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-16">
-            <div className="w-10 h-10 border-2 border-dark-700 border-t-primary-600 rounded-full animate-spin" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+                <div className="h-36" style={{ background: '#1a1830' }} />
+                <div className="p-4 flex flex-col gap-3">
+                  <div className="h-3 rounded-full w-4/5" style={{ background: '#2a2850' }} />
+                  <div className="h-3 rounded-full w-1/2" style={{ background: '#2a2850' }} />
+                  <div className="h-5 rounded-full w-1/3 mt-2" style={{ background: '#2a2850' }} />
+                  <div className="h-8 rounded-lg mt-1" style={{ background: '#2a2850' }} />
+                </div>
+              </div>
+            ))}
           </div>
         ) : offers.length === 0 ? (
-          <div className="text-center py-16 text-dark-400">{t.offers.noOffers}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden flex flex-col" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+                <div className="relative h-36 flex items-center justify-center" style={{ background: '#0d0d22' }}>
+                  <svg width="40" height="40" viewBox="0 0 22 22" fill="none" className="opacity-10">
+                    <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
+                    <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
+                    <circle cx="7" cy="17.5" r="1.5" fill="white" />
+                    <circle cx="15" cy="17.5" r="1.5" fill="white" />
+                  </svg>
+                  <div className="absolute inset-0 flex items-end justify-center pb-3">
+                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'rgba(124,58,237,0.5)' }}>Очаквайте скоро</span>
+                  </div>
+                </div>
+                <div className="p-4 flex flex-col flex-1 gap-2">
+                  <div className="h-3 rounded-full w-4/5" style={{ background: '#2a2850' }} />
+                  <div className="h-3 rounded-full w-1/2" style={{ background: '#2a2850' }} />
+                  <div className="h-5 rounded-full w-1/3 mt-2" style={{ background: '#2a2850' }} />
+                  <button
+                    onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="mt-2 flex items-center justify-center gap-1 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:opacity-90"
+                    style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}
+                  >
+                    <MessageSquare size={12} />
+                    Запитване по желание
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {offers.map((offer) => (

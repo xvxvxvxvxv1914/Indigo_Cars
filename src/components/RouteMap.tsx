@@ -35,8 +35,10 @@ export default function RouteMap() {
   }, []);
 
   return (
-    <section className="py-24 relative" ref={sectionRef}>
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, #12102a40, #0a0a1a)' }} />
+    <section className="py-24 relative" ref={sectionRef} style={{ background: '#0e0d20' }}>
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, rgba(18,16,42,0.7), #0a0a1a)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(79,70,229,0.06)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
