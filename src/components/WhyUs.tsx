@@ -1,6 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { CheckCircle, Award, Users, Clock, TrendingDown, Globe } from 'lucide-react';
 
+function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
+  const el = e.currentTarget;
+  const r = el.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width - 0.5;
+  const y = (e.clientY - r.top) / r.height - 0.5;
+  el.style.transition = 'transform 0.08s ease';
+  el.style.transform = `perspective(800px) rotateY(${x * 16}deg) rotateX(${-y * 16}deg) translateZ(12px)`;
+}
+function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
+  e.currentTarget.style.transition = 'transform 0.5s ease';
+  e.currentTarget.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
+}
+
 const stats = [
   { value: 2000, suffix: '+', label: 'Внесени автомобила', icon: CheckCircle },
   { value: 10, suffix: '+', label: 'Години на пазара', icon: Award },
@@ -112,8 +125,10 @@ export default function WhyUs() {
           {stats.map(({ value, suffix, label, icon: Icon }) => (
             <div
               key={label}
-              className="animate-on-scroll card-hover text-center backdrop-blur rounded-2xl p-6"
-              style={{ background: '#12102a', border: '1px solid #2a2850' }}
+              className="animate-on-scroll text-center backdrop-blur rounded-2xl p-6"
+              style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
+              onMouseMove={onTiltMove}
+              onMouseLeave={onTiltLeave}
             >
               <Icon size={28} className="text-primary-400 mx-auto mb-3" />
               <div className="font-display text-4xl md:text-5xl text-gradient-stats mb-2">
@@ -154,8 +169,10 @@ export default function WhyUs() {
               return (
                 <div
                   key={reason.title}
-                  className="animate-on-scroll card-hover rounded-xl p-6"
-                  style={{ background: '#12102a', border: '1px solid #2a2850' }}
+                  className="animate-on-scroll rounded-xl p-6"
+                  style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
+                  onMouseMove={onTiltMove}
+                  onMouseLeave={onTiltLeave}
                 >
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style={{ background: 'rgba(124,58,237,0.15)' }}>
                     <Icon size={20} className="text-primary-400" />

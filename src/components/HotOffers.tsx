@@ -3,6 +3,19 @@ import { MapPin, DollarSign, ExternalLink, MessageSquare } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
 
+function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
+  const el = e.currentTarget;
+  const r = el.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width - 0.5;
+  const y = (e.clientY - r.top) / r.height - 0.5;
+  el.style.transition = 'transform 0.08s ease';
+  el.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateZ(10px)`;
+}
+function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
+  e.currentTarget.style.transition = 'transform 0.5s ease';
+  e.currentTarget.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
+}
+
 export default function HotOffers() {
   const { t, lang } = useLang();
   const [offers, setOffers] = useState<HotOffer[]>([]);
@@ -117,8 +130,10 @@ export default function HotOffers() {
             {offers.map((offer) => (
               <div
                 key={offer.id}
-                className="animate-on-scroll card-hover rounded-2xl overflow-hidden flex flex-col group"
-                style={{ background: '#12102a', border: '1px solid #2a2850' }}
+                className="animate-on-scroll rounded-2xl overflow-hidden flex flex-col group"
+                style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
+                onMouseMove={onTiltMove}
+                onMouseLeave={onTiltLeave}
               >
                 {/* Image */}
                 <div className="relative h-36 overflow-hidden" style={{ background: '#0a0a1a' }}>

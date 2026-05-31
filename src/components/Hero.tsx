@@ -127,6 +127,17 @@ function ParticleMesh() {
 
 export default function Hero() {
   const { t, lang } = useLang();
+  const bgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (bgRef.current) {
+        bgRef.current.style.transform = `translateY(${window.scrollY * 0.28}px) scale(1.12)`;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const scroll = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -146,9 +157,11 @@ export default function Hero() {
       {/* Background image + overlays */}
       <div className="absolute inset-0 z-0">
         <img
+          ref={bgRef}
           src="/hero-image.png"
           alt="Purple cars in a row"
           className="w-full h-full object-cover object-center"
+          style={{ transform: 'scale(1.12)', willChange: 'transform' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/[0.97] via-[#0a0a1a]/[0.82] to-[#0a0a1a]/[0.35]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/90 via-transparent to-[#0a0a1a]/40" />
