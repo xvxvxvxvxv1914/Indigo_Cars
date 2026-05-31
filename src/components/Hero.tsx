@@ -146,8 +146,8 @@ export default function Hero() {
       {/* Background image + overlays */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.pexels.com/photos/28966572/pexels-photo-28966572.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-          alt="Aerial view of car shipping terminal"
+          src="/hero-image.png"
+          alt="Purple cars in a row"
           className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/97 via-[#0a0a1a]/88 to-[#0a0a1a]/55" />
