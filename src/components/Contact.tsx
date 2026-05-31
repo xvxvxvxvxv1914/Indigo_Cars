@@ -1,6 +1,42 @@
 import { useEffect, useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 
+// ─── Confetti burst ───────────────────────────────────────────────────────────
+const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#4f46e5', '#25d366', '#f59e0b', '#ec4899'];
+
+function ConfettiPiece({ idx }: { idx: number }) {
+  const angle = (idx / 16) * 360;
+  const dist = 60 + Math.random() * 60;
+  const rad = (angle * Math.PI) / 180;
+  const cx = Math.round(Math.cos(rad) * dist);
+  const cy = Math.round(Math.sin(rad) * dist);
+  const cr = Math.round(Math.random() * 360);
+  const color = CONFETTI_COLORS[idx % CONFETTI_COLORS.length];
+
+  return (
+    <span
+      className="confetti-piece"
+      style={{
+        background: color,
+        '--cx': `${cx}px`,
+        '--cy': `${cy}px`,
+        '--cr': `${cr}deg`,
+        animationDelay: `${idx * 0.03}s`,
+      } as React.CSSProperties}
+    />
+  );
+}
+
+function ConfettiBurst() {
+  return (
+    <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 0 }}>
+      {Array.from({ length: 16 }).map((_, i) => (
+        <ConfettiPiece key={i} idx={i} />
+      ))}
+    </div>
+  );
+}
+
 export default function Contact() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({
@@ -127,15 +163,26 @@ export default function Contact() {
           {/* Form */}
           <div className="animate-on-scroll">
             {submitted ? (
-              <div className="rounded-2xl p-12 text-center" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
-                <CheckCircle size={56} className="text-primary-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-white mb-3">Съобщението е изпратено!</h3>
-                <p className="text-dark-300">
+              <div className="rounded-2xl p-12 text-center relative overflow-hidden" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+                {/* Confetti burst */}
+                <ConfettiBurst />
+
+                {/* Animated check icon */}
+                <div className="relative z-10 mb-4">
+                  <CheckCircle
+                    size={64}
+                    className="text-primary-500 mx-auto success-icon"
+                    style={{ filter: 'drop-shadow(0 0 16px rgba(124,58,237,0.6))' }}
+                  />
+                </div>
+
+                <h3 className="relative z-10 text-2xl font-bold text-white mb-3">Съобщението е изпратено!</h3>
+                <p className="relative z-10 text-dark-300">
                   Ще се свържем с вас в рамките на 24 часа. Очаквайте обаждане или имейл.
                 </p>
                 <button
                   onClick={() => { setSubmitted(false); setForm({ name: '', phone: '', email: '', car: '', budget: '', message: '' }); }}
-                  className="mt-6 btn-outline text-sm py-2.5 px-6"
+                  className="relative z-10 mt-6 btn-outline text-sm py-2.5 px-6"
                 >
                   Изпратете ново запитване
                 </button>

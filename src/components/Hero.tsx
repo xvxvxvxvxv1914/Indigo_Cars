@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ChevronDown, Shield, Truck, FileText } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useMagnetic } from '../lib/useMagnetic';
 
 function ParticleMesh() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -129,6 +130,10 @@ export default function Hero() {
   const { t, lang } = useLang();
   const bgRef = useRef<HTMLImageElement>(null);
 
+  // Magnetic buttons (Task 2)
+  const magPrimary = useMagnetic();
+  const magSecondary = useMagnetic();
+
   useEffect(() => {
     const onScroll = () => {
       if (bgRef.current) {
@@ -180,16 +185,22 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
         <div className="max-w-3xl">
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-6">
+          {/* Eyebrow — stagger 0 */}
+          <div
+            className="hero-stagger flex items-center gap-3 mb-6"
+            style={{ animationDelay: '0.05s' }}
+          >
             <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #7c3aed, #4f46e5)' }} />
             <span className="text-primary-400 font-semibold text-xs uppercase tracking-[0.25em]">
               {t.hero.label}
             </span>
           </div>
 
-          {/* Heading */}
-          <h1 className="font-display text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-6 tracking-wide">
+          {/* Heading — stagger 1 */}
+          <h1
+            className="hero-stagger font-display text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-6 tracking-wide"
+            style={{ animationDelay: '0.18s' }}
+          >
             {t.hero.h1a}{' '}
             <span className="text-gradient">{t.hero.h1b}</span>
             <br />
@@ -197,22 +208,46 @@ export default function Hero() {
             <span className="text-gradient">{t.hero.h1d}</span>
           </h1>
 
-          <p className="text-dark-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+          {/* Subtitle — stagger 2 */}
+          <p
+            className="hero-stagger text-dark-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl"
+            style={{ animationDelay: '0.32s' }}
+          >
             {t.hero.sub}
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <button onClick={() => scroll('#contact')} className="btn-primary text-center text-base">
+          {/* CTAs — stagger 3 (magnetic buttons, Task 2) */}
+          <div
+            className="hero-stagger flex flex-col sm:flex-row gap-4 mb-12"
+            style={{ animationDelay: '0.46s' }}
+          >
+            <button
+              ref={magPrimary.ref as React.RefObject<HTMLButtonElement>}
+              onMouseMove={magPrimary.onMouseMove}
+              onMouseLeave={magPrimary.onMouseLeave}
+              onClick={() => scroll('#contact')}
+              className="btn-primary text-center text-base"
+              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, background 0.3s ease' }}
+            >
               {t.hero.cta}
             </button>
-            <button onClick={() => scroll('#how-it-works')} className="btn-outline text-center text-base">
+            <button
+              ref={magSecondary.ref as React.RefObject<HTMLButtonElement>}
+              onMouseMove={magSecondary.onMouseMove}
+              onMouseLeave={magSecondary.onMouseLeave}
+              onClick={() => scroll('#how-it-works')}
+              className="btn-outline text-center text-base"
+              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease' }}
+            >
               {t.hero.secondary}
             </button>
           </div>
 
-          {/* Trust badges */}
-          <div className="flex flex-wrap gap-3">
+          {/* Trust badges — stagger 4 */}
+          <div
+            className="hero-stagger flex flex-wrap gap-3"
+            style={{ animationDelay: '0.60s' }}
+          >
             {badgeLabels.map((label, i) => {
               const Icon = [Shield, Truck, FileText][i];
               return (

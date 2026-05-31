@@ -7,8 +7,11 @@ function CursorGlow() {
   const target = useRef({ x: -600, y: -600 });
 
   useEffect(() => {
+    // Skip rAF loop when user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const onMove = (e: MouseEvent) => { target.current = { x: e.clientX, y: e.clientY }; };
-    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mousemove', onMove, { passive: true });
     let raf: number;
     const tick = () => {
       pos.current.x += (target.current.x - pos.current.x) * 0.1;
@@ -30,11 +33,60 @@ function CursorGlow() {
     />
   );
 }
+
+// ─── Task 1: Scroll progress bar ─────────────────────────────────────────────
+function ScrollProgressBar() {
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Skip when reduced motion is preferred
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let ticking = false;
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          if (barRef.current) {
+            barRef.current.style.width = `${pct}%`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <div
+      className="fixed top-0 left-0 right-0 z-[60] pointer-events-none"
+      style={{ height: '3px', background: 'transparent' }}
+    >
+      <div
+        ref={barRef}
+        style={{
+          height: '100%',
+          width: '0%',
+          background: 'linear-gradient(to right, #7c3aed, #a78bfa, #4f46e5)',
+          transition: 'width 0.05s linear',
+        }}
+      />
+    </div>
+  );
+}
+
 import { LangProvider } from './context/LangContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
 import HotOffers from './components/HotOffers';
+import Partners from './components/Partners';
 import WhyUs from './components/WhyUs';
 import RouteMap from './components/RouteMap';
 import Testimonials from './components/Testimonials';
@@ -42,6 +94,7 @@ import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
+import WhatsAppButton from './components/WhatsAppButton';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
 
@@ -53,6 +106,7 @@ function HomePage() {
         <Hero />
         <HowItWorks />
         <HotOffers />
+        <Partners />
         <WhyUs />
         <RouteMap />
         <Testimonials />
@@ -68,7 +122,9 @@ function HomePage() {
 export default function App() {
   return (
     <LangProvider>
+      <ScrollProgressBar />
       <CursorGlow />
+      <WhatsAppButton />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />

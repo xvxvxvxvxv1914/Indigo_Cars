@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useMagnetic } from '../lib/useMagnetic';
 
 const sectionIds = [
   { key: 'home', href: '#hero' },
@@ -16,6 +17,7 @@ export default function Navbar() {
   const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const magCta = useMagnetic(0.3);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -117,9 +119,13 @@ export default function Navbar() {
             </div>
 
             <a
+              ref={magCta.ref as React.RefObject<HTMLAnchorElement>}
+              onMouseMove={magCta.onMouseMove}
+              onMouseLeave={magCta.onMouseLeave}
               href="#contact"
               onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
               className="btn-primary text-sm py-2 px-4"
+              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, background 0.3s ease', display: 'inline-block' }}
             >
               {t.nav.cta}
             </a>

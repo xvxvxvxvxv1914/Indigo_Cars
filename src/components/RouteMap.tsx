@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MapPin, Anchor, Truck, ArrowRight, Clock } from 'lucide-react';
 
 const routeStops = [
@@ -14,8 +14,66 @@ const timelineSteps = [
   { label: 'Последна доставка', days: '3–5 дни' },
 ];
 
+// SVG animated route line component (md+ only)
+function AnimatedRouteLine({ visible }: { visible: boolean }) {
+  // Three stops at roughly x=80, x=400, x=720 (within a 800px viewBox)
+  // y=40 fixed
+  const pathD = 'M 80 40 C 180 10, 300 70, 400 40 C 500 10, 620 70, 720 40';
+
+  return (
+    <svg
+      viewBox="0 0 800 80"
+      fill="none"
+      preserveAspectRatio="xMidYMid meet"
+      className="hidden md:block absolute inset-x-0 top-1/2 -translate-y-[calc(50%+32px)] w-full pointer-events-none"
+      style={{ zIndex: 2, height: '80px' }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stopColor="#7c3aed" stopOpacity="0.8" />
+          <stop offset="50%"  stopColor="#a78bfa" stopOpacity="1" />
+          <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.8" />
+        </linearGradient>
+        <filter id="routeGlow">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      {/* Main curved path */}
+      <path
+        d={pathD}
+        stroke="url(#routeGrad)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        filter="url(#routeGlow)"
+        strokeDasharray="800"
+        strokeDashoffset={visible ? '0' : '800'}
+        style={{
+          transition: visible
+            ? 'stroke-dashoffset 1.4s cubic-bezier(0.4,0,0.2,1)'
+            : 'none',
+        }}
+      />
+
+      {/* Travelling dot — only shown when line is visible */}
+      {visible && (
+        <circle r="5" fill="#a78bfa" filter="url(#routeGlow)">
+          <animateMotion
+            dur="3s"
+            repeatCount="indefinite"
+            path={pathD}
+          />
+        </circle>
+      )}
+    </svg>
+  );
+}
+
 export default function RouteMap() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [lineVisible, setLineVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,6 +83,7 @@ export default function RouteMap() {
             entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
               setTimeout(() => el.classList.add('visible'), i * 150);
             });
+            setLineVisible(true);
           }
         });
       },
@@ -54,12 +113,14 @@ export default function RouteMap() {
           </p>
         </div>
 
-        {/* Route stops */}
-        <div className="animate-on-scroll flex flex-col md:flex-row items-center justify-center gap-0 mb-16">
+        {/* Route stops + animated SVG line */}
+        <div className="animate-on-scroll relative flex flex-col md:flex-row items-center justify-center gap-0 mb-16">
+          <AnimatedRouteLine visible={lineVisible} />
+
           {routeStops.map((stop, idx) => {
             const Icon = stop.icon;
             return (
-              <div key={stop.city} className="flex flex-col md:flex-row items-center">
+              <div key={stop.city} className="flex flex-col md:flex-row items-center" style={{ zIndex: 3 }}>
                 <div className="flex flex-col items-center text-center w-52">
                   <div className="text-4xl mb-3">{stop.flag}</div>
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-glow-sm" style={{ background: '#1a1830', border: '2px solid #3d3a6e' }}>
@@ -70,7 +131,7 @@ export default function RouteMap() {
                 </div>
 
                 {idx < routeStops.length - 1 && (
-                  <div className="flex flex-col md:flex-row items-center gap-2 px-4 py-6 md:py-0">
+                  <div className="flex flex-col md:flex-row items-center gap-2 px-4 py-6 md:py-0" style={{ zIndex: 3 }}>
                     <div className="hidden md:block">
                       <div className="flex items-center gap-1">
                         {Array.from({ length: 5 }).map((_, i) => (
