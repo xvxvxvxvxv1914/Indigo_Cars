@@ -9,7 +9,7 @@ function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const x = (e.clientX - r.left) / r.width - 0.5;
   const y = (e.clientY - r.top) / r.height - 0.5;
   el.style.transition = 'transform 0.08s ease';
-  el.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateZ(10px)`;
+  el.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateZ(6px)`;
 }
 function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
   e.currentTarget.style.transition = 'transform 0.5s ease';
@@ -67,7 +67,7 @@ export default function HotOffers() {
   };
 
   return (
-    <section id="offers" className="py-24 relative" ref={sectionRef}>
+    <section id="offers" className="py-24 relative scroll-mt-16" ref={sectionRef}>
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/30 to-[#0a0a1a]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

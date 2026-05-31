@@ -7,7 +7,7 @@ function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const x = (e.clientX - r.left) / r.width - 0.5;
   const y = (e.clientY - r.top) / r.height - 0.5;
   el.style.transition = 'transform 0.08s ease';
-  el.style.transform = `perspective(800px) rotateY(${x * 16}deg) rotateX(${-y * 16}deg) translateZ(12px)`;
+  el.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(6px)`;
 }
 function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
   e.currentTarget.style.transition = 'transform 0.5s ease';
@@ -108,7 +108,7 @@ export default function WhyUs() {
   }, []);
 
   return (
-    <section id="why-us" className="py-24 relative overflow-hidden" ref={sectionRef}>
+    <section id="why-us" className="py-24 relative overflow-hidden scroll-mt-16" ref={sectionRef}>
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1920&h=800&fit=crop"

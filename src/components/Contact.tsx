@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 // ─── Confetti burst ───────────────────────────────────────────────────────────
 const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#4f46e5', '#25d366', '#f59e0b', '#ec4899'];
@@ -49,6 +50,7 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -67,13 +69,26 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError('');
+    try {
+      const { error: dbError } = await supabase.from('contact_inquiries').insert([{
+        name: form.name,
+        phone: form.phone,
+        email: form.email || null,
+        car: form.car || null,
+        budget: form.budget || null,
+        message: form.message || null,
+      }]);
+      if (dbError) throw dbError;
       setSubmitted(true);
-    }, 1500);
+    } catch {
+      setError('Грешка при изпращане. Моля обадете се директно на телефона.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputStyle = {
@@ -292,6 +307,12 @@ export default function Contact() {
                     </>
                   )}
                 </button>
+
+                {error && (
+                  <p className="text-red-400 text-xs text-center rounded-lg px-4 py-2" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
+                    {error}
+                  </p>
+                )}
 
                 <p className="text-[#6060b8] text-xs text-center">
                   Консултацията е безплатна. Отговаряме в рамките на 24 часа.

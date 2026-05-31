@@ -68,7 +68,7 @@ export default function Testimonials() {
   const t = testimonials[current];
 
   return (
-    <section id="testimonials" className="py-24 relative" style={{ background: '#0e0d20' }} ref={sectionRef}>
+    <section id="testimonials" className="py-24 relative scroll-mt-16" style={{ background: '#0e0d20' }} ref={sectionRef}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

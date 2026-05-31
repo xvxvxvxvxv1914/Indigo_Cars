@@ -29,7 +29,7 @@ function CursorGlow() {
     <div
       ref={ref}
       className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-      style={{ zIndex: 0, background: 'radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 65%)', filter: 'blur(30px)' }}
+      style={{ zIndex: 0, background: 'radial-gradient(circle, rgba(124,58,237,0.04) 0%, transparent 65%)', filter: 'blur(40px)' }}
     />
   );
 }
