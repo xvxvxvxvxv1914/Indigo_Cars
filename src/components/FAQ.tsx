@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
@@ -7,9 +7,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setOpenIndex(null);
-  }, [t]);
+  useEffect(() => { setOpenIndex(null); }, [t]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,7 +15,7 @@ export default function FAQ() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 80);
+              setTimeout(() => el.classList.add('visible'), i * 70);
             });
           }
         });
@@ -28,9 +26,12 @@ export default function FAQ() {
     return () => observer.disconnect();
   }, []);
 
+  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+
   return (
     <section id="faq" className="py-24 relative scroll-mt-16" style={{ background: 'var(--bg-main)' }} ref={sectionRef}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.2), transparent)' }} />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-on-scroll">
           <p className="section-label">{t.faq.label}</p>
@@ -41,31 +42,59 @@ export default function FAQ() {
           <p className="section-subtitle">{t.faq.sub}</p>
         </div>
 
-        <div className="space-y-3">
-          {t.faq.items.map((faq, index) => (
-            <div
-              key={index}
-              className="animate-on-scroll rounded-xl overflow-hidden transition-all"
-              style={{
-                background: 'var(--bg-card)',
-                border: `1px solid ${openIndex === index ? 'rgba(124,58,237,0.4)' : '#2a2850'}`,
-              }}
-            >
-              <button
-                className="w-full flex items-center justify-between px-6 py-5 text-left"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+        <div className="space-y-2">
+          {t.faq.items.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={i}
+                className="animate-on-scroll rounded-xl overflow-hidden"
+                style={{
+                  background: 'var(--bg-card)',
+                  border: `1px solid ${isOpen ? 'rgba(124,58,237,0.4)' : 'var(--border)'}`,
+                  boxShadow: isOpen ? 'inset 3px 0 0 #7c3aed' : 'inset 3px 0 0 transparent',
+                  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+                }}
               >
-                <span className="font-semibold text-white pr-4">{faq.q}</span>
-                <ChevronDown
-                  size={20}
-                  className={`text-primary-400 flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}
-                />
-              </button>
-              <div className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-96' : 'max-h-0'}`}>
-                <p className="text-dark-300 px-6 pb-5 leading-relaxed">{faq.a}</p>
+                <button
+                  className="w-full flex items-center gap-4 px-5 py-4 text-left"
+                  onClick={() => toggle(i)}
+                >
+                  {/* Number badge */}
+                  <span
+                    className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold font-display"
+                    style={{
+                      background: isOpen
+                        ? 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)'
+                        : 'rgba(124,58,237,0.12)',
+                      color: isOpen ? '#fff' : '#a78bfa',
+                      transition: 'background 0.3s ease, color 0.3s ease',
+                    }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+
+                  <span className="font-semibold text-white flex-1 text-sm md:text-base leading-snug">
+                    {faq.q}
+                  </span>
+
+                  <ChevronDown
+                    size={18}
+                    className={`text-primary-400 flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+
+                <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+                  <p
+                    className="text-dark-300 leading-relaxed text-sm pb-5 pr-5"
+                    style={{ paddingLeft: 'calc(1.25rem + 2rem + 1rem)' }}
+                  >
+                    {faq.a}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
