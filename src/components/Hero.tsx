@@ -92,15 +92,12 @@ function HeroLight() {
   const { t, lang } = useLang();
   const magPrimary = useMagnetic();
   const magSecondary = useMagnetic();
-  const imageCardRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLImageElement>(null);
   const scroll = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
 
   useEffect(() => {
     const onScroll = () => {
-      if (imageCardRef.current) {
-        const y = window.scrollY * 0.12;
-        imageCardRef.current.style.transform = `translateY(${y}px)`;
-      }
+      if (bgRef.current) bgRef.current.style.transform = `translateY(${window.scrollY * 0.28}px) scale(1.12)`;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -119,127 +116,101 @@ function HeroLight() {
   ];
 
   return (
-    <section id="hero" className="relative overflow-hidden bg-white" style={{ minHeight: '100dvh' }}>
+    <section id="hero" className="relative flex items-center overflow-hidden" style={{ minHeight: '100dvh' }}>
+      {/* Full-bleed background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          ref={bgRef}
+          src="/hero-image.png"
+          alt="Indigo Cars — внос от САЩ"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
+          fetchPriority="high"
+          decoding="async"
+        />
+        {/* Light theme overlays — bright left, gentle gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/[0.94] via-white/[0.78] to-white/[0.25]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/30" />
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(124,58,237,0.07)' }} />
+      </div>
+
       {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(to right, transparent, #7c3aed, #4f46e5, transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: 'linear-gradient(to right, transparent, #7c3aed, #4f46e5, transparent)' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-screen flex items-center">
-        <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pt-24 pb-16">
-
-          {/* ── LEFT: Text content ── */}
-          <div>
-            {/* Eyebrow */}
-            <div className="hero-stagger inline-flex items-center gap-2 mb-6 rounded-full px-4 py-1.5" style={{ background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.2)', animationDelay: '0.05s' }}>
-              <div className="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse" />
-              <span className="text-primary-600 font-semibold text-xs uppercase tracking-[0.2em]">{t.hero.label}</span>
-            </div>
-
-            {/* Heading */}
-            <h1 className="hero-stagger font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] mb-6 tracking-tight" style={{ animationDelay: '0.18s', color: '#1A1A2E' }}>
-              {t.hero.h1a}{' '}
-              <span className="text-gradient">{t.hero.h1b}</span>
-              <br />
-              {t.hero.h1c}{' '}
-              <span className="text-gradient">{t.hero.h1d}</span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="hero-stagger text-lg leading-relaxed mb-8 max-w-xl" style={{ animationDelay: '0.32s', color: '#5B5880' }}>
-              {t.hero.sub}
-            </p>
-
-            {/* CTAs */}
-            <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-10" style={{ animationDelay: '0.46s' }}>
-              <button
-                ref={magPrimary.ref as React.RefObject<HTMLButtonElement>}
-                onMouseMove={magPrimary.onMouseMove} onMouseLeave={magPrimary.onMouseLeave}
-                onClick={() => scroll('#contact')}
-                className="btn-primary text-center text-base"
-                style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}
-              >
-                {t.hero.cta}
-              </button>
-              <button
-                ref={magSecondary.ref as React.RefObject<HTMLButtonElement>}
-                onMouseMove={magSecondary.onMouseMove} onMouseLeave={magSecondary.onMouseLeave}
-                onClick={() => scroll('#how-it-works')}
-                className="btn-outline text-center text-base"
-                style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}
-              >
-                {t.hero.secondary}
-              </button>
-            </div>
-
-            {/* Trust badges */}
-            <div className="hero-stagger flex flex-wrap gap-2" style={{ animationDelay: '0.60s' }}>
-              {badgeLabels.map((label, i) => {
-                const Icon = [Shield, Truck, FileText][i];
-                return (
-                  <div key={label} className="flex items-center gap-2 rounded-full px-3 py-1.5 transition-all" style={{ background: 'rgba(124,58,237,0.06)', border: '1px solid rgba(124,58,237,0.2)' }}>
-                    <Icon size={13} className="text-primary-500" />
-                    <span className="text-xs font-medium" style={{ color: '#4c3d8f' }}>{label}</span>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Stats — mobile only */}
-            <div className="hero-stagger grid grid-cols-3 gap-3 mt-10 lg:hidden" style={{ animationDelay: '0.75s' }}>
-              {stats.map((s) => (
-                <div key={s.label} className="text-center rounded-2xl px-3 py-4" style={{ background: 'rgba(124,58,237,0.06)', border: '1px solid rgba(124,58,237,0.15)' }}>
-                  <div className="text-xl font-bold text-gradient-stats">{s.value}</div>
-                  <div className="text-xs mt-0.5" style={{ color: '#7B6FA8' }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
+        <div className="max-w-3xl">
+          {/* Eyebrow */}
+          <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
+            <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #7c3aed, #4f46e5)' }} />
+            <span className="text-primary-600 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
           </div>
 
-          {/* ── RIGHT: Image card ── */}
-          <div className="hidden lg:block relative" ref={imageCardRef} style={{ willChange: 'transform', transition: 'transform 0.1s linear' }}>
-            {/* Glow behind image */}
-            <div className="absolute inset-0 rounded-3xl blur-3xl" style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.2), rgba(79,70,229,0.15))', transform: 'scale(0.95) translateY(20px)' }} />
+          {/* Heading */}
+          <h1 className="hero-stagger font-display text-4xl sm:text-6xl md:text-8xl leading-none mb-6 tracking-wide" style={{ animationDelay: '0.18s', color: '#1A1A2E' }}>
+            {t.hero.h1a}{' '}
+            <span className="text-gradient">{t.hero.h1b}</span>
+            <br />
+            {t.hero.h1c}{' '}
+            <span className="text-gradient">{t.hero.h1d}</span>
+          </h1>
 
-            {/* Image container */}
-            <div className="relative rounded-3xl overflow-hidden" style={{ boxShadow: '0 32px 80px rgba(124,58,237,0.2), 0 8px 24px rgba(0,0,0,0.08)', border: '1px solid rgba(124,58,237,0.15)' }}>
-              <img
-                src="/hero-image.png"
-                alt="Indigo Cars — внос от САЩ"
-                className="w-full h-[520px] object-cover"
-                style={{ objectPosition: '55% center' }}
-                fetchPriority="high"
-                decoding="async"
-              />
-              {/* Subtle indigo overlay at bottom */}
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(79,70,229,0.35) 0%, transparent 50%)' }} />
-            </div>
+          {/* Subtitle */}
+          <p className="hero-stagger text-lg md:text-xl leading-relaxed mb-10 max-w-2xl" style={{ animationDelay: '0.32s', color: '#3D3A5C' }}>
+            {t.hero.sub}
+          </p>
 
-            {/* Floating stat cards */}
-            <div className="absolute -left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3">
-              {stats.map((s) => (
-                <div key={s.label} className="rounded-2xl px-4 py-3 min-w-[140px] backdrop-blur-md" style={{ background: 'rgba(255,255,255,0.95)', boxShadow: '0 8px 32px rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.12)' }}>
-                  <div className="text-xl font-bold text-gradient-stats">{s.value}</div>
-                  <div className="text-xs mt-0.5" style={{ color: '#7B6FA8' }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Carfax/trust badge floating */}
-            <div className="absolute -bottom-4 right-8 rounded-2xl px-5 py-3 backdrop-blur-md flex items-center gap-3" style={{ background: 'rgba(255,255,255,0.95)', boxShadow: '0 8px 32px rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.12)' }}>
-              <CheckCircle size={20} className="text-primary-500" />
-              <div>
-                <div className="text-sm font-semibold" style={{ color: '#1A1A2E' }}>CARFAX Verified</div>
-                <div className="text-xs" style={{ color: '#7B6FA8' }}>100% прозрачност</div>
-              </div>
-            </div>
+          {/* CTAs */}
+          <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-12" style={{ animationDelay: '0.46s' }}>
+            <button
+              ref={magPrimary.ref as React.RefObject<HTMLButtonElement>}
+              onMouseMove={magPrimary.onMouseMove} onMouseLeave={magPrimary.onMouseLeave}
+              onClick={() => scroll('#contact')}
+              className="btn-primary text-center text-base"
+              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}
+            >
+              {t.hero.cta}
+            </button>
+            <button
+              ref={magSecondary.ref as React.RefObject<HTMLButtonElement>}
+              onMouseMove={magSecondary.onMouseMove} onMouseLeave={magSecondary.onMouseLeave}
+              onClick={() => scroll('#how-it-works')}
+              className="btn-outline text-center text-base"
+              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}
+            >
+              {t.hero.secondary}
+            </button>
           </div>
+
+          {/* Trust badges */}
+          <div className="hero-stagger flex flex-wrap gap-3" style={{ animationDelay: '0.60s' }}>
+            {badgeLabels.map((label, i) => {
+              const Icon = [Shield, Truck, FileText][i];
+              return (
+                <div key={label} className="flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2" style={{ background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(124,58,237,0.25)' }}>
+                  <Icon size={14} className="text-primary-500" />
+                  <span className="text-xs font-medium" style={{ color: '#3D3A5C' }}>{label}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Stat cards — bottom right */}
+        <div className="absolute bottom-12 right-6 lg:right-16 hidden md:flex flex-col gap-3">
+          {stats.map((s) => (
+            <div key={s.label} className="text-right backdrop-blur rounded-xl px-5 py-3 min-w-[150px] transition-all hover:scale-105" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(124,58,237,0.2)', boxShadow: '0 4px 20px rgba(124,58,237,0.1)' }}>
+              <div className="text-2xl font-bold text-gradient-stats">{s.value}</div>
+              <div className="text-xs mt-0.5" style={{ color: '#5B5880' }}>{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Scroll cue */}
       <button
         onClick={() => scroll('#how-it-works')}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 transition-colors hover:text-primary-500"
-        style={{ color: '#9CA3AF' }}
+        className="absolute bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 transition-colors hover:text-primary-500"
+        style={{ color: '#7B6FA8' }}
         aria-label="Scroll down"
       >
         <span className="text-xs uppercase tracking-widest">{t.hero.scrollMore}</span>
