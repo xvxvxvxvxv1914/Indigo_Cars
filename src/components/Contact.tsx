@@ -75,7 +75,7 @@ export default function Contact() {
     }
   };
 
-  const inputStyle = { background: 'rgba(26,24,48,0.6)', border: '1px solid var(--border)' };
+  const inputStyle = { background: 'var(--bg-input)', border: '1px solid var(--border)' };
   const inputClass = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#6060b8] focus:outline-none transition-colors text-sm';
 
   const contactItems = [
@@ -141,8 +141,8 @@ export default function Contact() {
               />
               <div className="absolute inset-0 flex items-center px-6" style={{ background: 'linear-gradient(to right, rgba(10,10,26,0.85), transparent)' }}>
                 <div>
-                  <div className="text-primary-400 text-sm font-semibold mb-1">{t.contact.freeEval}</div>
-                  <div className="text-white font-bold">{t.contact.savings}</div>
+                  <div className="text-sm font-semibold mb-1" style={{ color: '#a78bfa' }}>{t.contact.freeEval}</div>
+                  <div className="font-bold" style={{ color: '#ffffff' }}>{t.contact.savings}</div>
                 </div>
               </div>
             </div>
