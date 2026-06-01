@@ -79,7 +79,7 @@ export default function Contact() {
   const inputClass = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#6060b8] focus:outline-none transition-colors text-sm';
 
   const contactItems = [
-    { icon: Phone, label: t.contact.phoneLabel, value: '+359 888 000 000', href: 'tel:+359888000000' },
+    { icon: Phone, label: t.contact.phoneLabel, value: '—', href: '#' },
     { icon: Mail, label: t.contact.emailLabel, value: 'info@autoimport.bg', href: 'mailto:info@autoimport.bg' },
     { icon: MapPin, label: t.contact.addressLabel, value: 'бул. Цариградско шосе 100, София', href: '#' },
   ];

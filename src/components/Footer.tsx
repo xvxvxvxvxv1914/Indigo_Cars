@@ -81,7 +81,7 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{t.footer.contacts}</h4>
             <div className="space-y-3">
               {[
-                { icon: Phone, value: '+359 888 000 000', href: 'tel:+359888000000' },
+                { icon: Phone, value: '—', href: '#' },
                 { icon: Mail, value: 'info@autoimport.bg', href: 'mailto:info@autoimport.bg' },
                 { icon: MapPin, value: 'бул. Цариградско шосе 100, София 1784', href: '#' },
               ].map(({ icon: Icon, value, href }) => (

@@ -9,11 +9,11 @@ export default function BottomNav() {
     { icon: Car, label: t.nav.offers, href: '#offers' },
     { icon: Info, label: t.nav.whyUs, href: '#why-us' },
     { icon: MessageCircle, label: t.nav.contact, href: '#contact' },
-    { icon: Phone, label: lang === 'BG' ? 'Обади се' : lang === 'RU' ? 'Звонок' : 'Call', href: 'tel:+359888000000' },
+    { icon: Phone, label: lang === 'BG' ? 'Обади се' : lang === 'RU' ? 'Звонок' : 'Call', href: '#contact' },
   ];
 
   const handleClick = (href: string) => {
-    if (href.startsWith('tel')) return;
+    if (href.startsWith('tel') || href === '#') return;
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -34,7 +34,7 @@ export default function BottomNav() {
             key={href}
             href={href}
             onClick={(e) => {
-              if (!href.startsWith('tel')) {
+              if (!href.startsWith('tel') && href !== '#') {
                 e.preventDefault();
                 handleClick(href);
               }

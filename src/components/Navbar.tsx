@@ -91,9 +91,9 @@ export default function Navbar() {
 
           {/* Right controls */}
           <div className="hidden lg:flex items-center gap-3">
-            <a href="tel:+359888000000" className="flex items-center gap-1.5 text-sm transition-colors" style={{ color: 'var(--text-secondary)' }}>
+            <a href="#contact" className="flex items-center gap-1.5 text-sm transition-colors" style={{ color: 'var(--text-secondary)' }}>
               <Phone size={14} className="text-primary-500" />
-              <span>+359 888 000 000</span>
+              <span>—</span>
             </a>
 
             {/* Language switcher */}
@@ -172,7 +172,7 @@ export default function Navbar() {
           </ul>
           <div className="flex items-center gap-3 px-4 py-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
             <Phone size={14} className="text-primary-500" />
-            <span>+359 888 000 000</span>
+            <span>—</span>
           </div>
           <a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }} className="block btn-primary text-center text-sm mt-3">
             {t.nav.cta}
