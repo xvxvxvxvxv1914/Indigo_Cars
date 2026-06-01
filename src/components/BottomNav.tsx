@@ -19,10 +19,16 @@ export default function BottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-40 md:hidden backdrop-blur-md"
-      style={{ background: 'rgba(10,10,26,0.97)', borderTop: '1px solid #2a2850' }}
+      className="fixed bottom-0 left-0 right-0 z-40 md:hidden"
+      style={{
+        background: 'rgba(10,10,26,0.97)',
+        borderTop: '1px solid #2a2850',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+      }}
     >
-      <div className="flex items-center justify-around px-2 py-2">
+      <div className="flex items-center justify-around px-1 py-2">
         {navItems.map(({ icon: Icon, label, href }) => (
           <a
             key={href}
@@ -33,10 +39,10 @@ export default function BottomNav() {
                 handleClick(href);
               }
             }}
-            className="flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-dark-300 hover:text-primary-400 transition-all active:scale-95"
+            className="flex flex-col items-center gap-0.5 px-1 py-1 rounded-xl text-dark-300 hover:text-primary-400 transition-all active:scale-95 min-w-0"
           >
-            <Icon size={20} />
-            <span className="text-xs font-medium">{label}</span>
+            <Icon size={19} />
+            <span className="text-[10px] font-medium truncate w-full text-center leading-tight">{label}</span>
           </a>
         ))}
       </div>

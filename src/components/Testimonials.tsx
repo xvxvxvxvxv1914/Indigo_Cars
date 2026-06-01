@@ -102,17 +102,19 @@ export default function Testimonials() {
         <div className="relative max-w-3xl mx-auto animate-on-scroll">
           <div className="rounded-2xl p-8 md:p-12 relative overflow-hidden" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
             <Quote size={48} className="absolute top-6 right-6" style={{ color: 'rgba(124,58,237,0.1)' }} />
-            <div className="flex items-center gap-4 mb-6">
-              <img src={item.avatar} alt={item.name} className="w-14 h-14 rounded-full object-cover" style={{ border: '2px solid rgba(124,58,237,0.5)' }} />
-              <div>
-                <div className="font-semibold text-white">{item.name}</div>
+            <div className="flex items-start gap-3 mb-6">
+              <img src={item.avatar} alt={item.name} className="w-12 h-12 rounded-full object-cover flex-shrink-0" style={{ border: '2px solid rgba(124,58,237,0.5)' }} />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="font-semibold text-white truncate">{item.name}</div>
+                  <div className="flex gap-0.5 flex-shrink-0">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} size={13} className="text-primary-500 fill-primary-500" />
+                    ))}
+                  </div>
+                </div>
                 <div className="text-dark-300 text-sm">{item.location}</div>
                 <div className="text-primary-400 text-xs mt-0.5">{item.car}</div>
-              </div>
-              <div className="ml-auto flex gap-1">
-                {[...Array(item.rating)].map((_, i) => (
-                  <Star key={i} size={14} className="text-primary-500 fill-primary-500" />
-                ))}
               </div>
             </div>
             <p className="text-dark-300 text-lg leading-relaxed italic">"{item.text}"</p>

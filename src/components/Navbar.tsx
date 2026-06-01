@@ -44,9 +44,10 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-navy-950/97 backdrop-blur-md shadow-2xl shadow-black/50 border-b border-[#2a2850]'
+          ? 'bg-navy-950/97 shadow-2xl shadow-black/50 border-b border-[#2a2850]'
           : 'bg-transparent'
       }`}
+      style={scrolled ? { backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' } : {}}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -154,7 +155,7 @@ export default function Navbar() {
           mobileOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-navy-950/99 backdrop-blur-md border-t border-[#2a2850] px-4 py-4">
+        <div className="border-t border-[#2a2850] px-4 py-4" style={{ background: 'rgba(10,9,26,0.99)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
           <ul className="space-y-1 mb-4">
             {sectionIds.map(({ key, href }) => (
               <li key={href}>
