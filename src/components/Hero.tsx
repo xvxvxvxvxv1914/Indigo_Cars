@@ -108,14 +108,6 @@ function HeroLight() {
 
   return (
     <section id="hero" className="relative overflow-hidden bg-white" style={{ minHeight: '100dvh' }}>
-      {/* Decorative blobs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.12) 0%, rgba(79,70,229,0.06) 60%, transparent 100%)' }} />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }} />
-      {/* Dot grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-30" style={{
-        backgroundImage: 'radial-gradient(circle, #c4b5fd 1px, transparent 1px)',
-        backgroundSize: '32px 32px',
-      }} />
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(to right, transparent, #7c3aed, #4f46e5, transparent)' }} />
 
