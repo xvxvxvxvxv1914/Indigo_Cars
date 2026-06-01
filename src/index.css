@@ -29,27 +29,28 @@
 }
 
 [data-theme="light"] {
-  --bg-main: #F5F3FF;
+  --bg-main: #F8F9FC;
   --bg-alt: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F5F3FF;
+  --bg-card-hover: #F8F9FC;
   --bg-nav: rgba(255,255,255,0.97);
-  --bg-input: rgba(245,243,255,0.8);
-  --border: #E4DCFF;
+  --bg-input: #FFFFFF;
+  --border: #E2E8F0;
   --border-card: #EDE9FE;
-  --text-primary: #1A1A2E;
-  --text-secondary: #5B5880;
-  --text-muted: #9CA3AF;
-  --text-placeholder: #A89ED0;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-placeholder: #94A3B8;
   --overlay-hero: rgba(15,10,40,0.75);
   --overlay-hero-mid: rgba(15,10,40,0.55);
   --overlay-hero-light: rgba(15,10,40,0.15);
   --overlay-hero-bottom: rgba(15,10,40,0.70);
-  --stat-card-bg: rgba(255,255,255,0.9);
-  --bg-overlay: rgba(245,243,255,0.0);
-  --section-grad: linear-gradient(to bottom, #F5F3FF, rgba(237,233,254,0.2), #F5F3FF);
-  --scrollbar-track: #F5F3FF;
-  --shadow-card: 0 2px 16px rgba(124,58,237,0.08), 0 1px 4px rgba(0,0,0,0.05);
+  --stat-card-bg: rgba(255,255,255,0.95);
+  --bg-overlay: rgba(0,0,0,0.0);
+  --section-grad: none;
+  --scrollbar-track: #F8F9FC;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(99,102,241,0.06);
+  --shadow-card-hover: 0 8px 32px rgba(99,102,241,0.12), 0 2px 8px rgba(0,0,0,0.06);
 }
 
 @layer base {
@@ -97,6 +98,12 @@
     transform: translateY(-6px);
     box-shadow: 0 0 0 1px rgba(124,58,237,0.5), 0 8px 32px rgba(124,58,237,0.25), 0 0 60px rgba(79,70,229,0.15);
     border-color: rgba(124,58,237,0.5) !important;
+  }
+
+  [data-theme="light"] .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(99,102,241,0.15), 0 4px 12px rgba(0,0,0,0.06);
+    border-color: rgba(99,102,241,0.3) !important;
   }
 
   .animate-on-scroll {
@@ -272,12 +279,38 @@
 /* Section label stays purple — already ok */
 /* Section title color via .section-title class already uses var(--text-primary) */
 
-/* Placeholder text in forms */
+/* Form inputs — white bg with subtle border */
 [data-theme="light"] .placeholder-\[#6060b8\]::placeholder {
   color: var(--text-placeholder) !important;
 }
-
-/* Inline color overrides for specific elements */
-[data-theme="light"] [style*="color: '#403f90'"] {
-  color: var(--text-muted) !important;
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  color: var(--text-primary) !important;
 }
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+  border-color: rgba(124,58,237,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.08) !important;
+  outline: none !important;
+}
+
+/* FAQ items — indigo left accent */
+[data-theme="light"] #faq [style*="var(--bg-card)"] {
+  border-left: 3px solid rgba(124,58,237,0.3) !important;
+}
+
+/* Footer background */
+[data-theme="light"] footer { background: #F8F9FC !important; border-color: #E2E8F0 !important; }
+
+/* Inline color overrides */
+[data-theme="light"] [style*="color: '#403f90'"] { color: var(--text-muted) !important; }
+
+/* Section separator lines — more visible in light */
+[data-theme="light"] .h-px { opacity: 0.6; }
+
+/* Navbar border in light mode */
+[data-theme="light"] nav { border-color: rgba(99,102,241,0.15) !important; }

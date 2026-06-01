@@ -1,6 +1,7 @@
 ﻿import { useEffect, useRef, useState } from 'react';
 import { CheckCircle, Award, Users, Clock, TrendingDown, Globe } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const el = e.currentTarget;
@@ -60,6 +61,8 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 
 export default function WhyUs() {
   const { t } = useLang();
+  const { theme } = useTheme();
+  const light = theme === 'light';
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -80,16 +83,20 @@ export default function WhyUs() {
   }, []);
 
   return (
-    <section id="why-us" className="py-24 relative overflow-hidden scroll-mt-16" ref={sectionRef}>
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1920&h=800&fit=crop"
-          alt="Cars"
-          className="w-full h-full object-cover object-center"
-          style={{ opacity: 0.08 }}
-        />
-        <div className="absolute inset-0" style={{ background: 'var(--bg-overlay)' }} />
-      </div>
+    <section id="why-us" className="py-24 relative overflow-hidden scroll-mt-16" ref={sectionRef}
+      style={{ background: 'var(--bg-alt)' }}>
+      {!light && (
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1920&h=800&fit=crop"
+            alt="Cars"
+            className="w-full h-full object-cover object-center"
+            loading="lazy" decoding="async"
+            style={{ opacity: 0.08 }}
+          />
+          <div className="absolute inset-0" style={{ background: 'rgba(10,10,26,0.95)' }} />
+        </div>
+      )}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Stats */}

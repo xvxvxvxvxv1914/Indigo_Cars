@@ -92,7 +92,19 @@ function HeroLight() {
   const { t, lang } = useLang();
   const magPrimary = useMagnetic();
   const magSecondary = useMagnetic();
+  const imageCardRef = useRef<HTMLDivElement>(null);
   const scroll = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (imageCardRef.current) {
+        const y = window.scrollY * 0.12;
+        imageCardRef.current.style.transform = `translateY(${y}px)`;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const badgeLabels = lang === 'BG'
     ? ['Лицензирани', 'Доставка в срок', 'Пълна документация']
@@ -183,7 +195,7 @@ function HeroLight() {
           </div>
 
           {/* ── RIGHT: Image card ── */}
-          <div className="hidden lg:block relative">
+          <div className="hidden lg:block relative" ref={imageCardRef} style={{ willChange: 'transform', transition: 'transform 0.1s linear' }}>
             {/* Glow behind image */}
             <div className="absolute inset-0 rounded-3xl blur-3xl" style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.2), rgba(79,70,229,0.15))', transform: 'scale(0.95) translateY(20px)' }} />
 
