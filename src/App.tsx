@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function CursorGlow() {
@@ -81,7 +81,8 @@ function ScrollProgressBar() {
   );
 }
 
-import { LangProvider } from './context/LangContext';
+import { LangProvider, useLang } from './context/LangContext';
+import { useTheme } from './context/ThemeContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -100,6 +101,82 @@ import BottomNav from './components/BottomNav';
 import WhatsAppButton from './components/WhatsAppButton';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
+
+function NavDots() {
+  const { t } = useLang();
+  const { theme } = useTheme();
+  const light = theme === 'light';
+  const [active, setActive] = useState('hero');
+
+  const sections = useMemo(() => [
+    { id: 'hero',         label: t.nav.home },
+    { id: 'how-it-works', label: t.nav.howItWorks },
+    { id: 'offers',       label: t.nav.offers },
+    { id: 'why-us',       label: t.nav.whyUs },
+    { id: 'testimonials', label: t.nav.testimonials },
+    { id: 'faq',          label: t.nav.faq },
+    { id: 'calculator',   label: t.calculator.label },
+    { id: 'contact',      label: t.nav.contact },
+  ], [t]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const center = window.innerHeight / 2;
+      let closest = sections[0].id;
+      let closestDist = Infinity;
+      for (const { id } of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        const dist = Math.abs(rect.top + rect.height / 2 - center);
+        if (dist < closestDist) { closestDist = dist; closest = id; }
+      }
+      setActive(closest);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [sections]);
+
+  return (
+    <div className="hidden lg:flex fixed right-5 top-1/2 -translate-y-1/2 flex-col gap-3.5 z-50">
+      {sections.map(({ id, label }) => (
+        <button
+          key={id}
+          onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
+          className="group relative flex items-center justify-end"
+          aria-label={label}
+        >
+          {/* Tooltip */}
+          <span
+            className="absolute right-5 px-2.5 py-1 text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 whitespace-nowrap translate-x-1 group-hover:translate-x-0"
+            style={{
+              background: light ? '#ffffff' : '#1a1830',
+              color: 'var(--text-primary)',
+              border: '1px solid var(--border)',
+              boxShadow: light
+                ? '0 2px 12px rgba(99,102,241,0.12)'
+                : '0 2px 12px rgba(0,0,0,0.4)',
+            }}
+          >
+            {label}
+          </span>
+          {/* Dot */}
+          <span
+            className="block rounded-full transition-all duration-300"
+            style={{
+              width:      active === id ? '10px' : '6px',
+              height:     active === id ? '10px' : '6px',
+              background: active === id ? '#7c3aed' : 'transparent',
+              border:     `2px solid ${active === id ? '#7c3aed' : 'rgba(124,58,237,0.35)'}`,
+              boxShadow:  active === id ? '0 0 8px rgba(124,58,237,0.55)' : 'none',
+            }}
+          />
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function HomePage() {
   return (
@@ -130,6 +207,7 @@ export default function App() {
     <LangProvider>
       <ScrollProgressBar />
       <CursorGlow />
+      <NavDots />
       <WhatsAppButton />
       <BrowserRouter>
         <Routes>
