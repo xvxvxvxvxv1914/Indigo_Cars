@@ -1,14 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { MessageCircle, Search, Gavel, Ship, FileCheck } from 'lucide-react';
 import { useLang } from '../context/LangContext';
-import { useTheme } from '../context/ThemeContext';
 
 const stepIcons = [MessageCircle, Search, Gavel, Ship, FileCheck];
 
 export default function HowItWorks() {
   const { t } = useLang();
-  const { theme } = useTheme();
-  const light = theme === 'light';
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,7 +14,7 @@ export default function HowItWorks() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 100);
+              setTimeout(() => el.classList.add('visible'), i * 120);
             });
           }
         });
@@ -32,16 +29,11 @@ export default function HowItWorks() {
     <section id="how-it-works" className="py-24 relative scroll-mt-16" ref={sectionRef}
       style={{ background: 'var(--bg-alt)' }}>
 
-      {/* Dark theme gradient overlay only */}
-      {!light && (
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/60 to-[#0a0a1a]" />
-      )}
-
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16 animate-on-scroll">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-20 animate-on-scroll">
           <p className="section-label">{t.howItWorks.label}</p>
           <h2 className="section-title mb-8">
             {t.howItWorks.title}{' '}
@@ -50,32 +42,116 @@ export default function HowItWorks() {
           <p className="section-subtitle">{t.howItWorks.sub}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-2">
-          {t.howItWorks.steps.map((step, idx) => {
-            const Icon = stepIcons[idx];
-            return (
-              <div key={idx} className="animate-on-scroll flex flex-col items-center text-center relative">
-                {idx < t.howItWorks.steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-full h-px bg-gradient-to-r from-primary-600/50 to-primary-600/10 z-0" />
-                )}
-                <div className="relative z-10 mb-4">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-glow-sm transition-all hover:scale-105 duration-300"
-                    style={{
-                      background: light ? 'rgba(124,58,237,0.08)' : 'var(--bg-card-hover)',
-                      border: `2px solid ${light ? 'rgba(124,58,237,0.2)' : '#3d3a6e'}`,
-                    }}>
-                    <Icon size={26} className="text-primary-400" />
+        {/* ── Desktop timeline ── */}
+        <div className="hidden md:block relative">
+          {/* Connecting line */}
+          <div
+            className="absolute"
+            style={{
+              top: '2.75rem',
+              left: '10%',
+              right: '10%',
+              height: '2px',
+              background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.5) 10%, rgba(124,58,237,0.5) 90%, transparent)',
+            }}
+          />
+
+          <div className="grid grid-cols-5 gap-2">
+            {t.howItWorks.steps.map((step, idx) => {
+              const Icon = stepIcons[idx];
+              return (
+                <div key={idx} className="animate-on-scroll flex flex-col items-center text-center">
+                  {/* Number */}
+                  <div
+                    className="font-display text-xs font-bold mb-2 tracking-widest"
+                    style={{ color: 'rgba(124,58,237,0.7)' }}
+                  >
+                    {String(idx + 1).padStart(2, '0')}
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                    style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
-                    {idx + 1}
+
+                  {/* Circle */}
+                  <div
+                    className="relative z-10 w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-all duration-300 hover:scale-110"
+                    style={{
+                      background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)',
+                      boxShadow: '0 0 0 4px rgba(124,58,237,0.15), 0 0 20px rgba(124,58,237,0.25)',
+                    }}
+                  >
+                    <Icon size={20} className="text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <h3
+                    className="font-bold text-sm mb-2 leading-tight"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
+                    {step.label}
+                  </h3>
+                  <p
+                    className="text-xs leading-relaxed"
+                    style={{ color: 'var(--text-secondary)' }}
+                  >
+                    {step.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── Mobile timeline ── */}
+        <div className="md:hidden relative">
+          {/* Vertical rail */}
+          <div
+            className="absolute top-0 bottom-0"
+            style={{
+              left: '1.375rem',
+              width: '2px',
+              background: 'linear-gradient(to bottom, rgba(124,58,237,0.6), rgba(124,58,237,0.1))',
+            }}
+          />
+
+          <div className="space-y-8">
+            {t.howItWorks.steps.map((step, idx) => {
+              const Icon = stepIcons[idx];
+              return (
+                <div key={idx} className="animate-on-scroll flex items-start gap-5 relative">
+                  {/* Circle on rail */}
+                  <div
+                    className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center relative z-10"
+                    style={{
+                      background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)',
+                      boxShadow: '0 0 0 4px rgba(124,58,237,0.15)',
+                    }}
+                  >
+                    <Icon size={20} className="text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="pt-2 pb-2">
+                    <div
+                      className="font-display text-xs font-bold tracking-widest mb-1"
+                      style={{ color: 'rgba(124,58,237,0.7)' }}
+                    >
+                      {String(idx + 1).padStart(2, '0')}
+                    </div>
+                    <h3
+                      className="font-bold text-base mb-1"
+                      style={{ color: 'var(--text-primary)' }}
+                    >
+                      {step.label}
+                    </h3>
+                    <p
+                      className="text-sm leading-relaxed"
+                      style={{ color: 'var(--text-secondary)' }}
+                    >
+                      {step.desc}
+                    </p>
                   </div>
                 </div>
-                <h3 className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>{step.label}</h3>
-                <p className="text-xs leading-relaxed max-w-[140px]" style={{ color: 'var(--text-secondary)' }}>{step.desc}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
