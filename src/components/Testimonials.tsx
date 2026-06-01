@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { useLang } from '../context/LangContext';
 
 const testimonials = [
   {
@@ -37,6 +38,7 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const { t } = useLang();
   const [current, setCurrent] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -65,7 +67,7 @@ export default function Testimonials() {
     return () => clearInterval(timer);
   }, []);
 
-  const t = testimonials[current];
+  const item = testimonials[current];
 
   return (
     <section id="testimonials" className="py-24 relative scroll-mt-16" style={{ background: '#0e0d20' }} ref={sectionRef}>
@@ -73,14 +75,13 @@ export default function Testimonials() {
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-16 animate-on-scroll">
-          <p className="section-label">Отзиви</p>
+          <p className="section-label">{t.testimonials.label}</p>
           <h2 className="section-title mb-8">
-            Какво казват{' '}
-            <span className="text-gradient section-title-accent">нашите клиенти</span>
+            {t.testimonials.title}{' '}
+            <span className="text-gradient section-title-accent">{t.testimonials.titleAccent}</span>
           </h2>
         </div>
 
-        {/* Rating summary */}
         <div className="flex justify-center gap-8 mb-12 animate-on-scroll">
           <div className="text-center">
             <div className="font-display text-6xl text-gradient-stats mb-2">4.9</div>
@@ -89,40 +90,32 @@ export default function Testimonials() {
                 <Star key={i} size={18} className="text-primary-500 fill-primary-500" />
               ))}
             </div>
-            <div className="text-dark-300 text-sm">Средна оценка</div>
+            <div className="text-dark-300 text-sm">{t.testimonials.avgRating}</div>
           </div>
           <div className="w-px bg-white/10" />
           <div className="text-center">
             <div className="font-display text-6xl text-gradient-stats mb-2">1500+</div>
-            <div className="text-dark-300 text-sm mt-4">Доволни клиенти</div>
+            <div className="text-dark-300 text-sm mt-4">{t.testimonials.happyClients}</div>
           </div>
         </div>
 
-        {/* Testimonial carousel */}
         <div className="relative max-w-3xl mx-auto animate-on-scroll">
           <div className="rounded-2xl p-8 md:p-12 relative overflow-hidden" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
             <Quote size={48} className="absolute top-6 right-6" style={{ color: 'rgba(124,58,237,0.1)' }} />
-
             <div className="flex items-center gap-4 mb-6">
-              <img
-                src={t.avatar}
-                alt={t.name}
-                className="w-14 h-14 rounded-full object-cover"
-                style={{ border: '2px solid rgba(124,58,237,0.5)' }}
-              />
+              <img src={item.avatar} alt={item.name} className="w-14 h-14 rounded-full object-cover" style={{ border: '2px solid rgba(124,58,237,0.5)' }} />
               <div>
-                <div className="font-semibold text-white">{t.name}</div>
-                <div className="text-dark-300 text-sm">{t.location}</div>
-                <div className="text-primary-400 text-xs mt-0.5">{t.car}</div>
+                <div className="font-semibold text-white">{item.name}</div>
+                <div className="text-dark-300 text-sm">{item.location}</div>
+                <div className="text-primary-400 text-xs mt-0.5">{item.car}</div>
               </div>
               <div className="ml-auto flex gap-1">
-                {[...Array(t.rating)].map((_, i) => (
+                {[...Array(item.rating)].map((_, i) => (
                   <Star key={i} size={14} className="text-primary-500 fill-primary-500" />
                 ))}
               </div>
             </div>
-
-            <p className="text-dark-300 text-lg leading-relaxed italic">"{t.text}"</p>
+            <p className="text-dark-300 text-lg leading-relaxed italic">"{item.text}"</p>
           </div>
 
           <div className="flex items-center justify-between mt-6">

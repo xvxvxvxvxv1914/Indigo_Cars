@@ -9,7 +9,7 @@ export default function BottomNav() {
     { icon: Car, label: t.nav.offers, href: '#offers' },
     { icon: Info, label: t.nav.whyUs, href: '#why-us' },
     { icon: MessageCircle, label: t.nav.contact, href: '#contact' },
-    { icon: Phone, label: lang === 'BG' ? 'Обади се' : 'Call', href: 'tel:+359888000000' },
+    { icon: Phone, label: lang === 'BG' ? 'Обади се' : lang === 'RU' ? 'Звонок' : 'Call', href: 'tel:+359888000000' },
   ];
 
   const handleClick = (href: string) => {

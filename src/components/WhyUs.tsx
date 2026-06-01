@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { CheckCircle, Award, Users, Clock, TrendingDown, Globe } from 'lucide-react';
+import { useLang } from '../context/LangContext';
 
 function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const el = e.currentTarget;
@@ -14,39 +15,14 @@ function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
   e.currentTarget.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
 }
 
-const stats = [
-  { value: 2000, suffix: '+', label: 'Внесени автомобила', icon: CheckCircle },
-  { value: 10, suffix: '+', label: 'Години на пазара', icon: Award },
-  { value: 1500, suffix: '+', label: 'Доволни клиенти', icon: Users },
-  { value: 30, suffix: '%', label: 'По-евтино от България', icon: TrendingDown },
+const statsMeta = [
+  { value: 2000, suffix: '+', icon: CheckCircle },
+  { value: 10,   suffix: '+', icon: Award },
+  { value: 1500, suffix: '+', icon: Users },
+  { value: 30,   suffix: '%', icon: TrendingDown },
 ];
 
-const reasons = [
-  {
-    icon: Globe,
-    title: 'Директен достъп до търгове',
-    description:
-      'Имаме дилърски акаунти на Copart, IAAI и Manheim. Закупуваме без посредници, което означава по-ниска цена за вас.',
-  },
-  {
-    icon: Clock,
-    title: 'Пълна прозрачност',
-    description:
-      'Следите всяка стъпка — от наддаването до доставката. Реални снимки, реални документи, никакви изненади.',
-  },
-  {
-    icon: CheckCircle,
-    title: 'Гарантирана доставка',
-    description:
-      'Имаме застраховка по целия маршрут. Поемаме отговорност за автомобила ви от момента на покупката.',
-  },
-  {
-    icon: Award,
-    title: 'Опитен екип',
-    description:
-      'Над 10 години опит в автомобилния внос. Познаваме всяка процедура, всеки документ, всяка митница.',
-  },
-];
+const reasonIcons = [Globe, Clock, CheckCircle, Award];
 
 function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -79,15 +55,11 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
     return () => observer.disconnect();
   }, [target]);
 
-  return (
-    <span ref={ref}>
-      {count.toLocaleString()}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
 }
 
 export default function WhyUs() {
+  const { t } = useLang();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -113,7 +85,7 @@ export default function WhyUs() {
         <img
           src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1920&h=800&fit=crop"
           alt="Cars"
-          className="w-full h-full object-cover object-center opacity-8"
+          className="w-full h-full object-cover object-center"
           style={{ opacity: 0.08 }}
         />
         <div className="absolute inset-0" style={{ background: 'rgba(10,10,26,0.95)' }} />
@@ -122,9 +94,9 @@ export default function WhyUs() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
-          {stats.map(({ value, suffix, label, icon: Icon }) => (
+          {statsMeta.map(({ value, suffix, icon: Icon }, i) => (
             <div
-              key={label}
+              key={i}
               className="animate-on-scroll text-center backdrop-blur rounded-2xl p-6"
               style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
               onMouseMove={onTiltMove}
@@ -134,7 +106,7 @@ export default function WhyUs() {
               <div className="font-display text-4xl md:text-5xl text-gradient-stats mb-2">
                 <AnimatedCounter target={value} suffix={suffix} />
               </div>
-              <div className="text-dark-300 text-sm">{label}</div>
+              <div className="text-dark-300 text-sm">{t.whyUs.stats[i].label}</div>
             </div>
           ))}
         </div>
@@ -142,33 +114,27 @@ export default function WhyUs() {
         {/* Why Us content */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="animate-on-scroll">
-            <p className="section-label">Защо да изберете нас</p>
+            <p className="section-label">{t.whyUs.label}</p>
             <h2 className="section-title mb-8">
-              Не просто внос —{' '}
-              <span className="text-gradient section-title-accent">пълно обслужване</span>
+              {t.whyUs.title}{' '}
+              <span className="text-gradient section-title-accent">{t.whyUs.titleAccent}</span>
             </h2>
-            <p className="section-subtitle mb-8">
-              Занимаваме се изключително с внос на автомобили от Америка. Това е нашата специализация
-              и нашата страст. Знаем всеки детайл от процеса и можем да ви спестим хиляди левове.
-            </p>
+            <p className="section-subtitle mb-8">{t.whyUs.sub}</p>
             <a
               href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
               className="btn-primary inline-block"
             >
-              Разговор с експерт
+              {t.whyUs.cta}
             </a>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-6">
-            {reasons.map((reason) => {
-              const Icon = reason.icon;
+            {t.whyUs.reasons.map((reason, i) => {
+              const Icon = reasonIcons[i];
               return (
                 <div
-                  key={reason.title}
+                  key={i}
                   className="animate-on-scroll rounded-xl p-6"
                   style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
                   onMouseMove={onTiltMove}

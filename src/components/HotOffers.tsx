@@ -3,6 +3,7 @@ import { MapPin, DollarSign, ExternalLink, MessageSquare } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
 
+
 function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const el = e.currentTarget;
   const r = el.getBoundingClientRect();
@@ -17,7 +18,7 @@ function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
 }
 
 export default function HotOffers() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [offers, setOffers] = useState<HotOffer[]>([]);
   const [loading, setLoading] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -106,7 +107,7 @@ export default function HotOffers() {
                     <circle cx="15" cy="17.5" r="1.5" fill="white" />
                   </svg>
                   <div className="absolute inset-0 flex items-end justify-center pb-3">
-                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'rgba(124,58,237,0.5)' }}>Очаквайте скоро</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'rgba(124,58,237,0.5)' }}>{t.offers.comingSoon}</span>
                   </div>
                 </div>
                 <div className="p-4 flex flex-col flex-1 gap-2">
@@ -119,7 +120,7 @@ export default function HotOffers() {
                     style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}
                   >
                     <MessageSquare size={12} />
-                    Запитване по желание
+                    {t.offers.customOrder}
                   </button>
                 </div>
               </div>

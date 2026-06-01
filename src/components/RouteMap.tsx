@@ -1,25 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, Anchor, Truck, ArrowRight, Clock } from 'lucide-react';
+import { useLang } from '../context/LangContext';
 
-const routeStops = [
-  { icon: MapPin, city: 'США', sub: 'Copart / IAAI', flag: '🇺🇸' },
-  { icon: Anchor, city: 'Ротердам', sub: 'EU Hub', flag: '🇳🇱' },
-  { icon: Truck, city: 'България', sub: 'Доставка до вас', flag: '🇧🇬' },
-];
+const stopIcons = [MapPin, Anchor, Truck];
 
-const timelineSteps = [
-  { label: 'Подготовка', days: '7–10 дни' },
-  { label: 'Морски транспорт', days: '20–30 дни' },
-  { label: 'Митница', days: '5–10 дни' },
-  { label: 'Последна доставка', days: '3–5 дни' },
-];
-
-// SVG animated route line component (md+ only)
 function AnimatedRouteLine({ visible }: { visible: boolean }) {
-  // Three stops at roughly x=80, x=400, x=720 (within a 800px viewBox)
-  // y=40 fixed
   const pathD = 'M 80 40 C 180 10, 300 70, 400 40 C 500 10, 620 70, 720 40';
-
   return (
     <svg
       viewBox="0 0 800 80"
@@ -31,8 +17,8 @@ function AnimatedRouteLine({ visible }: { visible: boolean }) {
     >
       <defs>
         <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor="#7c3aed" stopOpacity="0.8" />
-          <stop offset="50%"  stopColor="#a78bfa" stopOpacity="1" />
+          <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.8" />
+          <stop offset="50%" stopColor="#a78bfa" stopOpacity="1" />
           <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.8" />
         </linearGradient>
         <filter id="routeGlow">
@@ -40,8 +26,6 @@ function AnimatedRouteLine({ visible }: { visible: boolean }) {
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
       </defs>
-
-      {/* Main curved path */}
       <path
         d={pathD}
         stroke="url(#routeGrad)"
@@ -50,21 +34,11 @@ function AnimatedRouteLine({ visible }: { visible: boolean }) {
         filter="url(#routeGlow)"
         strokeDasharray="800"
         strokeDashoffset={visible ? '0' : '800'}
-        style={{
-          transition: visible
-            ? 'stroke-dashoffset 1.4s cubic-bezier(0.4,0,0.2,1)'
-            : 'none',
-        }}
+        style={{ transition: visible ? 'stroke-dashoffset 1.4s cubic-bezier(0.4,0,0.2,1)' : 'none' }}
       />
-
-      {/* Travelling dot — only shown when line is visible */}
       {visible && (
         <circle r="5" fill="#a78bfa" filter="url(#routeGlow)">
-          <animateMotion
-            dur="3s"
-            repeatCount="indefinite"
-            path={pathD}
-          />
+          <animateMotion dur="3s" repeatCount="indefinite" path={pathD} />
         </circle>
       )}
     </svg>
@@ -72,6 +46,7 @@ function AnimatedRouteLine({ visible }: { visible: boolean }) {
 }
 
 export default function RouteMap() {
+  const { t } = useLang();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [lineVisible, setLineVisible] = useState(false);
 
@@ -102,25 +77,20 @@ export default function RouteMap() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 animate-on-scroll">
-          <p className="section-label">Маршрут / Route</p>
+          <p className="section-label">{t.routeMap.label}</p>
           <h2 className="section-title mb-8">
-            От търга до{' '}
-            <span className="text-gradient section-title-accent">вашия гараж</span>
+            {t.routeMap.title}{' '}
+            <span className="text-gradient section-title-accent">{t.routeMap.titleAccent}</span>
           </h2>
-          <p className="section-subtitle">
-            Осигуряваме пълен транспортен коридор от американски пристанища до всяка точка в
-            България и Европа.
-          </p>
+          <p className="section-subtitle">{t.routeMap.sub}</p>
         </div>
 
-        {/* Route stops + animated SVG line */}
         <div className="animate-on-scroll relative flex flex-col md:flex-row items-center justify-center gap-0 mb-16">
           <AnimatedRouteLine visible={lineVisible} />
-
-          {routeStops.map((stop, idx) => {
-            const Icon = stop.icon;
+          {t.routeMap.stops.map((stop, idx) => {
+            const Icon = stopIcons[idx];
             return (
-              <div key={stop.city} className="flex flex-col md:flex-row items-center" style={{ zIndex: 3 }}>
+              <div key={idx} className="flex flex-col md:flex-row items-center" style={{ zIndex: 3 }}>
                 <div className="flex flex-col items-center text-center w-52">
                   <div className="text-4xl mb-3">{stop.flag}</div>
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-glow-sm" style={{ background: '#1a1830', border: '2px solid #3d3a6e' }}>
@@ -129,8 +99,7 @@ export default function RouteMap() {
                   <h3 className="font-bold text-white text-lg mb-1">{stop.city}</h3>
                   <p className="text-dark-300 text-sm">{stop.sub}</p>
                 </div>
-
-                {idx < routeStops.length - 1 && (
+                {idx < t.routeMap.stops.length - 1 && (
                   <div className="flex flex-col md:flex-row items-center gap-2 px-4 py-6 md:py-0" style={{ zIndex: 3 }}>
                     <div className="hidden md:block">
                       <div className="flex items-center gap-1">
@@ -142,7 +111,7 @@ export default function RouteMap() {
                       <div className="text-center mt-1">
                         <span className="text-xs text-dark-300 flex items-center gap-1">
                           <Clock size={10} />
-                          {idx === 0 ? '20–30 дни' : '7–14 дни'}
+                          {t.routeMap.durations[idx]}
                         </span>
                       </div>
                     </div>
@@ -159,14 +128,9 @@ export default function RouteMap() {
           })}
         </div>
 
-        {/* Timeline breakdown */}
         <div className="animate-on-scroll grid grid-cols-2 md:grid-cols-4 gap-4">
-          {timelineSteps.map((step, idx) => (
-            <div
-              key={step.label}
-              className="animate-on-scroll card-hover rounded-xl p-4 text-center"
-              style={{ background: '#12102a', border: '1px solid #2a2850' }}
-            >
+          {t.routeMap.timeline.map((step, idx) => (
+            <div key={idx} className="animate-on-scroll card-hover rounded-xl p-4 text-center" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
               <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold mx-auto mb-3" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
                 {idx + 1}
               </div>
@@ -176,12 +140,13 @@ export default function RouteMap() {
           ))}
         </div>
 
-        {/* Total */}
         <div className="animate-on-scroll mt-8 text-center">
           <div className="inline-flex items-center gap-3 rounded-2xl px-8 py-4" style={{ background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.3)' }}>
             <Clock size={20} className="text-primary-400" />
             <span className="text-white font-semibold">
-              Общо: <span className="text-gradient font-bold">45–60 дни</span> от поръчка до доставка
+              {t.routeMap.total}{' '}
+              <span className="text-gradient font-bold">{t.routeMap.totalDays}</span>{' '}
+              {t.routeMap.totalSuffix}
             </span>
           </div>
         </div>

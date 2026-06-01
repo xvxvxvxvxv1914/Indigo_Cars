@@ -98,24 +98,16 @@ export default function Navbar() {
 
             {/* Language switcher */}
             <div className="flex items-center gap-1 bg-navy-900/80 border border-[#2a2850] rounded-lg p-1">
-              <button
-                onClick={() => setLang('BG')}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all ${
-                  lang === 'BG' ? 'text-white shadow-sm' : 'text-dark-300 hover:text-white'
-                }`}
-                style={lang === 'BG' ? { background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' } : {}}
-              >
-                BG
-              </button>
-              <button
-                onClick={() => setLang('EN')}
-                className={`px-2.5 py-1 rounded text-xs font-bold transition-all ${
-                  lang === 'EN' ? 'text-white shadow-sm' : 'text-dark-300 hover:text-white'
-                }`}
-                style={lang === 'EN' ? { background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' } : {}}
-              >
-                EN
-              </button>
+              {(['BG', 'EN', 'RU'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-2.5 py-1 rounded text-xs font-bold transition-all ${lang === l ? 'text-white shadow-sm' : 'text-dark-300 hover:text-white'}`}
+                  style={lang === l ? { background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' } : {}}
+                >
+                  {l}
+                </button>
+              ))}
             </div>
 
             <a
@@ -134,24 +126,16 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <div className="lg:hidden flex items-center gap-2">
             <div className="flex items-center gap-1 bg-navy-900/80 border border-[#2a2850] rounded-lg p-1">
-              <button
-                onClick={() => setLang('BG')}
-                className={`px-2 py-0.5 rounded text-xs font-bold transition-all ${
-                  lang === 'BG' ? 'text-white' : 'text-dark-300'
-                }`}
-                style={lang === 'BG' ? { background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' } : {}}
-              >
-                BG
-              </button>
-              <button
-                onClick={() => setLang('EN')}
-                className={`px-2 py-0.5 rounded text-xs font-bold transition-all ${
-                  lang === 'EN' ? 'text-white' : 'text-dark-300'
-                }`}
-                style={lang === 'EN' ? { background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' } : {}}
-              >
-                EN
-              </button>
+              {(['BG', 'EN', 'RU'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-2 py-0.5 rounded text-xs font-bold transition-all ${lang === l ? 'text-white' : 'text-dark-300'}`}
+                  style={lang === l ? { background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' } : {}}
+                >
+                  {l}
+                </button>
+              ))}
             </div>
             <button
               className="p-2 text-white hover:text-primary-400 transition-colors"
