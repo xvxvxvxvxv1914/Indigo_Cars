@@ -104,8 +104,8 @@ export default function WhyUs() {
           {statsMeta.map(({ value, suffix, icon: Icon }, i) => (
             <div
               key={i}
-              className="animate-on-scroll text-center backdrop-blur rounded-2xl p-6"
-              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', willChange: 'transform' }}
+              className="animate-on-scroll gradient-border-card text-center backdrop-blur rounded-2xl p-6"
+              style={{ willChange: 'transform' }}
               onMouseMove={onTiltMove}
               onMouseLeave={onTiltLeave}
             >
@@ -142,8 +142,8 @@ export default function WhyUs() {
               return (
                 <div
                   key={i}
-                  className="animate-on-scroll rounded-xl p-6"
-                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', willChange: 'transform' }}
+                  className="animate-on-scroll gradient-border-card rounded-xl p-6"
+                  style={{ willChange: 'transform' }}
                   onMouseMove={onTiltMove}
                   onMouseLeave={onTiltLeave}
                 >
