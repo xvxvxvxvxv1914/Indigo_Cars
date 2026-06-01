@@ -198,7 +198,7 @@ export default function Hero() {
 
           {/* Heading — stagger 1 */}
           <h1
-            className="hero-stagger font-display text-6xl sm:text-7xl md:text-8xl text-white leading-none mb-6 tracking-wide"
+            className="hero-stagger font-display text-4xl sm:text-6xl md:text-8xl text-white leading-none mb-6 tracking-wide"
             style={{ animationDelay: '0.18s' }}
           >
             {t.hero.h1a}{' '}
@@ -282,7 +282,7 @@ export default function Hero() {
       {/* Scroll cue */}
       <button
         onClick={() => scroll('#how-it-works')}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-dark-300 hover:text-primary-400 transition-colors"
+        className="absolute bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-dark-300 hover:text-primary-400 transition-colors"
         aria-label="Scroll down"
       >
         <span className="text-xs uppercase tracking-widest">{t.hero.scrollMore}</span>

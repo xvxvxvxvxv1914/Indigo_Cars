@@ -103,7 +103,7 @@ function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="pb-16 md:pb-0">
         <Hero />
         <HowItWorks />
         <HotOffers />

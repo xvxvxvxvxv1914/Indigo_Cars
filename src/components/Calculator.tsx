@@ -158,11 +158,13 @@ export default function Calculator() {
                 </div>
 
                 {/* Custom slider */}
-                <div className="relative h-2 rounded-full mb-2" style={{ background: '#2a2850' }}>
-                  <div
-                    className="absolute left-0 top-0 h-full rounded-full"
-                    style={{ width: `${pct}%`, background: 'linear-gradient(to right, #7c3aed, #a78bfa)' }}
-                  />
+                <div className="relative h-10 flex items-center mb-2">
+                  <div className="absolute left-0 right-0 h-2 rounded-full" style={{ background: '#2a2850' }}>
+                    <div
+                      className="absolute left-0 top-0 h-full rounded-full"
+                      style={{ width: `${pct}%`, background: 'linear-gradient(to right, #7c3aed, #a78bfa)' }}
+                    />
+                  </div>
                   <input
                     type="range"
                     min={1000}
@@ -255,17 +257,22 @@ export default function Calculator() {
               {/* Rows */}
               <div className="divide-y" style={{ borderColor: '#1e1c40' }}>
                 {rows.map(({ label, value, info }, i) => (
-                  <div key={label} className="flex items-center justify-between px-5 py-3 group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ROW_COLORS[i % ROW_COLORS.length] }} />
-                      <span className="text-dark-300 text-sm">{label}</span>
-                      {info && (
-                        <span className="hidden group-hover:block text-xs text-dark-300/60 italic ml-1">— {info}</span>
-                      )}
+                  <div key={label} className="px-5 py-3 group">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ROW_COLORS[i % ROW_COLORS.length] }} />
+                        <span className="text-dark-300 text-sm">{label}</span>
+                        {info && (
+                          <span className="hidden group-hover:block text-xs text-dark-300/60 italic ml-1">— {info}</span>
+                        )}
+                      </div>
+                      <span className="text-white font-semibold text-sm tabular-nums ml-3">
+                        <AnimatedNumber value={value} />
+                      </span>
                     </div>
-                    <span className="text-white font-semibold text-sm tabular-nums">
-                      <AnimatedNumber value={value} />
-                    </span>
+                    {info && (
+                      <p className="sm:hidden text-xs text-dark-300/50 italic mt-0.5 pl-5">{info}</p>
+                    )}
                   </div>
                 ))}
               </div>

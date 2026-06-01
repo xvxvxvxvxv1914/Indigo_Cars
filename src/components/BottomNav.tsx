@@ -1,14 +1,17 @@
 import { Home, Car, Info, MessageCircle, Phone } from 'lucide-react';
-
-const navItems = [
-  { icon: Home, label: 'Начало', href: '#hero' },
-  { icon: Car, label: 'Предложения', href: '#offers' },
-  { icon: Info, label: 'За нас', href: '#why-us' },
-  { icon: MessageCircle, label: 'Контакти', href: '#contact' },
-  { icon: Phone, label: 'Обади се', href: 'tel:+359888000000' },
-];
+import { useLang } from '../context/LangContext';
 
 export default function BottomNav() {
+  const { t, lang } = useLang();
+
+  const navItems = [
+    { icon: Home, label: t.nav.home, href: '#hero' },
+    { icon: Car, label: t.nav.offers, href: '#offers' },
+    { icon: Info, label: t.nav.whyUs, href: '#why-us' },
+    { icon: MessageCircle, label: t.nav.contact, href: '#contact' },
+    { icon: Phone, label: lang === 'BG' ? 'Обади се' : 'Call', href: 'tel:+359888000000' },
+  ];
+
   const handleClick = (href: string) => {
     if (href.startsWith('tel')) return;
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
@@ -22,7 +25,7 @@ export default function BottomNav() {
       <div className="flex items-center justify-around px-2 py-2">
         {navItems.map(({ icon: Icon, label, href }) => (
           <a
-            key={label}
+            key={href}
             href={href}
             onClick={(e) => {
               if (!href.startsWith('tel')) {

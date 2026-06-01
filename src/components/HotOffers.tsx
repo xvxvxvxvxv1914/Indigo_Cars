@@ -81,7 +81,7 @@ export default function HotOffers() {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
                 <div className="h-36" style={{ background: '#1a1830' }} />
@@ -95,7 +95,7 @@ export default function HotOffers() {
             ))}
           </div>
         ) : offers.length === 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="rounded-2xl overflow-hidden flex flex-col" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
                 <div className="relative h-36 flex items-center justify-center" style={{ background: '#0d0d22' }}>
@@ -126,7 +126,7 @@ export default function HotOffers() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {offers.map((offer) => (
               <div
                 key={offer.id}

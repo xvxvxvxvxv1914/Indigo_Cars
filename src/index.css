@@ -219,8 +219,9 @@
 }
 
 /* Calculator slider — hide native thumb, use custom overlay */
-.calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; }
-.calc-slider::-moz-range-thumb { width: 20px; height: 20px; border: none; background: transparent; }
+.calc-slider { touch-action: pan-y; }
+.calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; }
+.calc-slider::-moz-range-thumb { width: 28px; height: 28px; border: none; background: transparent; }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
