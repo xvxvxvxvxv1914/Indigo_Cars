@@ -1,5 +1,5 @@
-﻿import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { Star, Quote } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
 const testimonials = [
@@ -39,11 +39,7 @@ const testimonials = [
 
 export default function Testimonials() {
   const { t } = useLang();
-  const [current, setCurrent] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,25 +52,20 @@ export default function Testimonials() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(next, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const item = testimonials[current];
-
   return (
     <section id="testimonials" className="py-24 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-xl mx-auto mb-16 animate-on-scroll">
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center max-w-xl mx-auto mb-12 animate-on-scroll">
           <p className="section-label">{t.testimonials.label}</p>
           <h2 className="section-title mb-8">
             {t.testimonials.title}{' '}
@@ -82,78 +73,80 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="flex justify-center gap-8 mb-12 animate-on-scroll">
+        {/* Aggregate stats */}
+        <div className="animate-on-scroll flex justify-center gap-10 mb-12">
           <div className="text-center">
-            <div className="font-display text-6xl text-gradient-stats mb-2">4.9</div>
-            <div className="flex gap-1 justify-center mb-1">
+            <div className="font-display text-5xl text-gradient-stats mb-1">4.9</div>
+            <div className="flex gap-0.5 justify-center mb-1">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={18} className="text-primary-500 fill-primary-500" />
+                <Star key={i} size={15} className="fill-amber-400 text-amber-400" />
               ))}
             </div>
-            <div className="text-dark-300 text-sm">{t.testimonials.avgRating}</div>
+            <div className="text-dark-300 text-xs uppercase tracking-wider">{t.testimonials.avgRating}</div>
           </div>
-          <div className="w-px bg-white/10" />
+          <div className="w-px" style={{ background: 'var(--border)' }} />
           <div className="text-center">
-            <div className="font-display text-6xl text-gradient-stats mb-2">1500+</div>
-            <div className="text-dark-300 text-sm mt-4">{t.testimonials.happyClients}</div>
+            <div className="font-display text-5xl text-gradient-stats mb-1">1500+</div>
+            <div className="h-[15px] mb-1" />
+            <div className="text-dark-300 text-xs uppercase tracking-wider">{t.testimonials.happyClients}</div>
           </div>
         </div>
 
-        <div className="relative max-w-3xl mx-auto animate-on-scroll">
-          <div className="rounded-2xl p-8 md:p-12 relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-            <Quote size={48} className="absolute top-6 right-6" style={{ color: 'rgba(124,58,237,0.1)' }} />
-            <div className="flex items-start gap-3 mb-6">
-              <img src={item.avatar} alt={item.name} className="w-12 h-12 rounded-full object-cover flex-shrink-0" style={{ border: '2px solid rgba(124,58,237,0.5)' }} />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="font-semibold text-white truncate">{item.name}</div>
-                  <div className="flex gap-0.5 flex-shrink-0">
-                    {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} size={13} className="text-primary-500 fill-primary-500" />
-                    ))}
-                  </div>
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 gap-5">
+          {testimonials.map((item, i) => (
+            <div
+              key={i}
+              className="animate-on-scroll gradient-border-card rounded-2xl p-6 relative overflow-hidden"
+            >
+              {/* Background quote */}
+              <Quote
+                size={64}
+                className="absolute -top-2 -right-2 pointer-events-none"
+                style={{ color: 'rgba(124,58,237,0.07)' }}
+              />
+
+              {/* Stars */}
+              <div className="flex gap-0.5 mb-4">
+                {[...Array(item.rating)].map((_, j) => (
+                  <Star key={j} size={15} className="fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+
+              {/* Review text */}
+              <p className="text-dark-300 text-sm leading-relaxed mb-6">
+                "{item.text}"
+              </p>
+
+              {/* Author row */}
+              <div className="flex items-center gap-3">
+                {/* Gradient ring avatar */}
+                <div
+                  className="flex-shrink-0 rounded-full p-0.5"
+                  style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa, #4f46e5)' }}
+                >
+                  <img
+                    src={item.avatar}
+                    alt={item.name}
+                    className="w-10 h-10 rounded-full object-cover block"
+                  />
                 </div>
-                <div className="text-dark-300 text-sm">{item.location}</div>
-                <div className="text-primary-400 text-xs mt-0.5">{item.car}</div>
+
+                <div className="min-w-0">
+                  <div className="font-semibold text-white text-sm leading-tight">{item.name}</div>
+                  <div className="text-dark-300 text-xs">{item.location}</div>
+                </div>
+
+                {/* Car badge */}
+                <span
+                  className="ml-auto flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-medium truncate max-w-[120px]"
+                  style={{ background: 'rgba(124,58,237,0.12)', color: '#a78bfa' }}
+                >
+                  {item.car}
+                </span>
               </div>
             </div>
-            <p className="text-dark-300 text-lg leading-relaxed italic">"{item.text}"</p>
-          </div>
-
-          <div className="flex items-center justify-between mt-6">
-            <button
-              onClick={prev}
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white transition-all"
-              style={{ border: '1px solid rgba(255,255,255,0.1)' }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#7c3aed'; (e.currentTarget as HTMLButtonElement).style.color = '#a78bfa'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLButtonElement).style.color = 'white'; }}
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className="rounded-full transition-all duration-300"
-                  style={{
-                    width: i === current ? '1.5rem' : '0.5rem',
-                    height: '0.5rem',
-                    background: i === current ? 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' : 'rgba(255,255,255,0.2)',
-                  }}
-                />
-              ))}
-            </div>
-            <button
-              onClick={next}
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white transition-all"
-              style={{ border: '1px solid rgba(255,255,255,0.1)' }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#7c3aed'; (e.currentTarget as HTMLButtonElement).style.color = '#a78bfa'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLButtonElement).style.color = 'white'; }}
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
+          ))}
         </div>
       </div>
     </section>
