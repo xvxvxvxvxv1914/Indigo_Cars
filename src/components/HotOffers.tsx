@@ -2,6 +2,7 @@
 import { MapPin, DollarSign, ExternalLink, MessageSquare } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 
 function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
@@ -19,6 +20,8 @@ function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
 
 export default function HotOffers() {
   const { t } = useLang();
+  const { theme } = useTheme();
+  const light = theme === 'light';
   const [offers, setOffers] = useState<HotOffer[]>([]);
   const [loading, setLoading] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -69,7 +72,7 @@ export default function HotOffers() {
 
   return (
     <section id="offers" className="py-24 relative scroll-mt-16" ref={sectionRef}>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/30 to-[#0a0a1a]" />
+      {!light && <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/30 to-[#0a0a1a]" />}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 animate-on-scroll">

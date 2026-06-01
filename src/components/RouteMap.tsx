@@ -1,6 +1,7 @@
 ﻿import { useEffect, useRef, useState } from 'react';
 import { MapPin, Anchor, Truck, ArrowRight, Clock } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 const stopIcons = [MapPin, Anchor, Truck];
 
@@ -47,6 +48,8 @@ function AnimatedRouteLine({ visible }: { visible: boolean }) {
 
 export default function RouteMap() {
   const { t } = useLang();
+  const { theme } = useTheme();
+  const light = theme === 'light';
   const sectionRef = useRef<HTMLDivElement>(null);
   const [lineVisible, setLineVisible] = useState(false);
 
@@ -70,7 +73,7 @@ export default function RouteMap() {
 
   return (
     <section className="py-24 relative" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
-      <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />
+      {!light && <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(79,70,229,0.06)' }} />

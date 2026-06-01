@@ -1,6 +1,7 @@
 ﻿import { useState, useEffect, useRef } from 'react';
 import { DollarSign, Ship, FileText, Wrench, Shield, ChevronRight, TrendingDown } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 const USD_TO_EUR = 0.92;
 const EUR_TO_BGN = 1.956;
@@ -69,6 +70,8 @@ const rowIcons = [DollarSign, FileText, Wrench, Ship, Shield, FileText, FileText
 
 export default function Calculator() {
   const { t } = useLang();
+  const { theme } = useTheme();
+  const light = theme === 'light';
   const [priceUSD, setPriceUSD] = useState(15000);
   const [fuel, setFuel] = useState('petrol');
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -97,7 +100,7 @@ export default function Calculator() {
 
   return (
     <section id="calculator" className="py-24 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
-      <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />
+      {!light && <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.3), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(124,58,237,0.05)' }} />

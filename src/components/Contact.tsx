@@ -2,6 +2,7 @@
 import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#4f46e5', '#25d366', '#f59e0b', '#ec4899'];
 
@@ -31,6 +32,8 @@ function ConfettiBurst() {
 
 export default function Contact() {
   const { t } = useLang();
+  const { theme } = useTheme();
+  const light = theme === 'light';
   const sectionRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({ name: '', phone: '', email: '', car: '', budget: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -84,7 +87,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 relative overflow-hidden" ref={sectionRef}>
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, rgba(26,24,48,0.5), #0a0a1a)' }} />
+        {!light && <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, rgba(26,24,48,0.5), #0a0a1a)' }} />}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl" style={{ background: 'rgba(79,70,229,0.08)' }} />
       </div>
 
