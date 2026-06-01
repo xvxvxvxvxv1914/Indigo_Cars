@@ -203,8 +203,9 @@ function HeroLight() {
             <div className="relative rounded-3xl overflow-hidden" style={{ boxShadow: '0 32px 80px rgba(124,58,237,0.2), 0 8px 24px rgba(0,0,0,0.08)', border: '1px solid rgba(124,58,237,0.15)' }}>
               <img
                 src="/hero-image.png"
-                alt="Premium imported cars"
-                className="w-full h-[520px] object-cover object-center"
+                alt="Indigo Cars — внос от САЩ"
+                className="w-full h-[520px] object-cover"
+                style={{ objectPosition: '55% center' }}
                 fetchPriority="high"
                 decoding="async"
               />
@@ -280,8 +281,9 @@ function HeroDark() {
   return (
     <section id="hero" className="relative flex items-center overflow-hidden" style={{ minHeight: '100dvh' }}>
       <div className="absolute inset-0 z-0">
-        <img ref={bgRef} src="/hero-image.png" alt="Purple cars in a row"
-          className="w-full h-full object-cover object-center"
+        <img ref={bgRef} src="/hero-image.png" alt="Indigo Cars — внос от САЩ"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: '60% center' }}
           fetchPriority="high" decoding="async"
           style={{ transform: 'scale(1.12)', willChange: 'transform' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/[0.97] via-[#0a0a1a]/[0.82] to-[#0a0a1a]/[0.35]" />
