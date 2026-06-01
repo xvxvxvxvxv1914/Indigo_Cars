@@ -94,6 +94,7 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Calculator from './components/Calculator';
 import Contact from './components/Contact';
+import CTABanner from './components/CTABanner';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -116,6 +117,7 @@ function HomePage() {
         <Calculator />
         <Contact />
       </main>
+      <CTABanner />
       <Footer />
       <BottomNav />
     </>

@@ -200,6 +200,12 @@ const translations = {
       serviceLinks: ['Търсене и избор', 'Участие в търг', 'Морски транспорт', 'Митническо оформяне', 'Доставка до вкъщи'],
       infoLinks: ['Как работим', 'Горещи предложения', 'Защо ние', 'Отзиви', 'Въпроси и отговори'],
     },
+    ctaBanner: {
+      badge: 'Безплатна консултация',
+      title: 'Готови ли сте да поръчате вашия автомобил?',
+      sub: 'Свържете се с нас и получете безплатна оценка в рамките на 24 часа. Без ангажимент.',
+      cta: 'Поръчай сега',
+    },
   },
 
   EN: {
@@ -399,6 +405,12 @@ const translations = {
       serviceLinks: ['Search & Selection', 'Auction Participation', 'Ocean Freight', 'Customs Clearance', 'Home Delivery'],
       infoLinks: ['How It Works', 'Hot Offers', 'Why Us', 'Reviews', 'FAQ'],
     },
+    ctaBanner: {
+      badge: 'Free Consultation',
+      title: 'Ready to order your car?',
+      sub: 'Contact us and get a free estimate within 24 hours. No obligation.',
+      cta: 'Get Started',
+    },
   },
 
   RU: {
@@ -597,6 +609,12 @@ const translations = {
       terms: 'Условия использования',
       serviceLinks: ['Поиск и подбор', 'Участие в аукционе', 'Морская перевозка', 'Таможенное оформление', 'Доставка на дом'],
       infoLinks: ['Как работаем', 'Горячие предложения', 'Почему мы', 'Отзывы', 'Вопросы и ответы'],
+    },
+    ctaBanner: {
+      badge: 'Бесплатная консультация',
+      title: 'Готовы заказать свой автомобиль?',
+      sub: 'Свяжитесь с нами и получите бесплатную оценку в течение 24 часов. Без обязательств.',
+      cta: 'Начать сейчас',
     },
   },
 };

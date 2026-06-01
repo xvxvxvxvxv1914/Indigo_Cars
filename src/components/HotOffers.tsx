@@ -18,6 +18,78 @@ function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
   e.currentTarget.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
 }
 
+const DEMO_OFFERS = [
+  { title: '2023 Ford Mustang GT Fastback', location: 'Houston, TX', price: 28500, condition: 'Excellent', carfax_verified: true, image: 'https://images.pexels.com/photos/3752169/pexels-photo-3752169.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+  { title: '2022 Dodge Challenger R/T 392', location: 'Atlanta, GA', price: 19800, condition: 'Good', carfax_verified: true, image: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+  { title: '2021 Chevrolet Camaro 2SS', location: 'Phoenix, AZ', price: 24000, condition: 'Good', carfax_verified: false, image: 'https://images.pexels.com/photos/1035108/pexels-photo-1035108.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+  { title: '2022 Tesla Model 3 Long Range', location: 'Dallas, TX', price: 32500, condition: 'Excellent', carfax_verified: true, image: 'https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+  { title: '2020 Jeep Wrangler Rubicon 4x4', location: 'Denver, CO', price: 31000, condition: 'Good', carfax_verified: true, image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+];
+
+function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
+  const conditionColor = (c: string) => {
+    const lower = c.toLowerCase();
+    if (lower === 'excellent') return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+    if (lower === 'good') return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
+    return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+  };
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      {DEMO_OFFERS.map((offer, i) => (
+        <div
+          key={i}
+          className="rounded-2xl overflow-hidden flex flex-col group"
+          style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+          onMouseMove={onTiltMove}
+          onMouseLeave={onTiltLeave}
+        >
+          <div className="relative h-36 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
+            <img
+              src={offer.image}
+              alt={offer.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12102a]/60 to-transparent" />
+            <div className={`absolute top-2 right-2 text-xs px-2 py-0.5 rounded-full border font-medium ${conditionColor(offer.condition)}`}>
+              {offer.condition}
+            </div>
+            {offer.carfax_verified && (
+              <div className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: 'rgba(0,0,0,0.75)', border: '1px solid rgba(255,255,255,0.15)' }}>
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="none">
+                  <path d="M5 0L10 2V6C10 9 7.5 11.5 5 12C2.5 11.5 0 9 0 6V2L5 0Z" fill="#e8252a"/>
+                  <path d="M3 6L4.5 7.5L7 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span style={{ color: '#e8252a', letterSpacing: '0.05em' }}>CARFAX</span>
+                <span className="text-white/70">✓</span>
+              </div>
+            )}
+          </div>
+          <div className="p-4 flex flex-col flex-1 gap-2">
+            <h3 className="font-bold text-white text-sm leading-tight line-clamp-2">{offer.title}</h3>
+            <div className="flex items-center gap-1 text-dark-300 text-xs">
+              <MapPin size={11} className="text-primary-500 flex-shrink-0" />
+              <span className="truncate">{offer.location}</span>
+            </div>
+            <div className="flex items-center gap-1 mt-auto">
+              <DollarSign size={16} className="text-primary-400" />
+              <span className="text-lg font-bold text-white">{offer.price.toLocaleString()}</span>
+            </div>
+            <button
+              onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="mt-2 flex items-center justify-center gap-1 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:opacity-90"
+              style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}
+            >
+              <MessageSquare size={12} />
+              {t.offers.inquire}
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function HotOffers() {
   const { t } = useLang();
   const { theme } = useTheme();
@@ -99,36 +171,7 @@ export default function HotOffers() {
             ))}
           </div>
         ) : offers.length === 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden flex flex-col" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-                <div className="relative h-36 flex items-center justify-center" style={{ background: 'var(--bg-main)' }}>
-                  <svg width="40" height="40" viewBox="0 0 22 22" fill="none" className="opacity-10">
-                    <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
-                    <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
-                    <circle cx="7" cy="17.5" r="1.5" fill="white" />
-                    <circle cx="15" cy="17.5" r="1.5" fill="white" />
-                  </svg>
-                  <div className="absolute inset-0 flex items-end justify-center pb-3">
-                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'rgba(124,58,237,0.5)' }}>{t.offers.comingSoon}</span>
-                  </div>
-                </div>
-                <div className="p-4 flex flex-col flex-1 gap-2">
-                  <div className="h-3 rounded-full w-4/5" style={{ background: '#2a2850' }} />
-                  <div className="h-3 rounded-full w-1/2" style={{ background: '#2a2850' }} />
-                  <div className="h-5 rounded-full w-1/3 mt-2" style={{ background: '#2a2850' }} />
-                  <button
-                    onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="mt-2 flex items-center justify-center gap-1 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:opacity-90"
-                    style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}
-                  >
-                    <MessageSquare size={12} />
-                    {t.offers.customOrder}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <DemoOfferCards t={t} />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {offers.map((offer) => (

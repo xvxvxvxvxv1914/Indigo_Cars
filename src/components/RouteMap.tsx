@@ -96,7 +96,7 @@ export default function RouteMap() {
               <div key={idx} className="flex flex-col md:flex-row items-center" style={{ zIndex: 3 }}>
                 <div className="flex flex-col items-center text-center w-52">
                   <div className="text-4xl mb-3">{stop.flag}</div>
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-glow-sm" style={{ background: 'var(--bg-card-hover)', border: '2px solid #3d3a6e' }}>
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-glow-sm" style={{ background: 'var(--bg-card-hover)', border: '2px solid var(--border)' }}>
                     <Icon size={28} className="text-primary-400" />
                   </div>
                   <h3 className="font-bold text-white text-lg mb-1">{stop.city}</h3>
