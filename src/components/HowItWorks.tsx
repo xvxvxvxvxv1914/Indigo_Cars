@@ -1,11 +1,14 @@
-﻿import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { MessageCircle, Search, Gavel, Ship, FileCheck } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 const stepIcons = [MessageCircle, Search, Gavel, Ship, FileCheck];
 
 export default function HowItWorks() {
   const { t } = useLang();
+  const { theme } = useTheme();
+  const light = theme === 'light';
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,8 +29,14 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section id="how-it-works" className="py-24 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/60 to-[#0a0a1a]" />
+    <section id="how-it-works" className="py-24 relative scroll-mt-16" ref={sectionRef}
+      style={{ background: 'var(--bg-alt)' }}>
+
+      {/* Dark theme gradient overlay only */}
+      {!light && (
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/60 to-[#0a0a1a]" />
+      )}
+
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
 
@@ -50,15 +59,20 @@ export default function HowItWorks() {
                   <div className="hidden md:block absolute top-8 left-[60%] w-full h-px bg-gradient-to-r from-primary-600/50 to-primary-600/10 z-0" />
                 )}
                 <div className="relative z-10 mb-4">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-glow-sm transition-all hover:scale-105 duration-300" style={{ background: 'var(--bg-card-hover)', border: '2px solid #3d3a6e' }}>
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-glow-sm transition-all hover:scale-105 duration-300"
+                    style={{
+                      background: light ? 'rgba(124,58,237,0.08)' : 'var(--bg-card-hover)',
+                      border: `2px solid ${light ? 'rgba(124,58,237,0.2)' : '#3d3a6e'}`,
+                    }}>
                     <Icon size={26} className="text-primary-400" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                    style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
                     {idx + 1}
                   </div>
                 </div>
-                <h3 className="font-bold text-white text-sm mb-1">{step.label}</h3>
-                <p className="text-dark-300 text-xs leading-relaxed max-w-[140px]">{step.desc}</p>
+                <h3 className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>{step.label}</h3>
+                <p className="text-xs leading-relaxed max-w-[140px]" style={{ color: 'var(--text-secondary)' }}>{step.desc}</p>
               </div>
             );
           })}
