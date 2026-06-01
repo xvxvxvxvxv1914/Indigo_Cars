@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+﻿import { useEffect, useRef } from 'react';
 import { ChevronDown, Shield, Truck, FileText } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useMagnetic } from '../lib/useMagnetic';
@@ -168,9 +168,9 @@ export default function Hero() {
           className="w-full h-full object-cover object-center"
           style={{ transform: 'scale(1.12)', willChange: 'transform' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/[0.97] via-[#0a0a1a]/[0.82] to-[#0a0a1a]/[0.35]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/90 via-transparent to-[#0a0a1a]/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/60 via-transparent to-transparent" />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to right, var(--overlay-hero), var(--overlay-hero-mid), var(--overlay-hero-light))` }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, var(--overlay-hero-bottom), transparent)` }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(10,10,26,0.5), transparent)` }} />
         {/* Ambient glow orbs */}
         <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(124,58,237,0.1)' }} />
         <div className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-[100px]" style={{ background: 'rgba(79,70,229,0.08)' }} />
@@ -254,7 +254,7 @@ export default function Hero() {
                 <div
                   key={label}
                   className="flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 transition-all hover:border-primary-500/50"
-                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid #2a2850' }}
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)' }}
                 >
                   <Icon size={14} className="text-primary-400" />
                   <span className="text-xs text-white font-medium">{label}</span>
@@ -270,7 +270,7 @@ export default function Hero() {
             <div
               key={s.label}
               className="text-right backdrop-blur rounded-xl px-5 py-3 min-w-[150px] transition-all hover:scale-105"
-              style={{ background: 'rgba(26,24,48,0.8)', border: '1px solid #2a2850' }}
+              style={{ background: 'rgba(26,24,48,0.8)', border: '1px solid var(--border)' }}
             >
               <div className="text-2xl font-bold text-gradient-stats">{s.value}</div>
               <div className="text-xs text-dark-300 mt-0.5">{s.label}</div>

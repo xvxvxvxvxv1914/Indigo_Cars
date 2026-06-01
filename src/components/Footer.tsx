@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+﻿import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
 const sectionHrefs = ['#how-it-works', '#how-it-works', '#how-it-works', '#how-it-works', '#how-it-works'];
@@ -13,7 +13,7 @@ export default function Footer() {
   };
 
   return (
-    <footer style={{ background: '#0a0a1a', borderTop: '1px solid #2a2850' }}>
+    <footer style={{ background: 'var(--bg-main)', borderTop: '1px solid var(--border)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
@@ -40,7 +40,7 @@ export default function Footer() {
                   key={Icon.name}
                   href="#"
                   className="w-9 h-9 rounded-lg flex items-center justify-center text-dark-300 hover:text-primary-400 transition-all"
-                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid #2a2850' }}
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)' }}
                 >
                   <Icon size={16} />
                 </a>
@@ -95,7 +95,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div style={{ borderTop: '1px solid #2a2850' }}>
+      <div style={{ borderTop: '1px solid var(--border)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm" style={{ color: '#403f90' }}>
             &copy; {new Date().getFullYear()} {t.footer.copyright}

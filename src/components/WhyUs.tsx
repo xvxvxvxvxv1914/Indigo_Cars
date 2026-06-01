@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { CheckCircle, Award, Users, Clock, TrendingDown, Globe } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
@@ -88,7 +88,7 @@ export default function WhyUs() {
           className="w-full h-full object-cover object-center"
           style={{ opacity: 0.08 }}
         />
-        <div className="absolute inset-0" style={{ background: 'rgba(10,10,26,0.95)' }} />
+        <div className="absolute inset-0" style={{ background: 'var(--bg-overlay)' }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,7 +98,7 @@ export default function WhyUs() {
             <div
               key={i}
               className="animate-on-scroll text-center backdrop-blur rounded-2xl p-6"
-              style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
+              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', willChange: 'transform' }}
               onMouseMove={onTiltMove}
               onMouseLeave={onTiltLeave}
             >
@@ -136,7 +136,7 @@ export default function WhyUs() {
                 <div
                   key={i}
                   className="animate-on-scroll rounded-xl p-6"
-                  style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
+                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', willChange: 'transform' }}
                   onMouseMove={onTiltMove}
                   onMouseLeave={onTiltLeave}
                 >

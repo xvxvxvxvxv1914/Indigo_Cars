@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { MapPin, DollarSign, ExternalLink, MessageSquare } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
@@ -84,8 +84,8 @@ export default function HotOffers() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
-                <div className="h-36" style={{ background: '#1a1830' }} />
+              <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+                <div className="h-36" style={{ background: 'var(--bg-card-hover)' }} />
                 <div className="p-4 flex flex-col gap-3">
                   <div className="h-3 rounded-full w-4/5" style={{ background: '#2a2850' }} />
                   <div className="h-3 rounded-full w-1/2" style={{ background: '#2a2850' }} />
@@ -98,8 +98,8 @@ export default function HotOffers() {
         ) : offers.length === 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden flex flex-col" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
-                <div className="relative h-36 flex items-center justify-center" style={{ background: '#0d0d22' }}>
+              <div key={i} className="rounded-2xl overflow-hidden flex flex-col" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+                <div className="relative h-36 flex items-center justify-center" style={{ background: 'var(--bg-main)' }}>
                   <svg width="40" height="40" viewBox="0 0 22 22" fill="none" className="opacity-10">
                     <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
                     <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
@@ -132,12 +132,12 @@ export default function HotOffers() {
               <div
                 key={offer.id}
                 className="animate-on-scroll rounded-2xl overflow-hidden flex flex-col group"
-                style={{ background: '#12102a', border: '1px solid #2a2850', willChange: 'transform' }}
+                style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', willChange: 'transform' }}
                 onMouseMove={onTiltMove}
                 onMouseLeave={onTiltLeave}
               >
                 {/* Image */}
-                <div className="relative h-36 overflow-hidden" style={{ background: '#0a0a1a' }}>
+                <div className="relative h-36 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
                   {offer.images?.length > 0 ? (
                     <img
                       src={offer.images[0]}
@@ -208,7 +208,7 @@ export default function HotOffers() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center w-8 h-8 rounded-lg transition-all"
-                        style={{ background: '#1a1830', border: '1px solid #2a2850' }}
+                        style={{ background: 'var(--bg-card-hover)', border: '1px solid var(--border)' }}
                         title="View on Copart"
                       >
                         <ExternalLink size={13} className="text-dark-300" />

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
@@ -70,7 +70,7 @@ export default function Testimonials() {
   const item = testimonials[current];
 
   return (
-    <section id="testimonials" className="py-24 relative scroll-mt-16" style={{ background: '#0e0d20' }} ref={sectionRef}>
+    <section id="testimonials" className="py-24 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,7 +100,7 @@ export default function Testimonials() {
         </div>
 
         <div className="relative max-w-3xl mx-auto animate-on-scroll">
-          <div className="rounded-2xl p-8 md:p-12 relative overflow-hidden" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+          <div className="rounded-2xl p-8 md:p-12 relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
             <Quote size={48} className="absolute top-6 right-6" style={{ color: 'rgba(124,58,237,0.1)' }} />
             <div className="flex items-start gap-3 mb-6">
               <img src={item.avatar} alt={item.name} className="w-12 h-12 rounded-full object-cover flex-shrink-0" style={{ border: '2px solid rgba(124,58,237,0.5)' }} />

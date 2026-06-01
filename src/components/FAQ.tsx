@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
@@ -29,7 +29,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section id="faq" className="py-24 relative scroll-mt-16" style={{ background: '#0a0a1a' }} ref={sectionRef}>
+    <section id="faq" className="py-24 relative scroll-mt-16" style={{ background: 'var(--bg-main)' }} ref={sectionRef}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.2), transparent)' }} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-on-scroll">
@@ -47,7 +47,7 @@ export default function FAQ() {
               key={index}
               className="animate-on-scroll rounded-xl overflow-hidden transition-all"
               style={{
-                background: '#12102a',
+                background: 'var(--bg-card)',
                 border: `1px solid ${openIndex === index ? 'rgba(124,58,237,0.4)' : '#2a2850'}`,
               }}
             >

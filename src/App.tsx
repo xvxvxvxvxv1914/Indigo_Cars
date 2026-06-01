@@ -82,6 +82,7 @@ function ScrollProgressBar() {
 }
 
 import { LangProvider } from './context/LangContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
@@ -123,6 +124,7 @@ function HomePage() {
 
 export default function App() {
   return (
+    <ThemeProvider>
     <LangProvider>
       <ScrollProgressBar />
       <CursorGlow />
@@ -135,5 +137,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </LangProvider>
+    </ThemeProvider>
   );
 }

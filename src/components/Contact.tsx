@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
@@ -72,7 +72,7 @@ export default function Contact() {
     }
   };
 
-  const inputStyle = { background: 'rgba(26,24,48,0.6)', border: '1px solid #2a2850' };
+  const inputStyle = { background: 'rgba(26,24,48,0.6)', border: '1px solid var(--border)' };
   const inputClass = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#6060b8] focus:outline-none transition-colors text-sm';
 
   const contactItems = [
@@ -118,7 +118,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="rounded-xl p-6" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+            <div className="rounded-xl p-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
               <h4 className="font-semibold text-white mb-4">{t.contact.hoursTitle}</h4>
               <div className="space-y-2 text-sm">
                 {t.contact.hours.map(({ day, hours }) => (
@@ -148,7 +148,7 @@ export default function Contact() {
           {/* Form */}
           <div className="animate-on-scroll">
             {submitted ? (
-              <div className="rounded-2xl p-12 text-center relative overflow-hidden" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+              <div className="rounded-2xl p-12 text-center relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <ConfettiBurst />
                 <div className="relative z-10 mb-4">
                   <CheckCircle size={64} className="text-primary-500 mx-auto success-icon" style={{ filter: 'drop-shadow(0 0 16px rgba(124,58,237,0.6))' }} />
@@ -163,7 +163,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="rounded-2xl p-8 space-y-5" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+              <form onSubmit={handleSubmit} className="rounded-2xl p-8 space-y-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <h3 className="text-xl font-bold text-white mb-2">{t.contact.formTitle}</h3>
 
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -190,11 +190,11 @@ export default function Contact() {
                 <div>
                   <label className="block text-dark-300 text-xs uppercase tracking-wider mb-1.5">{t.contact.budget}</label>
                   <select value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} className={inputClass + ' cursor-pointer'} style={inputStyle}>
-                    <option value="" style={{ background: '#12102a' }}>{t.contact.budgetDefault}</option>
-                    <option value="5000-10000" style={{ background: '#12102a' }}>€5,000 — €10,000</option>
-                    <option value="10000-20000" style={{ background: '#12102a' }}>€10,000 — €20,000</option>
-                    <option value="20000-35000" style={{ background: '#12102a' }}>€20,000 — €35,000</option>
-                    <option value="35000+" style={{ background: '#12102a' }}>€35,000+</option>
+                    <option value="" style={{ background: 'var(--bg-card)' }}>{t.contact.budgetDefault}</option>
+                    <option value="5000-10000" style={{ background: 'var(--bg-card)' }}>€5,000 — €10,000</option>
+                    <option value="10000-20000" style={{ background: 'var(--bg-card)' }}>€10,000 — €20,000</option>
+                    <option value="20000-35000" style={{ background: 'var(--bg-card)' }}>€20,000 — €35,000</option>
+                    <option value="35000+" style={{ background: 'var(--bg-card)' }}>€35,000+</option>
                   </select>
                 </div>
 

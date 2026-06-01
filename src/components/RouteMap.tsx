@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { MapPin, Anchor, Truck, ArrowRight, Clock } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
@@ -69,8 +69,8 @@ export default function RouteMap() {
   }, []);
 
   return (
-    <section className="py-24 relative" ref={sectionRef} style={{ background: '#0e0d20' }}>
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, rgba(18,16,42,0.7), #0a0a1a)' }} />
+    <section className="py-24 relative" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
+      <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(79,70,229,0.06)' }} />
@@ -93,7 +93,7 @@ export default function RouteMap() {
               <div key={idx} className="flex flex-col md:flex-row items-center" style={{ zIndex: 3 }}>
                 <div className="flex flex-col items-center text-center w-52">
                   <div className="text-4xl mb-3">{stop.flag}</div>
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-glow-sm" style={{ background: '#1a1830', border: '2px solid #3d3a6e' }}>
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-glow-sm" style={{ background: 'var(--bg-card-hover)', border: '2px solid #3d3a6e' }}>
                     <Icon size={28} className="text-primary-400" />
                   </div>
                   <h3 className="font-bold text-white text-lg mb-1">{stop.city}</h3>
@@ -130,7 +130,7 @@ export default function RouteMap() {
 
         <div className="animate-on-scroll grid grid-cols-2 md:grid-cols-4 gap-4">
           {t.routeMap.timeline.map((step, idx) => (
-            <div key={idx} className="animate-on-scroll card-hover rounded-xl p-4 text-center" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+            <div key={idx} className="animate-on-scroll card-hover rounded-xl p-4 text-center" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
               <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold mx-auto mb-3" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
                 {idx + 1}
               </div>

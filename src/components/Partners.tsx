@@ -1,4 +1,4 @@
-import { useLang } from '../context/LangContext';
+﻿import { useLang } from '../context/LangContext';
 
 const partners = [
   { name: 'Copart',  logo: 'COPART',  color: '#0066cc' },
@@ -15,7 +15,7 @@ export default function Partners() {
   return (
     <section
       className="py-16 relative overflow-hidden"
-      style={{ background: '#0a0a1a', borderTop: '1px solid #2a2850', borderBottom: '1px solid #2a2850' }}
+      style={{ background: 'var(--bg-main)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
         <p className="section-label">{t.partners.label}</p>
@@ -33,7 +33,7 @@ export default function Partners() {
             <div
               key={i}
               className="flex items-center justify-center rounded-2xl px-10 py-5 min-w-[160px] font-display text-2xl tracking-widest flex-shrink-0 transition-transform hover:scale-105"
-              style={{ background: '#12102a', border: '1px solid #2a2850', backgroundColor: p.color + '18', color: p.color }}
+              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', backgroundColor: p.color + '18', color: p.color }}
             >
               {p.logo}
             </div>

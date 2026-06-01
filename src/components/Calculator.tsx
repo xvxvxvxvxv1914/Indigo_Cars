@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { DollarSign, Ship, FileText, Wrench, Shield, ChevronRight, TrendingDown } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
@@ -96,8 +96,8 @@ export default function Calculator() {
   const pct = ((priceUSD - 1000) / (60000 - 1000)) * 100;
 
   return (
-    <section id="calculator" className="py-24 relative scroll-mt-16" ref={sectionRef} style={{ background: '#0e0d20' }}>
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, rgba(18,16,42,0.8), #0a0a1a)' }} />
+    <section id="calculator" className="py-24 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
+      <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.3), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(124,58,237,0.05)' }} />
@@ -115,7 +115,7 @@ export default function Calculator() {
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* LEFT: inputs */}
           <div className="animate-on-scroll space-y-8">
-            <div className="rounded-2xl p-6 space-y-5" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+            <div className="rounded-2xl p-6 space-y-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
               <div>
                 <div className="flex justify-between items-end mb-3">
                   <span className="text-dark-300 text-sm font-medium uppercase tracking-wider">{t.calculator.priceLabel}</span>
@@ -162,7 +162,7 @@ export default function Calculator() {
               </div>
             </div>
 
-            <div className="rounded-2xl p-6" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+            <div className="rounded-2xl p-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
               <p className="text-dark-300 text-sm font-medium uppercase tracking-wider mb-4">{t.calculator.fuelLabel}</p>
               <div className="grid grid-cols-3 gap-3">
                 {t.calculator.fuels.map(({ key, label, emoji }) => (
@@ -201,8 +201,8 @@ export default function Calculator() {
 
           {/* RIGHT: breakdown */}
           <div className="animate-on-scroll">
-            <div className="rounded-2xl overflow-hidden" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
-              <div className="divide-y" style={{ borderColor: '#1e1c40' }}>
+            <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+              <div className="divide-y" style={{ borderColor: 'var(--border)' }}>
                 {t.calculator.rows.map(({ label, info }, i) => {
                   const Icon = rowIcons[i];
                   return (

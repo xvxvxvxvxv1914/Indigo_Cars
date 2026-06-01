@@ -1,4 +1,4 @@
-import { Home, Car, Info, MessageCircle, Phone } from 'lucide-react';
+﻿import { Home, Car, Info, MessageCircle, Phone } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
 export default function BottomNav() {
@@ -22,7 +22,7 @@ export default function BottomNav() {
       className="fixed bottom-0 left-0 right-0 z-40 md:hidden"
       style={{
         background: 'rgba(10,10,26,0.97)',
-        borderTop: '1px solid #2a2850',
+        borderTop: '1px solid var(--border)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         paddingBottom: 'env(safe-area-inset-bottom)',
