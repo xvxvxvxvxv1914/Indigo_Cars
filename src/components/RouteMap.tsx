@@ -292,21 +292,21 @@ export default function RouteMap() {
                     from={ROTTERDAM}
                     to={activeCountry.coordinates}
                     stroke="rgba(165,180,252,0.95)"
-                    strokeWidth={2.5}
-                    strokeDasharray="7 4"
+                    strokeWidth={2.5 / zoom}
+                    strokeDasharray={`${7 / zoom} ${4 / zoom}`}
                     strokeLinecap="round"
                   />
                 )}
 
                 {/* Rotterdam hub */}
                 <Marker coordinates={ROTTERDAM}>
-                  <circle r="20" fill="rgba(99,102,241,0.0)" stroke="rgba(99,102,241,0.5)" strokeWidth="1">
-                    <animate attributeName="r" values="12;30" dur="2.2s" repeatCount="indefinite" />
+                  <circle r={20 / zoom} fill="rgba(99,102,241,0.0)" stroke="rgba(99,102,241,0.5)" strokeWidth={1 / zoom}>
+                    <animate attributeName="r" values={`${12/zoom};${30/zoom}`} dur="2.2s" repeatCount="indefinite" />
                     <animate attributeName="opacity" values="0.7;0" dur="2.2s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="11" fill="rgba(99,102,241,0.35)" stroke="#6366f1" strokeWidth="2" />
-                  <circle r="5" fill="#c7d2fe" />
-                  <text y={21} textAnchor="middle" fontSize={7} fontWeight="700"
+                  <circle r={11 / zoom} fill="rgba(99,102,241,0.35)" stroke="#6366f1" strokeWidth={2 / zoom} />
+                  <circle r={5 / zoom} fill="#c7d2fe" />
+                  <text y={21 / zoom} textAnchor="middle" fontSize={7 / zoom} fontWeight="700"
                     fill={light ? '#3730a3' : 'rgba(199,210,254,0.95)'} letterSpacing="0.5">
                     ROTTERDAM
                   </text>
@@ -315,12 +315,12 @@ export default function RouteMap() {
                 {/* Active country capital marker */}
                 {activeCountry && (
                   <Marker coordinates={activeCountry.coordinates}>
-                    <circle r={16} fill="rgba(99,102,241,0.15)" stroke="rgba(199,210,254,0.5)" strokeWidth={1}>
-                      <animate attributeName="r" values="8;20" dur="1.8s" repeatCount="indefinite" />
+                    <circle r={16 / zoom} fill="rgba(99,102,241,0.15)" stroke="rgba(199,210,254,0.5)" strokeWidth={1 / zoom}>
+                      <animate attributeName="r" values={`${8/zoom};${20/zoom}`} dur="1.8s" repeatCount="indefinite" />
                       <animate attributeName="opacity" values="0.8;0" dur="1.8s" repeatCount="indefinite" />
                     </circle>
-                    <circle r={8} fill="#c7d2fe" stroke="#6366f1" strokeWidth={2} />
-                    <text y={-13} textAnchor="middle" fontSize={14} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+                    <circle r={8 / zoom} fill="#c7d2fe" stroke="#6366f1" strokeWidth={2 / zoom} />
+                    <text y={-13 / zoom} textAnchor="middle" fontSize={14 / zoom} style={{ pointerEvents: 'none', userSelect: 'none' }}>
                       {activeCountry.flag}
                     </text>
                   </Marker>
