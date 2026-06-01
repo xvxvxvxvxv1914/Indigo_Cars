@@ -58,7 +58,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }} className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
               <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
                 <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
                 <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
@@ -102,7 +102,7 @@ export default function Navbar() {
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2.5 py-1 rounded text-xs font-bold transition-all"
                   style={lang === l
-                    ? { background: 'linear-gradient(135deg, #7c3aed, #4f46e5)', color: 'white' }
+                    ? { background: 'linear-gradient(135deg, #6366f1, #4f46e5)', color: 'white' }
                     : { color: 'var(--text-secondary)' }}
                 >{l}</button>
               ))}
@@ -134,7 +134,7 @@ export default function Navbar() {
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2 py-0.5 rounded text-xs font-bold transition-all"
                   style={lang === l
-                    ? { background: 'linear-gradient(135deg, #7c3aed, #4f46e5)', color: 'white' }
+                    ? { background: 'linear-gradient(135deg, #6366f1, #4f46e5)', color: 'white' }
                     : { color: 'var(--text-secondary)' }}
                 >{l}</button>
               ))}

@@ -29,8 +29,8 @@ export default function HowItWorks() {
     <section id="how-it-works" className="py-24 relative scroll-mt-16" ref={sectionRef}
       style={{ background: 'var(--bg-alt)' }}>
 
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.25), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.15), transparent)' }} />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-20 animate-on-scroll">
@@ -52,7 +52,7 @@ export default function HowItWorks() {
               left: '10%',
               right: '10%',
               height: '2px',
-              background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.5) 10%, rgba(124,58,237,0.5) 90%, transparent)',
+              background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.5) 10%, rgba(99,102,241,0.5) 90%, transparent)',
             }}
           />
 
@@ -64,7 +64,7 @@ export default function HowItWorks() {
                   {/* Number */}
                   <div
                     className="font-display text-xs font-bold mb-2 tracking-widest"
-                    style={{ color: 'rgba(124,58,237,0.7)' }}
+                    style={{ color: 'rgba(99,102,241,0.7)' }}
                   >
                     {String(idx + 1).padStart(2, '0')}
                   </div>
@@ -73,8 +73,8 @@ export default function HowItWorks() {
                   <div
                     className="relative z-10 w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-all duration-300 hover:scale-110"
                     style={{
-                      background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)',
-                      boxShadow: '0 0 0 4px rgba(124,58,237,0.15), 0 0 20px rgba(124,58,237,0.25)',
+                      background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                      boxShadow: '0 0 0 4px rgba(99,102,241,0.15), 0 0 20px rgba(99,102,241,0.25)',
                     }}
                   >
                     <Icon size={20} className="text-white" />
@@ -107,7 +107,7 @@ export default function HowItWorks() {
             style={{
               left: '1.375rem',
               width: '2px',
-              background: 'linear-gradient(to bottom, rgba(124,58,237,0.6), rgba(124,58,237,0.1))',
+              background: 'linear-gradient(to bottom, rgba(99,102,241,0.6), rgba(99,102,241,0.1))',
             }}
           />
 
@@ -120,8 +120,8 @@ export default function HowItWorks() {
                   <div
                     className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center relative z-10"
                     style={{
-                      background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)',
-                      boxShadow: '0 0 0 4px rgba(124,58,237,0.15)',
+                      background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                      boxShadow: '0 0 0 4px rgba(99,102,241,0.15)',
                     }}
                   >
                     <Icon size={20} className="text-white" />
@@ -131,7 +131,7 @@ export default function HowItWorks() {
                   <div className="pt-2 pb-2">
                     <div
                       className="font-display text-xs font-bold tracking-widest mb-1"
-                      style={{ color: 'rgba(124,58,237,0.7)' }}
+                      style={{ color: 'rgba(99,102,241,0.7)' }}
                     >
                       {String(idx + 1).padStart(2, '0')}
                     </div>

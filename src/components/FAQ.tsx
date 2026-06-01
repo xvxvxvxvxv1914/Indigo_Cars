@@ -30,7 +30,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-24 relative scroll-mt-16" style={{ background: 'var(--bg-main)' }} ref={sectionRef}>
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.2), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.2), transparent)' }} />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-on-scroll">
@@ -51,8 +51,8 @@ export default function FAQ() {
                 className="animate-on-scroll rounded-xl overflow-hidden"
                 style={{
                   background: 'var(--bg-card)',
-                  border: `1px solid ${isOpen ? 'rgba(124,58,237,0.4)' : 'var(--border)'}`,
-                  boxShadow: isOpen ? 'inset 3px 0 0 #7c3aed' : 'inset 3px 0 0 transparent',
+                  border: `1px solid ${isOpen ? 'rgba(99,102,241,0.4)' : 'var(--border)'}`,
+                  boxShadow: isOpen ? 'inset 3px 0 0 #6366f1' : 'inset 3px 0 0 transparent',
                   transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
                 }}
               >
@@ -65,9 +65,9 @@ export default function FAQ() {
                     className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold font-display"
                     style={{
                       background: isOpen
-                        ? 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)'
-                        : 'rgba(124,58,237,0.12)',
-                      color: isOpen ? '#fff' : '#a78bfa',
+                        ? 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)'
+                        : 'rgba(99,102,241,0.12)',
+                      color: isOpen ? '#fff' : '#a5b4fc',
                       transition: 'background 0.3s ease, color 0.3s ease',
                     }}
                   >

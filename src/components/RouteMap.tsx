@@ -89,14 +89,14 @@ export default function RouteMap() {
   const activeCountry = activeIso !== null ? EU_DATA[activeIso] : null;
 
   const geoFill   = light ? '#e0d9ff' : '#2a1d6f';
-  const geoStroke = light ? '#7c3aed' : '#7c5dd4';
-  const geoActive = light ? '#6d28d9' : '#7c3aed';
+  const geoStroke = light ? '#6366f1' : '#7c5dd4';
+  const geoActive = light ? '#4338ca' : '#6366f1';
   const mapBg     = light ? '#f0ecff' : '#0c0a22';
 
   return (
     <section className="py-24 relative overflow-hidden" ref={ref} style={{ background: 'var(--bg-alt)' }}>
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.25), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.25), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.15), transparent)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -117,8 +117,8 @@ export default function RouteMap() {
 
             {/* USA */}
             <div className="rounded-2xl p-5 transition-all duration-700" style={{
-              background: light ? 'rgba(124,58,237,0.05)' : 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(124,58,237,0.2)',
+              background: light ? 'rgba(99,102,241,0.05)' : 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(99,102,241,0.2)',
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateX(-20px)', transitionDelay: '0.1s',
             }}>
               <div className="flex items-center gap-3 mb-2">
@@ -132,12 +132,12 @@ export default function RouteMap() {
               <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Хюстън · Лос Анджелис · Ню Джърси</p>
             </div>
 
-            <div className="flex justify-center"><div className="w-px h-5" style={{ background: 'rgba(124,58,237,0.25)' }} /></div>
+            <div className="flex justify-center"><div className="w-px h-5" style={{ background: 'rgba(99,102,241,0.25)' }} /></div>
 
             {/* Canada */}
             <div className="rounded-2xl p-5 transition-all duration-700" style={{
-              background: light ? 'rgba(124,58,237,0.05)' : 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(124,58,237,0.2)',
+              background: light ? 'rgba(99,102,241,0.05)' : 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(99,102,241,0.2)',
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateX(-20px)', transitionDelay: '0.22s',
             }}>
               <div className="flex items-center gap-3 mb-2">
@@ -151,11 +151,11 @@ export default function RouteMap() {
               <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Торонто · Ванкувър · Монреал</p>
             </div>
 
-            <div className="flex justify-center"><div className="w-px h-5" style={{ background: 'rgba(124,58,237,0.25)' }} /></div>
+            <div className="flex justify-center"><div className="w-px h-5" style={{ background: 'rgba(99,102,241,0.25)' }} /></div>
 
             {/* Shipping */}
             <div className="rounded-2xl p-4 text-center transition-all duration-700" style={{
-              background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.28)',
+              background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.28)',
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateX(-20px)', transitionDelay: '0.35s',
             }}>
               <Ship size={22} className="text-primary-400 mx-auto mb-2" />
@@ -166,17 +166,17 @@ export default function RouteMap() {
             {/* → Rotterdam */}
             <div className="hidden lg:flex items-center gap-2 transition-all duration-700"
               style={{ opacity: visible ? 1 : 0, transitionDelay: '0.5s' }}>
-              <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, rgba(124,58,237,0.2), rgba(124,58,237,0.6))' }} />
+              <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, rgba(99,102,241,0.2), rgba(99,102,241,0.6))' }} />
               <span className="text-xs font-bold text-primary-400 tracking-wide">→ ROTTERDAM</span>
             </div>
 
             {/* Selected country info */}
             <div className="hidden lg:block rounded-xl overflow-hidden transition-all duration-500" style={{
-              border: '1px solid rgba(124,58,237,0.28)',
+              border: '1px solid rgba(99,102,241,0.28)',
               opacity: visible ? 1 : 0, transitionDelay: '0.6s',
             }}>
               {activeCountry ? (
-                <div className="p-4" style={{ background: 'rgba(124,58,237,0.1)' }}>
+                <div className="p-4" style={{ background: 'rgba(99,102,241,0.1)' }}>
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-4xl">{activeCountry.flag}</span>
                     <div className="flex-1 min-w-0">
@@ -184,7 +184,7 @@ export default function RouteMap() {
                       <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{activeCountry.city}</div>
                     </div>
                   </div>
-                  <div className="rounded-lg px-3 py-2 flex items-center justify-between" style={{ background: 'rgba(124,58,237,0.15)' }}>
+                  <div className="rounded-lg px-3 py-2 flex items-center justify-between" style={{ background: 'rgba(99,102,241,0.15)' }}>
                     <div>
                       <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>От Ротердам</div>
                       <div className="font-bold text-gradient-stats text-lg">{activeCountry.days}</div>
@@ -193,7 +193,7 @@ export default function RouteMap() {
                   </div>
                 </div>
               ) : (
-                <div className="p-5 text-center" style={{ background: 'rgba(124,58,237,0.06)' }}>
+                <div className="p-5 text-center" style={{ background: 'rgba(99,102,241,0.06)' }}>
                   <MousePointer size={20} className="text-primary-400 mx-auto mb-2" />
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
                     Кликнете върху страна за да видите времето за доставка
@@ -206,13 +206,13 @@ export default function RouteMap() {
           {/* ── RIGHT: Interactive Europe map ── */}
           <div className="flex-1 min-w-0">
             <div className="relative overflow-hidden transition-all duration-700 rounded-2xl" style={{
-              border: '1px solid rgba(124,58,237,0.18)',
+              border: '1px solid rgba(99,102,241,0.18)',
               background: mapBg,
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(18px)', transitionDelay: '0.25s',
             }}>
               {/* Hint badge */}
               <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 rounded-full px-3 py-1.5"
-                style={{ background: 'rgba(124,58,237,0.2)', border: '1px solid rgba(124,58,237,0.35)', backdropFilter: 'blur(8px)' }}>
+                style={{ background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.35)', backdropFilter: 'blur(8px)' }}>
                 <MousePointer size={11} className="text-primary-400" />
                 <span className="text-xs font-medium text-primary-300">Кликнете върху страна</span>
               </div>
@@ -222,18 +222,18 @@ export default function RouteMap() {
                 <button
                   onClick={() => setZoom(z => Math.min(z * 1.5, 12))}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold transition-all hover:scale-110"
-                  style={{ background: 'rgba(124,58,237,0.3)', border: '1px solid rgba(124,58,237,0.5)', color: '#c4b5fd' }}
+                  style={{ background: 'rgba(99,102,241,0.3)', border: '1px solid rgba(99,102,241,0.5)', color: '#c7d2fe' }}
                 >+</button>
                 <button
                   onClick={() => setZoom(z => Math.max(z / 1.5, 1))}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold transition-all hover:scale-110"
-                  style={{ background: 'rgba(124,58,237,0.3)', border: '1px solid rgba(124,58,237,0.5)', color: '#c4b5fd' }}
+                  style={{ background: 'rgba(99,102,241,0.3)', border: '1px solid rgba(99,102,241,0.5)', color: '#c7d2fe' }}
                 >−</button>
                 {zoom > 1 && (
                   <button
                     onClick={() => { setZoom(1); setCenter([10, 52]); }}
                     className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all hover:scale-110"
-                    style={{ background: 'rgba(124,58,237,0.2)', border: '1px solid rgba(124,58,237,0.4)', color: '#a78bfa' }}
+                    style={{ background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.4)', color: '#a5b4fc' }}
                     title="Reset"
                   >⊙</button>
                 )}
@@ -275,7 +275,7 @@ export default function RouteMap() {
                               default: { outline: 'none' },
                               hover: {
                                 outline: 'none',
-                                fill: isActive ? geoActive : (light ? '#c4b5fd' : '#3730a3'),
+                                fill: isActive ? geoActive : (light ? '#c7d2fe' : '#3730a3'),
                                 cursor: 'pointer',
                               },
                               pressed: { outline: 'none', fill: geoActive },
@@ -291,7 +291,7 @@ export default function RouteMap() {
                   <Line
                     from={ROTTERDAM}
                     to={activeCountry.coordinates}
-                    stroke="rgba(167,139,250,0.95)"
+                    stroke="rgba(165,180,252,0.95)"
                     strokeWidth={2.5}
                     strokeDasharray="7 4"
                     strokeLinecap="round"
@@ -300,14 +300,14 @@ export default function RouteMap() {
 
                 {/* Rotterdam hub */}
                 <Marker coordinates={ROTTERDAM}>
-                  <circle r="20" fill="rgba(124,58,237,0.0)" stroke="rgba(124,58,237,0.5)" strokeWidth="1">
+                  <circle r="20" fill="rgba(99,102,241,0.0)" stroke="rgba(99,102,241,0.5)" strokeWidth="1">
                     <animate attributeName="r" values="12;30" dur="2.2s" repeatCount="indefinite" />
                     <animate attributeName="opacity" values="0.7;0" dur="2.2s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="11" fill="rgba(124,58,237,0.35)" stroke="#7c3aed" strokeWidth="2" />
-                  <circle r="5" fill="#c4b5fd" />
+                  <circle r="11" fill="rgba(99,102,241,0.35)" stroke="#6366f1" strokeWidth="2" />
+                  <circle r="5" fill="#c7d2fe" />
                   <text y={21} textAnchor="middle" fontSize={7} fontWeight="700"
-                    fill={light ? '#5b21b6' : 'rgba(196,181,253,0.95)'} letterSpacing="0.5">
+                    fill={light ? '#3730a3' : 'rgba(199,210,254,0.95)'} letterSpacing="0.5">
                     ROTTERDAM
                   </text>
                 </Marker>
@@ -315,11 +315,11 @@ export default function RouteMap() {
                 {/* Active country capital marker */}
                 {activeCountry && (
                   <Marker coordinates={activeCountry.coordinates}>
-                    <circle r={16} fill="rgba(124,58,237,0.15)" stroke="rgba(196,181,253,0.5)" strokeWidth={1}>
+                    <circle r={16} fill="rgba(99,102,241,0.15)" stroke="rgba(199,210,254,0.5)" strokeWidth={1}>
                       <animate attributeName="r" values="8;20" dur="1.8s" repeatCount="indefinite" />
                       <animate attributeName="opacity" values="0.8;0" dur="1.8s" repeatCount="indefinite" />
                     </circle>
-                    <circle r={8} fill="#c4b5fd" stroke="#7c3aed" strokeWidth={2} />
+                    <circle r={8} fill="#c7d2fe" stroke="#6366f1" strokeWidth={2} />
                     <text y={-13} textAnchor="middle" fontSize={14} style={{ pointerEvents: 'none', userSelect: 'none' }}>
                       {activeCountry.flag}
                     </text>
@@ -331,11 +331,11 @@ export default function RouteMap() {
 
             {/* Mobile: selected country info */}
             <div className="mt-4 lg:hidden rounded-xl overflow-hidden transition-all duration-500" style={{
-              border: '1px solid rgba(124,58,237,0.28)',
+              border: '1px solid rgba(99,102,241,0.28)',
               opacity: visible ? 1 : 0, transitionDelay: '0.45s',
             }}>
               {activeCountry ? (
-                <div className="px-5 py-4 flex items-center gap-4" style={{ background: 'rgba(124,58,237,0.1)' }}>
+                <div className="px-5 py-4 flex items-center gap-4" style={{ background: 'rgba(99,102,241,0.1)' }}>
                   <span className="text-4xl">{activeCountry.flag}</span>
                   <div className="flex-1">
                     <div className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{activeCountry.name} — {activeCountry.city}</div>
@@ -347,7 +347,7 @@ export default function RouteMap() {
                   </div>
                 </div>
               ) : (
-                <div className="px-5 py-4 flex items-center gap-3" style={{ background: 'rgba(124,58,237,0.06)' }}>
+                <div className="px-5 py-4 flex items-center gap-3" style={{ background: 'rgba(99,102,241,0.06)' }}>
                   <MousePointer size={18} className="text-primary-400" />
                   <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                     Кликнете върху страна за да видите времето за доставка
@@ -365,7 +365,7 @@ export default function RouteMap() {
               <div key={idx} className="animate-on-scroll rounded-xl p-4 text-center"
                 style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold mx-auto mb-3"
-                  style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
+                  style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
                   {idx + 1}
                 </div>
                 <div className="text-lg font-bold text-gradient-stats mb-1">{step.days}</div>
@@ -377,7 +377,7 @@ export default function RouteMap() {
 
         <div className="animate-on-scroll mt-8 text-center">
           <div className="inline-flex items-center gap-3 rounded-2xl px-8 py-4"
-            style={{ background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.3)' }}>
+            style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.3)' }}>
             <Clock size={20} className="text-primary-400" />
             <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>
               {t.routeMap.total}{' '}

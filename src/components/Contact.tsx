@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 
-const CONFETTI_COLORS = ['#7c3aed', '#a78bfa', '#4f46e5', '#25d366', '#f59e0b', '#ec4899'];
+const CONFETTI_COLORS = ['#6366f1', '#a5b4fc', '#4f46e5', '#25d366', '#f59e0b', '#ec4899'];
 
 function ConfettiPiece({ idx }: { idx: number }) {
   const angle = (idx / 16) * 360;
@@ -109,7 +109,7 @@ export default function Contact() {
               <div className="space-y-4">
                 {contactItems.map(({ icon: Icon, label, value, href }) => (
                   <a key={label} href={href} className="flex items-start gap-4 group">
-                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all" style={{ background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.2)' }}>
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all" style={{ background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.2)' }}>
                       <Icon size={20} className="text-primary-400" />
                     </div>
                     <div>
@@ -141,7 +141,7 @@ export default function Contact() {
               />
               <div className="absolute inset-0 flex items-center px-6" style={{ background: 'linear-gradient(to right, rgba(10,10,26,0.85), transparent)' }}>
                 <div>
-                  <div className="text-sm font-semibold mb-1" style={{ color: '#a78bfa' }}>{t.contact.freeEval}</div>
+                  <div className="text-sm font-semibold mb-1" style={{ color: '#a5b4fc' }}>{t.contact.freeEval}</div>
                   <div className="font-bold" style={{ color: '#ffffff' }}>{t.contact.savings}</div>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function Contact() {
               <div className="rounded-2xl p-12 text-center relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <ConfettiBurst />
                 <div className="relative z-10 mb-4">
-                  <CheckCircle size={64} className="text-primary-500 mx-auto success-icon" style={{ filter: 'drop-shadow(0 0 16px rgba(124,58,237,0.6))' }} />
+                  <CheckCircle size={64} className="text-primary-500 mx-auto success-icon" style={{ filter: 'drop-shadow(0 0 16px rgba(99,102,241,0.6))' }} />
                 </div>
                 <h3 className="relative z-10 text-2xl font-bold text-white mb-3">{t.contact.sent}</h3>
                 <p className="relative z-10 text-dark-300">{t.contact.sentSub}</p>
@@ -206,7 +206,7 @@ export default function Contact() {
                   <textarea rows={4} placeholder={t.contact.messagePlaceholder} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputClass + ' resize-none'} style={inputStyle} />
                 </div>
 
-                <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
+                <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
                   {loading ? (
                     <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />{t.contact.sending}</>
                   ) : (

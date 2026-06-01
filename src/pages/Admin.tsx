@@ -128,7 +128,7 @@ export default function Admin() {
         <div className="flex items-center justify-between mb-8 py-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
                 <svg width="16" height="16" viewBox="0 0 22 22" fill="none">
                   <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
                   <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
@@ -261,7 +261,7 @@ export default function Admin() {
                     type="button"
                     onClick={addImage}
                     className="flex items-center gap-1 text-white px-4 py-3 rounded-lg transition-colors text-sm hover:opacity-90"
-                    style={{ background: '#1a1830', border: '1px solid rgba(124,58,237,0.3)' }}
+                    style={{ background: '#1a1830', border: '1px solid rgba(99,102,241,0.3)' }}
                   >
                     <Image size={14} />
                     Добави
@@ -298,7 +298,7 @@ export default function Admin() {
                 <label className="flex items-center gap-2 cursor-pointer select-none">
                   <div
                     className="w-10 h-5 rounded-full transition-colors relative cursor-pointer"
-                    style={{ background: form.active ? 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' : '#2a2850' }}
+                    style={{ background: form.active ? 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' : '#2a2850' }}
                     onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
                   >
                     <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.active ? 'left-5' : 'left-0.5'}`} />

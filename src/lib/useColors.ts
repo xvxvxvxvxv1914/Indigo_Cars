@@ -16,7 +16,7 @@ export function useColors() {
 
     // Borders
     border:    dark ? '#2a2850'              : '#E4DCFF',
-    borderPurple: dark ? 'rgba(124,58,237,0.2)' : 'rgba(124,58,237,0.15)',
+    borderPurple: dark ? 'rgba(99,102,241,0.2)' : 'rgba(99,102,241,0.15)',
 
     // Text
     t1:        dark ? '#ffffff'              : '#1A1A2E',
@@ -36,12 +36,12 @@ export function useColors() {
       : 'linear-gradient(to bottom, #F5F3FF, rgba(237,233,254,0.4), #F5F3FF)',
 
     // Shadows
-    shadow:    dark ? 'none' : '0 2px 16px rgba(124,58,237,0.08), 0 1px 4px rgba(0,0,0,0.04)',
-    shadowHover: dark ? 'none' : '0 8px 32px rgba(124,58,237,0.15)',
+    shadow:    dark ? 'none' : '0 2px 16px rgba(99,102,241,0.08), 0 1px 4px rgba(0,0,0,0.04)',
+    shadowHover: dark ? 'none' : '0 8px 32px rgba(99,102,241,0.15)',
 
     // Special: dark sections stay dark for contrast in both themes
     darkSection: '#1a1035',
-    darkSectionBorder: 'rgba(124,58,237,0.25)',
+    darkSectionBorder: 'rgba(99,102,241,0.25)',
 
     isDark: dark,
   };

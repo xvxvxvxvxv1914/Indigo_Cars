@@ -19,7 +19,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)' }}>
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                   <path d="M3 14L2 17H20L19 14H3Z" fill="white"/>
                   <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7"/>

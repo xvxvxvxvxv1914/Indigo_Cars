@@ -147,7 +147,7 @@ export default function WhyUs() {
                   onMouseMove={onTiltMove}
                   onMouseLeave={onTiltLeave}
                 >
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style={{ background: 'rgba(124,58,237,0.15)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style={{ background: 'rgba(99,102,241,0.15)' }}>
                     <Icon size={20} className="text-primary-400" />
                   </div>
                   <h3 className="font-semibold text-white mb-2">{reason.title}</h3>
