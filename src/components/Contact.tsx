@@ -1,6 +1,5 @@
 ﻿import { useEffect, useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -62,6 +61,7 @@ export default function Contact() {
     setLoading(true);
     setError('');
     try {
+      const { supabase } = await import('../lib/supabase');
       const { error: dbError } = await supabase.from('contact_inquiries').insert([{
         name: form.name, phone: form.phone, email: form.email || null,
         car: form.car || null, budget: form.budget || null, message: form.message || null,

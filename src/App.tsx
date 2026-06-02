@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function CursorGlow() {
@@ -90,7 +90,7 @@ import HowItWorks from './components/HowItWorks';
 import HotOffers from './components/HotOffers';
 import Partners from './components/Partners';
 import WhyUs from './components/WhyUs';
-import RouteMap from './components/RouteMap';
+const RouteMap = lazy(() => import('./components/RouteMap'));
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Calculator from './components/Calculator';
@@ -99,7 +99,7 @@ import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
-import B2B from './pages/B2B';
+const B2B = lazy(() => import('./pages/B2B'));
 
 function NavDots() {
   const { t } = useLang();
@@ -196,7 +196,9 @@ function HomePage() {
         <HotOffers />
         <Partners />
         <WhyUs />
-        <RouteMap />
+        <Suspense fallback={<div className="py-12" />}>
+          <RouteMap />
+        </Suspense>
         <Testimonials />
         <FAQ />
         <Calculator />
@@ -218,7 +220,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/b2b" element={<B2B />} />
+          <Route path="/b2b" element={<Suspense fallback={<div />}><B2B /></Suspense>} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/login" element={<AdminLogin />} />
         </Routes>
