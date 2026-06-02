@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, Suspense } from 'react';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -39,9 +39,7 @@ export default function HomePage() {
         <HotOffers />
         <Partners />
         <WhyUs />
-        <Suspense fallback={<div className="py-12" />}>
-          <RouteMap />
-        </Suspense>
+        <RouteMap />
         <Testimonials />
         <FAQ />
         <Calculator />

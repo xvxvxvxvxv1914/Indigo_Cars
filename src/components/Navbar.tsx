@@ -23,7 +23,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 1024);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const router = useRouter();
   const pathname = usePathname();
@@ -47,6 +47,9 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
       setActiveSection(closest);
     };
 
+    handleResize();
+    handleScroll();
+    handleSectionScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('scroll', handleSectionScroll, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
