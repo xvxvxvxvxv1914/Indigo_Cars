@@ -19,11 +19,11 @@ function onTiltLeave(e: React.MouseEvent<HTMLDivElement>) {
 }
 
 const DEMO_OFFERS = [
-  { title: '2023 Ford Mustang GT Fastback', location: 'Houston, TX', price: 28500, condition: 'Excellent', carfax_verified: true, image: 'https://images.pexels.com/photos/3752169/pexels-photo-3752169.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
-  { title: '2022 Dodge Challenger R/T 392', location: 'Atlanta, GA', price: 19800, condition: 'Good', carfax_verified: true, image: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
-  { title: '2021 Chevrolet Camaro 2SS', location: 'Phoenix, AZ', price: 24000, condition: 'Good', carfax_verified: false, image: 'https://images.pexels.com/photos/1035108/pexels-photo-1035108.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
-  { title: '2022 Tesla Model 3 Long Range', location: 'Dallas, TX', price: 32500, condition: 'Excellent', carfax_verified: true, image: 'https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
-  { title: '2020 Jeep Wrangler Rubicon 4x4', location: 'Denver, CO', price: 31000, condition: 'Good', carfax_verified: true, image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+  { title: '2023 Ford Mustang GT Fastback', location: 'Houston, TX', price: 28500, condition: 'Excellent', carfax_verified: true, image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=640&h=400&fit=crop' },
+  { title: '2022 Dodge Challenger R/T 392', location: 'Atlanta, GA', price: 19800, condition: 'Good', carfax_verified: true, image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=640&h=400&fit=crop' },
+  { title: '2021 Chevrolet Camaro 2SS', location: 'Phoenix, AZ', price: 24000, condition: 'Good', carfax_verified: false, image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=640&h=400&fit=crop' },
+  { title: '2022 Tesla Model 3 Long Range', location: 'Dallas, TX', price: 32500, condition: 'Excellent', carfax_verified: true, image: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=640&h=400&fit=crop' },
+  { title: '2020 Jeep Wrangler Rubicon 4x4', location: 'Denver, CO', price: 31000, condition: 'Good', carfax_verified: true, image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=640&h=400&fit=crop' },
 ];
 
 function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
