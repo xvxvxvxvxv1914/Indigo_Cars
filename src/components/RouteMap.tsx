@@ -364,8 +364,8 @@ export default function RouteMap() {
             {t.routeMap.timeline.map((step: { days: string; label: string }, idx: number) => (
               <div key={idx} className="animate-on-scroll rounded-xl p-4 text-center"
                 style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-                <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold mx-auto mb-3"
-                  style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' }}>
+                <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold mx-auto mb-3"
+                  style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)', color: 'white' }}>
                   {idx + 1}
                 </div>
                 <div className="text-lg font-bold text-gradient-stats mb-1">{step.days}</div>

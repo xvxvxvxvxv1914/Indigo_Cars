@@ -336,8 +336,8 @@ export default function Calculator() {
                 <a
                   href="#contact"
                   onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="w-full flex items-center justify-center gap-2 text-white font-semibold py-3 rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5 text-sm"
-                  style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' }}
+                  className="w-full flex items-center justify-center gap-2 font-semibold py-3 rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5 text-sm"
+                  style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)', color: 'white' }}
                 >
                   {t.calculator.ctaButton}
                   <ChevronRight size={16} />
