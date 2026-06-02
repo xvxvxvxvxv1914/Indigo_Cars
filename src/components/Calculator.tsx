@@ -1,5 +1,5 @@
-﻿import { useState, useEffect, useRef } from 'react';
-import { DollarSign, Ship, FileText, Wrench, Shield, ChevronRight, TrendingDown } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { DollarSign, Ship, FileText, Wrench, Shield, ChevronRight, TrendingDown, Truck, Anchor, Receipt, Zap, Percent, ChevronDown } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -65,15 +65,28 @@ function AnimatedNumber({ value, prefix = '€' }: { value: number; prefix?: str
   return <>{prefix}{display.toLocaleString('de-DE')}</>;
 }
 
-const ROW_COLORS = ['#6366f1', '#4f46e5', '#3b82f6', '#0ea5e9', '#6366f1', '#818cf8', '#a5b4fc', '#c7d2fe', '#e879f9'];
-const rowIcons = [DollarSign, FileText, Wrench, Ship, Shield, FileText, FileText, FileText, FileText, Wrench];
+const ROW_ICONS = [DollarSign, FileText, Truck, Ship, Shield, Anchor, Receipt, Zap, Percent, Wrench];
+
+const GROUPS = [
+  { flag: '🇺🇸', rows: [0, 1, 2], color: '#8120C6' },
+  { flag: '🚢',  rows: [3, 4, 5], color: '#3b82f6' },
+  { flag: '🇧🇬', rows: [6, 7, 8], color: '#0ea5e9' },
+  { flag: '⭐',  rows: [9],       color: '#8b5fe6' },
+];
+
+const GROUP_LABELS: Record<string, string[]> = {
+  BG: ['В САЩ', 'Превоз', 'Митница и данъци', 'Такса Indigo Cars'],
+  EN: ['In the US', 'Shipping', 'Duties & Taxes', 'Indigo Cars Fee'],
+  RU: ['В США', 'Доставка', 'Пошлины и налоги', 'Стоимость услуг'],
+};
 
 export default function Calculator() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { theme } = useTheme();
   const light = theme === 'light';
   const [priceUSD, setPriceUSD] = useState(15000);
   const [fuel, setFuel] = useState('petrol');
+  const [expandedRow, setExpandedRow] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const r = calculate(priceUSD, fuel);
@@ -96,14 +109,15 @@ export default function Calculator() {
     return () => observer.disconnect();
   }, []);
 
-  const pct = ((priceUSD - 1000) / (60000 - 1000)) * 100;
+  const sliderPct = ((priceUSD - 1000) / (60000 - 1000)) * 100;
+  const groupLabels = GROUP_LABELS[lang] ?? GROUP_LABELS.BG;
 
   return (
     <section id="calculator" className="py-12 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
       {!light && <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />}
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.3), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.15), transparent)' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(99,102,241,0.05)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.3), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.15), transparent)' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(129,32,198,0.05)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
@@ -117,18 +131,21 @@ export default function Calculator() {
 
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* LEFT: inputs */}
-          <div className="animate-on-scroll space-y-8">
+          <div className="animate-on-scroll space-y-5">
+            {/* Price slider */}
             <div className="rounded-2xl p-6 space-y-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
               <div>
-                <div className="flex justify-between items-end mb-3">
-                  <span className="text-dark-300 text-sm font-medium uppercase tracking-wider">{t.calculator.priceLabel}</span>
-                  <span className="font-display text-3xl" style={{ background: 'linear-gradient(135deg, #a5b4fc, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                <div className="flex justify-between items-end mb-4">
+                  <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                    {t.calculator.priceLabel}
+                  </span>
+                  <span className="font-display text-2xl" style={{ background: 'linear-gradient(135deg, #c4a0f0, #8b5fe6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     ${priceUSD.toLocaleString('de-DE')}
                   </span>
                 </div>
-                <div className="relative h-10 flex items-center mb-2">
-                  <div className="absolute left-0 right-0 h-2 rounded-full" style={{ background: '#2a2850' }}>
-                    <div className="absolute left-0 top-0 h-full rounded-full" style={{ width: `${pct}%`, background: 'linear-gradient(to right, #6366f1, #a5b4fc)' }} />
+                <div className="relative h-8 flex items-center">
+                  <div className="absolute left-0 right-0 h-1.5 rounded-full" style={{ background: light ? '#e2e8f0' : '#2e1858' }}>
+                    <div className="absolute left-0 top-0 h-full rounded-full" style={{ width: `${sliderPct}%`, background: 'linear-gradient(to right, #8120C6, #c4a0f0)' }} />
                   </div>
                   <input
                     type="range" min={1000} max={60000} step={500} value={priceUSD}
@@ -137,26 +154,26 @@ export default function Calculator() {
                     style={{ zIndex: 2 }}
                   />
                   <div
-                    className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-2 shadow-lg pointer-events-none transition-all"
-                    style={{ left: `${pct}%`, background: 'white', borderColor: '#6366f1', boxShadow: '0 0 0 4px rgba(99,102,241,0.2)' }}
+                    className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 pointer-events-none"
+                    style={{ left: `${sliderPct}%`, background: 'white', borderColor: '#8120C6', boxShadow: '0 0 0 3px rgba(129,32,198,0.2)' }}
                   />
                 </div>
-                <div className="flex justify-between text-xs text-dark-300 mt-2">
-                  <span>$1,000</span>
-                  <span>$60,000</span>
+                <div className="flex justify-between mt-1.5" style={{ color: 'var(--text-secondary)', fontSize: '11px' }}>
+                  <span>$1k</span><span>$60k</span>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              {/* Quick presets */}
+              <div className="flex flex-wrap gap-1.5">
                 {[5000, 10000, 15000, 20000, 30000, 45000].map((p) => (
                   <button
                     key={p}
                     onClick={() => setPriceUSD(p)}
-                    className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
+                    className="text-xs px-3 py-1 rounded-md font-medium transition-all"
                     style={{
-                      background: priceUSD === p ? 'linear-gradient(135deg, #6366f1, #4f46e5)' : 'rgba(99,102,241,0.08)',
-                      border: `1px solid ${priceUSD === p ? 'transparent' : '#2a2850'}`,
-                      color: priceUSD === p ? 'white' : '#a0a0b8',
+                      background: priceUSD === p ? '#8120C6' : 'transparent',
+                      border: `1px solid ${priceUSD === p ? '#8120C6' : 'var(--border)'}`,
+                      color: priceUSD === p ? 'white' : 'var(--text-secondary)',
                     }}
                   >
                     ${(p / 1000).toFixed(0)}k
@@ -165,89 +182,165 @@ export default function Calculator() {
               </div>
             </div>
 
-            <div className="rounded-2xl p-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-              <p className="text-dark-300 text-sm font-medium uppercase tracking-wider mb-4">{t.calculator.fuelLabel}</p>
-              <div className="grid grid-cols-3 gap-3">
-                {t.calculator.fuels.map(({ key, label, emoji }) => (
+            {/* Fuel — segmented control */}
+            <div className="rounded-2xl p-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-secondary)' }}>
+                {t.calculator.fuelLabel}
+              </p>
+              <div className="flex rounded-xl p-1 gap-1" style={{ background: light ? '#f1f5f9' : 'rgba(255,255,255,0.04)' }}>
+                {t.calculator.fuels.map(({ key, label }) => (
                   <button
                     key={key}
                     onClick={() => setFuel(key)}
-                    className="flex flex-col items-center gap-1.5 py-4 rounded-xl font-medium text-sm transition-all"
+                    className="flex-1 py-2 rounded-lg text-sm font-medium transition-all"
                     style={{
-                      background: fuel === key ? 'rgba(99,102,241,0.15)' : 'rgba(255,255,255,0.03)',
-                      border: `1px solid ${fuel === key ? 'rgba(99,102,241,0.5)' : '#2a2850'}`,
-                      color: fuel === key ? '#a5b4fc' : '#a0a0b8',
+                      background: fuel === key ? (light ? 'white' : '#1e1c3a') : 'transparent',
+                      color: fuel === key ? '#8120C6' : 'var(--text-secondary)',
+                      boxShadow: fuel === key ? (light ? '0 1px 4px rgba(0,0,0,0.08)' : 'none') : 'none',
+                      border: fuel === key ? `1px solid ${light ? '#e2e8f0' : 'rgba(129,32,198,0.2)'}` : '1px solid transparent',
                     }}
                   >
-                    <span className="text-2xl">{emoji}</span>
                     {label}
                   </button>
                 ))}
               </div>
             </div>
 
+            {/* Savings badge */}
             {r.savings > 500 && (
-              <div className="animate-on-scroll rounded-2xl p-5 flex items-center gap-4" style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.25)' }}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(99,102,241,0.2)' }}>
-                  <TrendingDown size={20} className="text-primary-400" />
+              <div className="animate-on-scroll rounded-2xl p-4 flex items-center gap-3" style={{ background: 'rgba(129,32,198,0.08)', border: '1px solid rgba(129,32,198,0.2)' }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(129,32,198,0.15)' }}>
+                  <TrendingDown size={16} style={{ color: '#8b5fe6' }} />
                 </div>
                 <div>
-                  <div className="text-white font-semibold text-sm">
+                  <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
                     {t.calculator.savingsText}{' '}
                     <span className="text-gradient font-bold">€{r.savings.toLocaleString('de-DE')}</span>
                   </div>
-                  <div className="text-dark-300 text-xs mt-0.5">{t.calculator.savingsSub}</div>
+                  <div className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{t.calculator.savingsSub}</div>
                 </div>
               </div>
             )}
           </div>
 
-          {/* RIGHT: breakdown */}
+          {/* RIGHT: grouped breakdown */}
           <div className="animate-on-scroll">
             <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-              <div className="divide-y" style={{ borderColor: 'var(--border)' }}>
-                {t.calculator.rows.map(({ label, info }, i) => {
-                  const Icon = rowIcons[i];
-                  return (
-                    <div key={i} className="px-5 py-3 group">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: ROW_COLORS[i % ROW_COLORS.length] }} />
-                          <span className="text-dark-300 text-sm">{label}</span>
-                          {info && <span className="hidden group-hover:block text-xs text-dark-300/60 italic ml-1">— {info}</span>}
-                        </div>
-                        <span className="text-white font-semibold text-sm tabular-nums ml-3">
-                          <AnimatedNumber value={values[i]} />
+
+              {GROUPS.map((group, gi) => {
+                const groupSubtotal = group.rows.reduce((sum, i) => sum + values[i], 0);
+
+                return (
+                  <div key={gi}>
+                    {/* Group header */}
+                    <div
+                      className="px-4 py-2 flex items-center justify-between"
+                      style={{
+                        background: light ? `${group.color}0a` : `${group.color}12`,
+                        borderTop: gi > 0 ? `1px solid var(--border)` : undefined,
+                        borderBottom: `1px solid var(--border)`,
+                      }}
+                    >
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs leading-none">{group.flag}</span>
+                        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: group.color }}>
+                          {groupLabels[gi]}
                         </span>
                       </div>
-                      {info && <p className="sm:hidden text-xs text-dark-300/50 italic mt-0.5 pl-5">{info}</p>}
+                      <span className="text-xs font-semibold tabular-nums" style={{ color: group.color }}>
+                        <AnimatedNumber value={groupSubtotal} />
+                      </span>
                     </div>
-                  );
-                })}
-              </div>
 
-              <div className="px-5 py-5" style={{ background: 'rgba(99,102,241,0.08)', borderTop: '1px solid rgba(99,102,241,0.2)' }}>
+                    {/* Rows */}
+                    {group.rows.map((rowIdx, ri) => {
+                      const Icon = ROW_ICONS[rowIdx];
+                      const val = values[rowIdx];
+                      const info = t.calculator.rows[rowIdx].info;
+                      const isExpanded = expandedRow === rowIdx;
+                      const isLastInGroup = ri === group.rows.length - 1;
+
+                      return (
+                        <div
+                          key={rowIdx}
+                          style={{ borderBottom: isLastInGroup ? undefined : `1px solid var(--border)` }}
+                        >
+                          <button
+                            className="w-full px-4 py-3 flex items-center justify-between gap-3 text-left transition-colors"
+                            style={{ background: isExpanded ? (light ? `${group.color}06` : `${group.color}0a`) : 'transparent' }}
+                            onClick={() => setExpandedRow(isExpanded ? null : rowIdx)}
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div
+                                className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
+                                style={{ background: `${group.color}18` }}
+                              >
+                                <Icon size={12} style={{ color: group.color }} />
+                              </div>
+                              <span className="text-sm" style={{ color: 'var(--text-primary)' }}>
+                                {t.calculator.rows[rowIdx].label}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <span className="text-sm font-semibold tabular-nums" style={{ color: 'var(--text-primary)' }}>
+                                <AnimatedNumber value={val} />
+                              </span>
+                              {info && (
+                                <ChevronDown
+                                  size={13}
+                                  className="transition-transform duration-200"
+                                  style={{
+                                    color: 'var(--text-secondary)',
+                                    opacity: 0.5,
+                                    transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                                  }}
+                                />
+                              )}
+                            </div>
+                          </button>
+
+                          {/* Expandable info */}
+                          {info && (
+                            <div
+                              className="overflow-hidden transition-all duration-200"
+                              style={{ maxHeight: isExpanded ? '60px' : '0px' }}
+                            >
+                              <p className="px-4 pb-3 text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', paddingLeft: '46px' }}>
+                                {info}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+
+              {/* Total */}
+              <div className="px-4 py-4" style={{ background: 'rgba(129,32,198,0.07)', borderTop: '2px solid rgba(129,32,198,0.18)' }}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-white font-bold text-base">{t.calculator.totalLabel}</span>
-                  <span className="font-display text-3xl" style={{ background: 'linear-gradient(135deg, #a5b4fc, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{t.calculator.totalLabel}</span>
+                  <span className="font-display text-2xl" style={{ background: 'linear-gradient(135deg, #c4a0f0, #8b5fe6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     <AnimatedNumber value={r.total} />
                   </span>
                 </div>
                 <div className="flex justify-end">
-                  <span className="text-dark-300 text-sm">≈ <AnimatedNumber value={r.totalBGN} prefix="" /> лв.</span>
+                  <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>≈ <AnimatedNumber value={r.totalBGN} prefix="" /> лв.</span>
                 </div>
-                <p className="text-dark-300 text-xs mt-3 leading-relaxed" style={{ color: '#6060b8' }}>{t.calculator.disclaimer}</p>
+                <p className="text-xs mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)', opacity: 0.55 }}>{t.calculator.disclaimer}</p>
               </div>
 
-              <div className="px-5 pb-5">
+              {/* CTA */}
+              <div className="px-4 pb-4">
                 <a
                   href="#contact"
                   onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5"
-                  style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}
+                  className="w-full flex items-center justify-center gap-2 text-white font-semibold py-3 rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5 text-sm"
+                  style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' }}
                 >
                   {t.calculator.ctaButton}
-                  <ChevronRight size={18} />
+                  <ChevronRight size={16} />
                 </a>
               </div>
             </div>

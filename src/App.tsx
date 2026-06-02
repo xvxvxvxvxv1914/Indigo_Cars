@@ -29,7 +29,7 @@ function CursorGlow() {
     <div
       ref={ref}
       className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-      style={{ zIndex: 0, background: 'radial-gradient(circle, rgba(99,102,241,0.04) 0%, transparent 65%)', filter: 'blur(40px)' }}
+      style={{ zIndex: 0, background: 'radial-gradient(circle, rgba(129,32,198,0.04) 0%, transparent 65%)', filter: 'blur(40px)' }}
     />
   );
 }
@@ -73,7 +73,7 @@ function ScrollProgressBar() {
         style={{
           height: '100%',
           width: '0%',
-          background: 'linear-gradient(to right, #6366f1, #a5b4fc, #4f46e5)',
+          background: 'linear-gradient(to right, #8120C6, #c4a0f0, #5020a0)',
           transition: 'width 0.05s linear',
         }}
       />
@@ -95,7 +95,6 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Calculator from './components/Calculator';
 import Contact from './components/Contact';
-import CTABanner from './components/CTABanner';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -151,11 +150,11 @@ function NavDots() {
           <span
             className="absolute right-5 px-2.5 py-1 text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 whitespace-nowrap translate-x-1 group-hover:translate-x-0"
             style={{
-              background: light ? '#ffffff' : '#1a1830',
+              background: light ? '#ffffff' : '#201545',
               color: 'var(--text-primary)',
               border: '1px solid var(--border)',
               boxShadow: light
-                ? '0 2px 12px rgba(99,102,241,0.12)'
+                ? '0 2px 12px rgba(129,32,198,0.12)'
                 : '0 2px 12px rgba(0,0,0,0.4)',
             }}
           >
@@ -167,9 +166,9 @@ function NavDots() {
             style={{
               width:      active === id ? '10px' : '6px',
               height:     active === id ? '10px' : '6px',
-              background: active === id ? '#6366f1' : 'transparent',
-              border:     `2px solid ${active === id ? '#6366f1' : 'rgba(99,102,241,0.35)'}`,
-              boxShadow:  active === id ? '0 0 8px rgba(99,102,241,0.55)' : 'none',
+              background: active === id ? '#8120C6' : 'transparent',
+              border:     `2px solid ${active === id ? '#8120C6' : 'rgba(129,32,198,0.35)'}`,
+              boxShadow:  active === id ? '0 0 8px rgba(129,32,198,0.55)' : 'none',
             }}
           />
         </button>
@@ -194,7 +193,6 @@ function HomePage() {
         <Calculator />
         <Contact />
       </main>
-      <CTABanner />
       <Footer />
       <BottomNav />
     </>

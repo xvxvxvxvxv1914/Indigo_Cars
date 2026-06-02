@@ -44,6 +44,13 @@ export default function Navbar() {
       : 'shadow-2xl shadow-black/50 border-b'
     : '';
 
+  // When light+scrolled the nav bg is dark (#0E002B) → white text; at top it's transparent → dark text
+  const onDarkNav = isLight && scrolled;
+  const navText    = onDarkNav ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)';
+  const navTextHov = onDarkNav ? 'rgba(255,255,255,1)'    : 'var(--text-primary)';
+  const navCtrlBg  = onDarkNav ? 'rgba(255,255,255,0.12)' : 'var(--bg-card)';
+  const navCtrlBdr = onDarkNav ? 'rgba(255,255,255,0.18)' : 'var(--border)';
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}
@@ -67,9 +74,9 @@ export default function Navbar() {
               <li key={href}>
                 <a href={href} onClick={(e) => { e.preventDefault(); handleNavClick(href); }}
                   className="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-white/5"
-                  style={{ color: 'var(--text-secondary)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                  style={{ color: navText }}
+                  onMouseEnter={e => (e.currentTarget.style.color = navTextHov)}
+                  onMouseLeave={e => (e.currentTarget.style.color = navText)}
                 >
                   {navLabels[key]}
                 </a>
@@ -79,19 +86,19 @@ export default function Navbar() {
 
           {/* Right controls */}
           <div className="hidden lg:flex items-center gap-3">
-            <a href="#contact" className="flex items-center gap-1.5 text-sm transition-colors" style={{ color: 'var(--text-secondary)' }}>
+            <a href="#contact" className="flex items-center gap-1.5 text-sm transition-colors" style={{ color: navText }}>
               <Phone size={14} className="text-primary-500" />
               <span>—</span>
             </a>
 
             {/* Language switcher */}
-            <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+            <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
               {(['BG', 'EN', 'RU'] as const).map((l) => (
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2.5 py-1 rounded text-xs font-bold transition-all"
                   style={lang === l
-                    ? { background: 'linear-gradient(135deg, #6366f1, #4f46e5)', color: 'white' }
-                    : { color: 'var(--text-secondary)' }}
+                    ? { background: 'linear-gradient(135deg, #8120C6, #5020a0)', color: 'white' }
+                    : { color: navText }}
                 >{l}</button>
               ))}
             </div>
@@ -99,7 +106,7 @@ export default function Navbar() {
             {/* Theme toggle */}
             <button onClick={toggleTheme}
               className="w-8 h-8 rounded-lg flex items-center justify-center transition-all hover:shadow-glow-sm"
-              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+              style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}`, color: navText }}
               aria-label="Toggle theme"
             >
               {isLight ? <Moon size={15} /> : <Sun size={15} />}
@@ -117,24 +124,24 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <div className="lg:hidden flex items-center gap-2">
-            <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+            <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
               {(['BG', 'EN', 'RU'] as const).map((l) => (
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2 py-0.5 rounded text-xs font-bold transition-all"
                   style={lang === l
-                    ? { background: 'linear-gradient(135deg, #6366f1, #4f46e5)', color: 'white' }
-                    : { color: 'var(--text-secondary)' }}
+                    ? { background: 'linear-gradient(135deg, #8120C6, #5020a0)', color: 'white' }
+                    : { color: navText }}
                 >{l}</button>
               ))}
             </div>
             <button onClick={toggleTheme}
               className="p-2 rounded-lg transition-colors"
-              style={{ color: 'var(--text-secondary)', background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+              style={{ color: navText, background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}
               aria-label="Toggle theme"
             >
               {isLight ? <Moon size={18} /> : <Sun size={18} />}
             </button>
-            <button className="p-2 transition-colors" style={{ color: 'var(--text-primary)' }}
+            <button className="p-2 transition-colors" style={{ color: navTextHov }}
               onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -151,14 +158,14 @@ export default function Navbar() {
               <li key={href}>
                 <a href={href} onClick={(e) => { e.preventDefault(); handleNavClick(href); }}
                   className="block px-4 py-2.5 rounded-lg transition-all text-sm hover:bg-white/5"
-                  style={{ color: 'var(--text-secondary)' }}
+                  style={{ color: 'rgba(255,255,255,0.8)' }}
                 >
                   {navLabels[key]}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-3 px-4 py-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
+          <div className="flex items-center gap-3 px-4 py-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
             <Phone size={14} className="text-primary-500" />
             <span>—</span>
           </div>

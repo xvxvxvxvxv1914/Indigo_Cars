@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 
-const CONFETTI_COLORS = ['#6366f1', '#a5b4fc', '#4f46e5', '#25d366', '#f59e0b', '#ec4899'];
+const CONFETTI_COLORS = ['#8120C6', '#c4a0f0', '#5020a0', '#25d366', '#f59e0b', '#ec4899'];
 
 function ConfettiPiece({ idx }: { idx: number }) {
   const angle = (idx / 16) * 360;
@@ -76,7 +76,7 @@ export default function Contact() {
   };
 
   const inputStyle = { background: 'var(--bg-input)', border: '1px solid var(--border)' };
-  const inputClass = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#6060b8] focus:outline-none transition-colors text-sm';
+  const inputClass = 'w-full rounded-lg px-4 py-3 placeholder-[#9070a8] focus:outline-none transition-colors text-sm';
 
   const contactItems = [
     { icon: Phone, label: t.contact.phoneLabel, value: '—', href: '#' },
@@ -87,8 +87,8 @@ export default function Contact() {
   return (
     <section id="contact" className="py-12 relative overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
       <div className="absolute inset-0 z-0">
-        {!light && <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, rgba(26,24,48,0.5), #0a0a1a)' }} />}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl" style={{ background: 'rgba(79,70,229,0.08)' }} />
+        {!light && <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0F1A33, rgba(26,24,48,0.5), #0F1A33)' }} />}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl" style={{ background: 'rgba(14,0,43,0.08)' }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,11 +105,11 @@ export default function Contact() {
           {/* Contact info */}
           <div className="animate-on-scroll space-y-8">
             <div>
-              <h3 className="text-xl font-bold text-white mb-6">{t.contact.infoTitle}</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>{t.contact.infoTitle}</h3>
               <div className="space-y-4">
                 {contactItems.map(({ icon: Icon, label, value, href }) => (
                   <a key={label} href={href} className="flex items-start gap-4 group">
-                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all" style={{ background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.2)' }}>
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all" style={{ background: 'rgba(129,32,198,0.15)', border: '1px solid rgba(129,32,198,0.2)' }}>
                       <Icon size={20} className="text-primary-400" />
                     </div>
                     <div>
@@ -122,7 +122,7 @@ export default function Contact() {
             </div>
 
             <div className="rounded-xl p-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-              <h4 className="font-semibold text-white mb-4">{t.contact.hoursTitle}</h4>
+              <h4 className="font-semibold mb-4" style={{ color: "var(--text-primary)" }}>{t.contact.hoursTitle}</h4>
               <div className="space-y-2 text-sm">
                 {t.contact.hours.map(({ day, hours }) => (
                   <div key={day} className="flex justify-between">
@@ -139,9 +139,9 @@ export default function Contact() {
                 alt="Car transport"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 flex items-center px-6" style={{ background: 'linear-gradient(to right, rgba(10,10,26,0.85), transparent)' }}>
+              <div className="absolute inset-0 flex items-center px-6" style={{ background: 'linear-gradient(to right, rgba(14,0,43,0.82), transparent)' }}>
                 <div>
-                  <div className="text-sm font-semibold mb-1" style={{ color: '#a5b4fc' }}>{t.contact.freeEval}</div>
+                  <div className="text-sm font-semibold mb-1" style={{ color: '#c4a0f0' }}>{t.contact.freeEval}</div>
                   <div className="font-bold" style={{ color: '#ffffff' }}>{t.contact.savings}</div>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function Contact() {
               <div className="rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <ConfettiBurst />
                 <div className="relative z-10 mb-4">
-                  <CheckCircle size={64} className="text-primary-500 mx-auto success-icon" style={{ filter: 'drop-shadow(0 0 16px rgba(99,102,241,0.6))' }} />
+                  <CheckCircle size={64} className="text-primary-500 mx-auto success-icon" style={{ filter: 'drop-shadow(0 0 16px rgba(129,32,198,0.6))' }} />
                 </div>
                 <h3 className="relative z-10 text-2xl font-bold text-white mb-3">{t.contact.sent}</h3>
                 <p className="relative z-10 text-dark-300">{t.contact.sentSub}</p>
@@ -206,7 +206,7 @@ export default function Contact() {
                   <textarea rows={4} placeholder={t.contact.messagePlaceholder} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputClass + ' resize-none'} style={inputStyle} />
                 </div>
 
-                <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
+                <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' }}>
                   {loading ? (
                     <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />{t.contact.sending}</>
                   ) : (
@@ -218,7 +218,7 @@ export default function Contact() {
                   <p className="text-red-400 text-xs text-center rounded-lg px-4 py-2" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>{error}</p>
                 )}
 
-                <p className="text-[#6060b8] text-xs text-center">{t.contact.footer}</p>
+                <p className="text-[#9070a8] text-xs text-center">{t.contact.footer}</p>
               </form>
             )}
           </div>

@@ -50,7 +50,7 @@ function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
               alt={offer.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12102a]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#19113a]/60 to-transparent" />
             <div className={`absolute top-2 right-2 text-xs px-2 py-0.5 rounded-full border font-medium ${conditionColor(offer.condition)}`}>
               {offer.condition}
             </div>
@@ -77,8 +77,8 @@ function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
             </div>
             <button
               onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="mt-2 flex items-center justify-center gap-1 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:opacity-90"
-              style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}
+              className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:opacity-90"
+              style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)', color: 'white' }}
             >
               <MessageSquare size={12} />
               {t.offers.inquire}
@@ -144,7 +144,7 @@ export default function HotOffers() {
 
   return (
     <section id="offers" className="py-12 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
-      {!light && <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#12102a]/30 to-[#0a0a1a]" />}
+      {!light && <div className="absolute inset-0 bg-gradient-to-b from-[#0F1A33] via-[#19113a]/30 to-[#0F1A33]" />}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
@@ -162,10 +162,10 @@ export default function HotOffers() {
               <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <div className="h-36" style={{ background: 'var(--bg-card-hover)' }} />
                 <div className="p-4 flex flex-col gap-3">
-                  <div className="h-3 rounded-full w-4/5" style={{ background: '#2a2850' }} />
-                  <div className="h-3 rounded-full w-1/2" style={{ background: '#2a2850' }} />
-                  <div className="h-5 rounded-full w-1/3 mt-2" style={{ background: '#2a2850' }} />
-                  <div className="h-8 rounded-lg mt-1" style={{ background: '#2a2850' }} />
+                  <div className="h-3 rounded-full w-4/5" style={{ background: '#2e1858' }} />
+                  <div className="h-3 rounded-full w-1/2" style={{ background: '#2e1858' }} />
+                  <div className="h-5 rounded-full w-1/3 mt-2" style={{ background: '#2e1858' }} />
+                  <div className="h-8 rounded-lg mt-1" style={{ background: '#2e1858' }} />
                 </div>
               </div>
             ))}
@@ -203,7 +203,7 @@ export default function HotOffers() {
                       </svg>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#12102a]/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#19113a]/60 to-transparent" />
                   {/* Condition badge */}
                   <div className={`absolute top-2 right-2 text-xs px-2 py-0.5 rounded-full border font-medium ${conditionColor(offer.condition)}`}>
                     {offer.condition}
@@ -242,8 +242,8 @@ export default function HotOffers() {
                   <div className="flex gap-2 mt-2">
                     <button
                       onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                      className="flex-1 flex items-center justify-center gap-1 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:shadow-glow-sm hover:opacity-90"
-                      style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}
+                      className="flex-1 flex items-center justify-center gap-1 text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:shadow-glow-sm hover:opacity-90"
+                      style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)', color: 'white' }}
                     >
                       <MessageSquare size={12} />
                       {t.offers.inquire}

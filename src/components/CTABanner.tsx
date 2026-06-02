@@ -12,9 +12,9 @@ export default function CTABanner() {
   return (
     <section
       style={{
-        background: 'linear-gradient(135deg, #1a0533 0%, #12102a 45%, #0f0a2a 100%)',
-        borderTop: '1px solid rgba(99,102,241,0.25)',
-        borderBottom: '1px solid rgba(99,102,241,0.25)',
+        background: 'linear-gradient(135deg, #1a0533 0%, #19113a 45%, #0f0a2a 100%)',
+        borderTop: '1px solid rgba(129,32,198,0.25)',
+        borderBottom: '1px solid rgba(129,32,198,0.25)',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -37,17 +37,17 @@ export default function CTABanner() {
             onClick={scrollToContact}
             className="flex-shrink-0 inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-lg transition-all duration-300 text-white whitespace-nowrap active:scale-95"
             style={{
-              background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-              boxShadow: '0 4px 20px rgba(99,102,241,0.4)',
+              background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)',
+              boxShadow: '0 4px 20px rgba(129,32,198,0.4)',
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                '0 0 0 1px rgba(99,102,241,0.5), 0 8px 30px rgba(99,102,241,0.55)';
+                '0 0 0 1px rgba(129,32,198,0.5), 0 8px 30px rgba(129,32,198,0.55)';
               (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                '0 4px 20px rgba(99,102,241,0.4)';
+                '0 4px 20px rgba(129,32,198,0.4)';
               (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
             }}
           >

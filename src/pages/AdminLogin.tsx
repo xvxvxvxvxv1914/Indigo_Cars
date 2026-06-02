@@ -21,16 +21,16 @@ export default function AdminLogin() {
     }
   }
 
-  const inputStyle = { background: 'rgba(10,10,26,0.7)', border: '1px solid #2a2850' };
+  const inputStyle = { background: 'rgba(10,10,26,0.7)', border: '1px solid #2e1858' };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#0a0a1a' }}>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(79,70,229,0.08)' }} />
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#0F1A33' }}>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(14,0,43,0.08)' }} />
 
       <div className="relative w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2.5 mb-4">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center shadow-glow" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center shadow-glow" style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' }}>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                 <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
                 <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
@@ -50,7 +50,7 @@ export default function AdminLogin() {
         <form
           onSubmit={handleLogin}
           className="rounded-2xl p-8 space-y-5"
-          style={{ background: '#12102a', border: '1px solid #2a2850' }}
+          style={{ background: '#19113a', border: '1px solid #2e1858' }}
         >
           {error && (
             <div className="flex gap-3 rounded-xl p-4" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)' }}>
@@ -68,7 +68,7 @@ export default function AdminLogin() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#6060b8] focus:outline-none transition-colors text-sm"
+              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-sm"
               style={inputStyle}
               placeholder="admin@example.com"
             />
@@ -83,7 +83,7 @@ export default function AdminLogin() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#6060b8] focus:outline-none transition-colors text-sm"
+              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-sm"
               style={inputStyle}
               placeholder="••••••••"
             />
@@ -93,7 +93,7 @@ export default function AdminLogin() {
             type="submit"
             disabled={loading}
             className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-lg transition-all disabled:opacity-60 hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' }}
           >
             <Lock size={16} />
             {loading ? 'Влизане...' : 'Влез в Админ панела'}

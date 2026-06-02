@@ -6,42 +6,42 @@ export function useColors() {
 
   return {
     // Backgrounds
-    main:      dark ? '#0a0a1a'              : '#F5F3FF',
-    alt:       dark ? '#0e0d20'              : '#FFFFFF',
-    card:      dark ? '#12102a'              : '#FFFFFF',
-    cardHover: dark ? '#1a1830'              : '#F5F3FF',
-    navBg:     dark ? 'rgba(10,9,26,0.97)'  : 'rgba(255,255,255,0.97)',
-    input:     dark ? 'rgba(26,24,48,0.6)'  : 'rgba(245,243,255,0.8)',
-    statCard:  dark ? 'rgba(26,24,48,0.8)'  : 'rgba(255,255,255,0.95)',
+    main:      dark ? '#0F1A33'              : '#FAF5FD',
+    alt:       dark ? '#110e2d'              : '#FFFFFF',
+    card:      dark ? '#19113a'              : '#FFFFFF',
+    cardHover: dark ? '#201545'              : '#FAF5FD',
+    navBg:     dark ? 'rgba(15,26,51,0.97)'  : 'rgba(14,0,43,0.97)',
+    input:     dark ? 'rgba(32,21,69,0.6)'   : 'rgba(250,245,253,0.8)',
+    statCard:  dark ? 'rgba(32,21,69,0.8)'   : 'rgba(255,255,255,0.95)',
 
     // Borders
-    border:    dark ? '#2a2850'              : '#E4DCFF',
-    borderPurple: dark ? 'rgba(99,102,241,0.2)' : 'rgba(99,102,241,0.15)',
+    border:       dark ? '#2e1858'                   : '#E8D9F0',
+    borderPurple: dark ? 'rgba(129,32,198,0.2)'      : 'rgba(129,32,198,0.15)',
 
     // Text
-    t1:        dark ? '#ffffff'              : '#1A1A2E',
-    t2:        dark ? '#a0a0b8'              : '#5B5880',
-    t3:        dark ? '#6060b8'              : '#9CA3AF',
-    placeholder: dark ? '#6060b8'            : '#A89ED0',
+    t1:          dark ? '#ffffff'   : '#0F1A33',
+    t2:          dark ? '#D5C6E0'   : '#5a3a70',
+    t3:          dark ? '#9070a8'   : '#9CA3AF',
+    placeholder: dark ? '#9070a8'   : '#D5C6E0',
 
     // Gradients (keep dark for both themes in hero — overlaid on image)
-    heroFrom:  dark ? 'rgba(10,10,26,0.97)' : 'rgba(15,10,40,0.75)',
-    heroMid:   dark ? 'rgba(10,10,26,0.82)' : 'rgba(15,10,40,0.55)',
-    heroLight: dark ? 'rgba(10,10,26,0.35)' : 'rgba(15,10,40,0.15)',
-    heroBot:   dark ? 'rgba(10,10,26,0.90)' : 'rgba(15,10,40,0.70)',
+    heroFrom:  dark ? 'rgba(15,26,51,0.97)' : 'rgba(15,26,51,0.75)',
+    heroMid:   dark ? 'rgba(15,26,51,0.82)' : 'rgba(15,26,51,0.55)',
+    heroLight: dark ? 'rgba(15,26,51,0.35)' : 'rgba(15,26,51,0.15)',
+    heroBot:   dark ? 'rgba(15,26,51,0.90)' : 'rgba(15,26,51,0.70)',
 
     // Section bg gradients
     sectionGrad: dark
-      ? 'linear-gradient(to bottom, #0a0a1a, rgba(18,16,42,0.8), #0a0a1a)'
-      : 'linear-gradient(to bottom, #F5F3FF, rgba(237,233,254,0.4), #F5F3FF)',
+      ? 'linear-gradient(to bottom, #0F1A33, rgba(25,17,58,0.8), #0F1A33)'
+      : 'linear-gradient(to bottom, #FAF5FD, rgba(232,217,240,0.4), #FAF5FD)',
 
     // Shadows
-    shadow:    dark ? 'none' : '0 2px 16px rgba(99,102,241,0.08), 0 1px 4px rgba(0,0,0,0.04)',
-    shadowHover: dark ? 'none' : '0 8px 32px rgba(99,102,241,0.15)',
+    shadow:      dark ? 'none' : '0 2px 16px rgba(129,32,198,0.08), 0 1px 4px rgba(0,0,0,0.04)',
+    shadowHover: dark ? 'none' : '0 8px 32px rgba(129,32,198,0.15)',
 
     // Special: dark sections stay dark for contrast in both themes
-    darkSection: '#1a1035',
-    darkSectionBorder: 'rgba(99,102,241,0.25)',
+    darkSection:       '#19113a',
+    darkSectionBorder: 'rgba(129,32,198,0.25)',
 
     isDark: dark,
   };

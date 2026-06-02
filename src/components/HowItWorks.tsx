@@ -29,8 +29,8 @@ export default function HowItWorks() {
     <section id="how-it-works" className="py-12 relative scroll-mt-16" ref={sectionRef}
       style={{ background: 'var(--bg-alt)' }}>
 
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.25), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.15), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.25), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.15), transparent)' }} />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
@@ -48,11 +48,11 @@ export default function HowItWorks() {
           <div
             className="absolute"
             style={{
-              top: '2.75rem',
+              top: '3.25rem',
               left: '10%',
               right: '10%',
               height: '2px',
-              background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.5) 10%, rgba(99,102,241,0.5) 90%, transparent)',
+              background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.5) 10%, rgba(129,32,198,0.5) 90%, transparent)',
             }}
           />
 
@@ -64,20 +64,21 @@ export default function HowItWorks() {
                   {/* Number */}
                   <div
                     className="font-display text-xs font-bold mb-2 tracking-widest"
-                    style={{ color: 'rgba(99,102,241,0.7)' }}
+                    style={{ color: 'rgba(129,32,198,0.7)' }}
                   >
                     {String(idx + 1).padStart(2, '0')}
                   </div>
 
                   {/* Circle */}
                   <div
-                    className="relative z-10 w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-all duration-300 hover:scale-110"
+                    className="relative z-10 w-13 h-13 rounded-full flex items-center justify-center mb-5 transition-all duration-300 hover:scale-110"
                     style={{
-                      background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                      boxShadow: '0 0 0 4px rgba(99,102,241,0.15), 0 0 20px rgba(99,102,241,0.25)',
+                      width: 52, height: 52,
+                      background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)',
+                      boxShadow: '0 0 0 4px rgba(129,32,198,0.15), 0 0 20px rgba(129,32,198,0.25)',
                     }}
                   >
-                    <Icon size={20} className="text-white" />
+                    <Icon size={24} style={{ color: 'white' }} />
                   </div>
 
                   {/* Content */}
@@ -107,7 +108,7 @@ export default function HowItWorks() {
             style={{
               left: '1.375rem',
               width: '2px',
-              background: 'linear-gradient(to bottom, rgba(99,102,241,0.6), rgba(99,102,241,0.1))',
+              background: 'linear-gradient(to bottom, rgba(129,32,198,0.6), rgba(129,32,198,0.1))',
             }}
           />
 
@@ -118,20 +119,21 @@ export default function HowItWorks() {
                 <div key={idx} className="animate-on-scroll flex items-start gap-5 relative">
                   {/* Circle on rail */}
                   <div
-                    className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center relative z-10"
+                    className="flex-shrink-0 rounded-full flex items-center justify-center relative z-10"
                     style={{
-                      background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                      boxShadow: '0 0 0 4px rgba(99,102,241,0.15)',
+                      width: 52, height: 52,
+                      background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)',
+                      boxShadow: '0 0 0 4px rgba(129,32,198,0.15)',
                     }}
                   >
-                    <Icon size={20} className="text-white" />
+                    <Icon size={24} style={{ color: 'white' }} />
                   </div>
 
                   {/* Content */}
                   <div className="pt-2 pb-2">
                     <div
                       className="font-display text-xs font-bold tracking-widest mb-1"
-                      style={{ color: 'rgba(99,102,241,0.7)' }}
+                      style={{ color: 'rgba(129,32,198,0.7)' }}
                     >
                       {String(idx + 1).padStart(2, '0')}
                     </div>

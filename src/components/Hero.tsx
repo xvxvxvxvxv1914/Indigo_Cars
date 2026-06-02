@@ -49,8 +49,8 @@ function ParticleMesh() {
           if (d < MAX) {
             const alpha = (1 - d / MAX) * 0.18;
             const g = ctx!.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-            g.addColorStop(0, `rgba(99,102,241,${alpha})`);
-            g.addColorStop(1, `rgba(79,70,229,${alpha})`);
+            g.addColorStop(0, `rgba(129,32,198,${alpha})`);
+            g.addColorStop(1, `rgba(14,0,43,${alpha})`);
             ctx!.beginPath(); ctx!.strokeStyle = g; ctx!.lineWidth = 0.8;
             ctx!.moveTo(particles[i].x, particles[i].y);
             ctx!.lineTo(particles[j].x, particles[j].y);
@@ -61,7 +61,7 @@ function ParticleMesh() {
       for (const p of particles) {
         const glow = ctx!.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
         glow.addColorStop(0, 'rgba(165,180,252,0.6)');
-        glow.addColorStop(1, 'rgba(79,70,229,0)');
+        glow.addColorStop(1, 'rgba(14,0,43,0)');
         ctx!.beginPath(); ctx!.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
         ctx!.fillStyle = glow; ctx!.fill();
         ctx!.beginPath(); ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -131,17 +131,17 @@ function HeroLight() {
         {/* Light theme overlays — bright left, gentle gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/[0.94] via-white/[0.78] to-white/[0.25]" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/30" />
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(99,102,241,0.07)' }} />
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(129,32,198,0.07)' }} />
       </div>
 
       {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: 'linear-gradient(to right, transparent, #6366f1, #4f46e5, transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: 'linear-gradient(to right, transparent, #8120C6, #5020a0, transparent)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 w-full">
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
-            <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #6366f1, #4f46e5)' }} />
+            <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #8120C6, #5020a0)' }} />
             <span className="text-primary-600 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
           </div>
 
@@ -186,7 +186,7 @@ function HeroLight() {
             {badgeLabels.map((label, i) => {
               const Icon = [Shield, Truck, FileText][i];
               return (
-                <div key={label} className="flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2" style={{ background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(99,102,241,0.25)' }}>
+                <div key={label} className="flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2" style={{ background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(129,32,198,0.25)' }}>
                   <Icon size={14} className="text-primary-500" />
                   <span className="text-xs font-medium" style={{ color: '#3D3A5C' }}>{label}</span>
                 </div>
@@ -198,7 +198,7 @@ function HeroLight() {
         {/* Stat cards — bottom right */}
         <div className="absolute bottom-12 right-6 lg:right-16 hidden md:flex flex-col gap-3">
           {stats.map((s) => (
-            <div key={s.label} className="text-right backdrop-blur rounded-xl px-5 py-3 min-w-[150px] transition-all hover:scale-105" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(99,102,241,0.2)', boxShadow: '0 4px 20px rgba(99,102,241,0.1)' }}>
+            <div key={s.label} className="text-right backdrop-blur rounded-xl px-5 py-3 min-w-[150px] transition-all hover:scale-105" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(129,32,198,0.2)', boxShadow: '0 4px 20px rgba(129,32,198,0.1)' }}>
               <div className="text-2xl font-bold text-gradient-stats">{s.value}</div>
               <div className="text-xs mt-0.5" style={{ color: '#5B5880' }}>{s.label}</div>
             </div>
@@ -256,20 +256,20 @@ function HeroDark() {
           className="w-full h-full object-cover"
           fetchPriority="high" decoding="async"
           style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/[0.97] via-[#0a0a1a]/[0.82] to-[#0a0a1a]/[0.35]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/90 via-transparent to-[#0a0a1a]/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/60 via-transparent to-transparent" />
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(99,102,241,0.1)' }} />
-        <div className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-[100px]" style={{ background: 'rgba(79,70,229,0.08)' }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/[0.97] via-[#0F1A33]/[0.82] to-[#0F1A33]/[0.35]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F1A33]/90 via-transparent to-[#0F1A33]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/60 via-transparent to-transparent" />
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(129,32,198,0.1)' }} />
+        <div className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-[100px]" style={{ background: 'rgba(14,0,43,0.08)' }} />
       </div>
 
       <ParticleMesh />
-      <div className="absolute top-0 left-0 right-0 h-px z-10" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.5), rgba(79,70,229,0.5), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px z-10" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.5), rgba(14,0,43,0.5), transparent)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 w-full">
         <div className="max-w-3xl">
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
-            <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #6366f1, #4f46e5)' }} />
+            <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #8120C6, #5020a0)' }} />
             <span className="text-primary-400 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
           </div>
 
@@ -302,7 +302,7 @@ function HeroDark() {
             {badgeLabels.map((label, i) => {
               const Icon = [Shield, Truck, FileText][i];
               return (
-                <div key={label} className="flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(99,102,241,0.3)' }}>
+                <div key={label} className="flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(129,32,198,0.3)' }}>
                   <Icon size={14} className="text-primary-400" />
                   <span className="text-xs text-white font-medium">{label}</span>
                 </div>
@@ -313,7 +313,7 @@ function HeroDark() {
 
         <div className="absolute bottom-12 right-6 lg:right-16 hidden md:flex flex-col gap-3">
           {statItems.map((s) => (
-            <div key={s.label} className="text-right backdrop-blur rounded-xl px-5 py-3 min-w-[150px] transition-all hover:scale-105" style={{ background: 'rgba(26,24,48,0.8)', border: '1px solid rgba(99,102,241,0.25)' }}>
+            <div key={s.label} className="text-right backdrop-blur rounded-xl px-5 py-3 min-w-[150px] transition-all hover:scale-105" style={{ background: 'rgba(26,24,48,0.8)', border: '1px solid rgba(129,32,198,0.25)' }}>
               <div className="text-2xl font-bold text-gradient-stats">{s.value}</div>
               <div className="text-xs text-dark-300 mt-0.5">{s.label}</div>
             </div>

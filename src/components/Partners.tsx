@@ -19,15 +19,15 @@ export default function Partners() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
         <p className="section-label">{t.partners.label}</p>
-        <h2 className="text-xl md:text-2xl font-bold text-white">
+        <h2 className="text-xl md:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
           {t.partners.title}{' '}
           <span className="text-gradient">{t.partners.titleAccent}</span>
         </h2>
       </div>
 
       <div className="relative group overflow-hidden">
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 z-10" style={{ background: 'linear-gradient(to right, #0a0a1a, transparent)' }} />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 z-10" style={{ background: 'linear-gradient(to left, #0a0a1a, transparent)' }} />
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 z-10" style={{ background: 'linear-gradient(to right, var(--bg-main), transparent)' }} />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 z-10" style={{ background: 'linear-gradient(to left, var(--bg-main), transparent)' }} />
         <div className="flex gap-6 w-max animate-scroll-x group-hover:[animation-play-state:paused]" style={{ animationDuration: '28s' }}>
           {track.map((p, i) => (
             <div

@@ -112,23 +112,23 @@ export default function Admin() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#0a0a1a' }}>
-        <div className="w-10 h-10 border-2 border-[#2a2850] border-t-primary-500 rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#0F1A33' }}>
+        <div className="w-10 h-10 border-2 border-[#2e1858] border-t-primary-500 rounded-full animate-spin" />
       </div>
     );
   }
 
-  const inputCls = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#6060b8] focus:outline-none transition-colors text-sm';
-  const inputStyle = { background: 'rgba(10,10,26,0.6)', border: '1px solid #2a2850' };
+  const inputCls = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-sm';
+  const inputStyle = { background: 'rgba(10,10,26,0.6)', border: '1px solid #2e1858' };
 
   return (
-    <div className="min-h-screen pt-4 pb-12" style={{ background: '#0a0a1a' }}>
+    <div className="min-h-screen pt-4 pb-12" style={{ background: '#0F1A33' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8 py-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' }}>
                 <svg width="16" height="16" viewBox="0 0 22 22" fill="none">
                   <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
                   <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
@@ -154,7 +154,7 @@ export default function Admin() {
             <button
               onClick={handleLogout}
               className="flex items-center gap-2 text-sm text-dark-300 hover:text-white transition-colors rounded-lg px-4 py-2"
-              style={{ border: '1px solid #2a2850' }}
+              style={{ border: '1px solid #2e1858' }}
             >
               <LogOut size={16} />
               Изход
@@ -164,7 +164,7 @@ export default function Admin() {
 
         {/* Form panel */}
         {showForm && (
-          <div className="rounded-2xl p-6 mb-8" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
+          <div className="rounded-2xl p-6 mb-8" style={{ background: '#19113a', border: '1px solid #2e1858' }}>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">
                 {editId ? 'Редактирай предложение' : 'Ново предложение'}
@@ -223,10 +223,10 @@ export default function Admin() {
                   className={inputCls + ' cursor-pointer'}
                   style={inputStyle}
                 >
-                  <option value="Excellent" style={{ background: '#12102a' }}>Excellent</option>
-                  <option value="Good" style={{ background: '#12102a' }}>Good</option>
-                  <option value="Fair" style={{ background: '#12102a' }}>Fair</option>
-                  <option value="Salvage" style={{ background: '#12102a' }}>Salvage</option>
+                  <option value="Excellent" style={{ background: '#19113a' }}>Excellent</option>
+                  <option value="Good" style={{ background: '#19113a' }}>Good</option>
+                  <option value="Fair" style={{ background: '#19113a' }}>Fair</option>
+                  <option value="Salvage" style={{ background: '#19113a' }}>Salvage</option>
                 </select>
               </div>
 
@@ -261,7 +261,7 @@ export default function Admin() {
                     type="button"
                     onClick={addImage}
                     className="flex items-center gap-1 text-white px-4 py-3 rounded-lg transition-colors text-sm hover:opacity-90"
-                    style={{ background: '#1a1830', border: '1px solid rgba(99,102,241,0.3)' }}
+                    style={{ background: '#201545', border: '1px solid rgba(129,32,198,0.3)' }}
                   >
                     <Image size={14} />
                     Добави
@@ -276,7 +276,7 @@ export default function Admin() {
                           src={img}
                           alt=""
                           className="w-20 h-16 object-cover rounded-lg"
-                          style={{ border: '1px solid #2a2850' }}
+                          style={{ border: '1px solid #2e1858' }}
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = '';
                           }}
@@ -298,7 +298,7 @@ export default function Admin() {
                 <label className="flex items-center gap-2 cursor-pointer select-none">
                   <div
                     className="w-10 h-5 rounded-full transition-colors relative cursor-pointer"
-                    style={{ background: form.active ? 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' : '#2a2850' }}
+                    style={{ background: form.active ? 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)' : '#2e1858' }}
                     onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
                   >
                     <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.active ? 'left-5' : 'left-0.5'}`} />
@@ -309,12 +309,12 @@ export default function Admin() {
                 <label className="flex items-center gap-2 cursor-pointer select-none">
                   <div
                     className="w-10 h-5 rounded-full transition-colors relative cursor-pointer"
-                    style={{ background: form.carfax_verified ? '#e8252a' : '#2a2850' }}
+                    style={{ background: form.carfax_verified ? '#e8252a' : '#2e1858' }}
                     onClick={() => setForm((f) => ({ ...f, carfax_verified: !f.carfax_verified }))}
                   >
                     <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.carfax_verified ? 'left-5' : 'left-0.5'}`} />
                   </div>
-                  <span className="text-sm font-medium" style={{ color: form.carfax_verified ? '#e8252a' : '#a0a0b8' }}>
+                  <span className="text-sm font-medium" style={{ color: form.carfax_verified ? '#e8252a' : '#D5C6E0' }}>
                     CARFAX проверен
                   </span>
                 </label>
@@ -338,8 +338,8 @@ export default function Admin() {
         )}
 
         {/* Offers table */}
-        <div className="rounded-2xl overflow-hidden" style={{ background: '#12102a', border: '1px solid #2a2850' }}>
-          <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #2a2850' }}>
+        <div className="rounded-2xl overflow-hidden" style={{ background: '#19113a', border: '1px solid #2e1858' }}>
+          <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #2e1858' }}>
             <h2 className="font-bold text-white">
               Предложения{' '}
               <span className="text-dark-300 font-normal text-sm ml-1">({offers.length})</span>
@@ -358,7 +358,7 @@ export default function Admin() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr style={{ borderBottom: '1px solid #2a2850' }}>
+                  <tr style={{ borderBottom: '1px solid #2e1858' }}>
                     {['Снимка', 'Автомобил', 'Цена', 'Локация', 'Състояние', 'Статус', 'Действия'].map((h) => (
                       <th key={h} className="text-left px-4 py-3 text-xs text-dark-300 uppercase tracking-wider font-semibold">
                         {h}
@@ -371,14 +371,14 @@ export default function Admin() {
                     <tr
                       key={offer.id}
                       className="transition-colors hover:bg-white/2"
-                      style={{ borderBottom: '1px solid #2a2850' }}
+                      style={{ borderBottom: '1px solid #2e1858' }}
                     >
                       <td className="px-4 py-3">
-                        <div className="w-14 h-10 rounded-lg overflow-hidden flex-shrink-0" style={{ background: '#0a0a1a' }}>
+                        <div className="w-14 h-10 rounded-lg overflow-hidden flex-shrink-0" style={{ background: '#0F1A33' }}>
                           {offer.images?.[0] ? (
                             <img src={offer.images[0]} alt="" className="w-full h-full object-cover" />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center" style={{ color: '#2a2850' }}>
+                            <div className="w-full h-full flex items-center justify-center" style={{ color: '#2e1858' }}>
                               <Image size={14} />
                             </div>
                           )}
@@ -393,7 +393,7 @@ export default function Admin() {
                       <td className="px-4 py-3">
                         <span className="text-dark-300 text-sm">{offer.location}</span>                      </td>
                       <td className="px-4 py-3">
-                        <span className="text-xs px-2 py-1 rounded-full text-dark-300" style={{ background: 'rgba(42,40,80,0.6)', border: '1px solid #2a2850' }}>
+                        <span className="text-xs px-2 py-1 rounded-full text-dark-300" style={{ background: 'rgba(42,40,80,0.6)', border: '1px solid #2e1858' }}>
                           {offer.condition}
                         </span>
                       </td>
@@ -440,7 +440,7 @@ export default function Admin() {
       {/* Delete confirmation modal */}
         {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="rounded-2xl p-6 max-w-sm w-full shadow-xl" style={{ background: '#12102a', border: '1px solid rgba(239,68,68,0.3)' }}>
+          <div className="rounded-2xl p-6 max-w-sm w-full shadow-xl" style={{ background: '#19113a', border: '1px solid rgba(239,68,68,0.3)' }}>
             <h3 className="text-xl font-bold text-white mb-2">Изтриване</h3>
             <p className="text-dark-300 text-sm mb-6">              Сигурни ли сте, че искате да изтриете това предложение? Действието не може да бъде отменено.
             </p>
