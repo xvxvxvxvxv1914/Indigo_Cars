@@ -204,7 +204,7 @@ export default function RouteMap() {
           </div>
 
           {/* ── RIGHT: Interactive Europe map ── */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 w-full">
             <div className="relative overflow-hidden transition-all duration-700 rounded-2xl" style={{
               border: '1px solid rgba(129,32,198,0.18)',
               background: mapBg,
