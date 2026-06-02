@@ -67,10 +67,11 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-12 animate-on-scroll">
           <p className="section-label">{t.testimonials.label}</p>
-          <h2 className="section-title mb-8">
+          <h2 className="section-title mb-4">
             {t.testimonials.title}{' '}
             <span className="text-gradient section-title-accent">{t.testimonials.titleAccent}</span>
           </h2>
+          <p className="section-subtitle">{t.testimonials.sub}</p>
         </div>
 
         {/* Aggregate stats */}

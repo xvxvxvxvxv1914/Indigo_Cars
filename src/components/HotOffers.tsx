@@ -40,8 +40,8 @@ function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
       {DEMO_OFFERS.map((offer, i) => (
         <div
           key={i}
-          className="rounded-2xl overflow-hidden flex flex-col group flex-shrink-0 w-[80vw] sm:w-auto snap-start"
-          style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+          className="gradient-border-card rounded-2xl overflow-hidden flex flex-col group flex-shrink-0 w-[80vw] sm:w-auto snap-start"
+          style={{ background: 'var(--bg-card)' }}
           onMouseMove={onTiltMove}
           onMouseLeave={onTiltLeave}
         >

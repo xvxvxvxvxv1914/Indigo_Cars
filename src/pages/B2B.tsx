@@ -163,7 +163,7 @@ export default function B2B() {
       </section>
 
       {/* ── SERVICES ── */}
-      <section data-observe className="py-12 relative scroll-mt-16" style={{ background: 'var(--bg-main)' }}>
+      <section data-observe className="py-12 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
             <p className="section-label">
