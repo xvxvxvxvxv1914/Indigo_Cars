@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Sun, Moon } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, Phone, Sun, Moon, Building2 } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useMagnetic } from '../lib/useMagnetic';
 import { useTheme } from '../context/ThemeContext';
@@ -14,29 +15,52 @@ const sectionIds = [
   { key: 'contact', href: '#contact' },
 ] as const;
 
-export default function Navbar() {
+export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
   const { lang, setLang, t } = useLang();
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 1024);
+  const [activeSection, setActiveSection] = useState('hero');
+  const navigate = useNavigate();
+  const location = useLocation();
   const magCta = useMagnetic(0.3);
   const isLight = theme === 'light';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    const handleSectionScroll = () => {
+      const ids = ['hero','how-it-works','offers','why-us','testimonials','faq','contact'];
+      const center = window.innerHeight / 2;
+      let closest = 'hero', closestDist = Infinity;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        const dist = Math.abs(rect.top + rect.height / 2 - center);
+        if (dist < closestDist) { closestDist = dist; closest = id; }
+      }
+      setActiveSection(closest);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleSectionScroll, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleSectionScroll);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/' + href);
+    } else {
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const navLabels: Record<string, string> = {
@@ -55,8 +79,8 @@ export default function Navbar() {
       ? 'border-b'
       : '';
 
-  // When light+scrolled on desktop the nav bg is dark (#000E38) → white text
-  const onDarkNav = isLight && scrolledDesktop;
+  // Force white text when page has dark hero (e.g. B2B) or when scrolled in light mode
+  const onDarkNav = (isLight && scrolledDesktop) || (darkBg && !scrolledDesktop);
   const navText    = onDarkNav ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)';
   const navTextHov = onDarkNav ? 'rgba(255,255,255,1)'    : 'var(--text-primary)';
   const navCtrlBg  = onDarkNav ? 'rgba(255,255,255,0.12)' : 'var(--bg-card)';
@@ -89,18 +113,24 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <ul className="hidden lg:flex items-center gap-0.5">
-            {sectionIds.map(({ key, href }) => (
-              <li key={href}>
-                <a href={href} onClick={(e) => { e.preventDefault(); handleNavClick(href); }}
-                  className="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-white/5"
-                  style={{ color: navText }}
-                  onMouseEnter={e => (e.currentTarget.style.color = navTextHov)}
-                  onMouseLeave={e => (e.currentTarget.style.color = navText)}
-                >
-                  {navLabels[key]}
-                </a>
-              </li>
-            ))}
+            {sectionIds.map(({ key, href }) => {
+              const sectionId = href.replace('#', '');
+              const isActive = location.pathname === '/' && activeSection === sectionId;
+              return (
+                <li key={href}>
+                  <a href={href} onClick={(e) => { e.preventDefault(); handleNavClick(href); }}
+                    className="relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-white/5 flex flex-col items-center"
+                    style={{ color: isActive ? navTextHov : navText }}
+                    onMouseEnter={e => (e.currentTarget.style.color = navTextHov)}
+                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? navTextHov : navText)}
+                  >
+                    {navLabels[key]}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300"
+                      style={{ width: isActive ? '70%' : '0%', background: '#691EB9' }} />
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Right controls */}
@@ -130,6 +160,21 @@ export default function Navbar() {
             >
               {isLight ? <Moon size={15} /> : <Sun size={15} />}
             </button>
+
+            <Link to="/b2b"
+              className="relative flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-all hover:bg-white/5"
+              style={{
+                color: location.pathname === '/b2b' ? '#691EB9' : navText,
+                border: `1px solid ${location.pathname === '/b2b' ? '#691EB9' : navCtrlBdr}`,
+                background: location.pathname === '/b2b' ? 'rgba(105,30,185,0.1)' : 'transparent',
+              }}
+            >
+              <Building2 size={14} style={{ color: '#691EB9' }} />
+              B2B
+              {location.pathname === '/b2b' && (
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[70%] rounded-full" style={{ background: '#691EB9' }} />
+              )}
+            </Link>
 
             <a ref={magCta.ref as React.RefObject<HTMLAnchorElement>}
               onMouseMove={magCta.onMouseMove} onMouseLeave={magCta.onMouseLeave}

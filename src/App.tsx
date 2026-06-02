@@ -100,6 +100,7 @@ import BottomNav from './components/BottomNav';
 import WhatsAppButton from './components/WhatsAppButton';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
+import B2B from './pages/B2B';
 
 function NavDots() {
   const { t } = useLang();
@@ -178,6 +179,15 @@ function NavDots() {
 }
 
 function HomePage() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -210,6 +220,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/b2b" element={<B2B />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/login" element={<AdminLogin />} />
         </Routes>
