@@ -113,7 +113,7 @@ export default function Calculator() {
   const groupLabels = GROUP_LABELS[lang] ?? GROUP_LABELS.BG;
 
   return (
-    <section id="calculator" className="py-12 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
+    <section id="calculator" className="py-12 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
       {!light && <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.3), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.15), transparent)' }} />

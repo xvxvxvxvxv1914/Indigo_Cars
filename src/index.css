@@ -55,13 +55,17 @@
 @layer base {
   * { box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
 
   body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-main);
     color: var(--text-primary);
-    overflow-x: clip;
+    overflow-x: hidden;
+    width: 100%;
     -webkit-overflow-scrolling: touch;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
