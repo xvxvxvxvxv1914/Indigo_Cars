@@ -100,20 +100,20 @@ export default function WhyUs() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 md:mb-24">
           {statsMeta.map(({ value, suffix, icon: Icon }, i) => (
             <div
               key={i}
-              className="animate-on-scroll gradient-border-card text-center backdrop-blur rounded-2xl p-6"
+              className="animate-on-scroll gradient-border-card text-center backdrop-blur rounded-2xl p-4 sm:p-6"
               style={{ willChange: 'transform' }}
               onMouseMove={onTiltMove}
               onMouseLeave={onTiltLeave}
             >
-              <Icon size={28} className="text-primary-400 mx-auto mb-3" />
-              <div className="font-display text-4xl md:text-5xl text-gradient-stats mb-2">
+              <Icon size={24} className="text-primary-400 mx-auto mb-2 sm:mb-3" />
+              <div className="font-display text-3xl md:text-4xl lg:text-5xl text-gradient-stats mb-1 sm:mb-2">
                 <AnimatedCounter target={value} suffix={suffix} />
               </div>
-              <div className="text-dark-300 text-sm">{t.whyUs.stats[i].label}</div>
+              <div className="text-dark-300 text-xs sm:text-sm">{t.whyUs.stats[i].label}</div>
             </div>
           ))}
         </div>

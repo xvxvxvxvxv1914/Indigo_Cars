@@ -96,7 +96,7 @@ export default function Footer() {
       </div>
 
       <div style={{ borderTop: '1px solid var(--border)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-24 md:pb-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm" style={{ color: '#403f90' }}>
             &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>

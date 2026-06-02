@@ -137,7 +137,7 @@ function HeroLight() {
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: 'linear-gradient(to right, transparent, #6366f1, #4f46e5, transparent)' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 w-full">
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
@@ -155,12 +155,12 @@ function HeroLight() {
           </h1>
 
           {/* Subtitle */}
-          <p className="hero-stagger text-lg md:text-xl leading-relaxed mb-10 max-w-2xl" style={{ animationDelay: '0.32s', color: '#3D3A5C' }}>
+          <p className="hero-stagger text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.32s', color: '#3D3A5C' }}>
             {t.hero.sub}
           </p>
 
           {/* CTAs */}
-          <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-12" style={{ animationDelay: '0.46s' }}>
+          <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-8 sm:mb-12" style={{ animationDelay: '0.46s' }}>
             <button
               ref={magPrimary.ref as React.RefObject<HTMLButtonElement>}
               onMouseMove={magPrimary.onMouseMove} onMouseLeave={magPrimary.onMouseLeave}
@@ -209,11 +209,11 @@ function HeroLight() {
       {/* Scroll cue */}
       <button
         onClick={() => scroll('#how-it-works')}
-        className="absolute bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 transition-colors hover:text-primary-500"
+        className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 transition-colors hover:text-primary-500"
         style={{ color: '#7B6FA8' }}
         aria-label="Scroll down"
       >
-        <span className="text-xs uppercase tracking-widest">{t.hero.scrollMore}</span>
+        <span className="hidden sm:inline text-xs uppercase tracking-widest">{t.hero.scrollMore}</span>
         <ChevronDown size={18} className="animate-bounce" />
       </button>
     </section>
@@ -254,9 +254,8 @@ function HeroDark() {
       <div className="absolute inset-0 z-0">
         <img ref={bgRef} src="/hero-image.png" alt="Indigo Cars — внос от САЩ"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '60% center' }}
           fetchPriority="high" decoding="async"
-          style={{ transform: 'scale(1.12)', willChange: 'transform' }} />
+          style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/[0.97] via-[#0a0a1a]/[0.82] to-[#0a0a1a]/[0.35]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/90 via-transparent to-[#0a0a1a]/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a1a]/60 via-transparent to-transparent" />
@@ -267,7 +266,7 @@ function HeroDark() {
       <ParticleMesh />
       <div className="absolute top-0 left-0 right-0 h-px z-10" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.5), rgba(79,70,229,0.5), transparent)' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 w-full">
         <div className="max-w-3xl">
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
             <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #6366f1, #4f46e5)' }} />
@@ -280,11 +279,11 @@ function HeroDark() {
             {t.hero.h1c}{' '}<span className="text-gradient">{t.hero.h1d}</span>
           </h1>
 
-          <p className="hero-stagger text-dark-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl" style={{ animationDelay: '0.32s' }}>
+          <p className="hero-stagger text-dark-300 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.32s' }}>
             {t.hero.sub}
           </p>
 
-          <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-12" style={{ animationDelay: '0.46s' }}>
+          <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-8 sm:mb-12" style={{ animationDelay: '0.46s' }}>
             <button ref={magPrimary.ref as React.RefObject<HTMLButtonElement>}
               onMouseMove={magPrimary.onMouseMove} onMouseLeave={magPrimary.onMouseLeave}
               onClick={() => scroll('#contact')} className="btn-primary text-center text-base"
@@ -323,9 +322,9 @@ function HeroDark() {
       </div>
 
       <button onClick={() => scroll('#how-it-works')}
-        className="absolute bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-dark-300 hover:text-primary-400 transition-colors"
+        className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-dark-300 hover:text-primary-400 transition-colors"
         aria-label="Scroll down">
-        <span className="text-xs uppercase tracking-widest">{t.hero.scrollMore}</span>
+        <span className="hidden sm:inline text-xs uppercase tracking-widest">{t.hero.scrollMore}</span>
         <ChevronDown size={18} className="animate-bounce" />
       </button>
     </section>

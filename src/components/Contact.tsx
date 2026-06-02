@@ -151,7 +151,7 @@ export default function Contact() {
           {/* Form */}
           <div className="animate-on-scroll">
             {submitted ? (
-              <div className="rounded-2xl p-12 text-center relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+              <div className="rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <ConfettiBurst />
                 <div className="relative z-10 mb-4">
                   <CheckCircle size={64} className="text-primary-500 mx-auto success-icon" style={{ filter: 'drop-shadow(0 0 16px rgba(99,102,241,0.6))' }} />
@@ -166,7 +166,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="rounded-2xl p-8 space-y-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+              <form onSubmit={handleSubmit} className="rounded-2xl p-5 sm:p-8 space-y-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <h3 className="text-xl font-bold text-white mb-2">{t.contact.formTitle}</h3>
 
                 <div className="grid sm:grid-cols-2 gap-4">
