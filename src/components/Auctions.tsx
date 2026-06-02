@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { ExternalLink } from 'lucide-react';
 
 const auctions = [
   {

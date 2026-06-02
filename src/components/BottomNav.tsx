@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLang } from '../context/LangContext';
 
 export default function BottomNav() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const location = useLocation();
   const navigate = useNavigate();
 

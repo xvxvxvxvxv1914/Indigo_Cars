@@ -5,7 +5,6 @@ import {
   Package, MessageCircle, Gavel, Truck, Building2
 } from 'lucide-react';
 import { useLang } from '../context/LangContext';
-import { useTheme } from '../context/ThemeContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BottomNav from '../components/BottomNav';
@@ -42,8 +41,6 @@ const REASONS = [
 
 export default function B2B() {
   const { lang } = useLang();
-  const { theme } = useTheme();
-  const light = theme === 'light';
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { ChevronDown, Shield, Truck, FileText, CheckCircle } from 'lucide-react';
+import { ChevronDown, Shield, Truck, FileText } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -29,7 +29,7 @@ function ParticleMesh() {
       const isMobile = W < 768;
       const COUNT = isMobile ? 30 : 70;
       const MAX = isMobile ? 100 : 160;
-      (canvas as any).__MAX = MAX;
+      (canvas as HTMLCanvasElement & { __MAX?: number }).__MAX = MAX;
       particles = Array.from({ length: COUNT }, () => ({
         x: Math.random() * W, y: Math.random() * H,
         vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
@@ -38,7 +38,7 @@ function ParticleMesh() {
     }
 
     function draw() {
-      const MAX = (canvas as any).__MAX ?? 160;
+      const MAX = (canvas as HTMLCanvasElement & { __MAX?: number }).__MAX ?? 160;
       ctx!.clearRect(0, 0, W, H);
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
