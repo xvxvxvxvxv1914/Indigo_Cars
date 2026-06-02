@@ -19,13 +19,19 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 1024);
   const magCta = useMagnetic(0.3);
   const isLight = theme === 'light';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleNavClick = (href: string) => {
@@ -38,14 +44,17 @@ export default function Navbar() {
     whyUs: t.nav.whyUs, testimonials: t.nav.testimonials, faq: t.nav.faq, contact: t.nav.contact,
   };
 
-  const navBg = scrolled
+  // Only apply scroll-based dark background on desktop (≥1024px)
+  const scrolledDesktop = scrolled && isDesktop;
+
+  const navBg = scrolledDesktop
     ? isLight
       ? 'shadow-lg shadow-purple-100/50 border-b'
       : 'shadow-2xl shadow-black/50 border-b'
     : '';
 
-  // When light+scrolled the nav bg is dark (#0E002B) → white text; at top it's transparent → dark text
-  const onDarkNav = isLight && scrolled;
+  // When light+scrolled on desktop the nav bg is dark (#0E002B) → white text
+  const onDarkNav = isLight && scrolledDesktop;
   const navText    = onDarkNav ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)';
   const navTextHov = onDarkNav ? 'rgba(255,255,255,1)'    : 'var(--text-primary)';
   const navCtrlBg  = onDarkNav ? 'rgba(255,255,255,0.12)' : 'var(--bg-card)';
@@ -55,10 +64,10 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}
       style={{
-        background: scrolled ? 'var(--bg-nav)' : 'transparent',
-        borderColor: scrolled ? 'var(--border)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : undefined,
-        WebkitBackdropFilter: scrolled ? 'blur(12px)' : undefined,
+        background: scrolledDesktop ? 'var(--bg-nav)' : 'transparent',
+        borderColor: scrolledDesktop ? 'var(--border)' : 'transparent',
+        backdropFilter: scrolledDesktop ? 'blur(12px)' : undefined,
+        WebkitBackdropFilter: scrolledDesktop ? 'blur(12px)' : undefined,
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
