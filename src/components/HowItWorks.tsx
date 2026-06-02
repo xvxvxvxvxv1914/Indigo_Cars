@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { MessageCircle, Search, Gavel, Ship, FileCheck } from 'lucide-react';
 import { useLang } from '../context/LangContext';

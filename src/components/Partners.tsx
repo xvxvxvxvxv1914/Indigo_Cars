@@ -1,4 +1,6 @@
-﻿import { useLang } from '../context/LangContext';
+'use client';
+
+import { useLang } from '../context/LangContext';
 
 const partners = [
   { name: 'Copart',  logo: 'COPART',  color: '#0066cc' },

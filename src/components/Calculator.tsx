@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { ChevronRight, TrendingDown, Zap, Ship, Flag, Wrench } from 'lucide-react';
 import { useLang } from '../context/LangContext';

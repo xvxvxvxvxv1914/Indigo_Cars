@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 

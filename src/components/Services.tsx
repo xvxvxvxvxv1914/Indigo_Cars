@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { Gavel, Ship, FileCheck, Car, Search, Wrench } from 'lucide-react';
 
