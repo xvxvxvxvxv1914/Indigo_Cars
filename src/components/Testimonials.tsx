@@ -60,8 +60,8 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-12 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(61,22,88,0.25), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(61,22,88,0.15), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.25), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.15), transparent)' }} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -103,7 +103,7 @@ export default function Testimonials() {
               <Quote
                 size={64}
                 className="absolute -top-2 -right-2 pointer-events-none"
-                style={{ color: 'rgba(61,22,88,0.07)' }}
+                style={{ color: 'rgba(105,30,185,0.07)' }}
               />
 
               {/* Stars */}
@@ -123,7 +123,7 @@ export default function Testimonials() {
                 {/* Gradient ring avatar */}
                 <div
                   className="flex-shrink-0 rounded-full p-0.5"
-                  style={{ background: 'linear-gradient(135deg, #3D1658, #C4B0E0, #2A0F3E)' }}
+                  style={{ background: 'linear-gradient(135deg, #691EB9, #E7E4F0, #4a158a)' }}
                 >
                   <img
                     src={item.avatar}
@@ -140,7 +140,7 @@ export default function Testimonials() {
                 {/* Car badge */}
                 <span
                   className="ml-auto flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-medium truncate max-w-[120px]"
-                  style={{ background: 'rgba(61,22,88,0.12)', color: '#C4B0E0' }}
+                  style={{ background: 'rgba(105,30,185,0.12)', color: '#E7E4F0' }}
                 >
                   {item.car}
                 </span>

@@ -29,8 +29,8 @@ export default function HowItWorks() {
     <section id="how-it-works" className="py-12 relative scroll-mt-16" ref={sectionRef}
       style={{ background: 'var(--bg-alt)' }}>
 
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(61,22,88,0.25), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(61,22,88,0.15), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.25), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.15), transparent)' }} />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
@@ -52,7 +52,7 @@ export default function HowItWorks() {
               left: '10%',
               right: '10%',
               height: '2px',
-              background: 'linear-gradient(to right, transparent, rgba(61,22,88,0.5) 10%, rgba(61,22,88,0.5) 90%, transparent)',
+              background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.5) 10%, rgba(105,30,185,0.5) 90%, transparent)',
             }}
           />
 
@@ -64,7 +64,7 @@ export default function HowItWorks() {
                   {/* Number */}
                   <div
                     className="font-display text-xs font-bold mb-2 tracking-widest"
-                    style={{ color: 'rgba(61,22,88,0.7)' }}
+                    style={{ color: 'rgba(105,30,185,0.7)' }}
                   >
                     {String(idx + 1).padStart(2, '0')}
                   </div>
@@ -74,8 +74,8 @@ export default function HowItWorks() {
                     className="relative z-10 w-13 h-13 rounded-full flex items-center justify-center mb-5 transition-all duration-300 hover:scale-110"
                     style={{
                       width: 52, height: 52,
-                      background: 'linear-gradient(135deg, #3D1658 0%, #2A0F3E 100%)',
-                      boxShadow: '0 0 0 4px rgba(61,22,88,0.15), 0 0 20px rgba(61,22,88,0.25)',
+                      background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)',
+                      boxShadow: '0 0 0 4px rgba(105,30,185,0.15), 0 0 20px rgba(105,30,185,0.25)',
                     }}
                   >
                     <Icon size={24} style={{ color: 'white' }} />
@@ -108,7 +108,7 @@ export default function HowItWorks() {
             style={{
               left: '1.375rem',
               width: '2px',
-              background: 'linear-gradient(to bottom, rgba(61,22,88,0.6), rgba(61,22,88,0.1))',
+              background: 'linear-gradient(to bottom, rgba(105,30,185,0.6), rgba(105,30,185,0.1))',
             }}
           />
 
@@ -122,8 +122,8 @@ export default function HowItWorks() {
                     className="flex-shrink-0 rounded-full flex items-center justify-center relative z-10"
                     style={{
                       width: 52, height: 52,
-                      background: 'linear-gradient(135deg, #3D1658 0%, #2A0F3E 100%)',
-                      boxShadow: '0 0 0 4px rgba(61,22,88,0.15)',
+                      background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)',
+                      boxShadow: '0 0 0 4px rgba(105,30,185,0.15)',
                     }}
                   >
                     <Icon size={24} style={{ color: 'white' }} />
@@ -133,7 +133,7 @@ export default function HowItWorks() {
                   <div className="pt-2 pb-2">
                     <div
                       className="font-display text-xs font-bold tracking-widest mb-1"
-                      style={{ color: 'rgba(61,22,88,0.7)' }}
+                      style={{ color: 'rgba(105,30,185,0.7)' }}
                     >
                       {String(idx + 1).padStart(2, '0')}
                     </div>

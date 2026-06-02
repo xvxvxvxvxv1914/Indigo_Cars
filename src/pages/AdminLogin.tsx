@@ -30,7 +30,7 @@ export default function AdminLogin() {
       <div className="relative w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2.5 mb-4">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center shadow-glow" style={{ background: 'linear-gradient(135deg, #3D1658 0%, #2A0F3E 100%)' }}>
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center shadow-glow" style={{ background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)' }}>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                 <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
                 <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
@@ -93,7 +93,7 @@ export default function AdminLogin() {
             type="submit"
             disabled={loading}
             className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-lg transition-all disabled:opacity-60 hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #3D1658 0%, #2A0F3E 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)' }}
           >
             <Lock size={16} />
             {loading ? 'Влизане...' : 'Влез в Админ панела'}
