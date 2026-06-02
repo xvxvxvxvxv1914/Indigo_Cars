@@ -108,11 +108,19 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }} className="flex items-center flex-shrink-0">
-            <img src="/logo.png" alt="Indigo Cars" className="h-8 w-auto" />
+            <div
+              className="rounded-xl transition-all duration-500"
+              style={{
+                padding: (theme === 'dark' || onDarkNav) ? '4px 10px' : '0px',
+                background: (theme === 'dark' || onDarkNav) ? 'rgba(255,255,255,0.92)' : 'transparent',
+              }}
+            >
+              <img src="/logo.png" alt="Indigo Cars" className="h-7 w-auto" />
+            </div>
           </a>
 
           {/* Desktop Nav */}
-          <ul className="hidden lg:flex items-center gap-0.5">
+          <ul className="hidden lg:flex items-center gap-0 text-[13px]">
             {sectionIds.map(({ key, href }) => {
               const sectionId = href.replace('#', '');
               const isActive = location.pathname === '/' && activeSection === sectionId;
@@ -179,7 +187,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
             <a ref={magCta.ref as React.RefObject<HTMLAnchorElement>}
               onMouseMove={magCta.onMouseMove} onMouseLeave={magCta.onMouseLeave}
               href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
-              className="btn-primary text-sm py-2 px-4"
+              className="btn-primary text-sm py-2 px-4 whitespace-nowrap"
               style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease', display: 'inline-block' }}
             >
               {t.nav.cta}

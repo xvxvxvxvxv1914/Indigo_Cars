@@ -291,7 +291,6 @@ export default function Calculator() {
                                   className="transition-transform duration-200"
                                   style={{
                                     color: 'var(--text-secondary)',
-                                    opacity: 0.5,
                                     transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
                                   }}
                                 />
@@ -328,7 +327,7 @@ export default function Calculator() {
                 <div className="flex justify-end">
                   <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>≈ <AnimatedNumber value={r.totalBGN} prefix="" /> лв.</span>
                 </div>
-                <p className="text-xs mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)', opacity: 0.55 }}>{t.calculator.disclaimer}</p>
+                <p className="text-xs mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{t.calculator.disclaimer}</p>
               </div>
 
               {/* CTA */}
