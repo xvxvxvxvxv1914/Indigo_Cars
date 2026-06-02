@@ -1,20 +1,26 @@
-﻿import { Home, Car, Info, MessageCircle, Phone } from 'lucide-react';
+﻿import { Home, Car, Building2, MessageCircle, Shield } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLang } from '../context/LangContext';
 
 export default function BottomNav() {
   const { t, lang } = useLang();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
-    { icon: Home, label: t.nav.home, href: '#hero' },
-    { icon: Car, label: t.nav.offers, href: '#offers' },
-    { icon: Info, label: t.nav.whyUs, href: '#why-us' },
-    { icon: MessageCircle, label: t.nav.contact, href: '#contact' },
-    { icon: Phone, label: lang === 'BG' ? 'Обади се' : lang === 'RU' ? 'Звонок' : 'Call', href: '#contact' },
+    { icon: Home,         label: t.nav.home,    href: '#hero',     type: 'scroll' },
+    { icon: Car,          label: t.nav.offers,  href: '#offers',   type: 'scroll' },
+    { icon: Building2,    label: 'B2B',          href: '/b2b',      type: 'route'  },
+    { icon: MessageCircle,label: t.nav.contact, href: '#contact',  type: 'scroll' },
+    { icon: Shield,       label: t.nav.whyUs,   href: '#why-us',   type: 'scroll' },
   ];
 
-  const handleClick = (href: string) => {
-    if (href.startsWith('tel') || href === '#') return;
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+  const handleScroll = (href: string) => {
+    if (location.pathname !== '/') {
+      navigate('/' + href);
+    } else {
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -29,22 +35,34 @@ export default function BottomNav() {
       }}
     >
       <div className="flex items-center justify-around px-1 py-2">
-        {navItems.map(({ icon: Icon, label, href }) => (
-          <a
-            key={href}
-            href={href}
-            onClick={(e) => {
-              if (!href.startsWith('tel') && href !== '#') {
-                e.preventDefault();
-                handleClick(href);
-              }
-            }}
-            className="flex flex-col items-center gap-0.5 px-1 py-1 rounded-xl text-dark-300 hover:text-primary-400 transition-all active:scale-95 min-w-0"
-          >
-            <Icon size={19} />
-            <span className="text-[10px] font-medium truncate w-full text-center leading-tight">{label}</span>
-          </a>
-        ))}
+        {navItems.map(({ icon: Icon, label, href, type }) => {
+          const isB2B = type === 'route';
+          const isActive = isB2B ? location.pathname === '/b2b' : location.pathname === '/' && false;
+          const itemStyle = { color: isActive ? '#691EB9' : 'rgba(213,198,224,0.8)' };
+
+          if (isB2B) {
+            return (
+              <Link key={href} to={href}
+                className="flex flex-col items-center gap-0.5 px-1 py-1 rounded-xl transition-all active:scale-95 min-w-0"
+                style={itemStyle}
+              >
+                <Icon size={19} />
+                <span className="text-[10px] font-medium truncate w-full text-center leading-tight">{label}</span>
+              </Link>
+            );
+          }
+
+          return (
+            <a key={href} href={href}
+              onClick={(e) => { e.preventDefault(); handleScroll(href); }}
+              className="flex flex-col items-center gap-0.5 px-1 py-1 rounded-xl transition-all active:scale-95 min-w-0"
+              style={itemStyle}
+            >
+              <Icon size={19} />
+              <span className="text-[10px] font-medium truncate w-full text-center leading-tight">{label}</span>
+            </a>
+          );
+        })}
       </div>
     </nav>
   );

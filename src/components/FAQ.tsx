@@ -66,8 +66,8 @@ export default function FAQ() {
                     style={{
                       background: isOpen
                         ? 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)'
-                        : 'rgba(105,30,185,0.12)',
-                      color: isOpen ? '#fff' : '#E7E4F0',
+                        : 'rgba(105,30,185,0.15)',
+                      color: isOpen ? '#fff' : '#691EB9',
                       transition: 'background 0.3s ease, color 0.3s ease',
                     }}
                   >

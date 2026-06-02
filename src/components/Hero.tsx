@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ChevronDown, Shield, Truck, FileText, CheckCircle } from 'lucide-react';
 import { useLang } from '../context/LangContext';
-import { useMagnetic } from '../lib/useMagnetic';
 import { useTheme } from '../context/ThemeContext';
 
 /* ── Particle mesh — dark theme only ── */
@@ -90,8 +89,6 @@ function ParticleMesh() {
 /* ── LIGHT HERO ── */
 function HeroLight() {
   const { t, lang } = useLang();
-  const magPrimary = useMagnetic();
-  const magSecondary = useMagnetic();
   const bgRef = useRef<HTMLImageElement>(null);
   const scroll = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
 
@@ -161,22 +158,10 @@ function HeroLight() {
 
           {/* CTAs */}
           <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-8 sm:mb-12" style={{ animationDelay: '0.46s' }}>
-            <button
-              ref={magPrimary.ref as React.RefObject<HTMLButtonElement>}
-              onMouseMove={magPrimary.onMouseMove} onMouseLeave={magPrimary.onMouseLeave}
-              onClick={() => scroll('#contact')}
-              className="btn-primary text-center text-base"
-              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}
-            >
+            <button onClick={() => scroll('#contact')} className="btn-primary text-center text-base">
               {t.hero.cta}
             </button>
-            <button
-              ref={magSecondary.ref as React.RefObject<HTMLButtonElement>}
-              onMouseMove={magSecondary.onMouseMove} onMouseLeave={magSecondary.onMouseLeave}
-              onClick={() => scroll('#how-it-works')}
-              className="btn-outline text-center text-base"
-              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}
-            >
+            <button onClick={() => scroll('#how-it-works')} className="btn-outline text-center text-base">
               {t.hero.secondary}
             </button>
           </div>
@@ -234,8 +219,6 @@ function HeroLight() {
 function HeroDark() {
   const { t, lang } = useLang();
   const bgRef = useRef<HTMLImageElement>(null);
-  const magPrimary = useMagnetic();
-  const magSecondary = useMagnetic();
 
   useEffect(() => {
     const onScroll = () => {
@@ -294,16 +277,10 @@ function HeroDark() {
           </p>
 
           <div className="hero-stagger flex flex-col sm:flex-row gap-4 mb-8 sm:mb-12" style={{ animationDelay: '0.46s' }}>
-            <button ref={magPrimary.ref as React.RefObject<HTMLButtonElement>}
-              onMouseMove={magPrimary.onMouseMove} onMouseLeave={magPrimary.onMouseLeave}
-              onClick={() => scroll('#contact')} className="btn-primary text-center text-base"
-              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}>
+            <button onClick={() => scroll('#contact')} className="btn-primary text-center text-base">
               {t.hero.cta}
             </button>
-            <button ref={magSecondary.ref as React.RefObject<HTMLButtonElement>}
-              onMouseMove={magSecondary.onMouseMove} onMouseLeave={magSecondary.onMouseLeave}
-              onClick={() => scroll('#how-it-works')} className="btn-outline text-center text-base"
-              style={{ transition: 'transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease' }}>
+            <button onClick={() => scroll('#how-it-works')} className="btn-outline text-center text-base">
               {t.hero.secondary}
             </button>
           </div>

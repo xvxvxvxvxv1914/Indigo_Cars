@@ -6,13 +6,13 @@ import { useMagnetic } from '../lib/useMagnetic';
 import { useTheme } from '../context/ThemeContext';
 
 const sectionIds = [
-  { key: 'home', href: '#hero' },
-  { key: 'howItWorks', href: '#how-it-works' },
-  { key: 'offers', href: '#offers' },
-  { key: 'whyUs', href: '#why-us' },
-  { key: 'testimonials', href: '#testimonials' },
-  { key: 'faq', href: '#faq' },
-  { key: 'contact', href: '#contact' },
+  { key: 'home',         href: '#hero',          hideAtLg: true  },
+  { key: 'howItWorks',   href: '#how-it-works',  hideAtLg: false },
+  { key: 'offers',       href: '#offers',         hideAtLg: false },
+  { key: 'whyUs',        href: '#why-us',         hideAtLg: false },
+  { key: 'testimonials', href: '#testimonials',   hideAtLg: true  },
+  { key: 'faq',          href: '#faq',            hideAtLg: false },
+  { key: 'contact',      href: '#contact',        hideAtLg: false },
 ] as const;
 
 export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
@@ -79,10 +79,12 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
       ? 'border-b'
       : '';
 
-  // Force white text when page has dark hero (e.g. B2B) or when scrolled in light mode
-  const onDarkNav = (isLight && scrolledDesktop) || (darkBg && !scrolledDesktop);
-  const navText    = onDarkNav ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)';
+  // Desktop nav is always dark (gradient overlay or dark bg-nav after scroll)
+  // Mobile: dark in dark mode or on darkBg pages, light otherwise
+  const onDarkNav = isDesktop || !isLight || darkBg;
+  const navText    = onDarkNav ? 'rgba(255,255,255,0.92)' : 'var(--text-secondary)';
   const navTextHov = onDarkNav ? 'rgba(255,255,255,1)'    : 'var(--text-primary)';
+  const navTextShadow = (isDesktop && !scrolledDesktop) ? '0 1px 6px rgba(0,0,0,0.6)' : 'none';
   const navCtrlBg  = onDarkNav ? 'rgba(255,255,255,0.12)' : 'var(--bg-card)';
   const navCtrlBdr = onDarkNav ? 'rgba(255,255,255,0.18)' : 'var(--border)';
 
@@ -93,12 +95,12 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
         background: scrolledDesktop
           ? 'var(--bg-nav)'
           : !isDesktop
-            ? isLight ? 'rgba(255,255,255,0.80)' : 'rgba(15,26,51,0.80)'
-            : 'transparent',
+            ? (isLight && !darkBg) ? 'rgba(255,255,255,0.80)' : 'rgba(15,26,51,0.85)'
+            : 'linear-gradient(to bottom, rgba(0,8,30,0.55) 0%, transparent 100%)',
         borderColor: scrolledDesktop
           ? 'var(--border)'
           : !isDesktop
-            ? isLight ? 'rgba(105,30,185,0.12)' : 'rgba(255,255,255,0.06)'
+            ? (isLight && !darkBg) ? 'rgba(105,30,185,0.12)' : 'rgba(255,255,255,0.06)'
             : 'transparent',
         backdropFilter: (scrolledDesktop || !isDesktop) ? 'blur(16px)' : undefined,
         WebkitBackdropFilter: (scrolledDesktop || !isDesktop) ? 'blur(16px)' : undefined,
@@ -121,16 +123,16 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
 
           {/* Desktop Nav */}
           <ul className="hidden lg:flex items-center gap-0 text-[13px]">
-            {sectionIds.map(({ key, href }) => {
+            {sectionIds.map(({ key, href, hideAtLg }) => {
               const sectionId = href.replace('#', '');
               const isActive = location.pathname === '/' && activeSection === sectionId;
               return (
-                <li key={href}>
+                <li key={href} className={hideAtLg ? 'hidden xl:block' : ''}>
                   <a href={href} onClick={(e) => { e.preventDefault(); handleNavClick(href); }}
-                    className="relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-white/5 flex flex-col items-center"
-                    style={{ color: isActive ? navTextHov : navText }}
-                    onMouseEnter={e => (e.currentTarget.style.color = navTextHov)}
-                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? navTextHov : navText)}
+                    className="relative px-2.5 xl:px-3 py-2 rounded-md font-medium transition-all duration-200 hover:bg-white/5 flex flex-col items-center whitespace-nowrap"
+                    style={{ color: isActive ? navTextHov : navText, textShadow: navTextShadow }}
+                    onMouseEnter={e => { e.currentTarget.style.color = navTextHov; e.currentTarget.style.textShadow = navTextShadow; }}
+                    onMouseLeave={e => { e.currentTarget.style.color = isActive ? navTextHov : navText; e.currentTarget.style.textShadow = navTextShadow; }}
                   >
                     {navLabels[key]}
                     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300"
@@ -170,18 +172,20 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
             </button>
 
             <Link to="/b2b"
-              className="relative flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-all hover:bg-white/5"
+              className="relative flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-all"
               style={{
-                color: location.pathname === '/b2b' ? '#691EB9' : navText,
-                border: `1px solid ${location.pathname === '/b2b' ? '#691EB9' : navCtrlBdr}`,
-                background: location.pathname === '/b2b' ? 'rgba(105,30,185,0.1)' : 'transparent',
+                color: 'white',
+                border: `1px solid ${location.pathname === '/b2b' ? '#691EB9' : 'rgba(255,255,255,0.45)'}`,
+                background: location.pathname === '/b2b'
+                  ? 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)'
+                  : 'rgba(255,255,255,0.12)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                textShadow: navTextShadow,
               }}
             >
-              <Building2 size={14} style={{ color: '#691EB9' }} />
+              <Building2 size={14} style={{ color: 'white' }} />
               B2B
-              {location.pathname === '/b2b' && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[70%] rounded-full" style={{ background: '#691EB9' }} />
-              )}
             </Link>
 
             <a ref={magCta.ref as React.RefObject<HTMLAnchorElement>}

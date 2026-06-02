@@ -97,7 +97,6 @@ import Calculator from './components/Calculator';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
-import WhatsAppButton from './components/WhatsAppButton';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
 import B2B from './pages/B2B';
@@ -216,7 +215,6 @@ export default function App() {
       <ScrollProgressBar />
       <CursorGlow />
       <NavDots />
-      <WhatsAppButton />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
