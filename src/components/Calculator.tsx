@@ -68,10 +68,10 @@ function AnimatedNumber({ value, prefix = '€' }: { value: number; prefix?: str
 const ROW_ICONS = [DollarSign, FileText, Truck, Ship, Shield, Anchor, Receipt, Zap, Percent, Wrench];
 
 const GROUPS = [
-  { flag: '🇺🇸', rows: [0, 1, 2], color: '#8120C6' },
+  { flag: '🇺🇸', rows: [0, 1, 2], color: '#3D1658' },
   { flag: '🚢',  rows: [3, 4, 5], color: '#3b82f6' },
   { flag: '🇧🇬', rows: [6, 7, 8], color: '#0ea5e9' },
-  { flag: '⭐',  rows: [9],       color: '#8b5fe6' },
+  { flag: '⭐',  rows: [9],       color: '#7a4aaa' },
 ];
 
 const GROUP_LABELS: Record<string, string[]> = {
@@ -115,9 +115,9 @@ export default function Calculator() {
   return (
     <section id="calculator" className="py-12 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
       {!light && <div className="absolute inset-0" style={{ background: 'var(--section-grad)' }} />}
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.3), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.15), transparent)' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(129,32,198,0.05)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(61,22,88,0.3), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(61,22,88,0.15), transparent)' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(61,22,88,0.05)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14 animate-on-scroll">
@@ -139,13 +139,13 @@ export default function Calculator() {
                   <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                     {t.calculator.priceLabel}
                   </span>
-                  <span className="font-display text-2xl" style={{ background: 'linear-gradient(135deg, #c4a0f0, #8b5fe6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  <span className="font-display text-2xl" style={{ background: 'linear-gradient(135deg, #C4B0E0, #7a4aaa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     ${priceUSD.toLocaleString('de-DE')}
                   </span>
                 </div>
                 <div className="relative h-8 flex items-center">
                   <div className="absolute left-0 right-0 h-1.5 rounded-full" style={{ background: light ? '#e2e8f0' : '#2e1858' }}>
-                    <div className="absolute left-0 top-0 h-full rounded-full" style={{ width: `${sliderPct}%`, background: 'linear-gradient(to right, #8120C6, #c4a0f0)' }} />
+                    <div className="absolute left-0 top-0 h-full rounded-full" style={{ width: `${sliderPct}%`, background: 'linear-gradient(to right, #3D1658, #C4B0E0)' }} />
                   </div>
                   <input
                     type="range" min={1000} max={60000} step={500} value={priceUSD}
@@ -155,7 +155,7 @@ export default function Calculator() {
                   />
                   <div
                     className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 pointer-events-none"
-                    style={{ left: `${sliderPct}%`, background: 'white', borderColor: '#8120C6', boxShadow: '0 0 0 3px rgba(129,32,198,0.2)' }}
+                    style={{ left: `${sliderPct}%`, background: 'white', borderColor: '#3D1658', boxShadow: '0 0 0 3px rgba(61,22,88,0.2)' }}
                   />
                 </div>
                 <div className="flex justify-between mt-1.5" style={{ color: 'var(--text-secondary)', fontSize: '11px' }}>
@@ -171,8 +171,8 @@ export default function Calculator() {
                     onClick={() => setPriceUSD(p)}
                     className="text-xs px-3 py-1 rounded-md font-medium transition-all"
                     style={{
-                      background: priceUSD === p ? '#8120C6' : 'transparent',
-                      border: `1px solid ${priceUSD === p ? '#8120C6' : 'var(--border)'}`,
+                      background: priceUSD === p ? '#3D1658' : 'transparent',
+                      border: `1px solid ${priceUSD === p ? '#3D1658' : 'var(--border)'}`,
                       color: priceUSD === p ? 'white' : 'var(--text-secondary)',
                     }}
                   >
@@ -195,9 +195,9 @@ export default function Calculator() {
                     className="flex-1 py-2 rounded-lg text-sm font-medium transition-all"
                     style={{
                       background: fuel === key ? (light ? 'white' : '#1e1c3a') : 'transparent',
-                      color: fuel === key ? '#8120C6' : 'var(--text-secondary)',
+                      color: fuel === key ? '#3D1658' : 'var(--text-secondary)',
                       boxShadow: fuel === key ? (light ? '0 1px 4px rgba(0,0,0,0.08)' : 'none') : 'none',
-                      border: fuel === key ? `1px solid ${light ? '#e2e8f0' : 'rgba(129,32,198,0.2)'}` : '1px solid transparent',
+                      border: fuel === key ? `1px solid ${light ? '#e2e8f0' : 'rgba(61,22,88,0.2)'}` : '1px solid transparent',
                     }}
                   >
                     {label}
@@ -208,9 +208,9 @@ export default function Calculator() {
 
             {/* Savings badge */}
             {r.savings > 500 && (
-              <div className="animate-on-scroll rounded-2xl p-4 flex items-center gap-3" style={{ background: 'rgba(129,32,198,0.08)', border: '1px solid rgba(129,32,198,0.2)' }}>
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(129,32,198,0.15)' }}>
-                  <TrendingDown size={16} style={{ color: '#8b5fe6' }} />
+              <div className="animate-on-scroll rounded-2xl p-4 flex items-center gap-3" style={{ background: 'rgba(61,22,88,0.08)', border: '1px solid rgba(61,22,88,0.2)' }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(61,22,88,0.15)' }}>
+                  <TrendingDown size={16} style={{ color: '#7a4aaa' }} />
                 </div>
                 <div>
                   <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
@@ -318,10 +318,10 @@ export default function Calculator() {
               })}
 
               {/* Total */}
-              <div className="px-4 py-4" style={{ background: 'rgba(129,32,198,0.07)', borderTop: '2px solid rgba(129,32,198,0.18)' }}>
+              <div className="px-4 py-4" style={{ background: 'rgba(61,22,88,0.07)', borderTop: '2px solid rgba(61,22,88,0.18)' }}>
                 <div className="flex items-center justify-between mb-1">
                   <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{t.calculator.totalLabel}</span>
-                  <span className="font-display text-2xl" style={{ background: 'linear-gradient(135deg, #c4a0f0, #8b5fe6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  <span className="font-display text-2xl" style={{ background: 'linear-gradient(135deg, #C4B0E0, #7a4aaa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                     <AnimatedNumber value={r.total} />
                   </span>
                 </div>
@@ -337,7 +337,7 @@ export default function Calculator() {
                   href="#contact"
                   onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
                   className="w-full flex items-center justify-center gap-2 font-semibold py-3 rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5 text-sm"
-                  style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)', color: 'white' }}
+                  style={{ background: 'linear-gradient(135deg, #3D1658 0%, #2A0F3E 100%)', color: 'white' }}
                 >
                   {t.calculator.ctaButton}
                   <ChevronRight size={16} />

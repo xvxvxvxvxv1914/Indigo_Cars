@@ -29,7 +29,7 @@ function CursorGlow() {
     <div
       ref={ref}
       className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-      style={{ zIndex: 0, background: 'radial-gradient(circle, rgba(129,32,198,0.04) 0%, transparent 65%)', filter: 'blur(40px)' }}
+      style={{ zIndex: 0, background: 'radial-gradient(circle, rgba(61,22,88,0.04) 0%, transparent 65%)', filter: 'blur(40px)' }}
     />
   );
 }
@@ -73,7 +73,7 @@ function ScrollProgressBar() {
         style={{
           height: '100%',
           width: '0%',
-          background: 'linear-gradient(to right, #8120C6, #c4a0f0, #5020a0)',
+          background: 'linear-gradient(to right, #3D1658, #C4B0E0, #2A0F3E)',
           transition: 'width 0.05s linear',
         }}
       />
@@ -154,7 +154,7 @@ function NavDots() {
               color: 'var(--text-primary)',
               border: '1px solid var(--border)',
               boxShadow: light
-                ? '0 2px 12px rgba(129,32,198,0.12)'
+                ? '0 2px 12px rgba(61,22,88,0.12)'
                 : '0 2px 12px rgba(0,0,0,0.4)',
             }}
           >
@@ -166,9 +166,9 @@ function NavDots() {
             style={{
               width:      active === id ? '10px' : '6px',
               height:     active === id ? '10px' : '6px',
-              background: active === id ? '#8120C6' : 'transparent',
-              border:     `2px solid ${active === id ? '#8120C6' : 'rgba(129,32,198,0.35)'}`,
-              boxShadow:  active === id ? '0 0 8px rgba(129,32,198,0.55)' : 'none',
+              background: active === id ? '#3D1658' : 'transparent',
+              border:     `2px solid ${active === id ? '#3D1658' : 'rgba(61,22,88,0.35)'}`,
+              boxShadow:  active === id ? '0 0 8px rgba(61,22,88,0.55)' : 'none',
             }}
           />
         </button>

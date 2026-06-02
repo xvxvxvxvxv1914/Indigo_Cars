@@ -55,7 +55,7 @@ export default function Navbar() {
       ? 'border-b'
       : '';
 
-  // When light+scrolled on desktop the nav bg is dark (#0E002B) → white text
+  // When light+scrolled on desktop the nav bg is dark (#0C0024) → white text
   const onDarkNav = isLight && scrolledDesktop;
   const navText    = onDarkNav ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)';
   const navTextHov = onDarkNav ? 'rgba(255,255,255,1)'    : 'var(--text-primary)';
@@ -74,7 +74,7 @@ export default function Navbar() {
         borderColor: scrolledDesktop
           ? 'var(--border)'
           : !isDesktop
-            ? isLight ? 'rgba(129,32,198,0.12)' : 'rgba(255,255,255,0.06)'
+            ? isLight ? 'rgba(61,22,88,0.12)' : 'rgba(255,255,255,0.06)'
             : 'transparent',
         backdropFilter: (scrolledDesktop || !isDesktop) ? 'blur(16px)' : undefined,
         WebkitBackdropFilter: (scrolledDesktop || !isDesktop) ? 'blur(16px)' : undefined,
@@ -116,7 +116,7 @@ export default function Navbar() {
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2.5 py-1 rounded text-xs font-bold transition-all"
                   style={lang === l
-                    ? { background: 'linear-gradient(135deg, #8120C6, #5020a0)', color: 'white' }
+                    ? { background: 'linear-gradient(135deg, #3D1658, #2A0F3E)', color: 'white' }
                     : { color: navText }}
                 >{l}</button>
               ))}
@@ -148,7 +148,7 @@ export default function Navbar() {
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2 py-0.5 rounded text-xs font-bold transition-all"
                   style={lang === l
-                    ? { background: 'linear-gradient(135deg, #8120C6, #5020a0)', color: 'white' }
+                    ? { background: 'linear-gradient(135deg, #3D1658, #2A0F3E)', color: 'white' }
                     : { color: navText }}
                 >{l}</button>
               ))}

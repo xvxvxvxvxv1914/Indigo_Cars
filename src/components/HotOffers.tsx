@@ -79,7 +79,7 @@ function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
             <button
               onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:opacity-90"
-              style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)', color: 'white' }}
+              style={{ background: 'linear-gradient(135deg, #3D1658 0%, #2A0F3E 100%)', color: 'white' }}
             >
               <MessageSquare size={12} />
               {t.offers.inquire}
@@ -248,7 +248,7 @@ export default function HotOffers() {
                     <button
                       onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
                       className="flex-1 flex items-center justify-center gap-1 text-xs font-semibold py-2 px-3 rounded-lg transition-all hover:shadow-glow-sm hover:opacity-90"
-                      style={{ background: 'linear-gradient(135deg, #8120C6 0%, #5020a0 100%)', color: 'white' }}
+                      style={{ background: 'linear-gradient(135deg, #3D1658 0%, #2A0F3E 100%)', color: 'white' }}
                     >
                       <MessageSquare size={12} />
                       {t.offers.inquire}
