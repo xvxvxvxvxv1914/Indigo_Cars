@@ -83,7 +83,7 @@ export default function WhyUs() {
   }, []);
 
   return (
-    <section id="why-us" className="py-24 relative overflow-hidden scroll-mt-16" ref={sectionRef}
+    <section id="why-us" className="py-12 relative overflow-hidden scroll-mt-16" ref={sectionRef}
       style={{ background: 'var(--bg-alt)' }}>
       {!light && (
         <div className="absolute inset-0 z-0">
@@ -110,7 +110,7 @@ export default function WhyUs() {
               onMouseLeave={onTiltLeave}
             >
               <Icon size={24} className="text-primary-400 mx-auto mb-2 sm:mb-3" />
-              <div className="font-display text-3xl md:text-4xl lg:text-5xl text-gradient-stats mb-1 sm:mb-2">
+              <div className="font-display text-2xl md:text-3xl lg:text-4xl text-gradient-stats mb-1 sm:mb-2">
                 <AnimatedCounter target={value} suffix={suffix} />
               </div>
               <div className="text-dark-300 text-xs sm:text-sm">{t.whyUs.stats[i].label}</div>

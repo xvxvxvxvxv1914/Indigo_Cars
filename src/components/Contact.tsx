@@ -85,14 +85,14 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
+    <section id="contact" className="py-12 relative overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
       <div className="absolute inset-0 z-0">
         {!light && <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, rgba(26,24,48,0.5), #0a0a1a)' }} />}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl" style={{ background: 'rgba(79,70,229,0.08)' }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16 animate-on-scroll">
+        <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
           <p className="section-label">{t.contact.label}</p>
           <h2 className="section-title mb-8">
             {t.contact.title}{' '}

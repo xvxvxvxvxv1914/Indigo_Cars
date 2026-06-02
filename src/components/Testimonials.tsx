@@ -59,7 +59,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="py-24 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>
+    <section id="testimonials" className="py-12 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.15), transparent)' }} />
 

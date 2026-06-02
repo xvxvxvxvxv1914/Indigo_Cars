@@ -29,11 +29,11 @@ export default function FAQ() {
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section id="faq" className="py-24 relative scroll-mt-16" style={{ background: 'var(--bg-main)' }} ref={sectionRef}>
+    <section id="faq" className="py-12 relative scroll-mt-16" style={{ background: 'var(--bg-main)' }} ref={sectionRef}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.2), transparent)' }} />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-on-scroll">
+        <div className="text-center mb-10 animate-on-scroll">
           <p className="section-label">{t.faq.label}</p>
           <h2 className="section-title mb-8">
             {t.faq.title}{' '}

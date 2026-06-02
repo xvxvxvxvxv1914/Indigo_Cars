@@ -94,7 +94,7 @@ export default function RouteMap() {
   const mapBg     = light ? '#f0ecff' : '#0c0a22';
 
   return (
-    <section className="py-24 relative overflow-hidden" ref={ref} style={{ background: 'var(--bg-alt)' }}>
+    <section className="py-12 relative overflow-hidden" ref={ref} style={{ background: 'var(--bg-alt)' }}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.25), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.15), transparent)' }} />
 

@@ -173,7 +173,7 @@
 
 @layer components {
   .btn-primary {
-    @apply relative text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 active:scale-95;
+    @apply relative text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 active:scale-95;
     background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
     box-shadow: 0 4px 15px rgba(99,102,241,0.25);
   }
@@ -185,7 +185,7 @@
   .btn-primary:disabled { opacity: 0.6; pointer-events: none; }
 
   .btn-outline {
-    @apply border-2 font-semibold px-8 py-4 rounded-lg transition-all duration-300 active:scale-95;
+    @apply border-2 font-semibold px-6 py-3 rounded-lg transition-all duration-300 active:scale-95;
     border-color: rgba(99,102,241,0.6);
     color: #a5b4fc;
   }
@@ -205,12 +205,12 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold leading-tight;
     color: var(--text-primary);
   }
 
   .section-subtitle {
-    @apply text-lg leading-relaxed;
+    @apply text-base leading-relaxed;
     color: var(--text-secondary);
   }
 }

@@ -146,7 +146,7 @@ function HeroLight() {
           </div>
 
           {/* Heading */}
-          <h1 className="hero-stagger font-display text-4xl sm:text-6xl md:text-8xl leading-none mb-6 tracking-wide" style={{ animationDelay: '0.18s', color: '#1A1A2E' }}>
+          <h1 className="hero-stagger font-display text-3xl sm:text-5xl md:text-6xl leading-none mb-6 tracking-wide" style={{ animationDelay: '0.18s', color: '#1A1A2E' }}>
             {t.hero.h1a}{' '}
             <span className="text-gradient">{t.hero.h1b}</span>
             <br />
@@ -273,7 +273,7 @@ function HeroDark() {
             <span className="text-primary-400 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
           </div>
 
-          <h1 className="hero-stagger font-display text-4xl sm:text-6xl md:text-8xl text-white leading-none mb-6 tracking-wide" style={{ animationDelay: '0.18s' }}>
+          <h1 className="hero-stagger font-display text-3xl sm:text-5xl md:text-6xl text-white leading-none mb-6 tracking-wide" style={{ animationDelay: '0.18s' }}>
             {t.hero.h1a}{' '}<span className="text-gradient">{t.hero.h1b}</span>
             <br />
             {t.hero.h1c}{' '}<span className="text-gradient">{t.hero.h1d}</span>

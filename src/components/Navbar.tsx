@@ -55,22 +55,10 @@ export default function Navbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }} className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' }}>
-              <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
-                <path d="M3 14L2 17H20L19 14H3Z" fill="white" />
-                <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7" />
-                <circle cx="7" cy="17.5" r="1.5" fill="white" />
-                <circle cx="15" cy="17.5" r="1.5" fill="white" />
-                <path d="M8 9L9 5H13L14 9H8Z" fill="white" opacity="0.5" />
-              </svg>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-display text-lg tracking-wider" style={{ color: isLight && !scrolled ? 'white' : 'var(--text-primary)' }}>AUTO</span>
-              <span className="font-display text-lg text-primary-400 tracking-wider">IMPORT</span>
-            </div>
+          <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }} className="flex items-center flex-shrink-0">
+            <img src="/logo.png" alt="Indigo Cars" className="h-8 w-auto" />
           </a>
 
           {/* Desktop Nav */}
