@@ -205,7 +205,7 @@ export default function RouteMap() {
 
           {/* ── RIGHT: Interactive Europe map ── */}
           <div className="flex-1 min-w-0 w-full">
-            <div className="relative overflow-hidden transition-all duration-700 rounded-2xl" style={{
+            <div id="routemap-map" className="relative overflow-hidden transition-all duration-700 rounded-2xl" style={{
               border: '1px solid rgba(61,22,88,0.18)',
               background: mapBg,
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(18px)', transitionDelay: '0.25s',
@@ -374,6 +374,37 @@ export default function RouteMap() {
             ))}
           </div>
         )}
+
+        {/* Destination countries flags */}
+        <div className="animate-on-scroll mt-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4 text-center" style={{ color: 'var(--text-secondary)' }}>
+            {t.routeMap.destinationsLabel ?? 'Доставяме до'}
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {Object.values(EU_DATA)
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((country) => (
+                <button
+                  key={country.name}
+                  onClick={() => {
+                    const iso = Number(Object.keys(EU_DATA).find(k => EU_DATA[Number(k)] === country));
+                    setActiveIso(iso);
+                    document.getElementById('routemap-map')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }}
+                  className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all hover:scale-105"
+                  style={{
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                    color: 'var(--text-secondary)',
+                  }}
+                  title={country.city}
+                >
+                  <span className="text-sm leading-none">{country.flag}</span>
+                  <span>{country.name}</span>
+                </button>
+              ))}
+          </div>
+        </div>
 
         <div className="animate-on-scroll mt-8 text-center">
           <div className="inline-flex items-center gap-3 rounded-2xl px-8 py-4"
