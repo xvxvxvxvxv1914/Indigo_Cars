@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+'use client';
+
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type Theme = 'dark' | 'light';
 
@@ -11,9 +13,12 @@ const ThemeContext = createContext<{
 });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    return (localStorage.getItem('theme') as Theme) || 'dark';
-  });
+  const [theme, setTheme] = useState<Theme>('dark');
+
+  useEffect(() => {
+    const stored = localStorage.getItem('theme') as Theme | null;
+    if (stored === 'light' || stored === 'dark') setTheme(stored);
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

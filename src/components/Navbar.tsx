@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, Phone, Sun, Moon, Building2 } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useMagnetic } from '../lib/useMagnetic';
@@ -22,8 +25,8 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 1024);
   const [activeSection, setActiveSection] = useState('hero');
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   const magCta = useMagnetic(0.3);
   const isLight = theme === 'light';
 
@@ -56,8 +59,8 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    if (location.pathname !== '/') {
-      navigate('/' + href);
+    if (pathname !== '/') {
+      router.push('/' + href);
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -68,7 +71,6 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
     whyUs: t.nav.whyUs, testimonials: t.nav.testimonials, faq: t.nav.faq, contact: t.nav.contact,
   };
 
-  // Only apply scroll-based dark background on desktop (≥1024px)
   const scrolledDesktop = scrolled && isDesktop;
 
   const navBg = scrolledDesktop
@@ -79,8 +81,6 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
       ? 'border-b'
       : '';
 
-  // Desktop nav is always dark (gradient overlay or dark bg-nav after scroll)
-  // Mobile: dark in dark mode or on darkBg pages, light otherwise
   const onDarkNav = isDesktop || !isLight || darkBg;
   const navText    = onDarkNav ? 'rgba(255,255,255,0.92)' : 'var(--text-secondary)';
   const navTextHov = onDarkNav ? 'rgba(255,255,255,1)'    : 'var(--text-primary)';
@@ -125,7 +125,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
           <ul className="hidden lg:flex items-center gap-0 text-[13px]">
             {sectionIds.map(({ key, href, hideAtLg }) => {
               const sectionId = href.replace('#', '');
-              const isActive = location.pathname === '/' && activeSection === sectionId;
+              const isActive = pathname === '/' && activeSection === sectionId;
               return (
                 <li key={href} className={hideAtLg ? 'hidden xl:block' : ''}>
                   <a href={href} onClick={(e) => { e.preventDefault(); handleNavClick(href); }}
@@ -171,12 +171,12 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
               {isLight ? <Moon size={15} /> : <Sun size={15} />}
             </button>
 
-            <Link to="/b2b"
+            <Link href="/b2b"
               className="relative flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-all"
               style={{
                 color: 'white',
-                border: `1px solid ${location.pathname === '/b2b' ? '#691EB9' : 'rgba(255,255,255,0.45)'}`,
-                background: location.pathname === '/b2b'
+                border: `1px solid ${pathname === '/b2b' ? '#691EB9' : 'rgba(255,255,255,0.45)'}`,
+                background: pathname === '/b2b'
                   ? 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)'
                   : 'rgba(255,255,255,0.12)',
                 backdropFilter: 'blur(8px)',
