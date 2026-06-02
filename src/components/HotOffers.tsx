@@ -35,11 +35,11 @@ function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:overflow-x-visible snap-x snap-mandatory sm:snap-none">
       {DEMO_OFFERS.map((offer, i) => (
         <div
           key={i}
-          className="rounded-2xl overflow-hidden flex flex-col group"
+          className="rounded-2xl overflow-hidden flex flex-col group flex-shrink-0 w-[72vw] sm:w-auto snap-start"
           style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
           onMouseMove={onTiltMove}
           onMouseLeave={onTiltLeave}
@@ -143,7 +143,7 @@ export default function HotOffers() {
   };
 
   return (
-    <section id="offers" className="py-12 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
+    <section id="offers" className="py-12 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
       {!light && <div className="absolute inset-0 bg-gradient-to-b from-[#0F1A33] via-[#19113a]/30 to-[#0F1A33]" />}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -157,9 +157,9 @@ export default function HotOffers() {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:overflow-x-visible">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+              <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse flex-shrink-0 w-[72vw] sm:w-auto" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <div className="h-36" style={{ background: 'var(--bg-card-hover)' }} />
                 <div className="p-4 flex flex-col gap-3">
                   <div className="h-3 rounded-full w-4/5" style={{ background: '#2e1858' }} />
@@ -173,11 +173,11 @@ export default function HotOffers() {
         ) : offers.length === 0 ? (
           <DemoOfferCards t={t} />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:overflow-x-visible snap-x snap-mandatory sm:snap-none">
             {offers.map((offer) => (
               <div
                 key={offer.id}
-                className="animate-on-scroll rounded-2xl overflow-hidden flex flex-col group"
+                className="animate-on-scroll rounded-2xl overflow-hidden flex flex-col group flex-shrink-0 w-[72vw] sm:w-auto snap-start"
                 style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', willChange: 'transform' }}
                 onMouseMove={onTiltMove}
                 onMouseLeave={onTiltLeave}

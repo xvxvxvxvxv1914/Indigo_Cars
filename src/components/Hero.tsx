@@ -137,7 +137,7 @@ function HeroLight() {
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: 'linear-gradient(to right, transparent, #8120C6, #5020a0, transparent)' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-24 sm:pb-16 w-full">
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
@@ -193,9 +193,19 @@ function HeroLight() {
               );
             })}
           </div>
+
+          {/* Mobile stats strip — hidden on md+ (desktop shows floating cards) */}
+          <div className="hero-stagger flex gap-3 mt-6 md:hidden" style={{ animationDelay: '0.72s' }}>
+            {stats.map((s) => (
+              <div key={s.label} className="flex-1 text-center rounded-xl px-2 py-3" style={{ background: 'rgba(255,255,255,0.82)', border: '1px solid rgba(129,32,198,0.18)', boxShadow: '0 2px 12px rgba(129,32,198,0.08)' }}>
+                <div className="text-lg font-bold text-gradient-stats leading-none">{s.value}</div>
+                <div className="text-[10px] mt-0.5 leading-tight" style={{ color: '#5B5880' }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Stat cards — bottom right */}
+        {/* Stat cards — bottom right, desktop only */}
         <div className="absolute bottom-12 right-6 lg:right-16 hidden md:flex flex-col gap-3">
           {stats.map((s) => (
             <div key={s.label} className="text-right backdrop-blur rounded-xl px-5 py-3 min-w-[150px] transition-all hover:scale-105" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(129,32,198,0.2)', boxShadow: '0 4px 20px rgba(129,32,198,0.1)' }}>
@@ -266,7 +276,7 @@ function HeroDark() {
       <ParticleMesh />
       <div className="absolute top-0 left-0 right-0 h-px z-10" style={{ background: 'linear-gradient(to right, transparent, rgba(129,32,198,0.5), rgba(14,0,43,0.5), transparent)' }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-24 sm:pb-16 w-full">
         <div className="max-w-3xl">
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
             <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #8120C6, #5020a0)' }} />
@@ -308,6 +318,16 @@ function HeroDark() {
                 </div>
               );
             })}
+          </div>
+
+          {/* Mobile stats strip — hidden on md+ */}
+          <div className="hero-stagger flex gap-3 mt-6 md:hidden" style={{ animationDelay: '0.72s' }}>
+            {statItems.map((s) => (
+              <div key={s.label} className="flex-1 text-center rounded-xl px-2 py-3" style={{ background: 'rgba(26,24,48,0.8)', border: '1px solid rgba(129,32,198,0.25)' }}>
+                <div className="text-lg font-bold text-gradient-stats leading-none">{s.value}</div>
+                <div className="text-[10px] text-dark-300 mt-0.5 leading-tight">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
 
