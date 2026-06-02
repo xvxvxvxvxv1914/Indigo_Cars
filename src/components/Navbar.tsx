@@ -51,7 +51,9 @@ export default function Navbar() {
     ? isLight
       ? 'shadow-lg shadow-purple-100/50 border-b'
       : 'shadow-2xl shadow-black/50 border-b'
-    : '';
+    : !isDesktop
+      ? 'border-b'
+      : '';
 
   // When light+scrolled on desktop the nav bg is dark (#0E002B) → white text
   const onDarkNav = isLight && scrolledDesktop;
@@ -64,10 +66,18 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}
       style={{
-        background: scrolledDesktop ? 'var(--bg-nav)' : 'transparent',
-        borderColor: scrolledDesktop ? 'var(--border)' : 'transparent',
-        backdropFilter: scrolledDesktop ? 'blur(12px)' : undefined,
-        WebkitBackdropFilter: scrolledDesktop ? 'blur(12px)' : undefined,
+        background: scrolledDesktop
+          ? 'var(--bg-nav)'
+          : !isDesktop
+            ? isLight ? 'rgba(255,255,255,0.80)' : 'rgba(15,26,51,0.80)'
+            : 'transparent',
+        borderColor: scrolledDesktop
+          ? 'var(--border)'
+          : !isDesktop
+            ? isLight ? 'rgba(129,32,198,0.12)' : 'rgba(255,255,255,0.06)'
+            : 'transparent',
+        backdropFilter: (scrolledDesktop || !isDesktop) ? 'blur(16px)' : undefined,
+        WebkitBackdropFilter: (scrolledDesktop || !isDesktop) ? 'blur(16px)' : undefined,
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
