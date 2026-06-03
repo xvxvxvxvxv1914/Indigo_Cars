@@ -37,19 +37,20 @@ export default function CTABanner() {
           <a
             href="#contact"
             onClick={scrollToContact}
-            className="flex-shrink-0 inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-lg transition-all duration-300 text-white whitespace-nowrap active:scale-95"
+            className="flex-shrink-0 inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-lg transition-all duration-300 whitespace-nowrap active:scale-95"
             style={{
-              background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)',
-              boxShadow: '0 4px 20px rgba(105,30,185,0.4)',
+              background: 'var(--cta-grad)',
+              color: 'var(--cta-text)',
+              boxShadow: '0 4px 20px var(--cta-glow)',
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                '0 0 0 1px rgba(105,30,185,0.5), 0 8px 30px rgba(105,30,185,0.55)';
+                '0 0 0 1px var(--cta-glow), 0 8px 30px var(--cta-glow)';
               (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                '0 4px 20px rgba(105,30,185,0.4)';
+                '0 4px 20px var(--cta-glow)';
               (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
             }}
           >

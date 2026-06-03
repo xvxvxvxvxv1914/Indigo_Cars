@@ -233,7 +233,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
         <a href="#contact"
           onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
           className="flex items-center justify-center gap-2 font-semibold py-3 rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5 text-sm"
-          style={{ background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)', color: 'white' }}>
+          style={{ background: 'var(--cta-grad)', color: 'var(--cta-text)' }}>
           {t.calculator.ctaButton}
           <ChevronRight size={16} />
         </a>

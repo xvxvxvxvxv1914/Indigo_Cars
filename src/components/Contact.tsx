@@ -193,9 +193,9 @@ export default function Contact() {
                   <textarea rows={4} placeholder={t.contact.messagePlaceholder} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputClass + ' resize-none'} style={inputStyle} />
                 </div>
 
-                <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 font-semibold py-4 rounded-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)', color: 'white' }}>
+                <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 font-semibold py-4 rounded-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-0.5" style={{ background: 'var(--cta-grad)', color: 'var(--cta-text)' }}>
                   {loading ? (
-                    <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />{t.contact.sending}</>
+                    <><div className="w-4 h-4 border-2 rounded-full animate-spin" style={{ borderColor: 'rgba(26,16,48,0.3)', borderTopColor: '#1A1030' }} />{t.contact.sending}</>
                   ) : (
                     <><Send size={18} />{t.contact.send}</>
                   )}
