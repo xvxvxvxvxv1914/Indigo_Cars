@@ -1,8 +1,23 @@
 import type { Metadata } from 'next';
+import { Inter, Manrope } from 'next/font/google';
 import { ThemeProvider } from '../context/ThemeContext';
 import { LangProvider } from '../context/LangContext';
 import GlobalChrome from '../components/GlobalChrome';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const manrope = Manrope({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-manrope',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://autoimport.bg'),
@@ -26,7 +41,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="bg" suppressHydrationWarning>
+    <html lang="bg" suppressHydrationWarning className={`${inter.variable} ${manrope.variable}`}>
       <head>
         {/* Blocking theme script — prevents flash before React hydrates */}
         <script
@@ -34,12 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
           }}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@500;600;700;800&display=swap"
-        />
+        <link rel="preload" as="image" href="/hero-image.webp" />
       </head>
       <body>
         <ThemeProvider>
