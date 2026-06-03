@@ -79,14 +79,11 @@ export default function RouteMap() {
   const geoStroke = light ? '#691EB9' : '#7c5dd4';
   const geoActive = light ? '#3d1680' : '#691EB9';
   const mapBg     = light ? '#f0ecff' : '#0c0a22';
-  // Muted background landmass (non-delivery countries) — gives the map context
-  // so it doesn't read as empty, and shows North America for the ocean leg.
   const landFill   = light ? '#e6e0f7' : '#161232';
   const landStroke = light ? '#d4c9f2' : '#241a4d';
 
-  // Transatlantic ocean leg: a US East Coast port → Rotterdam.
-  const US_PORT: [number, number] = [-74.0, 40.7];   // New York / New Jersey
-  const ATLANTIC: [number, number] = [-32, 47];       // ship position mid-crossing
+  const US_PORT: [number, number] = [-74.0, 40.7];
+  const ATLANTIC: [number, number] = [-32, 47];
 
   return (
     <section className="py-12 md:py-20 relative overflow-hidden" ref={ref} style={{ background: 'var(--bg-main)' }}>
@@ -255,7 +252,6 @@ export default function RouteMap() {
                       const numId = Number(geo.id);
                       const isEU = EU_ISO.has(numId);
 
-                      // Non-delivery countries: muted background landmass for context.
                       if (!isEU) {
                         return (
                           <Geography
@@ -273,7 +269,6 @@ export default function RouteMap() {
                         );
                       }
 
-                      // Delivery countries: interactive + highlighted.
                       const isActive = numId === activeIso;
                       return (
                         <Geography

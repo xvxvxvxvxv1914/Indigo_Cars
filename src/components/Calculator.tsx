@@ -93,7 +93,6 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
   const cardBorder = embed ? '1px solid rgba(255,255,255,0.12)' : light ? '1px solid #E7E4F0' : '1px solid #2e1858';
   const labelColor = embed ? 'rgba(231,228,240,0.65)' : light ? '#5a3a8a' : '#9070a8';
   const textColor  = embed ? 'rgba(255,255,255,0.95)' : light ? '#000E38' : '#ffffff';
-  // Lighter "frosted" cards for the left input column so they stand out on the gradient block
   const inputCardBg     = embed ? 'rgba(255,255,255,0.08)' : light ? '#ffffff' : 'rgba(255,255,255,0.10)';
   const inputCardBorder = embed ? '1px solid rgba(255,255,255,0.12)' : light ? '1px solid #E7E4F0' : '1px solid rgba(255,255,255,0.18)';
 

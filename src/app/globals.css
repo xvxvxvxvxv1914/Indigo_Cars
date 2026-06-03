@@ -16,8 +16,6 @@
   --text-secondary: #D5C6E0;
   --text-muted: #9070a8;
   --text-placeholder: #9070a8;
-  /* CTA accent — reserved ONLY for primary conversion actions (amber/gold).
-     Same in both themes. Swap these 3 lines to re-skin every primary CTA. */
   --cta-grad: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
   --cta-grad-hover: linear-gradient(135deg, #FCD34D 0%, #FBBF24 100%);
   --cta-text: #1A1030;
