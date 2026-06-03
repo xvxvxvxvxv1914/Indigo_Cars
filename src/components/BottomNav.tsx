@@ -40,7 +40,7 @@ export default function BottomNav() {
       <div className="flex items-center justify-around px-1 py-2">
         {navItems.map(({ icon: Icon, label, href, type }) => {
           const isB2B = type === 'route';
-          const isActive = isB2B ? pathname === '/b2b' : pathname === '/' && false;
+          const isActive = isB2B && pathname === '/b2b';
           const itemStyle = { color: isActive ? '#691EB9' : 'rgba(213,198,224,0.8)' };
 
           if (isB2B) {

@@ -12,6 +12,7 @@ dist-ssr
 *.local
 .next
 next-env.d.ts
+*.tsbuildinfo
 
 .vscode/*
 !.vscode/extensions.json
