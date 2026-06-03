@@ -159,7 +159,7 @@ export default function Admin() {
                   <circle cx="15" cy="17.5" r="1.5" fill="white" />
                 </svg>
               </div>
-              <span className="font-display text-xl text-white tracking-wider">AutoImport Admin</span>
+              <span className="font-display text-xl text-white tracking-wider">Indigo Cars Admin</span>
             </div>
             <p className="text-dark-300 text-sm">{session?.user?.email}</p>
           </div>

@@ -21,19 +21,19 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://autoimport.bg'),
-  title: 'AutoImport BG - Вносител на автомобили от САЩ и Канада',
+  title: 'Indigo Cars - Вносител на автомобили от САЩ и Канада',
   description: 'Специализирани в внос на автомобили от американски и канадски търгове. Доставка до България и Европа през Ротердам. Пълно документално обслужване.',
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
     url: 'https://autoimport.bg',
-    title: 'AutoImport BG - Вносител на автомобили от САЩ и Канада',
+    title: 'Indigo Cars - Вносител на автомобили от САЩ и Канада',
     description: 'Купуваме директно от търговете в САЩ и Канада. Транспортираме до България и цяла Европа. Пълно документално обслужване — вие само получавате колата.',
     images: [{ url: '/hero-image.webp', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AutoImport BG - Вносител на автомобили от САЩ и Канада',
+    title: 'Indigo Cars - Вносител на автомобили от САЩ и Канада',
     description: 'Купуваме директно от търговете в САЩ и Канада. Транспортираме до България и цяла Европа.',
     images: ['/hero-image.webp'],
   },
