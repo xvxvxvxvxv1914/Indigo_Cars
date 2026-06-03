@@ -164,8 +164,8 @@ export default function HotOffers() {
             {offers.map((offer) => (
               <div
                 key={offer.id}
-                className="animate-on-scroll rounded-2xl overflow-hidden flex flex-col group flex-shrink-0 w-[80vw] sm:w-auto snap-start"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', willChange: 'transform' }}
+                className="animate-on-scroll gradient-border-card rounded-2xl overflow-hidden flex flex-col group flex-shrink-0 w-[80vw] sm:w-auto snap-start"
+                style={{ background: 'var(--bg-card)', willChange: 'transform' }}
                 onMouseMove={onTiltMove}
                 onMouseLeave={onTiltLeave}
               >
