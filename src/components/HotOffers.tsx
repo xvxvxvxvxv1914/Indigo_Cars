@@ -1,4 +1,6 @@
-﻿import { useEffect, useRef, useState } from 'react';
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import { MapPin, DollarSign, ExternalLink, MessageSquare } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 import { useLang } from '../context/LangContext';

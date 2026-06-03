@@ -1,4 +1,6 @@
-﻿import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+'use client';
+
+import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
 const sectionHrefs = ['#how-it-works', '#how-it-works', '#how-it-works', '#how-it-works', '#how-it-works'];

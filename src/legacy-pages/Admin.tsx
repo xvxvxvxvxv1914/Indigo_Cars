@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { Plus, Edit2, Trash2, LogOut, Eye, EyeOff, X, Save, Image } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
@@ -16,7 +18,7 @@ const emptyForm: FormState = {
 };
 
 export default function Admin() {
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<{ user: { email?: string } } | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [offers, setOffers] = useState<HotOffer[]>([]);
   const [loading, setLoading] = useState(true);

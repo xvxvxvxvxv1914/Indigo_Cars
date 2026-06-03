@@ -1,5 +1,8 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+'use client';
+
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 function CursorGlow() {
   const ref = useRef<HTMLDivElement>(null);
@@ -7,9 +10,7 @@ function CursorGlow() {
   const target = useRef({ x: -600, y: -600 });
 
   useEffect(() => {
-    // Skip rAF loop when user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
     const onMove = (e: MouseEvent) => { target.current = { x: e.clientX, y: e.clientY }; };
     window.addEventListener('mousemove', onMove, { passive: true });
     let raf: number;
@@ -34,72 +35,34 @@ function CursorGlow() {
   );
 }
 
-// ─── Task 1: Scroll progress bar ─────────────────────────────────────────────
 function ScrollProgressBar() {
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Skip when reduced motion is preferred
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
     let ticking = false;
-
     const onScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrollTop = window.scrollY;
           const docHeight = document.documentElement.scrollHeight - window.innerHeight;
           const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-          if (barRef.current) {
-            barRef.current.style.width = `${pct}%`;
-          }
+          if (barRef.current) barRef.current.style.width = `${pct}%`;
           ticking = false;
         });
         ticking = true;
       }
     };
-
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <div
-      className="fixed top-0 left-0 right-0 z-[60] pointer-events-none"
-      style={{ height: '3px', background: 'transparent' }}
-    >
-      <div
-        ref={barRef}
-        style={{
-          height: '100%',
-          width: '0%',
-          background: 'linear-gradient(to right, #691EB9, #E7E4F0, #4a158a)',
-          transition: 'width 0.05s linear',
-        }}
-      />
+    <div className="fixed top-0 left-0 right-0 z-[60] pointer-events-none" style={{ height: '3px' }}>
+      <div ref={barRef} style={{ height: '100%', width: '0%', background: 'linear-gradient(to right, #691EB9, #E7E4F0, #4a158a)', transition: 'width 0.05s linear' }} />
     </div>
   );
 }
-
-import { LangProvider, useLang } from './context/LangContext';
-import { useTheme } from './context/ThemeContext';
-import { ThemeProvider } from './context/ThemeContext';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import HowItWorks from './components/HowItWorks';
-import HotOffers from './components/HotOffers';
-import Partners from './components/Partners';
-import WhyUs from './components/WhyUs';
-const RouteMap = lazy(() => import('./components/RouteMap'));
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import Calculator from './components/Calculator';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import BottomNav from './components/BottomNav';
-import Admin from './pages/Admin';
-import AdminLogin from './pages/AdminLogin';
-const B2B = lazy(() => import('./pages/B2B'));
 
 function NavDots() {
   const { t } = useLang();
@@ -146,21 +109,17 @@ function NavDots() {
           className="group relative flex items-center justify-end"
           aria-label={label}
         >
-          {/* Tooltip */}
           <span
             className="absolute right-5 px-2.5 py-1 text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 whitespace-nowrap translate-x-1 group-hover:translate-x-0"
             style={{
               background: light ? '#ffffff' : '#201545',
               color: 'var(--text-primary)',
               border: '1px solid var(--border)',
-              boxShadow: light
-                ? '0 2px 12px rgba(105,30,185,0.12)'
-                : '0 2px 12px rgba(0,0,0,0.4)',
+              boxShadow: light ? '0 2px 12px rgba(105,30,185,0.12)' : '0 2px 12px rgba(0,0,0,0.4)',
             }}
           >
             {label}
           </span>
-          {/* Dot */}
           <span
             className="block rounded-full transition-all duration-300"
             style={{
@@ -177,55 +136,12 @@ function NavDots() {
   );
 }
 
-function HomePage() {
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  }, []);
-
+export default function GlobalChrome() {
   return (
     <>
-      <Navbar />
-      <main className="pb-16 md:pb-0">
-        <Hero />
-        <HowItWorks />
-        <HotOffers />
-        <Partners />
-        <WhyUs />
-        <Suspense fallback={<div className="py-12" />}>
-          <RouteMap />
-        </Suspense>
-        <Testimonials />
-        <FAQ />
-        <Calculator />
-        <Contact />
-      </main>
-      <Footer />
-      <BottomNav />
-    </>
-  );
-}
-
-export default function App() {
-  return (
-    <ThemeProvider>
-    <LangProvider>
       <ScrollProgressBar />
       <CursorGlow />
       <NavDots />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/b2b" element={<Suspense fallback={<div />}><B2B /></Suspense>} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-        </Routes>
-      </BrowserRouter>
-    </LangProvider>
-    </ThemeProvider>
+    </>
   );
 }

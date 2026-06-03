@@ -1,11 +1,14 @@
-﻿import { Home, Car, Building2, MessageCircle, Shield } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+'use client';
+
+import { Home, Car, Building2, MessageCircle, Shield } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { useLang } from '../context/LangContext';
 
 export default function BottomNav() {
-  const { t, lang } = useLang();
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { t } = useLang();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const navItems = [
     { icon: Home,         label: t.nav.home,    href: '#hero',     type: 'scroll' },
@@ -16,8 +19,8 @@ export default function BottomNav() {
   ];
 
   const handleScroll = (href: string) => {
-    if (location.pathname !== '/') {
-      navigate('/' + href);
+    if (pathname !== '/') {
+      router.push('/' + href);
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -37,12 +40,12 @@ export default function BottomNav() {
       <div className="flex items-center justify-around px-1 py-2">
         {navItems.map(({ icon: Icon, label, href, type }) => {
           const isB2B = type === 'route';
-          const isActive = isB2B ? location.pathname === '/b2b' : location.pathname === '/' && false;
+          const isActive = isB2B ? pathname === '/b2b' : pathname === '/' && false;
           const itemStyle = { color: isActive ? '#691EB9' : 'rgba(213,198,224,0.8)' };
 
           if (isB2B) {
             return (
-              <Link key={href} to={href}
+              <Link key={href} href={href}
                 className="flex flex-col items-center gap-0.5 px-1 py-1 rounded-xl transition-all active:scale-95 min-w-0"
                 style={itemStyle}
               >

@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { Gavel, Ship, FileCheck, Car, Search, Wrench } from 'lucide-react';
 
@@ -87,7 +89,7 @@ export default function Services() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => {
+          {services.map((service) => {
             const Icon = service.icon;
             return (
               <div
