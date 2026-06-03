@@ -328,9 +328,6 @@
   border-left: 3px solid rgba(105,30,185,0.3) !important;
 }
 
-/* Hero theme switching — CSS-driven so LCP image is in SSR HTML, no JS wait */
-[data-theme="dark"]  .hero-light-wrap { display: none; }
-[data-theme="light"] .hero-dark-wrap  { display: none; }
 
 [data-theme="light"] footer { background: #000E38 !important; border-color: rgba(105,30,185,0.3) !important; }
 

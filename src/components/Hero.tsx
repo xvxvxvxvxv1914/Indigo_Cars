@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { ChevronDown, Shield, Truck, FileText } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 /* ── LIGHT HERO ── */
 function HeroLight() {
@@ -60,8 +61,8 @@ function HeroLight() {
             <span className="text-primary-600 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
           </div>
 
-          {/* Heading */}
-          <h1 className="hero-stagger font-display text-3xl sm:text-5xl md:text-6xl leading-none mb-6 tracking-wide" style={{ animationDelay: '0.18s', color: '#1A1A2E' }}>
+          {/* Heading — no entrance animation: LCP element must be visible immediately */}
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl leading-none mb-6 tracking-wide" style={{ color: '#1A1A2E' }}>
             {t.hero.h1a}{' '}
             <span className="text-gradient">{t.hero.h1b}</span>
             <br />
@@ -69,8 +70,7 @@ function HeroLight() {
             <span className="text-gradient">{t.hero.h1d}</span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="hero-stagger text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.32s', color: '#3D3A5C' }}>
+          <p className="hero-stagger text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.18s', color: '#3D3A5C' }}>
             {t.hero.sub}
           </p>
 
@@ -183,13 +183,13 @@ function HeroDark() {
             <span className="text-primary-400 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
           </div>
 
-          <h1 className="hero-stagger font-display text-3xl sm:text-5xl md:text-6xl text-white leading-none mb-6 tracking-wide" style={{ animationDelay: '0.18s' }}>
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl text-white leading-none mb-6 tracking-wide">
             {t.hero.h1a}{' '}<span className="text-gradient">{t.hero.h1b}</span>
             <br />
             {t.hero.h1c}{' '}<span className="text-gradient">{t.hero.h1d}</span>
           </h1>
 
-          <p className="hero-stagger text-dark-300 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.32s' }}>
+          <p className="hero-stagger text-dark-300 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.18s' }}>
             {t.hero.sub}
           </p>
 
@@ -245,15 +245,7 @@ function HeroDark() {
   );
 }
 
-/* ── MAIN EXPORT ──
-   Both variants are always in the DOM so the LCP image is present in SSR HTML
-   and the preload in layout.tsx hits it immediately — no JS hydration wait.
-   CSS driven by the blocking theme script that sets data-theme before paint. */
 export default function Hero() {
-  return (
-    <>
-      <div data-hero="dark" className="hero-dark-wrap"><HeroDark /></div>
-      <div data-hero="light" className="hero-light-wrap"><HeroLight /></div>
-    </>
-  );
+  const { theme } = useTheme();
+  return theme === 'light' ? <HeroLight /> : <HeroDark />;
 }
