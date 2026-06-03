@@ -20,6 +20,7 @@ const RouteMap = dynamic(() => import('../components/RouteMap'), {
   loading: () => <div className="py-12" />,
 });
 
+
 export default function HomePage() {
   useEffect(() => {
     const hash = window.location.hash;

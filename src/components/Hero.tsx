@@ -35,18 +35,15 @@ function HeroLight() {
     <section id="hero" className="relative flex items-center overflow-hidden" style={{ minHeight: '100dvh' }}>
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">
-        <picture>
-          <source srcSet="/hero-image.webp" type="image/webp" />
-          <img
-            ref={bgRef}
-            src="/hero-image.png"
-            alt="Indigo Cars — внос от САЩ"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
+        <img
+          ref={bgRef}
+          src="/hero-image.webp"
+          alt="Indigo Cars — внос от САЩ"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
+          fetchPriority="high"
+          decoding="sync"
+        />
         {/* Light theme overlays — bright left, gentle gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/[0.94] via-white/[0.65] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/20" />
@@ -167,13 +164,10 @@ function HeroDark() {
   return (
     <section id="hero" className="relative flex items-center overflow-hidden" style={{ minHeight: '100dvh' }}>
       <div className="absolute inset-0 z-0">
-        <picture>
-          <source srcSet="/hero-image.webp" type="image/webp" />
-          <img ref={bgRef} src="/hero-image.png" alt="Indigo Cars — внос от САЩ"
-            className="w-full h-full object-cover"
-            fetchPriority="high" decoding="async"
-            style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }} />
-        </picture>
+        <img ref={bgRef} src="/hero-image.webp" alt="Indigo Cars — внос от САЩ"
+          className="w-full h-full object-cover"
+          fetchPriority="high" decoding="sync"
+          style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/[0.97] via-[#0F1A33]/[0.75] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F1A33]/90 via-transparent to-[#0F1A33]/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/60 via-transparent to-transparent" />
