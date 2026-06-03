@@ -5,21 +5,19 @@ import dynamic from 'next/dynamic';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import HowItWorks from '../components/HowItWorks';
-import HotOffers from '../components/HotOffers';
 import Partners from '../components/Partners';
-import WhyUs from '../components/WhyUs';
-import Testimonials from '../components/Testimonials';
-import FAQ from '../components/FAQ';
-import Calculator from '../components/Calculator';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
 import BottomNav from '../components/BottomNav';
 
-const RouteMap = dynamic(() => import('../components/RouteMap'), {
-  ssr: false,
-  loading: () => <div className="py-12" />,
-});
+const placeholder = (h: string) => () => <div style={{ minHeight: h }} />;
 
+const HotOffers   = dynamic(() => import('../components/HotOffers'),   { loading: placeholder('400px') });
+const WhyUs       = dynamic(() => import('../components/WhyUs'),       { loading: placeholder('500px') });
+const RouteMap    = dynamic(() => import('../components/RouteMap'),    { ssr: false, loading: placeholder('480px') });
+const Testimonials= dynamic(() => import('../components/Testimonials'),{ loading: placeholder('400px') });
+const FAQ         = dynamic(() => import('../components/FAQ'),         { loading: placeholder('400px') });
+const Calculator  = dynamic(() => import('../components/Calculator'),  { loading: placeholder('500px') });
+const Contact     = dynamic(() => import('../components/Contact'),     { loading: placeholder('500px') });
+const Footer      = dynamic(() => import('../components/Footer'),      { loading: placeholder('200px') });
 
 export default function HomePage() {
   useEffect(() => {

@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import { ChevronDown, Shield, Truck, FileText } from 'lucide-react';
 import { useLang } from '../context/LangContext';
-import { useTheme } from '../context/ThemeContext';
 
 /* ── LIGHT HERO ── */
 function HeroLight() {
@@ -246,8 +245,15 @@ function HeroDark() {
   );
 }
 
-/* ── MAIN EXPORT ── */
+/* ── MAIN EXPORT ──
+   Both variants are always in the DOM so the LCP image is present in SSR HTML
+   and the preload in layout.tsx hits it immediately — no JS hydration wait.
+   CSS driven by the blocking theme script that sets data-theme before paint. */
 export default function Hero() {
-  const { theme } = useTheme();
-  return theme === 'light' ? <HeroLight /> : <HeroDark />;
+  return (
+    <>
+      <div data-hero="dark" className="hero-dark-wrap"><HeroDark /></div>
+      <div data-hero="light" className="hero-light-wrap"><HeroLight /></div>
+    </>
+  );
 }
