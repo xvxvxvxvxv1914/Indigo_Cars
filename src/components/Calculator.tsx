@@ -246,7 +246,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
   }
 
   return (
-    <section id="calculator" className="py-12 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
+    <section id="calculator" className="py-12 md:py-20 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl p-6 md:p-8 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #691EB9 0%, #000E38 100%)' }}>

@@ -28,7 +28,7 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section id="how-it-works" className="py-12 relative scroll-mt-16" ref={sectionRef}
+    <section id="how-it-works" className="py-12 md:py-20 relative scroll-mt-16" ref={sectionRef}
       style={{ background: 'var(--bg-main)' }}>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

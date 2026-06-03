@@ -85,7 +85,7 @@ export default function WhyUs() {
   }, []);
 
   return (
-    <section id="why-us" className="py-12 relative overflow-hidden scroll-mt-16" ref={sectionRef}
+    <section id="why-us" className="py-12 md:py-20 relative overflow-hidden scroll-mt-16" ref={sectionRef}
       style={{ background: 'var(--bg-alt)' }}>
       {!light && (
         <div className="absolute inset-0 z-0">

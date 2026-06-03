@@ -44,7 +44,7 @@ export default function Testimonials() {
   const sectionRef = useScrollReveal({ threshold: 0, rootMargin: '0px 0px -50px 0px', stagger: 100 });
 
   return (
-    <section id="testimonials" className="py-12 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>
+    <section id="testimonials" className="py-12 md:py-20 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}

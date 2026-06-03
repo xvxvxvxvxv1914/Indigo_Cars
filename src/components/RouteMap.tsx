@@ -81,7 +81,7 @@ export default function RouteMap() {
   const mapBg     = light ? '#f0ecff' : '#0c0a22';
 
   return (
-    <section className="py-12 relative overflow-hidden" ref={ref} style={{ background: 'var(--bg-main)' }}>
+    <section className="py-12 md:py-20 relative overflow-hidden" ref={ref} style={{ background: 'var(--bg-main)' }}>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 

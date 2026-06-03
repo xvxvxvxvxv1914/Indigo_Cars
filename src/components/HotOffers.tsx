@@ -127,7 +127,7 @@ export default function HotOffers() {
   }
 
   return (
-    <section id="offers" className="py-12 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
+    <section id="offers" className="py-12 md:py-20 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
       {!light && <div className="absolute inset-0 bg-gradient-to-b from-[#0F1A33] via-[#19113a]/30 to-[#0F1A33]" />}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
