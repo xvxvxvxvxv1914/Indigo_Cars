@@ -69,6 +69,7 @@ export default function Contact() {
         car: form.car || null, budget: form.budget || null, message: form.message,
       }]);
       if (dbError) throw dbError;
+      setError('');
       setSubmitted(true);
     } catch {
       setError(t.contact.error);

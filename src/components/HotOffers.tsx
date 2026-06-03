@@ -28,13 +28,15 @@ const DEMO_OFFERS = [
   { title: '2020 Jeep Wrangler Rubicon 4x4', location: 'Denver, CO', price: 31000, condition: 'Good', carfax_verified: true, image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=640&h=400&fit=crop' },
 ];
 
+function conditionColor(c: string) {
+  const lower = c.toLowerCase();
+  if (lower === 'excellent') return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+  if (lower === 'good') return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
+  if (lower === 'fair') return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+  return 'bg-red-500/20 text-red-300 border-red-500/30';
+}
+
 function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
-  const conditionColor = (c: string) => {
-    const lower = c.toLowerCase();
-    if (lower === 'excellent') return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
-    if (lower === 'good') return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
-    return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
-  };
 
   return (
     <div className="-mx-4 sm:mx-0 overflow-x-auto sm:overflow-x-visible pb-3 snap-x snap-mandatory sm:snap-none">
@@ -133,18 +135,12 @@ export default function HotOffers() {
         .limit(5);
       if (error) throw error;
       setOffers((data as HotOffer[]) || []);
+    } catch {
+      setOffers([]);
     } finally {
       setLoading(false);
     }
   }
-
-  const conditionColor = (c: string) => {
-    const lower = c.toLowerCase();
-    if (lower === 'excellent') return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
-    if (lower === 'good') return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
-    if (lower === 'fair') return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
-    return 'bg-red-500/20 text-red-300 border-red-500/30';
-  };
 
   return (
     <section id="offers" className="py-12 relative scroll-mt-16" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>

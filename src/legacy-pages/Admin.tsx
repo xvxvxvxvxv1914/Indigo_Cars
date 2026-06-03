@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Edit2, Trash2, LogOut, Eye, EyeOff, X, Save, Image } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 
@@ -32,17 +33,21 @@ export default function Admin() {
   const [imageUrl, setImageUrl] = useState('');
   const [saving, setSaving] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        window.location.href = '/admin/login';
-      } else {
-        setSession(session);
-        setAuthLoading(false);
-        fetchOffers();
-      }
-    });
+    supabase.auth.getSession()
+      .then(({ data: { session } }) => {
+        if (!session) {
+          router.push('/admin/login');
+        } else {
+          setSession(session);
+          setAuthLoading(false);
+          fetchOffers();
+        }
+      })
+      .catch(() => router.push('/admin/login'));
   }, []);
 
   async function fetchOffers() {
@@ -57,20 +62,27 @@ export default function Admin() {
 
   async function handleSave() {
     setSaving(true);
-    if (editId) {
-      await supabase.from('hot_offers').update({ ...form }).eq('id', editId);
-    } else {
-      await supabase.from('hot_offers').insert([form]);
+    setSaveError('');
+    try {
+      const { error } = editId
+        ? await supabase.from('hot_offers').update({ ...form }).eq('id', editId)
+        : await supabase.from('hot_offers').insert([form]);
+      if (error) throw error;
+      resetForm();
+      fetchOffers();
+    } catch {
+      setSaveError('Грешка при запазване. Опитайте отново.');
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    resetForm();
-    fetchOffers();
   }
 
   async function handleDelete(id: string) {
-    await supabase.from('hot_offers').delete().eq('id', id);
-    setDeleteId(null);
-    fetchOffers();
+    const { error } = await supabase.from('hot_offers').delete().eq('id', id);
+    if (!error) {
+      setDeleteId(null);
+      fetchOffers();
+    }
   }
 
   async function toggleActive(offer: HotOffer) {
@@ -117,7 +129,7 @@ export default function Admin() {
 
   async function handleLogout() {
     await supabase.auth.signOut();
-    window.location.href = '/admin/login';
+    router.push('/admin/login');
   }
 
   if (authLoading) {
@@ -344,6 +356,9 @@ export default function Admin() {
                 Отмени
               </button>
             </div>
+            {saveError && (
+              <p className="text-red-400 text-sm mt-3">{saveError}</p>
+            )}
           </div>
         )}
 

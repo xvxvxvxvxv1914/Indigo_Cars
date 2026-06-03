@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { supabase } from '../lib/supabase';
 import { AlertCircle, Lock } from 'lucide-react';
 
@@ -9,6 +10,7 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const router = useRouter();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -19,7 +21,7 @@ export default function AdminLogin() {
     if (err) {
       setError(err.message);
     } else {
-      window.location.href = '/admin';
+      router.push('/admin');
     }
   }
 
