@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import { ChevronDown, Shield, Truck, FileText } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
@@ -92,7 +91,7 @@ function ParticleMesh() {
 /* ── LIGHT HERO ── */
 function HeroLight() {
   const { t, lang } = useLang();
-  const bgRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLImageElement>(null);
   const scroll = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
 
   useEffect(() => {
@@ -119,17 +118,15 @@ function HeroLight() {
     <section id="hero" className="relative flex items-center overflow-hidden" style={{ minHeight: '100dvh' }}>
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">
-        <div ref={bgRef} className="absolute inset-0" style={{ transform: 'scale(1.12)', willChange: 'transform' }}>
-          <Image
-            src="/hero-image.webp"
-            alt="Indigo Cars — внос от САЩ"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-            style={{ objectPosition: '60% center' }}
-          />
-        </div>
+        <img
+          ref={bgRef}
+          src="/hero-image.webp"
+          alt="Indigo Cars — внос от САЩ"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
+          fetchPriority="high"
+          decoding="sync"
+        />
         {/* Light theme overlays — bright left, gentle gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/[0.94] via-white/[0.65] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/20" />
@@ -223,7 +220,7 @@ function HeroLight() {
 /* ── DARK HERO (original) ── */
 function HeroDark() {
   const { t, lang } = useLang();
-  const bgRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -250,17 +247,15 @@ function HeroDark() {
   return (
     <section id="hero" className="relative flex items-center overflow-hidden" style={{ minHeight: '100dvh' }}>
       <div className="absolute inset-0 z-0">
-        <div ref={bgRef} className="absolute inset-0" style={{ transform: 'scale(1.12)', willChange: 'transform' }}>
-          <Image
-            src="/hero-image.webp"
-            alt="Indigo Cars — внос от САЩ"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-            style={{ objectPosition: '60% center' }}
-          />
-        </div>
+        <img
+          ref={bgRef}
+          src="/hero-image.webp"
+          alt="Indigo Cars — внос от САЩ"
+          className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="sync"
+          style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/[0.97] via-[#0F1A33]/[0.75] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F1A33]/90 via-transparent to-[#0F1A33]/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/60 via-transparent to-transparent" />
