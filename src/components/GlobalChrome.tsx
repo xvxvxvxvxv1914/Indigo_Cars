@@ -4,37 +4,6 @@ import { useEffect, useRef, useState, useMemo } from 'react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 
-function CursorGlow() {
-  const ref = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: -600, y: -600 });
-  const target = useRef({ x: -600, y: -600 });
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const onMove = (e: MouseEvent) => { target.current = { x: e.clientX, y: e.clientY }; };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    let raf: number;
-    const tick = () => {
-      pos.current.x += (target.current.x - pos.current.x) * 0.1;
-      pos.current.y += (target.current.y - pos.current.y) * 0.1;
-      if (ref.current) {
-        ref.current.style.transform = `translate(${pos.current.x - 250}px, ${pos.current.y - 250}px)`;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(raf); };
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-      style={{ zIndex: 0, background: 'radial-gradient(circle, rgba(105,30,185,0.04) 0%, transparent 65%)', filter: 'blur(40px)' }}
-    />
-  );
-}
-
 function ScrollProgressBar() {
   const barRef = useRef<HTMLDivElement>(null);
 
@@ -140,7 +109,6 @@ export default function GlobalChrome() {
   return (
     <>
       <ScrollProgressBar />
-      <CursorGlow />
       <NavDots />
     </>
   );
