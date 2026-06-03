@@ -1,32 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 export default function FAQ() {
   const { t } = useLang();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useScrollReveal({ threshold: 0.1, stagger: 70 });
 
   useEffect(() => { setOpenIndex(null); }, [t]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 70);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 

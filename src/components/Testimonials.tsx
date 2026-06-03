@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { Star, Quote } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 const testimonials = [
   {
@@ -41,24 +41,7 @@ const testimonials = [
 
 export default function Testimonials() {
   const { t } = useLang();
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 100);
-            });
-          }
-        });
-      },
-      { threshold: 0, rootMargin: '0px 0px -50px 0px' }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useScrollReveal({ threshold: 0, rootMargin: '0px 0px -50px 0px', stagger: 100 });
 
   return (
     <section id="testimonials" className="py-12 relative scroll-mt-16" style={{ background: 'var(--bg-alt)' }} ref={sectionRef}>

@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 const CONFETTI_COLORS = ['#691EB9', '#E7E4F0', '#4a158a', '#25d366', '#f59e0b', '#ec4899'];
 
@@ -35,28 +36,11 @@ export default function Contact() {
   const { t } = useLang();
   const { theme } = useTheme();
   const light = theme === 'light';
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useScrollReveal({ threshold: 0.1, stagger: 120 });
   const [form, setForm] = useState({ name: '', phone: '', email: '', car: '', budget: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 120);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

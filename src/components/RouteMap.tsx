@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { ComposableMap, Geographies, Geography, Marker, Line, ZoomableGroup } from 'react-simple-maps';
 import { Ship, Clock, MousePointer } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 
@@ -70,23 +71,7 @@ export default function RouteMap() {
   const [visible, setVisible] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [center, setCenter] = useState<[number, number]>([10, 52]);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 120);
-          });
-          setVisible(true);
-        }
-      },
-      { threshold: 0.12 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const ref = useScrollReveal({ threshold: 0.12, stagger: 120, onReveal: () => setVisible(true) });
 
   const activeCountry = activeIso !== null ? EU_DATA[activeIso] : null;
 

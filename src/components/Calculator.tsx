@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ChevronRight, TrendingDown, Zap, Ship, Flag, Wrench } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 const USD_TO_EUR = 0.92;
 const EUR_TO_BGN = 1.956;
@@ -80,25 +81,11 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
   const light = embed ? false : theme === 'light';
   const [priceUSD, setPriceUSD] = useState(15000);
   const [fuel, setFuel] = useState('petrol');
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useScrollReveal({ threshold: 0.05, stagger: 80 });
 
   const r = calculate(priceUSD, fuel);
   const groupValues = [r.usTotal, r.shipping, r.duties, r.serviceFee];
   const groupLabels = GROUP_LABELS[lang] ?? GROUP_LABELS.BG;
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 80);
-          });
-        }
-      });
-    }, { threshold: 0.05 });
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const sliderPct = ((priceUSD - 1000) / (60000 - 1000)) * 100;
 

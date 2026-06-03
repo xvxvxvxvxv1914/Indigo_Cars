@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MapPin, DollarSign, ExternalLink, MessageSquare } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 
 function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
@@ -102,27 +103,10 @@ export default function HotOffers() {
   const light = theme === 'light';
   const [offers, setOffers] = useState<HotOffer[]>([]);
   const [loading, setLoading] = useState(true);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useScrollReveal({ threshold: 0.05, stagger: 80 });
 
   useEffect(() => {
     fetchOffers();
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 80);
-            });
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
   }, []);
 
   async function fetchOffers() {
