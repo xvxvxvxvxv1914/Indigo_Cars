@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CheckCircle, Award, Users, Clock, TrendingDown, Globe } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 function onTiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const el = e.currentTarget;
@@ -65,24 +66,7 @@ export default function WhyUs() {
   const { t } = useLang();
   const { theme } = useTheme();
   const light = theme === 'light';
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 120);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useScrollReveal<HTMLDivElement>({ threshold: 0.1, stagger: 120 });
 
   return (
     <section id="why-us" className="py-12 md:py-20 relative overflow-hidden scroll-mt-16" ref={sectionRef}

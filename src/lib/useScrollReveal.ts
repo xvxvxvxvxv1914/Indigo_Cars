@@ -30,20 +30,40 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     const el = ref.current;
     if (!el) return;
     const { threshold = 0.05, rootMargin, stagger = 80, onReveal } = optsRef.current;
+
+    let done = false;
+    const reveal = () => {
+      if (done) return;
+      done = true;
+      el.querySelectorAll('.animate-on-scroll').forEach((node, i) => {
+        setTimeout(() => node.classList.add('visible'), i * stagger);
+      });
+      onReveal?.();
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.animate-on-scroll').forEach((node, i) => {
-              setTimeout(() => node.classList.add('visible'), i * stagger);
-            });
-            onReveal?.();
+            reveal();
+            observer.disconnect();
+            break;
           }
-        });
+        }
       },
       { threshold, rootMargin }
     );
     observer.observe(el);
+
+    // Fallback: if the section is already within the viewport on mount
+    // (deep-link / anchor jump / short page), reveal immediately so the
+    // content never stays invisible waiting for a scroll that won't come.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      reveal();
+      observer.disconnect();
+    }
+
     return () => observer.disconnect();
   }, []);
 
