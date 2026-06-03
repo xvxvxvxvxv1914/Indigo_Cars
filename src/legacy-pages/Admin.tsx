@@ -15,6 +15,10 @@ const emptyForm: FormState = {
   copart_url: '',
   active: true,
   carfax_verified: false,
+  description: null,
+  year: null,
+  mileage: null,
+  vin: null,
 };
 
 export default function Admin() {
@@ -47,14 +51,14 @@ export default function Admin() {
       .from('hot_offers')
       .select('*')
       .order('created_at', { ascending: false });
-    setOffers(data || []);
+    setOffers((data as HotOffer[]) || []);
     setLoading(false);
   }
 
   async function handleSave() {
     setSaving(true);
     if (editId) {
-      await supabase.from('hot_offers').update({ ...form, updated_at: new Date().toISOString() }).eq('id', editId);
+      await supabase.from('hot_offers').update({ ...form }).eq('id', editId);
     } else {
       await supabase.from('hot_offers').insert([form]);
     }
@@ -84,6 +88,10 @@ export default function Admin() {
       copart_url: offer.copart_url || '',
       active: offer.active,
       carfax_verified: offer.carfax_verified ?? false,
+      description: offer.description,
+      year: offer.year,
+      mileage: offer.mileage,
+      vin: offer.vin,
     });
     setEditId(offer.id);
     setShowForm(true);

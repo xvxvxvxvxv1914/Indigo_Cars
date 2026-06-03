@@ -66,7 +66,7 @@ export default function Contact() {
       const { supabase } = await import('../lib/supabase');
       const { error: dbError } = await supabase.from('contact_inquiries').insert([{
         name: form.name, phone: form.phone, email: form.email || null,
-        car: form.car || null, budget: form.budget || null, message: form.message || null,
+        car: form.car || null, budget: form.budget || null, message: form.message,
       }]);
       if (dbError) throw dbError;
       setSubmitted(true);

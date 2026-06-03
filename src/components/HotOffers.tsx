@@ -132,7 +132,7 @@ export default function HotOffers() {
         .order('created_at', { ascending: false })
         .limit(5);
       if (error) throw error;
-      setOffers(data || []);
+      setOffers((data as HotOffer[]) || []);
     } finally {
       setLoading(false);
     }
@@ -191,9 +191,9 @@ export default function HotOffers() {
               >
                 {/* Image */}
                 <div className="relative h-36 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
-                  {offer.images?.length > 0 ? (
+                  {(offer.images?.length ?? 0) > 0 ? (
                     <img
-                      src={offer.images[0]}
+                      src={offer.images![0]}
                       alt={offer.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
