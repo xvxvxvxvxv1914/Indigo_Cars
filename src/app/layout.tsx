@@ -5,18 +5,22 @@ import { LangProvider } from '../context/LangContext';
 import GlobalChrome from '../components/GlobalChrome';
 import './globals.css';
 
+// Only the weights actually used in the UI (400/500/600/700). Body font — preload it.
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-inter',
   display: 'swap',
 });
 
+// Display/heading font. preload:false so it doesn't compete with the hero image (LCP)
+// on mobile — headings swap in once it loads.
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
-  weight: ['500', '600', '700', '800'],
+  weight: ['600', '700', '800'],
   variable: '--font-manrope',
   display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -49,7 +53,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
           }}
         />
-        <link rel="preload" as="image" href="/hero-image.webp" />
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-image.webp"
+          imageSrcSet="/hero-image-sm.webp 960w, /hero-image.webp 1376w"
+          imageSizes="100vw"
+        />
       </head>
       <body>
         <ThemeProvider>

@@ -79,10 +79,22 @@ function ParticleMesh() {
     }
 
     function loop() { update(); draw(); animId = requestAnimationFrame(loop); }
-    init(); loop();
-    const ro = new ResizeObserver(() => init());
-    ro.observe(canvas);
-    return () => { cancelAnimationFrame(animId); ro.disconnect(); };
+
+    // Defer init so the animation doesn't block the main thread during load (lowers TBT).
+    // Skip entirely if the user prefers reduced motion.
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+
+    let ro: ResizeObserver | undefined;
+    const start = () => { init(); loop(); ro = new ResizeObserver(() => init()); ro.observe(canvas); };
+    const hasIdle = typeof window.requestIdleCallback === 'function';
+    const idleId = hasIdle ? window.requestIdleCallback(start, { timeout: 2000 }) : window.setTimeout(start, 1200);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      ro?.disconnect();
+      if (hasIdle) window.cancelIdleCallback(idleId);
+      else clearTimeout(idleId);
+    };
   }, []);
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }} />;
@@ -121,16 +133,18 @@ function HeroLight() {
         <img
           ref={bgRef}
           src="/hero-image.webp"
+          srcSet="/hero-image-sm.webp 960w, /hero-image.webp 1376w"
+          sizes="100vw"
           alt="Indigo Cars — внос от САЩ"
           className="w-full h-full object-cover"
           style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
           fetchPriority="high"
-          decoding="sync"
+          decoding="async"
         />
         {/* Light theme overlays — bright left, gentle gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/[0.94] via-white/[0.65] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/20" />
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(105,30,185,0.07)' }} />
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px] hidden md:block" style={{ background: 'rgba(105,30,185,0.07)' }} />
       </div>
 
       {/* Top accent line */}
@@ -250,17 +264,19 @@ function HeroDark() {
         <img
           ref={bgRef}
           src="/hero-image.webp"
+          srcSet="/hero-image-sm.webp 960w, /hero-image.webp 1376w"
+          sizes="100vw"
           alt="Indigo Cars — внос от САЩ"
           className="w-full h-full object-cover"
           fetchPriority="high"
-          decoding="sync"
+          decoding="async"
           style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/[0.97] via-[#0F1A33]/[0.75] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F1A33]/90 via-transparent to-[#0F1A33]/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F1A33]/60 via-transparent to-transparent" />
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(105,30,185,0.1)' }} />
-        <div className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-[100px]" style={{ background: 'rgba(14,0,43,0.08)' }} />
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px] hidden md:block" style={{ background: 'rgba(105,30,185,0.1)' }} />
+        <div className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-[100px] hidden md:block" style={{ background: 'rgba(14,0,43,0.08)' }} />
       </div>
 
       <ParticleMesh />
