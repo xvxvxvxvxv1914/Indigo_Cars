@@ -70,15 +70,23 @@ export default function RouteMap() {
   const [activeIso, setActiveIso] = useState<number | null>(100);
   const [visible, setVisible] = useState(false);
   const [zoom, setZoom] = useState(1);
-  const [center, setCenter] = useState<[number, number]>([10, 52]);
+  const [center, setCenter] = useState<[number, number]>([-12, 52]);
   const ref = useScrollReveal({ threshold: 0.12, stagger: 120, onReveal: () => setVisible(true) });
 
   const activeCountry = activeIso !== null ? EU_DATA[activeIso] : null;
 
-  const geoFill   = light ? '#e0d9ff' : '#2a1d6f';
+  const geoFill   = light ? '#cdbcfb' : '#2a1d6f';
   const geoStroke = light ? '#691EB9' : '#7c5dd4';
   const geoActive = light ? '#3d1680' : '#691EB9';
   const mapBg     = light ? '#f0ecff' : '#0c0a22';
+  // Muted background landmass (non-delivery countries) — gives the map context
+  // so it doesn't read as empty, and shows North America for the ocean leg.
+  const landFill   = light ? '#e6e0f7' : '#161232';
+  const landStroke = light ? '#d4c9f2' : '#241a4d';
+
+  // Transatlantic ocean leg: a US East Coast port → Rotterdam.
+  const US_PORT: [number, number] = [-74.0, 40.7];   // New York / New Jersey
+  const ATLANTIC: [number, number] = [-32, 47];       // ship position mid-crossing
 
   return (
     <section className="py-12 md:py-20 relative overflow-hidden" ref={ref} style={{ background: 'var(--bg-main)' }}>
@@ -216,7 +224,7 @@ export default function RouteMap() {
                 >−</button>
                 {zoom > 1 && (
                   <button
-                    onClick={() => { setZoom(1); setCenter([10, 52]); }}
+                    onClick={() => { setZoom(1); setCenter([-12, 52]); }}
                     className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all hover:scale-110"
                     style={{ background: 'rgba(105,30,185,0.2)', border: '1px solid rgba(105,30,185,0.4)', color: '#E7E4F0' }}
                     title="Reset"
@@ -228,7 +236,7 @@ export default function RouteMap() {
                 width={800}
                 height={520}
                 projection="geoAzimuthalEqualArea"
-                projectionConfig={{ rotate: [-10, -52, 0], scale: 620 }}
+                projectionConfig={{ rotate: [-10, -52, 0], scale: 430 }}
                 style={{ width: '100%', height: 'auto', display: 'block' }}
               >
                 <ZoomableGroup
@@ -243,33 +251,83 @@ export default function RouteMap() {
                 >
                 <Geographies geography={GEO_URL}>
                   {({ geographies }) =>
-                    geographies
-                      .filter(geo => EU_ISO.has(Number(geo.id)))
-                      .map(geo => {
-                        const numId = Number(geo.id);
-                        const isActive = numId === activeIso;
+                    geographies.map(geo => {
+                      const numId = Number(geo.id);
+                      const isEU = EU_ISO.has(numId);
+
+                      // Non-delivery countries: muted background landmass for context.
+                      if (!isEU) {
                         return (
                           <Geography
                             key={geo.rsmKey}
                             geography={geo}
-                            onClick={() => { if (EU_DATA[numId]) setActiveIso(numId); }}
-                            fill={isActive ? geoActive : geoFill}
-                            stroke={geoStroke}
-                            strokeWidth={0.8}
+                            fill={landFill}
+                            stroke={landStroke}
+                            strokeWidth={0.35}
                             style={{
-                              default: { outline: 'none' },
-                              hover: {
-                                outline: 'none',
-                                fill: isActive ? geoActive : (light ? '#4a158a' : '#3730a3'),
-                                cursor: 'pointer',
-                              },
-                              pressed: { outline: 'none', fill: geoActive },
+                              default: { outline: 'none', pointerEvents: 'none' },
+                              hover:   { outline: 'none', fill: landFill },
+                              pressed: { outline: 'none', fill: landFill },
                             }}
                           />
                         );
-                      })
+                      }
+
+                      // Delivery countries: interactive + highlighted.
+                      const isActive = numId === activeIso;
+                      return (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          onClick={() => { if (EU_DATA[numId]) setActiveIso(numId); }}
+                          fill={isActive ? geoActive : geoFill}
+                          stroke={geoStroke}
+                          strokeWidth={0.8}
+                          style={{
+                            default: { outline: 'none' },
+                            hover: {
+                              outline: 'none',
+                              fill: isActive ? geoActive : (light ? '#4a158a' : '#3730a3'),
+                              cursor: 'pointer',
+                            },
+                            pressed: { outline: 'none', fill: geoActive },
+                          }}
+                        />
+                      );
+                    })
                   }
                 </Geographies>
+
+                {/* Transatlantic ocean leg: USA → Rotterdam */}
+                <Line
+                  from={US_PORT}
+                  to={ROTTERDAM}
+                  stroke={light ? 'rgba(105,30,185,0.45)' : 'rgba(124,93,212,0.55)'}
+                  strokeWidth={2 / zoom}
+                  strokeDasharray={`${2 / zoom} ${5 / zoom}`}
+                  strokeLinecap="round"
+                />
+
+                {/* US origin marker */}
+                <Marker coordinates={US_PORT}>
+                  <circle r={6 / zoom} fill="rgba(16,185,129,0.25)" stroke="#10b981" strokeWidth={1.5 / zoom} />
+                  <circle r={2.5 / zoom} fill="#10b981" />
+                  <text y={-10 / zoom} textAnchor="middle" fontSize={9 / zoom} fontWeight="700"
+                    fill={light ? '#3d1680' : 'rgba(213,198,224,0.95)'} letterSpacing="0.4">
+                    🇺🇸 САЩ
+                  </text>
+                </Marker>
+
+                {/* Ship mid-crossing */}
+                <Marker coordinates={ATLANTIC}>
+                  <circle r={14 / zoom} fill="rgba(105,30,185,0.12)" stroke="rgba(124,93,212,0.4)" strokeWidth={1 / zoom}>
+                    <animate attributeName="r" values={`${7/zoom};${17/zoom}`} dur="2.4s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite" />
+                  </circle>
+                  <text y={5 / zoom} textAnchor="middle" fontSize={15 / zoom} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+                    🚢
+                  </text>
+                </Marker>
 
                 {/* Route line: Rotterdam → active country capital */}
                 {activeCountry && (
