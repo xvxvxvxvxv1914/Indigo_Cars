@@ -5,89 +5,6 @@ import { ChevronDown, Shield, Truck, FileText } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 
-/* ── Particle mesh — dark theme only ── */
-function ParticleMesh() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animId: number;
-    let W = 0, H = 0;
-
-    type Particle = { x: number; y: number; vx: number; vy: number; r: number };
-    let particles: Particle[] = [];
-
-    function resize() {
-      W = canvas!.offsetWidth; H = canvas!.offsetHeight;
-      canvas!.width = W; canvas!.height = H;
-    }
-
-    function init() {
-      resize();
-      const isMobile = W < 768;
-      const COUNT = isMobile ? 30 : 70;
-      const MAX = isMobile ? 100 : 160;
-      (canvas as HTMLCanvasElement & { __MAX?: number }).__MAX = MAX;
-      particles = Array.from({ length: COUNT }, () => ({
-        x: Math.random() * W, y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 1.5 + 0.5,
-      }));
-    }
-
-    function draw() {
-      const MAX = (canvas as HTMLCanvasElement & { __MAX?: number }).__MAX ?? 160;
-      ctx!.clearRect(0, 0, W, H);
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < MAX) {
-            const alpha = (1 - d / MAX) * 0.18;
-            const g = ctx!.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-            g.addColorStop(0, `rgba(105,30,185,${alpha})`);
-            g.addColorStop(1, `rgba(14,0,43,${alpha})`);
-            ctx!.beginPath(); ctx!.strokeStyle = g; ctx!.lineWidth = 0.8;
-            ctx!.moveTo(particles[i].x, particles[i].y);
-            ctx!.lineTo(particles[j].x, particles[j].y);
-            ctx!.stroke();
-          }
-        }
-      }
-      for (const p of particles) {
-        const glow = ctx!.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-        glow.addColorStop(0, 'rgba(165,180,252,0.6)');
-        glow.addColorStop(1, 'rgba(14,0,43,0)');
-        ctx!.beginPath(); ctx!.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
-        ctx!.fillStyle = glow; ctx!.fill();
-        ctx!.beginPath(); ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx!.fillStyle = 'rgba(165,180,252,0.7)'; ctx!.fill();
-      }
-    }
-
-    function update() {
-      for (const p of particles) {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-      }
-    }
-
-    function loop() { update(); draw(); animId = requestAnimationFrame(loop); }
-    init(); loop();
-    const ro = new ResizeObserver(() => init());
-    ro.observe(canvas);
-    return () => { cancelAnimationFrame(animId); ro.disconnect(); };
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }} />;
-}
-
 /* ── LIGHT HERO ── */
 function HeroLight() {
   const { t, lang } = useLang();
@@ -264,7 +181,6 @@ function HeroDark() {
         <div className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-[100px]" style={{ background: 'rgba(14,0,43,0.08)' }} />
       </div>
 
-      <ParticleMesh />
       <div className="absolute top-0 left-0 right-0 h-px z-10" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.5), rgba(14,0,43,0.5), transparent)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-24 sm:pb-16 w-full">

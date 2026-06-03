@@ -29,12 +29,10 @@ export default function HowItWorks() {
 
   return (
     <section id="how-it-works" className="py-12 relative scroll-mt-16" ref={sectionRef}
-      style={{ background: 'var(--bg-alt)' }}>
+      style={{ background: 'var(--bg-main)' }}>
 
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.25), transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.15), transparent)' }} />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl px-5 py-10 sm:px-8 md:px-12 md:py-14" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
         <div className="text-center max-w-2xl mx-auto mb-10 animate-on-scroll">
           <p className="section-label">{t.howItWorks.label}</p>
           <h2 className="section-title mb-8">
@@ -156,6 +154,7 @@ export default function HowItWorks() {
               );
             })}
           </div>
+        </div>
         </div>
       </div>
     </section>

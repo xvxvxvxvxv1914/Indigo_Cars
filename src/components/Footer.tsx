@@ -37,9 +37,9 @@ export default function Footer() {
             </div>
             <p className="text-dark-300 text-sm leading-relaxed mb-6">{t.footer.description}</p>
             <div className="flex gap-3">
-              {[Facebook, Instagram, Youtube].map((Icon) => (
+              {[Facebook, Instagram, Youtube].map((Icon, i) => (
                 <a
-                  key={Icon.name}
+                  key={i}
                   href="#"
                   className="w-9 h-9 rounded-lg flex items-center justify-center text-dark-300 hover:text-primary-400 transition-all"
                   style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)' }}

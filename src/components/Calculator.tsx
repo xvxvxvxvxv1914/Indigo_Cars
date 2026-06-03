@@ -93,6 +93,9 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
   const cardBorder = embed ? '1px solid rgba(255,255,255,0.12)' : light ? '1px solid #E7E4F0' : '1px solid #2e1858';
   const labelColor = embed ? 'rgba(231,228,240,0.65)' : light ? '#5a3a8a' : '#9070a8';
   const textColor  = embed ? 'rgba(255,255,255,0.95)' : light ? '#000E38' : '#ffffff';
+  // Lighter "frosted" cards for the left input column so they stand out on the gradient block
+  const inputCardBg     = embed ? 'rgba(255,255,255,0.08)' : light ? '#ffffff' : 'rgba(255,255,255,0.10)';
+  const inputCardBorder = embed ? '1px solid rgba(255,255,255,0.12)' : light ? '1px solid #E7E4F0' : '1px solid rgba(255,255,255,0.18)';
 
   const calcGrid = (
     <div className="grid md:grid-cols-2 gap-5 items-stretch">
@@ -101,7 +104,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
       <div className="flex flex-col gap-4 animate-on-scroll">
 
         {/* Price slider card */}
-        <div className="rounded-2xl p-5" style={{ background: cardBg, border: cardBorder }}>
+        <div className="rounded-2xl p-5" style={{ background: inputCardBg, border: inputCardBorder }}>
           <div className="flex justify-between items-end mb-5">
             <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: labelColor }}>
               {t.calculator.priceLabel}
@@ -143,7 +146,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
         </div>
 
         {/* Fuel selector */}
-        <div className="rounded-2xl p-4" style={{ background: cardBg, border: cardBorder }}>
+        <div className="rounded-2xl p-4" style={{ background: inputCardBg, border: inputCardBorder }}>
           <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: labelColor }}>
             {t.calculator.fuelLabel}
           </p>
@@ -243,7 +246,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
   }
 
   return (
-    <section id="calculator" className="py-10 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
+    <section id="calculator" className="py-10 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.3), transparent)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(105,30,185,0.15), transparent)' }} />
 
