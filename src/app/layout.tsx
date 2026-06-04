@@ -30,13 +30,11 @@ export const metadata: Metadata = {
     siteName: 'Indigo Cars',
     title: 'Indigo Cars — Твоята кола от търга директно до теб',
     description: 'Купуваме директно от търговете в САЩ и Канада. Транспортираме до България и цяла Европа. Пълно документално обслужване — без главоболия, без скрити разходи.',
-    images: [{ url: '/hero-image.webp', width: 1200, height: 630, alt: 'Indigo Cars — Внос на автомобили от САЩ' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Indigo Cars — Твоята кола от търга директно до теб',
     description: 'Поръчков внос на автомобили от САЩ и Канада. Доставка до България и цяла Европа.',
-    images: ['/hero-image.webp'],
   },
 };
 
