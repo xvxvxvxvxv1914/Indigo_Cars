@@ -20,21 +20,22 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://autoimport.bg'),
-  title: 'Indigo Cars - Вносител на автомобили от САЩ и Канада',
-  description: 'Специализирани в внос на автомобили от американски и канадски търгове. Доставка до България и Европа през Ротердам. Пълно документално обслужване.',
+  metadataBase: new URL('https://indigocars.eu'),
+  title: 'Indigo Cars — Вносител на автомобили от САЩ и Канада',
+  description: 'Поръчков внос на автомобили от търгове в САЩ и Канада. Доставка до България и Европа. Пълно документално обслужване — вие само получавате колата.',
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
-    url: 'https://autoimport.bg',
-    title: 'Indigo Cars - Вносител на автомобили от САЩ и Канада',
-    description: 'Купуваме директно от търговете в САЩ и Канада. Транспортираме до България и цяла Европа. Пълно документално обслужване — вие само получавате колата.',
-    images: [{ url: '/hero-image.webp', width: 1200, height: 630 }],
+    url: 'https://indigocars.eu',
+    siteName: 'Indigo Cars',
+    title: 'Indigo Cars — Твоята кола от търга директно до теб',
+    description: 'Купуваме директно от търговете в САЩ и Канада. Транспортираме до България и цяла Европа. Пълно документално обслужване — без главоболия, без скрити разходи.',
+    images: [{ url: '/hero-image.webp', width: 1200, height: 630, alt: 'Indigo Cars — Внос на автомобили от САЩ' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Indigo Cars - Вносител на автомобили от САЩ и Канада',
-    description: 'Купуваме директно от търговете в САЩ и Канада. Транспортираме до България и цяла Европа.',
+    title: 'Indigo Cars — Твоята кола от търга директно до теб',
+    description: 'Поръчков внос на автомобили от САЩ и Канада. Доставка до България и цяла Европа.',
     images: ['/hero-image.webp'],
   },
 };
