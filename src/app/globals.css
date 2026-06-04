@@ -16,10 +16,10 @@
   --text-secondary: #D5C6E0;
   --text-muted: #9070a8;
   --text-placeholder: #9070a8;
-  --cta-grad: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
-  --cta-grad-hover: linear-gradient(135deg, #FCD34D 0%, #FBBF24 100%);
-  --cta-text: #1A1030;
-  --cta-glow: rgba(245,158,11,0.35);
+  --cta-grad: linear-gradient(135deg, #691EB9 0%, #4a158a 100%);
+  --cta-grad-hover: linear-gradient(135deg, #4a158a 0%, #330d63 100%);
+  --cta-text: #ffffff;
+  --cta-glow: rgba(105,30,185,0.4);
   --overlay-hero: rgba(15,26,51,0.97);
   --overlay-hero-mid: rgba(15,26,51,0.82);
   --overlay-hero-light: rgba(15,26,51,0.35);
