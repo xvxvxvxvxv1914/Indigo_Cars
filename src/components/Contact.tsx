@@ -55,7 +55,8 @@ export default function Contact() {
       if (dbError) throw dbError;
       setError('');
       setSubmitted(true);
-    } catch {
+    } catch (err) {
+      console.error('Contact form error:', err);
       setError(t.contact.error);
     } finally {
       setLoading(false);
