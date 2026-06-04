@@ -16,47 +16,88 @@ export default async function Image() {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'flex-start',
-          background: 'linear-gradient(135deg, #0a1628 0%, #0F1A33 50%, #14103d 100%)',
+          background: '#1f163b',
           padding: '80px',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        {/* Decorative slashes — top right (brand identity) */}
-        <div style={{ position: 'absolute', top: '-60px', right: '100px', width: '22px', height: '420px', background: 'linear-gradient(180deg, #3a22c4 0%, #e0316b 100%)', transform: 'rotate(20deg)', opacity: 0.8, display: 'flex' }} />
-        <div style={{ position: 'absolute', top: '-60px', right: '140px', width: '14px', height: '380px', background: 'linear-gradient(180deg, #691EB9 0%, #c0206e 100%)', transform: 'rotate(20deg)', opacity: 0.5, display: 'flex' }} />
-        <div style={{ position: 'absolute', top: '-60px', right: '168px', width: '9px', height: '340px', background: 'linear-gradient(180deg, #4a158a 0%, #691EB9 100%)', transform: 'rotate(20deg)', opacity: 0.3, display: 'flex' }} />
+        {/* Brand slashes — top right (exact brand proportions) */}
+        <div style={{
+          position: 'absolute', top: '-40px', right: '60px',
+          width: '140px', height: '520px',
+          background: 'linear-gradient(180deg, #2d2d86 0%, #f0494f 100%)',
+          transform: 'skewX(-12deg)',
+          opacity: 0.9,
+          display: 'flex',
+        }} />
+        <div style={{
+          position: 'absolute', top: '-40px', right: '220px',
+          width: '90px', height: '480px',
+          background: 'linear-gradient(180deg, #2d2d86 0%, #c0304f 100%)',
+          transform: 'skewX(-12deg)',
+          opacity: 0.65,
+          display: 'flex',
+        }} />
 
-        {/* Glow */}
-        <div style={{ position: 'absolute', bottom: '-120px', right: '180px', width: '600px', height: '600px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(105,30,185,0.12) 0%, transparent 70%)', display: 'flex' }} />
+        {/* Subtle glow bottom right */}
+        <div style={{
+          position: 'absolute', bottom: '-80px', right: '100px',
+          width: '500px', height: '500px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(240,73,79,0.08) 0%, transparent 70%)',
+          display: 'flex',
+        }} />
 
-        {/* Logo text */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '44px' }}>
-          {/* Slash mark */}
-          <div style={{ display: 'flex', gap: '6px', marginRight: '4px' }}>
-            <div style={{ width: '10px', height: '52px', background: 'linear-gradient(180deg, #3a22c4 0%, #c0206e 100%)', transform: 'skewX(-15deg)', display: 'flex' }} />
-            <div style={{ width: '16px', height: '52px', background: 'linear-gradient(180deg, #691EB9 0%, #e0316b 100%)', transform: 'skewX(-15deg)', display: 'flex' }} />
+        {/* Logo mark + wordmark */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '48px' }}>
+          {/* Slash mark — brand icon */}
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <div style={{
+              width: '14px', height: '58px',
+              background: 'linear-gradient(180deg, #2d2d86 0%, #f0494f 100%)',
+              transform: 'skewX(-12deg)',
+              display: 'flex',
+            }} />
+            <div style={{
+              width: '22px', height: '58px',
+              background: 'linear-gradient(180deg, #2d2d86 0%, #f0494f 100%)',
+              transform: 'skewX(-12deg)',
+              display: 'flex',
+            }} />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontSize: '42px', fontWeight: 900, color: '#ffffff', letterSpacing: '6px', display: 'flex' }}>INDIGO</span>
-            <span style={{ fontSize: '22px', fontWeight: 700, color: '#9b8fc0', letterSpacing: '10px', display: 'flex' }}>CARS</span>
+          {/* Wordmark */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}>
+            <span style={{ fontSize: '46px', fontWeight: 900, color: '#ffffff', letterSpacing: '4px', lineHeight: 1, display: 'flex' }}>INDIGO</span>
+            <span style={{ fontSize: '24px', fontWeight: 700, color: '#a89bc2', letterSpacing: '8px', lineHeight: 1, display: 'flex' }}>CARS</span>
           </div>
         </div>
 
         {/* Headline */}
-        <div style={{ fontSize: '58px', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, marginBottom: '24px', maxWidth: '820px', display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{
+          fontSize: '56px', fontWeight: 800, color: '#ffffff',
+          lineHeight: 1.15, marginBottom: '20px', maxWidth: '780px',
+          display: 'flex', flexWrap: 'wrap',
+        }}>
           Твоята кола от търга&nbsp;
-          <span style={{ color: '#9b5de5', display: 'flex' }}>директно до теб</span>
+          <span style={{ color: '#f0494f', display: 'flex' }}>директно до теб</span>
         </div>
 
         {/* Subline */}
-        <div style={{ fontSize: '26px', color: '#7a6fa0', marginBottom: '52px', maxWidth: '680px', display: 'flex' }}>
+        <div style={{
+          fontSize: '25px', color: '#7a6fa0',
+          marginBottom: '52px', maxWidth: '660px', display: 'flex',
+        }}>
           Поръчков внос от САЩ и Канада · Доставка до България и Европа
         </div>
 
         {/* URL badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(105,30,185,0.2)', border: '1px solid rgba(105,30,185,0.45)', borderRadius: '50px', padding: '10px 26px' }}>
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#691EB9', display: 'flex' }} />
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '10px',
+          background: 'rgba(45,45,134,0.25)',
+          border: '1px solid rgba(45,45,134,0.6)',
+          borderRadius: '50px', padding: '10px 26px',
+        }}>
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f0494f', display: 'flex' }} />
           <span style={{ color: '#c4b5fd', fontSize: '22px', display: 'flex' }}>indigocars.eu</span>
         </div>
       </div>
