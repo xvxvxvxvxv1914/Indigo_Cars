@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: '*', allow: '/', disallow: '/admin' },
-    sitemap: 'https://autoimport.bg/sitemap.xml',
+    rules: { userAgent: '*', allow: '/', disallow: ['/admin', '/admin/'] },
+    sitemap: 'https://indigocars.eu/sitemap.xml',
   };
 }

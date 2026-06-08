@@ -155,7 +155,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
 
             {/* Language switcher */}
             <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
-              {(['BG', 'EN', 'RU'] as const).map((l) => (
+              {(['BG', 'RO', 'EN'] as const).map((l) => (
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2.5 py-1 rounded text-xs font-bold transition-all"
                   style={lang === l
@@ -204,7 +204,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
           {/* Mobile toggle */}
           <div className="lg:hidden flex items-center gap-2">
             <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
-              {(['BG', 'EN', 'RU'] as const).map((l) => (
+              {(['BG', 'RO', 'EN'] as const).map((l) => (
                 <button key={l} onClick={() => setLang(l)}
                   className="px-2 py-0.5 rounded text-xs font-bold transition-all"
                   style={lang === l

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-type Lang = 'BG' | 'EN' | 'RU';
+type Lang = 'BG' | 'RO' | 'EN' | 'RU';
 
 const translations = {
   BG: {
@@ -135,6 +135,8 @@ const translations = {
       newInquiry: 'Изпратете ново запитване',
       footer: 'Консултацията е безплатна. Отговаряме в рамките на 24 часа.',
       error: 'Грешка при изпращане. Моля обадете се директно на телефона.',
+      gdprText: 'Съгласявам се с ',
+      gdprLink: 'Политиката за поверителност',
     },
     calculator: {
       label: 'Калкулатор',
@@ -341,6 +343,8 @@ const translations = {
       newInquiry: 'Send New Inquiry',
       footer: 'Consultation is free. We respond within 24 hours.',
       error: 'Error sending. Please call us directly.',
+      gdprText: 'I agree to the ',
+      gdprLink: 'Privacy Policy',
     },
     calculator: {
       label: 'Calculator',
@@ -547,6 +551,8 @@ const translations = {
       newInquiry: 'Отправить новый запрос',
       footer: 'Консультация бесплатна. Отвечаем в течение 24 часов.',
       error: 'Ошибка при отправке. Пожалуйста, позвоните нам напрямую.',
+      gdprText: 'Я соглашаюсь с ',
+      gdprLink: 'Политикой конфиденциальности',
     },
     calculator: {
       label: 'Калькулятор',
@@ -622,6 +628,214 @@ const translations = {
       cta: 'Начать сейчас',
     },
   },
+
+  RO: {
+    nav: {
+      home: 'Acasă',
+      services: 'Servicii',
+      howItWorks: 'Cum Funcționăm',
+      auctions: 'Licitații',
+      offers: 'Oferte',
+      whyUs: 'De Ce Noi',
+      testimonials: 'Recenzii',
+      faq: 'FAQ',
+      contact: 'Contact',
+      cta: 'Consultație Gratuită',
+      phone: 'Sunați-ne',
+    },
+    hero: {
+      label: 'Import comandat de la licitații din SUA și Canada',
+      h1a: 'MAȘINA TA',
+      h1b: 'DE LA LICITAȚIE',
+      h1c: 'LIVRATĂ',
+      h1d: 'LA TINE',
+      sub: 'Tu alegi mașina. Noi licitațiem, organizăm transportul și ne ocupăm de toate actele. Primești mașina direct — fără bătăi de cap, fără costuri ascunse.',
+      cta: 'Comandă o Mașină',
+      secondary: 'Cum Funcționăm',
+      scrollMore: 'Află Mai Mult',
+    },
+    stats: {
+      delivered: 'Mașini Livrate',
+      delivery: 'Zile Livrare',
+      transparent: 'Transparență',
+    },
+    howItWorks: {
+      label: 'Procesul',
+      title: 'Cum Funcționează',
+      titleAccent: 'Pas cu Pas',
+      sub: 'Un proces transparent și simplificat — noi ne ocupăm de tot ce e complex, tu alegi doar mașina.',
+      steps: [
+        { label: 'Solicitare', desc: 'Împărtășești cerințele și preferințele tale.' },
+        { label: 'Selecție și Ofertă', desc: 'Găsim cele mai bune opțiuni și îți oferim o ofertă.' },
+        { label: 'Achiziție', desc: 'Cumpărăm mașina la cel mai bun preț.' },
+        { label: 'Transport', desc: 'Transportăm mașina în Bulgaria.' },
+        { label: 'Vamă și Livrare', desc: 'Vămuire și livrare la tine.' },
+      ],
+    },
+    offers: {
+      label: 'Oferte Fierbinți',
+      title: 'Mașini actuale de la',
+      titleAccent: 'licitații americane',
+      sub: 'Alege direct din ofertele disponibile sau comandă un model specific la cerere.',
+      inquire: 'Solicitare',
+      noOffers: 'Nu există oferte active în acest moment.',
+      comingSoon: 'În Curând',
+      customOrder: 'Comandă Personalizată',
+    },
+    whyUs: {
+      label: 'De Ce Să Ne Alegi',
+      title: 'Nu doar import —',
+      titleAccent: 'serviciu complet',
+      sub: 'Suntem specializați exclusiv în importul de mașini din America. Aceasta este specializarea și pasiunea noastră. Cunoaștem fiecare detaliu al procesului și îți putem economisi mii de euro.',
+      cta: 'Vorbește cu un Expert',
+      stats: [
+        { label: 'Mașini Importate' },
+        { label: 'Ani pe Piață' },
+        { label: 'Clienți Mulțumiți' },
+        { label: 'Mai Ieftin decât Local' },
+      ],
+      reasons: [
+        { title: 'Acces Direct la Licitații', description: 'Avem conturi de dealer la Copart, IAAI și Manheim. Cumpărăm fără intermediari — prețuri mai mici pentru tine.' },
+        { title: 'Transparență Totală', description: 'Urmărești fiecare pas — de la licitație la livrare. Fotografii reale, documente reale, fără surprize.' },
+        { title: 'Livrare Garantată', description: 'Avem asigurare pe tot traseul. Ne asumăm responsabilitatea pentru mașina ta din momentul achiziției.' },
+        { title: 'Echipă Experimentată', description: 'Peste 10 ani de experiență în importul de mașini. Cunoaștem fiecare procedură, fiecare document, fiecare vamă.' },
+      ],
+    },
+    testimonials: {
+      label: 'Recenzii',
+      title: 'Ce Spun',
+      titleAccent: 'Clienții Noștri',
+      sub: 'Opinii reale de la persoane care au importat o mașină din SUA prin Indigo Cars.',
+      avgRating: 'Evaluare Medie',
+      happyClients: 'Clienți Mulțumiți',
+    },
+    faq: {
+      label: 'Întrebări și Răspunsuri',
+      title: 'Întrebări',
+      titleAccent: 'Frecvente',
+      sub: 'Găsește răspunsuri la cele mai frecvente întrebări. Nu găsești ce cauți? Contactează-ne.',
+      items: [
+        { q: 'Ce tipuri de mașini puteți importa?', a: 'Importăm orice tip de mașini — noi, second-hand, cu daune ușoare sau daune totale. Suntem specializați în mărci americane, dar importăm și japoneze, europene și orice altă marcă disponibilă la licitațiile americane.' },
+        { q: 'Cât costă importul unei mașini?', a: 'Costurile depind de prețul mașinii, tipul de transport și taxele vamale. De obicei costurile de transport și vamă variază între €1.500 și €3.500. Oferim un calcul complet în avans, fără taxe ascunse.' },
+        { q: 'Cât durează procesul?', a: 'De obicei, de la achiziție până la primirea mașinii sunt necesare 6–8 săptămâni. Vas de marfă până la Rotterdam — 3–4 săptămâni, vămuire — 1–2 săptămâni, transport în Bulgaria — 3–5 zile.' },
+        { q: 'Pot urmări livrarea?', a: 'Da, îți furnizăm un număr de urmărire a containerului. Te vom informa la fiecare pas cheie — achiziție, încărcare, plecare, sosire la Rotterdam, vamă, livrare la tine.' },
+        { q: 'Ce documente voi primi?', a: 'Primești Title-ul american (documentul de proprietate), Bill of Lading, CMR, declarații vamale și certificat COC pentru înmatriculare în UE. Tot ce este necesar pentru înmatriculare.' },
+        { q: 'Importați mașini cu daune?', a: 'Da, suntem specializați în mașini cu daune de la Copart și IAAI. Multe au doar daune cosmetice sau minore și sunt extrem de avantajoase. Putem organiza reparații la sosire dacă dorești.' },
+        { q: 'Lucrați cu clienți europeni din afara Bulgariei?', a: 'Da, importăm mașini pentru clienți din toată Europa. Rotterdam este hubul nostru central de unde distribuim în România, Germania, Austria, Franța și orice altă țară UE.' },
+        { q: 'Cum pot începe?', a: 'Contactează-ne telefonic sau prin formularul de contact. Vom face o consultație gratuită, vom discuta ce cauți și îți vom da o ofertă exactă fără obligații.' },
+      ],
+    },
+    contact: {
+      label: 'Contactează-ne',
+      title: 'Ești gata să găsești',
+      titleAccent: 'mașina visurilor tale?',
+      sub: 'Consultația este complet gratuită și fără obligații. Spune-ne ce cauți și vom găsi cea mai bună ofertă pentru tine.',
+      infoTitle: 'Informații de Contact',
+      phoneLabel: 'Telefon',
+      emailLabel: 'Email',
+      addressLabel: 'Adresă',
+      hoursTitle: 'Program de Lucru',
+      hours: [
+        { day: 'Luni — Vineri', hours: '09:00 — 18:00' },
+        { day: 'Sâmbătă', hours: '10:00 — 15:00' },
+        { day: 'Duminică', hours: 'Închis' },
+      ],
+      freeEval: 'Evaluare Gratuită',
+      savings: 'Cât vei economisi?',
+      formTitle: 'Solicitare Mașină',
+      name: 'Numele Tău',
+      namePlaceholder: 'Ion Ionescu',
+      phonePlaceholder: '+40 7XX XXX XXX',
+      car: 'Mașina Dorită',
+      carPlaceholder: 'ex. BMW X5 2020, Ford Mustang...',
+      budget: 'Buget',
+      budgetDefault: 'Selectează bugetul',
+      message: 'Informații Suplimentare',
+      messagePlaceholder: 'Spune-ne mai multe despre mașina dorită...',
+      send: 'Trimite Solicitarea',
+      sending: 'Se trimite...',
+      sent: 'Mesaj Trimis!',
+      sentSub: 'Te vom contacta în 24 de ore. Așteaptă un apel sau email.',
+      newInquiry: 'Trimite o Nouă Solicitare',
+      footer: 'Consultația este gratuită. Răspundem în 24 de ore.',
+      error: 'Eroare la trimitere. Te rugăm să ne suni direct.',
+      gdprText: 'Sunt de acord cu ',
+      gdprLink: 'Politica de Confidențialitate',
+    },
+    calculator: {
+      label: 'Calculator',
+      title: 'Calculează',
+      titleAccent: 'toate costurile',
+      sub: 'Estimare aproximativă a costurilor de import din SUA până la garajul tău.',
+      priceLabel: 'Preț Licitație (USD)',
+      fuelLabel: 'Tip Combustibil',
+      fuels: [
+        { key: 'petrol', label: 'Benzină', emoji: '⛽' },
+        { key: 'diesel', label: 'Diesel', emoji: '🛢' },
+        { key: 'electric', label: 'Electric', emoji: '⚡' },
+      ],
+      savingsText: 'Economisești aproximativ',
+      savingsSub: 'față de cumpărarea de la un dealer bulgar',
+      totalLabel: 'Total (aprox.)',
+      ctaButton: 'Solicită Ofertă Exactă',
+      disclaimer: '* Estimare aproximativă. Prețul exact depinde de model, an și cursurile de schimb actuale.',
+      rows: [
+        { label: 'Prețul Mașinii', info: 'Convertit din USD la cursul actual' },
+        { label: 'Taxă Licitație', info: 'Taxa standard Copart/IAAI' },
+        { label: 'Transport SUA', info: 'De la licitație la port' },
+        { label: 'Transport Maritim', info: 'SUA → Rotterdam, 20–30 zile' },
+        { label: 'Asigurare', info: '~1.5% din valoarea mașinii' },
+        { label: 'Procesare Rotterdam', info: 'Taxe portuare, documente UE' },
+        { label: 'Taxă Vamală (6.5%)', info: 'Tariful UE pentru importuri din SUA' },
+        { label: 'Accize', info: 'Depinde de tipul de combustibil' },
+        { label: 'TVA (20%)', info: 'Pe baza totală de impozitare' },
+        { label: 'Taxă de Serviciu', info: 'Organizare, documente, livrare' },
+      ],
+    },
+    routeMap: {
+      label: 'Rută',
+      title: 'De la licitație la',
+      titleAccent: 'garajul tău',
+      sub: 'Asigurăm un coridor de transport complet din porturile americane până în orice punct din Bulgaria și Europa.',
+      stops: [
+        { city: 'SUA', sub: 'Copart / IAAI', flag: '🇺🇸' },
+        { city: 'Rotterdam', sub: 'Hub UE', flag: '🇳🇱' },
+        { city: 'Bulgaria', sub: 'Livrare la tine', flag: '🇧🇬' },
+      ],
+      timeline: [
+        { label: 'Pregătire', days: '7–10 zile' },
+        { label: 'Transport Maritim', days: '20–30 zile' },
+        { label: 'Vamă', days: '5–10 zile' },
+        { label: 'Livrare Finală', days: '3–5 zile' },
+      ],
+      durations: ['20–30 zile', '7–14 zile'],
+      total: 'Total:',
+      totalDays: '45–60 zile',
+      totalSuffix: 'de la comandă la livrare',
+    },
+    partners: {
+      label: 'Parteneri de Încredere',
+      title: 'Acces Direct la',
+      titleAccent: 'Licitațiile de Top',
+    },
+    footer: {
+      description: 'Specializați în importul de mașini de la licitații americane și canadiene. Livrăm în Bulgaria și toată Europa cu servicii complete de documentație.',
+      services: 'Servicii',
+      info: 'Informații',
+      contacts: 'Contacte',
+      copyright: 'Indigo Cars. Toate drepturile rezervate.',
+      privacy: 'Politica de Confidențialitate',
+      terms: 'Termeni și Condiții',
+      serviceLinks: ['Căutare și Selecție', 'Participare la Licitație', 'Transport Maritim', 'Vămuire', 'Livrare la Domiciliu'],
+      infoLinks: ['Cum Funcționăm', 'Oferte Fierbinți', 'De Ce Noi', 'Recenzii', 'FAQ'],
+    },
+    ctaBanner: {
+      badge: 'Consultație Gratuită',
+      title: 'Ești gata să comanzi mașina ta?',
+      sub: 'Contactează-ne și primește o estimare gratuită în 24 de ore. Fără obligații.',
+      cta: 'Începe Acum',
+    },
+  },
 };
 
 const LangContext = createContext<{
@@ -635,9 +849,21 @@ const LangContext = createContext<{
 });
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>('BG');
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('lang') as Lang;
+      if (saved && ['BG', 'RO', 'EN', 'RU'].includes(saved)) return saved;
+    }
+    return 'BG';
+  });
+
+  const handleSetLang = (l: Lang) => {
+    setLang(l);
+    if (typeof window !== 'undefined') localStorage.setItem('lang', l);
+  };
+
   return (
-    <LangContext.Provider value={{ lang, setLang, t: translations[lang] }}>
+    <LangContext.Provider value={{ lang, setLang: handleSetLang, t: translations[lang] }}>
       {children}
     </LangContext.Provider>
   );

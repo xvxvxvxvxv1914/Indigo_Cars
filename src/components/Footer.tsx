@@ -31,8 +31,8 @@ export default function Footer() {
                 </svg>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-display text-xl text-white tracking-wider">AUTO</span>
-                <span className="font-display text-xl text-primary-400 tracking-wider">IMPORT</span>
+                <span className="font-display text-xl text-white tracking-wider">INDIGO</span>
+                <span className="font-display text-xl text-primary-400 tracking-wider">CARS</span>
               </div>
             </div>
             <p className="text-dark-300 text-sm leading-relaxed mb-6">{t.footer.description}</p>
@@ -84,7 +84,7 @@ export default function Footer() {
             <div className="space-y-3">
               {[
                 { icon: Phone, value: '—', href: '#' },
-                { icon: Mail, value: 'info@autoimport.bg', href: 'mailto:info@autoimport.bg' },
+                { icon: Mail, value: 'info@indigocars.eu', href: 'mailto:info@indigocars.eu' },
                 { icon: MapPin, value: 'бул. Цариградско шосе 100, София 1784', href: '#' },
               ].map(({ icon: Icon, value, href }) => (
                 <a key={value} href={href} className="flex items-start gap-3 text-dark-300 hover:text-white transition-colors">
@@ -103,8 +103,8 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <div className="flex gap-4 text-xs" style={{ color: '#403f90' }}>
-            <a href="#" className="hover:text-dark-300 transition-colors">{t.footer.privacy}</a>
-            <a href="#" className="hover:text-dark-300 transition-colors">{t.footer.terms}</a>
+            <a href="/privacy" className="hover:text-dark-300 transition-colors">{t.footer.privacy}</a>
+            <a href="/terms" className="hover:text-dark-300 transition-colors">{t.footer.terms}</a>
           </div>
         </div>
       </div>

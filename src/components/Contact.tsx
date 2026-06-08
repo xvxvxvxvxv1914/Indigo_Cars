@@ -68,7 +68,7 @@ export default function Contact() {
 
   const contactItems = [
     { icon: Phone, label: t.contact.phoneLabel, value: '—', href: '#' },
-    { icon: Mail, label: t.contact.emailLabel, value: 'info@autoimport.bg', href: 'mailto:info@autoimport.bg' },
+    { icon: Mail, label: t.contact.emailLabel, value: 'info@indigocars.eu', href: 'mailto:info@indigocars.eu' },
     { icon: MapPin, label: t.contact.addressLabel, value: 'бул. Цариградско шосе 100, София', href: '#' },
   ];
 
@@ -193,6 +193,16 @@ export default function Contact() {
                   <label className="block text-dark-300 text-xs uppercase tracking-wider mb-1.5">{t.contact.message}</label>
                   <textarea rows={4} placeholder={t.contact.messagePlaceholder} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputClass + ' resize-none'} style={inputStyle} />
                 </div>
+
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input type="checkbox" required className="mt-0.5 w-4 h-4 rounded accent-primary-500 flex-shrink-0" />
+                  <span className="text-dark-300 text-xs leading-relaxed">
+                    {t.contact.gdprText}
+                    <a href="/privacy" className="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors">
+                      {t.contact.gdprLink}
+                    </a>
+                  </span>
+                </label>
 
                 <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 font-semibold py-4 rounded-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:opacity-90 hover:-translate-y-0.5" style={{ background: 'var(--cta-grad)', color: 'var(--cta-text)' }}>
                   {loading ? (

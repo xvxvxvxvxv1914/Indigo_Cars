@@ -5,8 +5,9 @@ import { MessageCircle } from 'lucide-react';
 export default function WhatsAppButton() {
   return (
     <a
-      href="#contact"
-      onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+      href="https://wa.me/359XXXXXXXXX?text=Здравейте%2C%20имам%20запитване%20за%20автомобил"
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label="Свържете се с нас"
       className="fixed right-5 z-50 flex items-center justify-center w-14 h-14 rounded-full bottom-24 md:bottom-6"
       style={{ background: '#25d366', boxShadow: '0 4px 20px rgba(37,211,102,0.4)' }}
