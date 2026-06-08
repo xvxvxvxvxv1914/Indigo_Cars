@@ -2,13 +2,12 @@
 
 import { Home, Car, Building2, MessageCircle, Shield } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useLang } from '../context/LangContext';
 
 export default function BottomNav() {
   const { t } = useLang();
   const pathname = usePathname();
-  const router = useRouter();
 
   const navItems = [
     { icon: Home,         label: t.nav.home,    href: '#hero',     type: 'scroll' },
@@ -20,7 +19,7 @@ export default function BottomNav() {
 
   const handleScroll = (href: string) => {
     if (pathname !== '/') {
-      router.push('/' + href);
+      window.location.href = '/' + href;
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     }
