@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Edit2, Trash2, LogOut, Eye, EyeOff, X, Save, Image } from 'lucide-react';
+import { Plus, Edit2, Trash2, LogOut, Eye, EyeOff, X, Save, Image, Upload } from 'lucide-react';
 import { supabase, HotOffer } from '../lib/supabase';
 
 type FormState = Omit<HotOffer, 'id' | 'created_at'>;
@@ -31,6 +31,7 @@ export default function Admin() {
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(emptyForm);
   const [imageUrl, setImageUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [saveError, setSaveError] = useState('');
@@ -126,6 +127,29 @@ export default function Admin() {
 
   function removeImage(idx: number) {
     setForm((f) => ({ ...f, images: (f.images || []).filter((_, i) => i !== idx) }));
+  }
+
+  async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    setUploading(true);
+    try {
+      const urls: string[] = [];
+      for (const file of Array.from(files)) {
+        const ext = file.name.split('.').pop();
+        const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+        const { error } = await supabase.storage.from('offer-images').upload(path, file, { upsert: false });
+        if (error) throw error;
+        const { data } = supabase.storage.from('offer-images').getPublicUrl(path);
+        urls.push(data.publicUrl);
+      }
+      setForm((f) => ({ ...f, images: [...(f.images || []), ...urls] }));
+    } catch {
+      setSaveError('Грешка при качване. Опитайте отново.');
+    } finally {
+      setUploading(false);
+      e.target.value = '';
+    }
   }
 
   async function handleLogout() {
@@ -268,12 +292,38 @@ export default function Admin() {
               {/* Images */}
               <div className="md:col-span-2">
                 <label className="block text-dark-300 text-xs uppercase tracking-wider mb-1.5">
-                  Снимки (URL адреси)
+                  Снимки
                 </label>
+
+                {/* Upload from computer */}
+                <label
+                  className="flex items-center justify-center gap-2 w-full py-4 rounded-lg cursor-pointer transition-all mb-3 text-sm font-medium"
+                  style={{
+                    background: uploading ? 'rgba(105,30,185,0.1)' : 'rgba(105,30,185,0.06)',
+                    border: '2px dashed rgba(105,30,185,0.35)',
+                    color: uploading ? '#a78bfa' : '#D5C6E0',
+                  }}
+                >
+                  {uploading ? (
+                    <><div className="w-4 h-4 border-2 border-[#691EB9] border-t-transparent rounded-full animate-spin" /> Качване...</>
+                  ) : (
+                    <><Upload size={15} /> Качи снимки от компютъра</>
+                  )}
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    multiple
+                    className="hidden"
+                    onChange={handleFileUpload}
+                    disabled={uploading}
+                  />
+                </label>
+
+                {/* Or add by URL */}
                 <div className="flex gap-2 mb-3">
                   <input
                     type="url"
-                    placeholder="https://..."
+                    placeholder="или добави URL адрес на снимка..."
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addImage())}
