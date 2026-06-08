@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Phone, Sun, Moon, Building2 } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useMagnetic } from '../lib/useMagnetic';
@@ -25,7 +25,6 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const router = useRouter();
   const pathname = usePathname();
   const magCta = useMagnetic(0.3);
   const isLight = theme === 'light';
