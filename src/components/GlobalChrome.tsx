@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useMemo } from 'react';
+import { usePathname } from 'next/navigation';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 import CookieConsent from './CookieConsent';
@@ -107,10 +108,12 @@ function NavDots() {
 }
 
 export default function GlobalChrome() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   return (
     <>
       <ScrollProgressBar />
-      <NavDots />
+      {isHome && <NavDots />}
       <CookieConsent />
     </>
   );
