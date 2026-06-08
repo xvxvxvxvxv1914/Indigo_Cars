@@ -63,7 +63,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     if (pathname !== '/') {
-      router.push('/' + href);
+      window.location.href = '/' + href;
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     }
