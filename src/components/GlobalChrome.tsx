@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
+import CookieConsent from './CookieConsent';
 
 function ScrollProgressBar() {
   const barRef = useRef<HTMLDivElement>(null);
@@ -110,6 +111,7 @@ export default function GlobalChrome() {
     <>
       <ScrollProgressBar />
       <NavDots />
+      <CookieConsent />
     </>
   );
 }

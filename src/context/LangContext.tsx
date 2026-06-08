@@ -84,6 +84,12 @@ const translations = {
       sub: 'Реални мнения от хора, внесли автомобил от САЩ чрез Indigo Cars.',
       avgRating: 'Средна оценка',
       happyClients: 'Доволни клиенти',
+      items: [
+        { name: 'Мартин Георгиев', location: 'София', rating: 5, car: 'Ford Mustang GT 2019', text: 'Невероятна услуга! Поръчах Mustang от Copart и целият процес мина гладко. Получих колата за точно 7 седмици. Спестих над 8000 лв спрямо цените в България. Горещо препоръчвам!', avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Ивелина Стоянова', location: 'Варна', rating: 5, car: 'BMW X5 2021', text: 'Много доволна от работата им. Намериха ми точно BMWто, което исках. Документите бяха наред, митницата мина без проблеми. Сега шофирам мечтата си!', avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Стефан Николов', location: 'Пловдив', rating: 5, car: 'Tesla Model 3 2022', text: 'Внесоха ми Tesla Model 3 от Канада. Цялото обслужване беше на ниво. Проследявах контейнера онлайн. Никакви скрити такси, точно каквото уговорихме.', avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Деян Петров', location: 'Бургас', rating: 5, car: 'Chevrolet Camaro 2020', text: 'Три пъти съм ползвал услугите им — всеки път перфектно. Последно внесоха Camaro SS. Екипът е много компетентен и отзивчив. Само добри думи!', avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+      ],
     },
     faq: {
       label: 'Въпроси и отговори',
@@ -211,6 +217,12 @@ const translations = {
       sub: 'Свържете се с нас и получете безплатна оценка в рамките на 24 часа. Без ангажимент.',
       cta: 'Поръчай сега',
     },
+    cookieConsent: {
+      text: 'Използваме бисквитки за подобряване на вашето изживяване. С продължаването на използването на сайта се съгласявате с нашата ',
+      privacyLink: 'Политика за поверителност',
+      accept: 'Приемам',
+      decline: 'Откажи',
+    },
   },
 
   EN: {
@@ -292,6 +304,12 @@ const translations = {
       sub: 'Real feedback from people who imported their car from the USA through Indigo Cars.',
       avgRating: 'Average Rating',
       happyClients: 'Happy Clients',
+      items: [
+        { name: 'Martin Georgiev', location: 'Sofia', rating: 5, car: 'Ford Mustang GT 2019', text: 'Amazing service! I ordered a Mustang from Copart and the whole process went smoothly. Got the car in exactly 7 weeks. Saved over €4,000 compared to local prices. Highly recommend!', avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Ivelina Stoyanova', location: 'Varna', rating: 5, car: 'BMW X5 2021', text: 'Very satisfied with their work. They found exactly the BMW I wanted. All documents were in order, customs went without issues. Now I\'m driving my dream car!', avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Stefan Nikolov', location: 'Plovdiv', rating: 5, car: 'Tesla Model 3 2022', text: 'They imported a Tesla Model 3 from Canada for me. The whole service was top-notch. I tracked the container online. No hidden fees, exactly as agreed.', avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Deyan Petrov', location: 'Burgas', rating: 5, car: 'Chevrolet Camaro 2020', text: 'I have used their services three times — perfect every time. Last time they imported a Camaro SS. The team is very competent and responsive. Only good words!', avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+      ],
     },
     faq: {
       label: 'FAQ',
@@ -419,6 +437,12 @@ const translations = {
       sub: 'Contact us and get a free estimate within 24 hours. No obligation.',
       cta: 'Get Started',
     },
+    cookieConsent: {
+      text: 'We use cookies to improve your experience. By continuing to use this site, you agree to our ',
+      privacyLink: 'Privacy Policy',
+      accept: 'Accept',
+      decline: 'Decline',
+    },
   },
 
   RU: {
@@ -500,6 +524,12 @@ const translations = {
       sub: 'Реальные отзывы людей, импортировавших автомобиль из США через Indigo Cars.',
       avgRating: 'Средняя оценка',
       happyClients: 'Довольных клиентов',
+      items: [
+        { name: 'Мартин Георгиев', location: 'София', rating: 5, car: 'Ford Mustang GT 2019', text: 'Невероятный сервис! Заказал Mustang на Copart, и весь процесс прошёл гладко. Получил машину ровно через 7 недель. Сэкономил более €4000. Горячо рекомендую!', avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Ивелина Стоянова', location: 'Варна', rating: 5, car: 'BMW X5 2021', text: 'Очень довольна их работой. Нашли именно ту BMW, которую я хотела. Все документы в порядке, таможня прошла без проблем. Теперь я езжу на машине мечты!', avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Стефан Николов', location: 'Пловдив', rating: 5, car: 'Tesla Model 3 2022', text: 'Привезли мне Tesla Model 3 из Канады. Весь сервис на высшем уровне. Отслеживал контейнер онлайн. Никаких скрытых платежей, ровно как договорились.', avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Деян Петров', location: 'Бургас', rating: 5, car: 'Chevrolet Camaro 2020', text: 'Трижды пользовался их услугами — каждый раз идеально. Последний раз привезли Camaro SS. Команда очень компетентная и отзывчивая. Только хорошие слова!', avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+      ],
     },
     faq: {
       label: 'Вопросы и ответы',
@@ -627,6 +657,12 @@ const translations = {
       sub: 'Свяжитесь с нами и получите бесплатную оценку в течение 24 часов. Без обязательств.',
       cta: 'Начать сейчас',
     },
+    cookieConsent: {
+      text: 'Мы используем файлы cookie для улучшения вашего опыта. Продолжая использовать сайт, вы соглашаетесь с нашей ',
+      privacyLink: 'Политикой конфиденциальности',
+      accept: 'Принять',
+      decline: 'Отклонить',
+    },
   },
 
   RO: {
@@ -708,6 +744,12 @@ const translations = {
       sub: 'Opinii reale de la persoane care au importat o mașină din SUA prin Indigo Cars.',
       avgRating: 'Evaluare Medie',
       happyClients: 'Clienți Mulțumiți',
+      items: [
+        { name: 'Andrei Popescu', location: 'București', rating: 5, car: 'BMW X5 2021', text: 'Serviciu excelent! Am comandat un BMW X5 și totul a decurs perfect. Documentele au fost în ordine, vama a trecut fără probleme. Am economisit peste 5.000€ față de prețurile locale. Recomand cu căldură!', avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Ion Marinescu', location: 'Cluj-Napoca', rating: 5, car: 'Ford Mustang GT 2019', text: 'Am comandat un Mustang din SUA și am beneficiat de transparență totală. Am urmărit containerul online, nu au existat taxe ascunse. Mașina a ajuns în 7 săptămâni, exact cum au promis!', avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Elena Constantin', location: 'Timișoara', rating: 5, car: 'Tesla Model 3 2022', text: 'Mi-au importat un Tesla Model 3 din Canada. Serviciul complet a fost de top. Am monitorizat containerul online. Nicio taxă ascunsă, exact cum am convenit. Îi recomand tuturor!', avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+        { name: 'Mihai Dumitrescu', location: 'Iași', rating: 5, car: 'Chevrolet Camaro 2020', text: 'Am folosit serviciile lor de două ori — de fiecare dată perfect. Ultima dată au importat un Camaro SS pentru mine. Echipa este foarte competentă și receptivă. Numai vorbe bune!', avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop' },
+      ],
     },
     faq: {
       label: 'Întrebări și Răspunsuri',
@@ -834,6 +876,12 @@ const translations = {
       title: 'Ești gata să comanzi mașina ta?',
       sub: 'Contactează-ne și primește o estimare gratuită în 24 de ore. Fără obligații.',
       cta: 'Începe Acum',
+    },
+    cookieConsent: {
+      text: 'Folosim cookie-uri pentru a îmbunătăți experiența dvs. Continuând să utilizați site-ul, sunteți de acord cu ',
+      privacyLink: 'Politica de Confidențialitate',
+      accept: 'Accept',
+      decline: 'Refuz',
     },
   },
 };

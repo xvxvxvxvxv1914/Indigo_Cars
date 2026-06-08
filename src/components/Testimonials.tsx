@@ -4,43 +4,9 @@ import { Star, Quote } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useScrollReveal } from '../lib/useScrollReveal';
 
-const testimonials = [
-  {
-    name: 'Мартин Георгиев',
-    location: 'София',
-    rating: 5,
-    car: 'Ford Mustang GT 2019',
-    text: 'Невероятна услуга! Поръчах Mustang от Copart и целият процес мина гладко. Получих колата за точно 7 седмици. Спестих над 8000 лв спрямо цените в България. Горещо препоръчвам!',
-    avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-  },
-  {
-    name: 'Ивелина Стоянова',
-    location: 'Варна',
-    rating: 5,
-    car: 'BMW X5 2021',
-    text: 'Много доволна от работата им. Намериха ми точно BMWто, което исках. Документите бяха наред, митницата мина без проблеми. Сега шофирам мечтата си!',
-    avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-  },
-  {
-    name: 'Стефан Николов',
-    location: 'Пловдив',
-    rating: 5,
-    car: 'Tesla Model 3 2022',
-    text: 'Внесоха ми Tesla Model 3 от Канада. Цялото обслужване беше на ниво. Проследявах контейнера онлайн. Никакви скрити такси, точно каквото уговорихме.',
-    avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-  },
-  {
-    name: 'Деян Петров',
-    location: 'Бургас',
-    rating: 5,
-    car: 'Chevrolet Camaro 2020',
-    text: 'Три пъти съм ползвал услугите им — всеки път перфектно. Последно внесоха Camaro SS. Екипът е много компетентен и отзивчив. Само добри думи!',
-    avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-  },
-];
-
 export default function Testimonials() {
   const { t } = useLang();
+  const testimonials = t.testimonials.items;
   const sectionRef = useScrollReveal({ threshold: 0, rootMargin: '0px 0px -50px 0px', stagger: 100 });
 
   return (

@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
+    alternateLocale: ['ro_RO', 'en_US'],
     url: 'https://indigocars.eu',
     siteName: 'Indigo Cars',
     title: 'Indigo Cars — Твоята кола от търга директно до теб',

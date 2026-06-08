@@ -47,13 +47,12 @@ export default function Contact() {
     setLoading(true);
     setError('');
     try {
-      const { supabase } = await import('../lib/supabase');
-      const { error: dbError } = await supabase.from('contact_inquiries').insert([{
-        name: form.name, phone: form.phone, email: form.email || null,
-        car: form.car || null, budget: form.budget || null, message: form.message,
-      }]);
-      if (dbError) throw dbError;
-      setError('');
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Request failed');
       setSubmitted(true);
     } catch (err) {
       console.error('Contact form error:', err);
@@ -115,7 +114,7 @@ export default function Contact() {
                 {t.contact.hours.map(({ day, hours }) => (
                   <div key={day} className="flex justify-between">
                     <span className="text-dark-300">{day}</span>
-                    <span className={hours === 'Затворено' || hours === 'Closed' || hours === 'Закрыто' ? 'text-dark-500' : 'text-white'}>{hours}</span>
+                    <span className={['Затворено', 'Closed', 'Закрыто', 'Închis'].includes(hours) ? 'text-dark-500' : 'text-white'}>{hours}</span>
                   </div>
                 ))}
               </div>
