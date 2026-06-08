@@ -66,7 +66,7 @@ export async function POST(request: Request) {
       headers: { 'Authorization': `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: 'leads@indigocars.eu',
-        to: 'info@indigocars.eu',
+        to: 'indigocars@atomicmail.io',
         subject: `Ново запитване${car ? ` — ${car}` : ''} от ${name}`,
         html,
       }),
