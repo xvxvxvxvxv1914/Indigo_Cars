@@ -41,7 +41,7 @@ function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
 
   return (
     <div className="-mx-4 sm:mx-0 overflow-x-auto sm:overflow-x-visible pb-3 snap-x snap-mandatory sm:snap-none">
-      <div className="flex gap-3 pl-4 pr-4 w-max sm:w-auto sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:gap-4">
+      <div className="flex gap-3 pl-4 pr-4 w-max sm:w-auto sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-5">
       {DEMO_OFFERS.map((offer, i) => (
         <div
           key={i}
@@ -50,7 +50,7 @@ function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
           onMouseMove={onTiltMove}
           onMouseLeave={onTiltLeave}
         >
-          <div className="relative h-36 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
+          <div className="relative h-52 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
             <img
               src={offer.image}
               alt={offer.title}
@@ -142,10 +142,10 @@ export default function HotOffers() {
 
         {loading ? (
           <div className="-mx-4 sm:mx-0 overflow-x-auto sm:overflow-x-visible pb-3">
-            <div className="flex gap-3 pl-4 pr-4 w-max sm:w-auto sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:gap-4">
+            <div className="flex gap-3 pl-4 pr-4 w-max sm:w-auto sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-5">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="rounded-2xl overflow-hidden flex flex-col animate-pulse flex-shrink-0 w-[80vw] sm:w-auto" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-                <div className="h-36" style={{ background: 'var(--bg-card-hover)' }} />
+                <div className="h-52" style={{ background: 'var(--bg-card-hover)' }} />
                 <div className="p-4 flex flex-col gap-3">
                   <div className="h-3 rounded-full w-4/5" style={{ background: '#2e1858' }} />
                   <div className="h-3 rounded-full w-1/2" style={{ background: '#2e1858' }} />
@@ -160,7 +160,7 @@ export default function HotOffers() {
           <DemoOfferCards t={t} />
         ) : (
           <div className="-mx-4 sm:mx-0 overflow-x-auto sm:overflow-x-visible pb-3 snap-x snap-mandatory sm:snap-none">
-            <div className="flex gap-3 pl-4 pr-4 w-max sm:w-auto sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:gap-4">
+            <div className="flex gap-3 pl-4 pr-4 w-max sm:w-auto sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-5">
             {offers.map((offer) => (
               <div
                 key={offer.id}
@@ -170,7 +170,7 @@ export default function HotOffers() {
                 onMouseLeave={onTiltLeave}
               >
                 {/* Image */}
-                <div className="relative h-36 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
+                <div className="relative h-52 overflow-hidden" style={{ background: 'var(--bg-main)' }}>
                   {(offer.images?.length ?? 0) > 0 ? (
                     <img
                       src={offer.images![0]}
