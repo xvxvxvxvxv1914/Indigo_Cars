@@ -303,7 +303,7 @@ export default function B2B() {
               {[
                 { icon: Building2, title: { BG: 'За дилъри', EN: 'For Dealers', RU: 'Для дилеров' }, desc: { BG: 'Изкупуваме партиди от 1 до 50+ автомобила на месец.', EN: 'We source 1 to 50+ vehicles per month.', RU: 'Выкупаем партии от 1 до 50+ авто в месяц.' } },
                 { icon: Shield,    title: { BG: 'Гарантирани цени', EN: 'Guaranteed Prices', RU: 'Гарантированные цены' }, desc: { BG: 'Без скрити комисионни — само договорената цена.', EN: 'No hidden commissions — only the agreed price.', RU: 'Без скрытых комиссий — только оговорённая цена.' } },
-                { icon: Globe,     title: { BG: '🇺🇸 🇨🇦 🇰🇷  Три държави', EN: '🇺🇸 🇨🇦 🇰🇷  Three Countries', RU: '🇺🇸 🇨🇦 🇰🇷  Три страны' }, desc: { BG: 'Изкупуваме от търгове в САЩ, Канада и Корея.', EN: 'We source from auctions in the USA, Canada and Korea.', RU: 'Выкупаем с аукционов в США, Канаде и Корее.' } },
+                { icon: Globe,     title: { BG: 'Три държави', EN: 'Three Countries', RU: 'Три страны' }, desc: { BG: '🇺🇸 САЩ · 🇨🇦 Канада · 🇰🇷 Корея', EN: '🇺🇸 USA · 🇨🇦 Canada · 🇰🇷 Korea', RU: '🇺🇸 США · 🇨🇦 Канада · 🇰🇷 Корея' } },
                 { icon: Car,       title: { BG: 'Всякакви марки', EN: 'All Brands', RU: 'Все марки' }, desc: { BG: 'Ford, BMW, Mercedes, Tesla, Jeep и много други.', EN: 'Ford, BMW, Mercedes, Tesla, Jeep and many more.', RU: 'Ford, BMW, Mercedes, Tesla, Jeep и многие другие.' } },
               ].map(({ icon: Icon, title, desc }, i) => (
                 <div key={i} className="animate-on-scroll gradient-border-card rounded-xl p-5">
