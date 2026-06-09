@@ -100,10 +100,10 @@ export default function Footer() {
 
       <div style={{ borderTop: '1px solid var(--border)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-24 md:pb-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-sm" style={{ color: '#403f90' }}>
+          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
             &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
-          <div className="flex gap-4 text-xs" style={{ color: '#403f90' }}>
+          <div className="flex gap-4 text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>
             <a href="/privacy" className="hover:text-dark-300 transition-colors">{t.footer.privacy}</a>
             <a href="/terms" className="hover:text-dark-300 transition-colors">{t.footer.terms}</a>
           </div>

@@ -125,6 +125,8 @@ export default function Contact() {
                 src="https://images.pexels.com/photos/3764984/pexels-photo-3764984.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop"
                 alt="Car transport"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 flex items-center px-6" style={{ background: 'linear-gradient(to right, rgba(14,0,43,0.82), transparent)' }}>
                 <div>

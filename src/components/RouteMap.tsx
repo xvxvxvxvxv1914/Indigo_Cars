@@ -212,18 +212,18 @@ export default function RouteMap() {
                 <button
                   onClick={() => setZoom(z => Math.min(z * 1.5, 12))}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold transition-all hover:scale-110"
-                  style={{ background: 'rgba(105,30,185,0.3)', border: '1px solid rgba(105,30,185,0.5)', color: '#4a158a' }}
+                  style={{ background: 'rgba(105,30,185,0.9)', border: '1px solid rgba(192,132,252,0.6)', color: 'white' }}
                 >+</button>
                 <button
                   onClick={() => setZoom(z => Math.max(z / 1.5, 1))}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold transition-all hover:scale-110"
-                  style={{ background: 'rgba(105,30,185,0.3)', border: '1px solid rgba(105,30,185,0.5)', color: '#4a158a' }}
+                  style={{ background: 'rgba(105,30,185,0.9)', border: '1px solid rgba(192,132,252,0.6)', color: 'white' }}
                 >−</button>
                 {zoom > 1 && (
                   <button
                     onClick={() => { setZoom(1); setCenter([-12, 52]); }}
                     className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all hover:scale-110"
-                    style={{ background: 'rgba(105,30,185,0.2)', border: '1px solid rgba(105,30,185,0.4)', color: '#E7E4F0' }}
+                    style={{ background: 'rgba(105,30,185,0.9)', border: '1px solid rgba(192,132,252,0.6)', color: 'white' }}
                     title="Reset"
                   >⊙</button>
                 )}

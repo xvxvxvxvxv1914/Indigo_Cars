@@ -201,11 +201,11 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
           </div>
 
           {/* Mobile toggle */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-1.5">
             <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
               {(['BG', 'RO', 'EN', 'RU'] as const).map((l) => (
                 <button key={l} onClick={() => setLang(l)}
-                  className="px-2 py-0.5 rounded text-xs font-bold transition-all"
+                  className="px-1.5 py-1 rounded text-xs font-bold transition-all"
                   style={lang === l
                     ? { background: 'linear-gradient(135deg, #691EB9, #4a158a)', color: 'white' }
                     : { color: navText }}
