@@ -1,0 +1,219 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "howItWorks": "How It Works",
+    "auctions": "Auctions",
+    "offers": "Offers",
+    "whyUs": "Why Us",
+    "testimonials": "Reviews",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Free Consultation",
+    "phone": "Call Us"
+  },
+  "hero": {
+    "label": "Custom car import from US & Canada auctions",
+    "h1a": "YOUR CAR",
+    "h1b": "FROM THE AUCTION",
+    "h1c": "DELIVERED",
+    "h1d": "TO YOU",
+    "sub": "You choose the car. We bid at the auction, arrange transport, and handle all paperwork. Your car arrives directly to you — no hassle, no hidden costs.",
+    "cta": "Order a Car",
+    "secondary": "How It Works",
+    "scrollMore": "Learn More"
+  },
+  "stats": {
+    "delivered": "Cars Delivered",
+    "delivery": "Days Delivery",
+    "transparent": "Transparency"
+  },
+  "howItWorks": {
+    "label": "The Process",
+    "title": "How It Works",
+    "titleAccent": "Step by Step",
+    "sub": "A transparent and simplified process — we handle all the complexity, you just choose your car.",
+    "steps": [
+      { "label": "Inquiry", "desc": "Share your requirements and preferences." },
+      { "label": "Selection & Quote", "desc": "We find the best options and provide a quote." },
+      { "label": "Purchase", "desc": "We purchase the car at the best price." },
+      { "label": "Shipping", "desc": "We transport the car to Bulgaria." },
+      { "label": "Customs & Delivery", "desc": "Customs clearance and delivery to you." }
+    ]
+  },
+  "offers": {
+    "label": "Hot Offers",
+    "title": "Current cars from",
+    "titleAccent": "US auctions",
+    "sub": "Choose directly from available listings or order a specific model on request.",
+    "inquire": "Inquire",
+    "noOffers": "No active offers at the moment.",
+    "comingSoon": "Coming Soon",
+    "customOrder": "Custom Order"
+  },
+  "whyUs": {
+    "label": "Why Choose Us",
+    "title": "Not just import —",
+    "titleAccent": "full service",
+    "sub": "We specialize exclusively in car imports from America. This is our expertise and passion. We know every detail of the process and can save you thousands.",
+    "cta": "Talk to an Expert",
+    "stats": [
+      { "label": "Cars Imported" },
+      { "label": "Years in Business" },
+      { "label": "Happy Clients" },
+      { "label": "Cheaper Than Local" }
+    ],
+    "reasons": [
+      { "title": "Direct Access to Auctions", "description": "We have dealer accounts at Copart, IAAI and Manheim. We buy without intermediaries, meaning lower prices for you." },
+      { "title": "Full Transparency", "description": "Track every step — from bidding to delivery. Real photos, real documents, no surprises." },
+      { "title": "Guaranteed Delivery", "description": "We have insurance along the entire route. We take responsibility for your car from the moment of purchase." },
+      { "title": "Experienced Team", "description": "Over 10 years in car importing. We know every procedure, every document, every customs office." }
+    ]
+  },
+  "testimonials": {
+    "label": "Reviews",
+    "title": "What Our",
+    "titleAccent": "Clients Say",
+    "sub": "Real feedback from people who imported their car from the USA through Indigo Cars.",
+    "avgRating": "Average Rating",
+    "happyClients": "Happy Clients",
+    "items": [
+      { "name": "Martin Georgiev", "location": "Sofia", "rating": 5, "car": "Ford Mustang GT 2019", "text": "Amazing service! I ordered a Mustang from Copart and the whole process went smoothly. Got the car in exactly 7 weeks. Saved over €4,000 compared to local prices. Highly recommend!", "avatar": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+      { "name": "Ivelina Stoyanova", "location": "Varna", "rating": 5, "car": "BMW X5 2021", "text": "Very satisfied with their work. They found exactly the BMW I wanted. All documents were in order, customs went without issues. Now I'm driving my dream car!", "avatar": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+      { "name": "Stefan Nikolov", "location": "Plovdiv", "rating": 5, "car": "Tesla Model 3 2022", "text": "They imported a Tesla Model 3 from Canada for me. The whole service was top-notch. I tracked the container online. No hidden fees, exactly as agreed.", "avatar": "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+      { "name": "Deyan Petrov", "location": "Burgas", "rating": 5, "car": "Chevrolet Camaro 2020", "text": "I have used their services three times — perfect every time. Last time they imported a Camaro SS. The team is very competent and responsive. Only good words!", "avatar": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" }
+    ]
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Frequently Asked",
+    "titleAccent": "Questions",
+    "sub": "Find answers to the most common questions. Can't find what you're looking for? Contact us.",
+    "items": [
+      { "q": "What types of cars can you import?", "a": "We import all types of cars — new, used, lightly damaged, or total loss write-offs. We specialize in American brands but also import Japanese, European and any other brand available at US auctions." },
+      { "q": "How much does car import cost?", "a": "Costs depend on the car price, type of transport, and customs fees. Typically transport and customs costs range between €1,500 and €3,500. We provide a full calculation upfront with no hidden fees." },
+      { "q": "How long does the process take?", "a": "Typically from purchase to receiving your car takes 6–8 weeks. Cargo ship to Rotterdam — 3–4 weeks, customs clearance — 1–2 weeks, transport to Bulgaria — 3–5 days." },
+      { "q": "Can I track the delivery?", "a": "Yes, we provide you with a container tracking number. We will keep you informed at every key step — purchase, loading, departure, arrival in Rotterdam, customs, delivery to you." },
+      { "q": "What documents will I receive?", "a": "You receive the US Title (ownership document), Bill of Lading, CMR, customs declarations, and a COC certificate for EU registration. Everything needed for registration." },
+      { "q": "Do you import damaged cars?", "a": "Yes, we specialize in damaged cars from Copart and IAAI. Many have only cosmetic or minor damage and are excellent value. We can arrange repairs upon arrival if desired." },
+      { "q": "Do you work with European clients outside Bulgaria?", "a": "Yes, we import cars for clients throughout Europe. Rotterdam is our central hub from where we distribute to Romania, Germany, Austria, France and any other EU country." },
+      { "q": "How do I get started?", "a": "Contact us by phone or through the contact form. We will conduct a free consultation, discuss what you are looking for, and give you an exact quote with no obligation." }
+    ]
+  },
+  "contact": {
+    "label": "Get in Touch",
+    "title": "Ready to find your",
+    "titleAccent": "dream car?",
+    "sub": "Consultation is completely free and without obligation. Tell us what you're looking for and we'll find the best offer for you.",
+    "infoTitle": "Contact Information",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "hoursTitle": "Business Hours",
+    "hours": [
+      { "day": "Monday — Friday", "hours": "09:00 — 18:00" },
+      { "day": "Saturday", "hours": "10:00 — 15:00" },
+      { "day": "Sunday", "hours": "Closed" }
+    ],
+    "freeEval": "Free Estimate",
+    "savings": "How much will you save?",
+    "formTitle": "Car Inquiry",
+    "name": "Your Name",
+    "namePlaceholder": "John Smith",
+    "phonePlaceholder": "+1 555 ...",
+    "car": "Desired Car",
+    "carPlaceholder": "e.g. BMW X5 2020, Ford Mustang...",
+    "budget": "Budget",
+    "budgetDefault": "Select budget",
+    "message": "Additional Information",
+    "messagePlaceholder": "Tell us more about the car you want...",
+    "send": "Send Inquiry",
+    "sending": "Sending...",
+    "sent": "Message Sent!",
+    "sentSub": "We will get back to you within 24 hours. Expect a call or email.",
+    "newInquiry": "Send New Inquiry",
+    "footer": "Consultation is free. We respond within 24 hours.",
+    "error": "Error sending. Please call us directly.",
+    "gdprText": "I agree to the ",
+    "gdprLink": "Privacy Policy"
+  },
+  "calculator": {
+    "label": "Calculator",
+    "title": "Calculate",
+    "titleAccent": "all costs",
+    "sub": "Approximate cost breakdown for importing from the USA to your garage in Bulgaria.",
+    "priceLabel": "Auction Price (USD)",
+    "fuelLabel": "Fuel Type",
+    "fuels": [
+      { "key": "petrol", "label": "Petrol", "emoji": "⛽" },
+      { "key": "diesel", "label": "Diesel", "emoji": "🛢" },
+      { "key": "electric", "label": "Electric", "emoji": "⚡" }
+    ],
+    "savingsText": "You save approximately",
+    "savingsSub": "compared to buying from a Bulgarian dealer",
+    "totalLabel": "Total (approx.)",
+    "ctaButton": "Request Exact Quote",
+    "disclaimer": "* Approximate estimate. Exact price depends on model, year, and current exchange rates.",
+    "rows": [
+      { "label": "Car Price", "info": "Converted from USD at current rate" },
+      { "label": "Auction Fee", "info": "Standard Copart/IAAI fee" },
+      { "label": "US Transport", "info": "From auction to port" },
+      { "label": "Ocean Freight", "info": "USA → Rotterdam, 20–30 days" },
+      { "label": "Insurance", "info": "~1.5% of car value" },
+      { "label": "Rotterdam Handling", "info": "Port fees, EU documents" },
+      { "label": "Import Duty (6.5%)", "info": "EU tariff for US imports" },
+      { "label": "Excise Tax", "info": "Depends on fuel type" },
+      { "label": "VAT (20%)", "info": "On total tax base" },
+      { "label": "Service Fee", "info": "Organisation, documents, delivery" }
+    ]
+  },
+  "routeMap": {
+    "label": "Route",
+    "title": "From auction to",
+    "titleAccent": "your garage",
+    "sub": "We provide a complete transport corridor from US ports to any point in Bulgaria and Europe.",
+    "stops": [
+      { "city": "USA", "sub": "Copart / IAAI", "flag": "🇺🇸" },
+      { "city": "Rotterdam", "sub": "EU Hub", "flag": "🇳🇱" },
+      { "city": "Bulgaria", "sub": "Delivery to you", "flag": "🇧🇬" }
+    ],
+    "timeline": [
+      { "label": "Preparation", "days": "7–10 days" },
+      { "label": "Ocean Transport", "days": "20–30 days" },
+      { "label": "Customs", "days": "5–10 days" },
+      { "label": "Final Delivery", "days": "3–5 days" }
+    ],
+    "durations": ["20–30 days", "7–14 days"],
+    "total": "Total:",
+    "totalDays": "45–60 days",
+    "totalSuffix": "from order to delivery"
+  },
+  "partners": {
+    "label": "Trusted Partners",
+    "title": "Direct Access to",
+    "titleAccent": "Leading Auctions"
+  },
+  "footer": {
+    "description": "Specialized in importing cars from American and Canadian auctions. We deliver to Bulgaria and all of Europe with full documentation services.",
+    "services": "Services",
+    "info": "Information",
+    "contacts": "Contacts",
+    "copyright": "Indigo Cars. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "serviceLinks": ["Search & Selection", "Auction Participation", "Ocean Freight", "Customs Clearance", "Home Delivery"],
+    "infoLinks": ["How It Works", "Hot Offers", "Why Us", "Reviews", "FAQ"]
+  },
+  "ctaBanner": {
+    "badge": "Free Consultation",
+    "title": "Ready to order your car?",
+    "sub": "Contact us and get a free estimate within 24 hours. No obligation.",
+    "cta": "Get Started"
+  },
+  "cookieConsent": {
+    "text": "We use cookies to improve your experience. By continuing to use this site, you agree to our ",
+    "privacyLink": "Privacy Policy",
+    "accept": "Accept",
+    "decline": "Decline"
+  }
+}
