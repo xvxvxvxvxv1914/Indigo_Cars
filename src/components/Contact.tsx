@@ -68,7 +68,7 @@ export default function Contact() {
   const contactItems = [
     { icon: Phone, label: t.contact.phoneLabel, value: '—', href: '#' },
     { icon: Mail, label: t.contact.emailLabel, value: 'info@indigocars.eu', href: 'mailto:info@indigocars.eu' },
-    { icon: MapPin, label: t.contact.addressLabel, value: 'бул. Цариградско шосе 100, София', href: '#' },
+    { icon: MapPin, label: t.contact.addressLabel, value: t.contact.address, href: '#' },
   ];
 
   return (
@@ -114,7 +114,7 @@ export default function Contact() {
                 {t.contact.hours.map(({ day, hours }) => (
                   <div key={day} className="flex justify-between">
                     <span className="text-dark-300">{day}</span>
-                    <span className={['Затворено', 'Closed', 'Закрыто', 'Închis'].includes(hours) ? 'text-dark-500' : 'text-white'}>{hours}</span>
+                    <span className={hours === t.contact.closedLabel ? 'text-dark-500' : 'text-white'}>{hours}</span>
                   </div>
                 ))}
               </div>

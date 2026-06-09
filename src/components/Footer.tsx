@@ -86,7 +86,7 @@ export default function Footer() {
               {[
                 { icon: Phone, value: '—', href: '#' },
                 { icon: Mail, value: 'info@indigocars.eu', href: 'mailto:info@indigocars.eu' },
-                { icon: MapPin, value: 'бул. Цариградско шосе 100, София 1784', href: '#' },
+                { icon: MapPin, value: t.contact.address, href: '#' },
               ].map(({ icon: Icon, value, href }) => (
                 <a key={value} href={href} className="flex items-start gap-3 text-dark-300 hover:text-white transition-colors">
                   <Icon size={15} className="text-primary-400 flex-shrink-0 mt-0.5" />

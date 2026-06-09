@@ -66,17 +66,11 @@ function AnimatedNumber({ value, prefix = '€' }: { value: number; prefix?: str
   return <>{prefix}{display.toLocaleString('de-DE')}</>;
 }
 
-const GROUP_LABELS: Record<string, string[]> = {
-  BG: ['Разходи в САЩ', 'Транспорт и застраховка', 'Мито и данъци', 'Такса Indigo Cars'],
-  EN: ['US costs', 'Shipping & insurance', 'Duties & taxes', 'Indigo Cars fee'],
-  RU: ['Расходы в США', 'Транспорт и страховка', 'Пошлины и налоги', 'Услуга Indigo Cars'],
-};
-
 const GROUP_ICONS = [Flag, Ship, Zap, Wrench];
 const GROUP_COLORS = ['#691EB9', '#3b82f6', '#0ea5e9', '#8b45d0'];
 
 export default function Calculator({ embed = false }: { embed?: boolean }) {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const { theme } = useTheme();
   const light = embed ? false : theme === 'light';
   const [priceUSD, setPriceUSD] = useState(15000);
@@ -85,7 +79,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
 
   const r = calculate(priceUSD, fuel);
   const groupValues = [r.usTotal, r.shipping, r.duties, r.serviceFee];
-  const groupLabels = GROUP_LABELS[lang] ?? GROUP_LABELS.BG;
+  const groupLabels = t.calculator.groupLabels;
 
   const sliderPct = ((priceUSD - 1000) / (60000 - 1000)) * 100;
 
@@ -223,7 +217,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
             </div>
             <div className="flex justify-between items-center">
               <p className="text-xs leading-relaxed max-w-[60%]" style={{ color: labelColor }}>{t.calculator.disclaimer}</p>
-              <span className="text-xs" style={{ color: labelColor }}>≈ <AnimatedNumber value={r.totalBGN} prefix="" /> лв.</span>
+              <span className="text-xs" style={{ color: labelColor }}>≈ <AnimatedNumber value={r.totalBGN} prefix="" /> {t.calculator.bgnSuffix}</span>
             </div>
           </div>
         </div>

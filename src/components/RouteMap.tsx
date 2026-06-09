@@ -114,12 +114,12 @@ export default function RouteMap() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl">🇺🇸</span>
                 <div className="flex-1">
-                  <div className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>САЩ</div>
+                  <div className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{t.routeMap.usaLabel}</div>
                   <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>IAAI · Copart</div>
                 </div>
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse block" />
               </div>
-              <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Хюстън · Лос Анджелис · Ню Джърси</p>
+              <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.routeMap.usaCities}</p>
             </div>
 
             <div className="flex justify-center"><div className="w-px h-5" style={{ background: light ? 'rgba(105,30,185,0.4)' : 'rgba(105,30,185,0.25)' }} /></div>
@@ -133,12 +133,12 @@ export default function RouteMap() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl">🇨🇦</span>
                 <div className="flex-1">
-                  <div className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Канада</div>
+                  <div className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{t.routeMap.canadaLabel}</div>
                   <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>ADESA · Manheim</div>
                 </div>
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse block" />
               </div>
-              <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Торонто · Ванкувър · Монреал</p>
+              <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.routeMap.canadaCities}</p>
             </div>
 
             <div className="flex justify-center"><div className="w-px h-5" style={{ background: light ? 'rgba(105,30,185,0.4)' : 'rgba(105,30,185,0.25)' }} /></div>
@@ -149,8 +149,8 @@ export default function RouteMap() {
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateX(-20px)', transitionDelay: '0.35s',
             }}>
               <Ship size={22} className="text-primary-400 mx-auto mb-2" />
-              <div className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Трансатлантическо плаване</div>
-              <div className="font-bold text-gradient-stats text-xl mt-1">14–21 дни</div>
+              <div className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>{t.routeMap.transatlantic}</div>
+              <div className="font-bold text-gradient-stats text-xl mt-1">{t.routeMap.transatlanticDays}</div>
             </div>
 
             {/* → Rotterdam */}
@@ -176,7 +176,7 @@ export default function RouteMap() {
                   </div>
                   <div className="rounded-lg px-3 py-2 flex items-center justify-between" style={{ background: 'rgba(105,30,185,0.15)' }}>
                     <div>
-                      <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>От Ротердам</div>
+                      <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.routeMap.fromRotterdam}</div>
                       <div className="font-bold text-gradient-stats text-lg">{activeCountry.days}</div>
                     </div>
                     <Clock size={22} className="text-primary-400" />
@@ -186,7 +186,7 @@ export default function RouteMap() {
                 <div className="p-5 text-center" style={{ background: 'rgba(105,30,185,0.06)' }}>
                   <MousePointer size={20} className="text-primary-400 mx-auto mb-2" />
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                    Кликнете върху страна за да видите времето за доставка
+                    {t.routeMap.clickHint}
                   </p>
                 </div>
               )}
@@ -204,7 +204,7 @@ export default function RouteMap() {
               <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 rounded-full px-3 py-1.5"
                 style={{ background: 'rgba(105,30,185,0.2)', border: '1px solid rgba(105,30,185,0.35)', backdropFilter: 'blur(8px)' }}>
                 <MousePointer size={11} className="text-primary-400" />
-                <span className="text-xs font-medium text-primary-300">Кликнете върху страна</span>
+                <span className="text-xs font-medium text-primary-300">{t.routeMap.clickHintShort}</span>
               </div>
 
               {/* Zoom controls */}
@@ -309,7 +309,7 @@ export default function RouteMap() {
                   <circle r={2.5 / zoom} fill="#10b981" />
                   <text y={-10 / zoom} textAnchor="middle" fontSize={9 / zoom} fontWeight="700"
                     fill={light ? '#3d1680' : 'rgba(213,198,224,0.95)'} letterSpacing="0.4">
-                    🇺🇸 САЩ
+                    🇺🇸 {t.routeMap.usaLabel}
                   </text>
                 </Marker>
 
@@ -377,7 +377,7 @@ export default function RouteMap() {
                   <span className="text-4xl">{activeCountry.flag}</span>
                   <div className="flex-1">
                     <div className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{activeCountry.name} — {activeCountry.city}</div>
-                    <div className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>Доставка от Ротердам</div>
+                    <div className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{t.routeMap.fromRotterdam}</div>
                   </div>
                   <div className="flex items-center gap-1.5 flex-shrink-0">
                     <Clock size={15} className="text-primary-400" />
@@ -388,7 +388,7 @@ export default function RouteMap() {
                 <div className="px-5 py-4 flex items-center gap-3" style={{ background: 'rgba(105,30,185,0.06)' }}>
                   <MousePointer size={18} className="text-primary-400" />
                   <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    Кликнете върху страна за да видите времето за доставка
+                    {t.routeMap.clickHint}
                   </p>
                 </div>
               )}

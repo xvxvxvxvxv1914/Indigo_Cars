@@ -14,6 +14,7 @@
   },
   "hero": {
     "label": "Import comandat de la licitații din SUA și Canada",
+    "badges": ["Licențiați", "Livrare la timp", "Documentație completă"],
     "h1a": "MAȘINA TA",
     "h1b": "DE LA LICITAȚIE",
     "h1c": "LIVRATĂ",
@@ -109,6 +110,8 @@
     "phoneLabel": "Telefon",
     "emailLabel": "Email",
     "addressLabel": "Adresă",
+    "address": "Bd. Țarigradsko Șose 100, Sofia",
+    "closedLabel": "Închis",
     "hoursTitle": "Program de Lucru",
     "hours": [
       { "day": "Luni — Vineri", "hours": "09:00 — 18:00" },
@@ -152,6 +155,8 @@
     "savingsText": "Economisești aproximativ",
     "savingsSub": "față de cumpărarea de la un dealer bulgar",
     "totalLabel": "Total (aprox.)",
+    "groupLabels": ["Costuri SUA", "Transport și asigurare", "Taxe vamale", "Taxa Indigo Cars"],
+    "bgnSuffix": "BGN",
     "ctaButton": "Solicită Ofertă Exactă",
     "disclaimer": "* Estimare aproximativă. Prețul exact depinde de model, an și cursurile de schimb actuale.",
     "rows": [
@@ -169,6 +174,15 @@
   },
   "routeMap": {
     "label": "Rută",
+    "usaLabel": "SUA",
+    "usaCities": "Houston · Los Angeles · New Jersey",
+    "canadaLabel": "Canada",
+    "canadaCities": "Toronto · Vancouver · Montreal",
+    "transatlantic": "Traversare transatlantică",
+    "transatlanticDays": "14–21 zile",
+    "fromRotterdam": "Din Rotterdam",
+    "clickHint": "Apasă pe o țară pentru a vedea timpul de livrare",
+    "clickHintShort": "Apasă pe o țară",
     "title": "De la licitație la",
     "titleAccent": "garajul tău",
     "sub": "Asigurăm un coridor de transport complet din porturile americane până în orice punct din Bulgaria și Europa.",
@@ -209,6 +223,10 @@
     "title": "Ești gata să comanzi mașina ta?",
     "sub": "Contactează-ne și primește o estimare gratuită în 24 de ore. Fără obligații.",
     "cta": "Începe Acum"
+  },
+  "whatsapp": {
+    "message": "Bună ziua, am o întrebare despre un automobil",
+    "ariaLabel": "Contactați-ne"
   },
   "cookieConsent": {
     "text": "Folosim cookie-uri pentru a îmbunătăți experiența dvs. Continuând să utilizați site-ul, sunteți de acord cu ",

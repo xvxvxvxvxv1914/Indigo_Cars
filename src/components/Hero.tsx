@@ -7,7 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 
 /* ── LIGHT HERO ── */
 function HeroLight() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const bgRef = useRef<HTMLImageElement>(null);
   const scroll = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
 
@@ -19,11 +19,7 @@ function HeroLight() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const badgeLabels = lang === 'BG'
-    ? ['Лицензирани', 'Доставка в срок', 'Пълна документация']
-    : lang === 'RU'
-    ? ['Лицензированы', 'Доставка в срок', 'Полная документация']
-    : ['Licensed', 'On-time Delivery', 'Full Documentation'];
+  const badgeLabels = t.hero.badges;
 
   const stats = [
     { value: '2000+', label: t.stats.delivered },
@@ -135,7 +131,7 @@ function HeroLight() {
 
 /* ── DARK HERO (original) ── */
 function HeroDark() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const bgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -148,11 +144,7 @@ function HeroDark() {
 
   const scroll = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  const badgeLabels = lang === 'BG'
-    ? ['Лицензирани', 'Доставка в срок', 'Пълна документация']
-    : lang === 'RU'
-    ? ['Лицензированы', 'Доставка в срок', 'Полная документация']
-    : ['Licensed', 'On-time Delivery', 'Full Documentation'];
+  const badgeLabels = t.hero.badges;
 
   const statItems = [
     { value: '2000+', label: t.stats.delivered },

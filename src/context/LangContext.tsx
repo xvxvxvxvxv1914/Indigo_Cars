@@ -7,8 +7,10 @@ import ru from '@/locales/ru.json';
 import ro from '@/locales/ro.json';
 
 export type Lang = 'BG' | 'RO' | 'EN' | 'RU';
+export type Translations = typeof bg;
 
-const translations = { BG: bg, EN: en, RU: ru, RO: ro };
+// All locale files must match the shape of bg.json — TypeScript will error at build time if a key is missing
+const translations: Record<Lang, Translations> = { BG: bg, EN: en, RU: ru, RO: ro };
 
 const SUPPORTED_LANGS = Object.keys(translations) as Lang[];
 
