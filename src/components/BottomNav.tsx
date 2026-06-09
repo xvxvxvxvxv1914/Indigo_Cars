@@ -6,20 +6,20 @@ import { usePathname } from 'next/navigation';
 import { useLang } from '../context/LangContext';
 
 export default function BottomNav() {
-  const { t } = useLang();
+  const { t, slug } = useLang();
   const pathname = usePathname();
 
   const navItems = [
-    { icon: Home,         label: t.nav.home,    href: '#hero',     type: 'scroll' },
-    { icon: Car,          label: t.nav.offers,  href: '#offers',   type: 'scroll' },
-    { icon: Building2,    label: 'B2B',          href: '/b2b',      type: 'route'  },
-    { icon: MessageCircle,label: t.nav.contact, href: '#contact',  type: 'scroll' },
-    { icon: Shield,       label: t.nav.whyUs,   href: '#why-us',   type: 'scroll' },
+    { icon: Home,         label: t.nav.home,    href: '#hero',          type: 'scroll' },
+    { icon: Car,          label: t.nav.offers,  href: '#offers',        type: 'scroll' },
+    { icon: Building2,    label: 'B2B',          href: `/${slug}/b2b`,   type: 'route'  },
+    { icon: MessageCircle,label: t.nav.contact, href: '#contact',       type: 'scroll' },
+    { icon: Shield,       label: t.nav.whyUs,   href: '#why-us',        type: 'scroll' },
   ];
 
   const handleScroll = (href: string) => {
-    if (pathname !== '/') {
-      window.location.href = '/' + href;
+    if (pathname !== `/${slug}`) {
+      window.location.href = `/${slug}` + href;
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -39,7 +39,7 @@ export default function BottomNav() {
       <div className="flex items-center justify-around px-1 py-2">
         {navItems.map(({ icon: Icon, label, href, type }) => {
           const isB2B = type === 'route';
-          const isActive = isB2B && pathname === '/b2b';
+          const isActive = isB2B && pathname === `/${slug}/b2b`;
           const itemStyle = { color: isActive ? '#691EB9' : 'rgba(213,198,224,0.8)' };
 
           if (isB2B) {

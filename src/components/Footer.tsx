@@ -7,12 +7,12 @@ const sectionHrefs = ['#how-it-works', '#how-it-works', '#how-it-works', '#how-i
 const infoHrefs = ['#how-it-works', '#offers', '#why-us', '#testimonials', '#faq'];
 
 export default function Footer() {
-  const { t } = useLang();
+  const { t, slug } = useLang();
 
   const handleNav = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
-    else window.location.href = '/' + href;
+    else window.location.href = `/${slug}` + href;
   };
 
   return (
@@ -104,8 +104,8 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <div className="flex gap-4 text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            <a href="/privacy" className="hover:text-dark-300 transition-colors">{t.footer.privacy}</a>
-            <a href="/terms" className="hover:text-dark-300 transition-colors">{t.footer.terms}</a>
+            <a href={`/${slug}/privacy`} className="hover:text-dark-300 transition-colors">{t.footer.privacy}</a>
+            <a href={`/${slug}/terms`} className="hover:text-dark-300 transition-colors">{t.footer.terms}</a>
           </div>
         </div>
       </div>

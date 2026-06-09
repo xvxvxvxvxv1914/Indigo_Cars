@@ -33,7 +33,7 @@ function ConfettiBurst() {
 }
 
 export default function Contact() {
-  const { t } = useLang();
+  const { t, slug } = useLang();
   const { theme } = useTheme();
   const light = theme === 'light';
   const sectionRef = useScrollReveal({ threshold: 0.1, stagger: 120 });
@@ -199,7 +199,7 @@ export default function Contact() {
                   <input type="checkbox" required className="mt-0.5 w-4 h-4 rounded accent-primary-500 flex-shrink-0" />
                   <span className="text-dark-300 text-xs leading-relaxed">
                     {t.contact.gdprText}
-                    <a href="/privacy" className="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors">
+                    <a href={`/${slug}/privacy`} className="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors">
                       {t.contact.gdprLink}
                     </a>
                   </span>

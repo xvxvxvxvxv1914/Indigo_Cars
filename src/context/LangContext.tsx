@@ -1,45 +1,53 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { type Lang, LANG_SLUGS, SLUG_TO_LANG } from '@/lib/i18n';
 import bg from '@/locales/bg.json';
 import en from '@/locales/en.json';
 import ru from '@/locales/ru.json';
 import ro from '@/locales/ro.json';
 
-export type Lang = 'BG' | 'RO' | 'EN' | 'RU';
+export type { Lang };
 export type Translations = typeof bg;
 
 // All locale files must match the shape of bg.json — TypeScript will error at build time if a key is missing
 const translations: Record<Lang, Translations> = { BG: bg, EN: en, RU: ru, RO: ro };
 
-const SUPPORTED_LANGS = Object.keys(translations) as Lang[];
-
 const LangContext = createContext<{
   lang: Lang;
+  slug: string;
   setLang: (l: Lang) => void;
-  t: typeof bg;
+  t: Translations;
 }>({
   lang: 'BG',
+  slug: 'bg',
   setLang: () => {},
   t: bg,
 });
 
-export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('lang') as Lang;
-      if (saved && SUPPORTED_LANGS.includes(saved)) return saved;
-    }
-    return 'BG';
-  });
+export function LangProvider({ lang, children }: { lang: Lang; children: ReactNode }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const handleSetLang = (l: Lang) => {
-    setLang(l);
-    if (typeof window !== 'undefined') localStorage.setItem('lang', l);
+  const setLang = (l: Lang) => {
+    const newSlug = LANG_SLUGS[l];
+    const segments = pathname.split('/');
+    // segments[0] === '' (leading slash); segments[1] is the current locale slug
+    if (segments[1] && SLUG_TO_LANG[segments[1]]) {
+      segments[1] = newSlug;
+    } else {
+      segments.splice(1, 0, newSlug);
+    }
+    const newPath = segments.join('/') || `/${newSlug}`;
+    if (typeof document !== 'undefined') {
+      document.cookie = `NEXT_LOCALE=${newSlug}; path=/; max-age=31536000; samesite=lax`;
+    }
+    router.push(newPath);
   };
 
   return (
-    <LangContext.Provider value={{ lang, setLang: handleSetLang, t: translations[lang] }}>
+    <LangContext.Provider value={{ lang, slug: LANG_SLUGS[lang], setLang, t: translations[lang] }}>
       {children}
     </LangContext.Provider>
   );
