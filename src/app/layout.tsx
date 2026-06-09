@@ -23,10 +23,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://indigocars.eu'),
   title: 'Indigo Cars — Вносител на автомобили от САЩ и Канада',
   description: 'Поръчков внос на автомобили от търгове в САЩ и Канада. Доставка до България и Европа. Пълно документално обслужване — вие само получавате колата.',
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
-    alternateLocale: ['ro_RO', 'en_US'],
+    alternateLocale: ['ro_RO', 'en_US', 'ru_RU'],
     url: 'https://indigocars.eu',
     siteName: 'Indigo Cars',
     title: 'Indigo Cars — Твоята кола от търга директно до теб',

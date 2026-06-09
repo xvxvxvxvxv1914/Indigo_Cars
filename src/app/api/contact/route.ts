@@ -6,6 +6,15 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export async function POST(request: Request) {
   const body = await request.json();
   const { name, phone, email, car, budget, message } = body;
@@ -31,10 +40,10 @@ export async function POST(request: Request) {
   const resendKey = process.env.RESEND_API_KEY;
   if (resendKey) {
     const rows = [
-      email    && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Имейл</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">${email}</td></tr>`,
-      car      && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Автомобил</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">${car}</td></tr>`,
-      budget   && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Бюджет</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">€${budget}</td></tr>`,
-      message  && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px;vertical-align:top">Съобщение</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">${message}</td></tr>`,
+      email    && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Имейл</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">${escapeHtml(email)}</td></tr>`,
+      car      && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Автомобил</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">${escapeHtml(car)}</td></tr>`,
+      budget   && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Бюджет</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">€${escapeHtml(budget)}</td></tr>`,
+      message  && `<tr><td style="padding:4px 0;color:#9ca3af;font-size:13px;vertical-align:top">Съобщение</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px">${escapeHtml(message)}</td></tr>`,
     ].filter(Boolean).join('');
 
     const html = `
@@ -48,12 +57,12 @@ export async function POST(request: Request) {
           </div>
           <div style="padding:24px">
             <table style="width:100%;border-collapse:collapse">
-              <tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Име</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px;font-weight:600">${name}</td></tr>
-              <tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Телефон</td><td style="padding:4px 0 4px 16px;font-size:14px"><a href="tel:${phone}" style="color:#a78bfa;font-weight:700;text-decoration:none">${phone}</a></td></tr>
+              <tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Име</td><td style="padding:4px 0 4px 16px;color:#f3f4f6;font-size:13px;font-weight:600">${escapeHtml(name)}</td></tr>
+              <tr><td style="padding:4px 0;color:#9ca3af;font-size:13px">Телефон</td><td style="padding:4px 0 4px 16px;font-size:14px"><a href="tel:${encodeURIComponent(phone)}" style="color:#a78bfa;font-weight:700;text-decoration:none">${escapeHtml(phone)}</a></td></tr>
               ${rows}
             </table>
             <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08)">
-              <a href="tel:${phone}" style="display:inline-block;background:linear-gradient(135deg,#691EB9,#4a158a);color:#fff;text-decoration:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600">Обади се сега</a>
+              <a href="tel:${encodeURIComponent(phone)}" style="display:inline-block;background:linear-gradient(135deg,#691EB9,#4a158a);color:#fff;text-decoration:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600">Обади се сега</a>
             </div>
           </div>
         </div>

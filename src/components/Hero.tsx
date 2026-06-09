@@ -34,7 +34,7 @@ function HeroLight() {
         <img
           ref={bgRef}
           src="/hero-image.webp"
-          alt="Indigo Cars — внос от САЩ"
+          alt={t.hero.imageAlt}
           className="w-full h-full object-cover"
           style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }}
           fetchPriority="high"
@@ -155,7 +155,7 @@ function HeroDark() {
   return (
     <section id="hero" className="relative flex items-center overflow-hidden" style={{ minHeight: '100dvh' }}>
       <div className="absolute inset-0 z-0">
-        <img ref={bgRef} src="/hero-image.webp" alt="Indigo Cars — внос от САЩ"
+        <img ref={bgRef} src="/hero-image.webp" alt={t.hero.imageAlt}
           className="w-full h-full object-cover"
           fetchPriority="high" decoding="sync"
           style={{ objectPosition: '60% center', transform: 'scale(1.12)', willChange: 'transform' }} />

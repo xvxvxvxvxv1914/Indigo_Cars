@@ -9,58 +9,56 @@ import { useScrollReveal } from '../lib/useScrollReveal';
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 
-type CountryData = {
+type GeoData = {
   flag: string;
-  name: string;
-  city: string;
   days: string;
   coordinates: [number, number];
 };
 
-// ISO 3166-1 numeric → country info
-const EU_DATA: Record<number, CountryData> = {
-  8:   { flag: '🇦🇱', name: 'Албания',        city: 'Тирана',      days: '9–12 дни',  coordinates: [19.82, 41.33] },
-  40:  { flag: '🇦🇹', name: 'Австрия',         city: 'Виена',       days: '4–6 дни',   coordinates: [16.37, 48.21] },
-  56:  { flag: '🇧🇪', name: 'Белгия',          city: 'Брюксел',     days: '1–2 дни',   coordinates: [4.35,  50.85] },
-  70:  { flag: '🇧🇦', name: 'Босна',           city: 'Сараево',     days: '8–10 дни',  coordinates: [18.42, 43.85] },
-  100: { flag: '🇧🇬', name: 'България',        city: 'София',       days: '7–9 дни',   coordinates: [23.32, 42.70] },
-  112: { flag: '🇧🇾', name: 'Беларус',         city: 'Минск',       days: '8–10 дни',  coordinates: [27.57, 53.90] },
-  191: { flag: '🇭🇷', name: 'Хърватия',        city: 'Загреб',      days: '5–7 дни',   coordinates: [15.98, 45.81] },
-  196: { flag: '🇨🇾', name: 'Кипър',           city: 'Никозия',     days: '10–14 дни', coordinates: [33.36, 35.17] },
-  203: { flag: '🇨🇿', name: 'Чехия',           city: 'Прага',       days: '4–5 дни',   coordinates: [14.42, 50.09] },
-  208: { flag: '🇩🇰', name: 'Дания',           city: 'Копенхаген',  days: '3–4 дни',   coordinates: [12.57, 55.68] },
-  233: { flag: '🇪🇪', name: 'Естония',         city: 'Талин',       days: '5–7 дни',   coordinates: [24.74, 59.44] },
-  246: { flag: '🇫🇮', name: 'Финландия',       city: 'Хелзинки',    days: '5–7 дни',   coordinates: [24.94, 60.17] },
-  250: { flag: '🇫🇷', name: 'Франция',         city: 'Париж',       days: '3–4 дни',   coordinates: [2.35,  48.86] },
-  276: { flag: '🇩🇪', name: 'Германия',        city: 'Берлин',      days: '3–5 дни',   coordinates: [13.40, 52.52] },
-  300: { flag: '🇬🇷', name: 'Гърция',          city: 'Атина',       days: '8–10 дни',  coordinates: [23.73, 37.98] },
-  348: { flag: '🇭🇺', name: 'Унгария',         city: 'Будапеща',    days: '5–7 дни',   coordinates: [19.04, 47.50] },
-  352: { flag: '🇮🇸', name: 'Исландия',        city: 'Рейкявик',    days: '8–12 дни',  coordinates: [-21.9, 64.13] },
-  372: { flag: '🇮🇪', name: 'Ирландия',        city: 'Дъблин',      days: '3–5 дни',   coordinates: [-6.27, 53.33] },
-  380: { flag: '🇮🇹', name: 'Италия',          city: 'Рим',         days: '5–6 дни',   coordinates: [12.50, 41.90] },
-  428: { flag: '🇱🇻', name: 'Латвия',          city: 'Рига',        days: '5–7 дни',   coordinates: [24.11, 56.95] },
-  440: { flag: '🇱🇹', name: 'Литва',           city: 'Вилнюс',      days: '5–7 дни',   coordinates: [25.28, 54.69] },
-  442: { flag: '🇱🇺', name: 'Люксембург',      city: 'Люксембург',   days: '1–2 дни',   coordinates: [6.13,  49.61] },
-  470: { flag: '🇲🇹', name: 'Малта',           city: 'Валета',      days: '9–12 дни',  coordinates: [14.51, 35.90] },
-  498: { flag: '🇲🇩', name: 'Молдова',         city: 'Кишинев',     days: '8–10 дни',  coordinates: [28.85, 47.00] },
-  499: { flag: '🇲🇪', name: 'Черна гора',      city: 'Подгорица',   days: '8–10 дни',  coordinates: [19.26, 42.44] },
-  528: { flag: '🇳🇱', name: 'Нидерландия',     city: 'Амстердам',   days: '0–1 дни',   coordinates: [4.90,  52.37] },
-  578: { flag: '🇳🇴', name: 'Норвегия',        city: 'Осло',        days: '4–6 дни',   coordinates: [10.75, 59.91] },
-  616: { flag: '🇵🇱', name: 'Полша',           city: 'Варшава',     days: '4–6 дни',   coordinates: [21.02, 52.23] },
-  620: { flag: '🇵🇹', name: 'Португалия',      city: 'Лисабон',     days: '6–8 дни',   coordinates: [-9.14, 38.72] },
-  642: { flag: '🇷🇴', name: 'Румъния',         city: 'Букурещ',     days: '6–8 дни',   coordinates: [26.10, 44.44] },
-  688: { flag: '🇷🇸', name: 'Сърбия',          city: 'Белград',     days: '7–9 дни',   coordinates: [20.46, 44.80] },
-  703: { flag: '🇸🇰', name: 'Словакия',        city: 'Братислава',  days: '5–6 дни',   coordinates: [17.10, 48.15] },
-  705: { flag: '🇸🇮', name: 'Словения',        city: 'Любляна',     days: '4–6 дни',   coordinates: [14.51, 46.05] },
-  724: { flag: '🇪🇸', name: 'Испания',         city: 'Мадрид',      days: '5–7 дни',   coordinates: [-3.70, 40.42] },
-  752: { flag: '🇸🇪', name: 'Швеция',          city: 'Стокхолм',    days: '4–5 дни',   coordinates: [18.07, 59.33] },
-  756: { flag: '🇨🇭', name: 'Швейцария',       city: 'Берн',        days: '3–5 дни',   coordinates: [7.45,  46.95] },
-  804: { flag: '🇺🇦', name: 'Украйна',         city: 'Киев',        days: '8–11 дни',  coordinates: [30.52, 50.45] },
-  807: { flag: '🇲🇰', name: 'С. Македония',    city: 'Скопие',      days: '8–11 дни',  coordinates: [21.43, 42.00] },
-  826: { flag: '🇬🇧', name: 'Великобритания',  city: 'Лондон',      days: '2–3 дни',   coordinates: [-0.12, 51.51] },
+// ISO 3166-1 numeric → language-neutral geo data. Country/city names come from translations (t.routeMap.countries).
+const EU_GEO: Record<number, GeoData> = {
+  8:   { flag: '🇦🇱', days: '9–12',  coordinates: [19.82, 41.33] },
+  40:  { flag: '🇦🇹', days: '4–6',   coordinates: [16.37, 48.21] },
+  56:  { flag: '🇧🇪', days: '1–2',   coordinates: [4.35,  50.85] },
+  70:  { flag: '🇧🇦', days: '8–10',  coordinates: [18.42, 43.85] },
+  100: { flag: '🇧🇬', days: '7–9',   coordinates: [23.32, 42.70] },
+  112: { flag: '🇧🇾', days: '8–10',  coordinates: [27.57, 53.90] },
+  191: { flag: '🇭🇷', days: '5–7',   coordinates: [15.98, 45.81] },
+  196: { flag: '🇨🇾', days: '10–14', coordinates: [33.36, 35.17] },
+  203: { flag: '🇨🇿', days: '4–5',   coordinates: [14.42, 50.09] },
+  208: { flag: '🇩🇰', days: '3–4',   coordinates: [12.57, 55.68] },
+  233: { flag: '🇪🇪', days: '5–7',   coordinates: [24.74, 59.44] },
+  246: { flag: '🇫🇮', days: '5–7',   coordinates: [24.94, 60.17] },
+  250: { flag: '🇫🇷', days: '3–4',   coordinates: [2.35,  48.86] },
+  276: { flag: '🇩🇪', days: '3–5',   coordinates: [13.40, 52.52] },
+  300: { flag: '🇬🇷', days: '8–10',  coordinates: [23.73, 37.98] },
+  348: { flag: '🇭🇺', days: '5–7',   coordinates: [19.04, 47.50] },
+  352: { flag: '🇮🇸', days: '8–12',  coordinates: [-21.9, 64.13] },
+  372: { flag: '🇮🇪', days: '3–5',   coordinates: [-6.27, 53.33] },
+  380: { flag: '🇮🇹', days: '5–6',   coordinates: [12.50, 41.90] },
+  428: { flag: '🇱🇻', days: '5–7',   coordinates: [24.11, 56.95] },
+  440: { flag: '🇱🇹', days: '5–7',   coordinates: [25.28, 54.69] },
+  442: { flag: '🇱🇺', days: '1–2',   coordinates: [6.13,  49.61] },
+  470: { flag: '🇲🇹', days: '9–12',  coordinates: [14.51, 35.90] },
+  498: { flag: '🇲🇩', days: '8–10',  coordinates: [28.85, 47.00] },
+  499: { flag: '🇲🇪', days: '8–10',  coordinates: [19.26, 42.44] },
+  528: { flag: '🇳🇱', days: '0–1',   coordinates: [4.90,  52.37] },
+  578: { flag: '🇳🇴', days: '4–6',   coordinates: [10.75, 59.91] },
+  616: { flag: '🇵🇱', days: '4–6',   coordinates: [21.02, 52.23] },
+  620: { flag: '🇵🇹', days: '6–8',   coordinates: [-9.14, 38.72] },
+  642: { flag: '🇷🇴', days: '6–8',   coordinates: [26.10, 44.44] },
+  688: { flag: '🇷🇸', days: '7–9',   coordinates: [20.46, 44.80] },
+  703: { flag: '🇸🇰', days: '5–6',   coordinates: [17.10, 48.15] },
+  705: { flag: '🇸🇮', days: '4–6',   coordinates: [14.51, 46.05] },
+  724: { flag: '🇪🇸', days: '5–7',   coordinates: [-3.70, 40.42] },
+  752: { flag: '🇸🇪', days: '4–5',   coordinates: [18.07, 59.33] },
+  756: { flag: '🇨🇭', days: '3–5',   coordinates: [7.45,  46.95] },
+  804: { flag: '🇺🇦', days: '8–11',  coordinates: [30.52, 50.45] },
+  807: { flag: '🇲🇰', days: '8–11',  coordinates: [21.43, 42.00] },
+  826: { flag: '🇬🇧', days: '2–3',   coordinates: [-0.12, 51.51] },
 };
 
-const EU_ISO = new Set(Object.keys(EU_DATA).map(Number));
+const EU_ISO = new Set(Object.keys(EU_GEO).map(Number));
 const ROTTERDAM: [number, number] = [4.5, 51.9];
 
 export default function RouteMap() {
@@ -73,7 +71,15 @@ export default function RouteMap() {
   const [center, setCenter] = useState<[number, number]>([-12, 52]);
   const ref = useScrollReveal({ threshold: 0.12, stagger: 120, onReveal: () => setVisible(true) });
 
-  const activeCountry = activeIso !== null ? EU_DATA[activeIso] : null;
+  const countryNames = t.routeMap.countries as Record<string, { name: string; city: string }>;
+  const activeGeo = activeIso !== null ? EU_GEO[activeIso] : null;
+  const activeCountry = activeGeo && activeIso !== null ? {
+    flag: activeGeo.flag,
+    coordinates: activeGeo.coordinates,
+    name: countryNames[String(activeIso)]?.name ?? '',
+    city: countryNames[String(activeIso)]?.city ?? '',
+    days: `${activeGeo.days} ${t.routeMap.daysSuffix}`,
+  } : null;
 
   const geoFill   = light ? '#cdbcfb' : '#2a1d6f';
   const geoStroke = light ? '#691EB9' : '#7c5dd4';
@@ -274,7 +280,7 @@ export default function RouteMap() {
                         <Geography
                           key={geo.rsmKey}
                           geography={geo}
-                          onClick={() => { if (EU_DATA[numId]) setActiveIso(numId); }}
+                          onClick={() => { if (EU_GEO[numId]) setActiveIso(numId); }}
                           fill={isActive ? geoActive : geoFill}
                           stroke={geoStroke}
                           strokeWidth={0.8}

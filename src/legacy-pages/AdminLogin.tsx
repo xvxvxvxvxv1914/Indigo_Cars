@@ -43,8 +43,8 @@ export default function AdminLogin() {
               </svg>
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-display text-xl text-white tracking-wider">AUTO</span>
-              <span className="font-display text-xl text-primary-400 tracking-wider">IMPORT</span>
+              <span className="font-display text-xl text-white tracking-wider">INDIGO</span>
+              <span className="font-display text-xl text-primary-400 tracking-wider">CARS</span>
             </div>
           </div>
           <h1 className="text-2xl font-bold text-white">Администраторски вход</h1>
