@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Политика за поверителност — Indigo Cars',
+  title: 'Политика за поверителност',
   description: 'Политика за поверителност и защита на личните данни на Indigo Cars съгласно Регламент (ЕС) 2016/679 (GDPR).',
   alternates: { canonical: '/privacy' },
 };

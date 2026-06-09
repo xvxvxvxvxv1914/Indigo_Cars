@@ -21,7 +21,10 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://indigocars.eu'),
-  title: 'Indigo Cars — Вносител на автомобили от САЩ и Канада',
+  title: {
+    default: 'Indigo Cars — Вносител на автомобили от САЩ и Канада',
+    template: '%s — Indigo Cars',
+  },
   description: 'Поръчков внос на автомобили от търгове в САЩ и Канада. Доставка до България и Европа. Пълно документално обслужване — вие само получавате колата.',
   alternates: { canonical: '/' },
   openGraph: {
@@ -40,6 +43,19 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Indigo Cars',
+  url: 'https://indigocars.eu',
+  logo: 'https://indigocars.eu/logo.png',
+  image: 'https://indigocars.eu/opengraph-image',
+  description: 'Поръчков внос на автомобили от търгове в САЩ и Канада. Доставка до България и цяла Европа с пълно документално обслужване.',
+  email: 'info@indigocars.eu',
+  areaServed: ['BG', 'RO', 'EU'],
+  knowsLanguage: ['bg', 'ru', 'en', 'ro'],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="bg" suppressHydrationWarning className={`${inter.variable} ${manrope.variable}`}>
@@ -49,6 +65,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <link rel="preload" as="image" href="/hero-image.webp" />
       </head>
