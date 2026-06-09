@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { Inter, Manrope } from 'next/font/google';
 import { ThemeProvider } from '../context/ThemeContext';
-import { LangProvider } from '../context/LangContext';
-import GlobalChrome from '../components/GlobalChrome';
 import './globals.css';
 
 const inter = Inter({
@@ -21,21 +20,9 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://indigocars.eu'),
-  title: {
-    default: 'Indigo Cars — Вносител на автомобили от САЩ и Канада',
-    template: '%s — Indigo Cars',
-  },
+  // Plain title for non-localized routes (admin). The [lang] layout sets its own title + template.
+  title: 'Indigo Cars — Вносител на автомобили от САЩ и Канада',
   description: 'Поръчков внос на автомобили от търгове в САЩ и Канада. Доставка до България и Европа. Пълно документално обслужване — вие само получавате колата.',
-  alternates: { canonical: '/' },
-  openGraph: {
-    type: 'website',
-    locale: 'bg_BG',
-    alternateLocale: ['ro_RO', 'en_US', 'ru_RU'],
-    url: 'https://indigocars.eu',
-    siteName: 'Indigo Cars',
-    title: 'Indigo Cars — Твоята кола от търга директно до теб',
-    description: 'Купуваме директно от търговете в САЩ и Канада. Транспортираме до България и цяла Европа. Пълно документално обслужване — без главоболия, без скрити разходи.',
-  },
   twitter: {
     card: 'summary_large_image',
     title: 'Indigo Cars — Твоята кола от търга директно до теб',
@@ -56,9 +43,12 @@ const organizationSchema = {
   knowsLanguage: ['bg', 'ru', 'en', 'ro'],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // Locale is set by middleware (x-locale header); admin / non-localized routes default to bg
+  const locale = (await headers()).get('x-locale') || 'bg';
+
   return (
-    <html lang="bg" suppressHydrationWarning className={`${inter.variable} ${manrope.variable}`}>
+    <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${manrope.variable}`}>
       <head>
         {/* Blocking theme script — prevents flash before React hydrates */}
         <script
@@ -74,10 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ThemeProvider>
-          <LangProvider>
-            <GlobalChrome />
-            {children}
-          </LangProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { useLang } from '@/context/LangContext';
 
 export default function TermsPage() {
-  const { t } = useLang();
+  const { t, slug } = useLang();
   const tr = t.terms;
 
   return (
     <main className="min-h-screen py-20 px-4" style={{ background: 'var(--bg-main)', color: 'var(--text-primary)' }}>
       <div className="max-w-3xl mx-auto">
-        <Link href="/" className="text-primary-400 hover:text-primary-300 text-sm mb-8 inline-block">← {tr.back}</Link>
+        <Link href={`/${slug}`} className="text-primary-400 hover:text-primary-300 text-sm mb-8 inline-block">← {tr.back}</Link>
 
         <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{tr.title}</h1>
         <p className="text-dark-300 text-sm mb-10">{tr.updated}</p>

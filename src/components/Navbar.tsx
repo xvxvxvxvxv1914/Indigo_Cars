@@ -19,7 +19,7 @@ const sectionIds = [
 ] as const;
 
 export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
-  const { lang, setLang, t } = useLang();
+  const { lang, setLang, t, slug } = useLang();
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -61,8 +61,8 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    if (pathname !== '/') {
-      window.location.href = '/' + href;
+    if (pathname !== `/${slug}`) {
+      window.location.href = `/${slug}` + href;
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -127,7 +127,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
           <ul className="hidden lg:flex items-center gap-0 text-[13px]">
             {sectionIds.map(({ key, href, hideAtLg }) => {
               const sectionId = href.replace('#', '');
-              const isActive = pathname === '/' && activeSection === sectionId;
+              const isActive = pathname === `/${slug}` && activeSection === sectionId;
               return (
                 <li key={href} className={hideAtLg ? 'hidden xl:block' : ''}>
                   <a href={href} onClick={(e) => { e.preventDefault(); handleNavClick(href); }}
@@ -173,12 +173,12 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
               {isLight ? <Moon size={15} /> : <Sun size={15} />}
             </button>
 
-            <Link href="/b2b"
+            <Link href={`/${slug}/b2b`}
               className="relative flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-all"
               style={{
                 color: 'white',
-                border: `1px solid ${pathname === '/b2b' ? '#691EB9' : 'rgba(255,255,255,0.45)'}`,
-                background: pathname === '/b2b'
+                border: `1px solid ${pathname === `/${slug}/b2b` ? '#691EB9' : 'rgba(255,255,255,0.45)'}`,
+                background: pathname === `/${slug}/b2b`
                   ? 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)'
                   : 'rgba(255,255,255,0.12)',
                 backdropFilter: 'blur(8px)',

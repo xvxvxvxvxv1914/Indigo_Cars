@@ -109,7 +109,7 @@ function NavDots() {
 
 export default function GlobalChrome() {
   const pathname = usePathname();
-  const isHome = pathname === '/';
+  const isHome = /^\/(bg|ro|en|ru)\/?$/.test(pathname);
   return (
     <>
       <ScrollProgressBar />

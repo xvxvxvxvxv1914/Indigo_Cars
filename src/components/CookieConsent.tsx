@@ -5,7 +5,7 @@ import { Cookie, X, Check } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 
 export default function CookieConsent() {
-  const { t } = useLang();
+  const { t, slug } = useLang();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function CookieConsent() {
           <Cookie size={18} className="text-primary-400 flex-shrink-0 mt-0.5" />
           <p className="text-dark-300 text-xs leading-relaxed">
             {t.cookieConsent.text}
-            <a href="/privacy" className="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors">
+            <a href={`/${slug}/privacy`} className="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors">
               {t.cookieConsent.privacyLink}
             </a>
             .
