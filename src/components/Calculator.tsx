@@ -85,7 +85,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
 
   const cardBg     = embed ? 'rgba(255,255,255,0.08)' : light ? '#ffffff' : 'rgba(32,21,69,0.6)';
   const cardBorder = embed ? '1px solid rgba(255,255,255,0.12)' : light ? '1px solid #E7E4F0' : '1px solid #2e1858';
-  const labelColor = embed ? 'rgba(231,228,240,0.65)' : light ? '#5a3a8a' : '#9070a8';
+  const labelColor = embed ? 'rgba(231,228,240,0.65)' : light ? '#5a3a8a' : 'rgba(231,228,240,0.70)';
   const textColor  = embed ? 'rgba(255,255,255,0.95)' : light ? '#000E38' : '#ffffff';
   const inputCardBg     = embed ? 'rgba(255,255,255,0.08)' : light ? '#ffffff' : 'rgba(255,255,255,0.10)';
   const inputCardBorder = embed ? '1px solid rgba(255,255,255,0.12)' : light ? '1px solid #E7E4F0' : '1px solid rgba(255,255,255,0.18)';
@@ -149,7 +149,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
                 className="flex-1 py-2 rounded-lg text-sm font-medium transition-all"
                 style={{
                   background: fuel === key ? (embed ? 'rgba(105,30,185,0.5)' : light ? 'white' : '#1e1c3a') : 'transparent',
-                  color: fuel === key ? (embed ? 'white' : '#691EB9') : labelColor,
+                  color: fuel === key ? (embed || !light ? 'white' : '#691EB9') : labelColor,
                   border: fuel === key ? `1px solid ${embed ? 'rgba(105,30,185,0.5)' : light ? '#e2e8f0' : 'rgba(105,30,185,0.2)'}` : '1px solid transparent',
                   boxShadow: fuel === key && light && !embed ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
                 }}>
