@@ -2,11 +2,31 @@
 
 **Дата:** 2026-06-09
 **Извършен от:** Claude (Opus) — четене на целия код, ред по ред
-**Стабилна точка за rollback:** git tag `stable-pre-mobile-fixes`
+**Stable rollback tags:** `stable-pre-mobile-fixes`, `stable-post-audit`, `stable-pre-locale-routes`
 
 Легенда:
 - 🔴 Критично · 🟠 Важно · 🟡 Дребно/чистене
 - `[ME]` = мога да го оправя сам · `[INPUT]` = трябва реална информация от клиента/теб
+
+---
+
+## 📊 ТЕКУЩ СТАТУС (2026-06-09) — всичко свършено е в PRODUCTION
+
+**✅ Завършено и live на `indigocars.eu`:**
+- Calculator контраст (dark mode) · мобилни fixes (navbar/RouteMap zoom/footer/lazy-load)
+- Audit #4 (RouteMap преведена на 4 езика) · #5 (SEO metadata) · #6 (email injection) · #7 (admin auth + branding) · #8 (изтрит index.css) · #9 (hero alt)
+- SEO: Organization JSON-LD + title template
+- **Locale routes `/bg` `/ru` `/en` `/ro`** — merge `be98a48`, проверено live (rollback: `git revert -m 1 be98a48`)
+- RLS проверен: lead-овете защитени; чака само dashboard действие
+
+**⏳ Остава (чака клиента/потребителя):**
+- 🔴 Реален телефон (#1) + `tel:` линкове · WhatsApp номер (#2) · email рутинг (#3) · B2B hardcode `+35989123456`/`b2b@indigocars.bg`
+- 🟠 Supabase dashboard: изключи signup + създай 1 admin юзър; по избор revoke `rls_auto_enable`
+- 🟠 LocalBusiness JSON-LD (чака телефон)
+- 🟡 next/image · Google Search Console верификация · sitemap реални дати
+- 📋 Одобрение на руския текст → `ru.json` master за BG/EN/RO
+
+(Детайлите по точките #1–9 са по-долу; #4–9 вече са ✅.)
 
 ---
 
