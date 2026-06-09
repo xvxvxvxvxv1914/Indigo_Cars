@@ -10,7 +10,14 @@ const T: Record<string, { title: string; description: string }> = {
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const t = T[lang] ?? T.bg;
-  return { title: t.title, description: t.description, alternates: { canonical: `/${lang}/privacy` } };
+  return {
+    title: t.title,
+    description: t.description,
+    alternates: {
+      canonical: `/${lang}/privacy`,
+      languages: { bg: '/bg/privacy', ru: '/ru/privacy', en: '/en/privacy', ro: '/ro/privacy', 'x-default': '/bg/privacy' },
+    },
+  };
 }
 
 export default function PrivacyLayout({ children }: { children: React.ReactNode }) {

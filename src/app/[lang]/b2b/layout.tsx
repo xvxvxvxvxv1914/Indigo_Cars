@@ -13,7 +13,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title: t.title,
     description: t.description,
-    alternates: { canonical: `/${lang}/b2b` },
+    alternates: {
+      canonical: `/${lang}/b2b`,
+      languages: { bg: '/bg/b2b', ru: '/ru/b2b', en: '/en/b2b', ro: '/ro/b2b', 'x-default': '/bg/b2b' },
+    },
     openGraph: {
       title: `Indigo Cars ${t.title}`,
       description: t.description,

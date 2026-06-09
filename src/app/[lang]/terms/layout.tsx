@@ -10,7 +10,14 @@ const T: Record<string, { title: string; description: string }> = {
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const t = T[lang] ?? T.bg;
-  return { title: t.title, description: t.description, alternates: { canonical: `/${lang}/terms` } };
+  return {
+    title: t.title,
+    description: t.description,
+    alternates: {
+      canonical: `/${lang}/terms`,
+      languages: { bg: '/bg/terms', ru: '/ru/terms', en: '/en/terms', ro: '/ro/terms', 'x-default': '/bg/terms' },
+    },
+  };
 }
 
 export default function TermsLayout({ children }: { children: React.ReactNode }) {
