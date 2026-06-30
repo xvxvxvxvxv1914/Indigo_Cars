@@ -192,7 +192,7 @@ export default function Admin() {
               ← Сайт
             </a>
             <button
-              onClick={() => { setShowForm(true); resetForm(); }}
+              onClick={() => { resetForm(); setShowForm(true); }}
               className="btn-primary flex items-center gap-2 text-sm py-2 px-4"
             >
               <Plus size={16} />
