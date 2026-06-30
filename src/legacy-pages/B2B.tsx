@@ -226,7 +226,7 @@ export default function B2B() {
                 const Icon = step.icon;
                 return (
                   <div key={idx} className="animate-on-scroll flex flex-col items-center text-center">
-                    <div className="font-display text-xs font-bold mb-2 tracking-widest" style={{ color: 'rgba(105,30,185,0.7)' }}>
+                    <div className="font-display text-xs font-bold mb-2 tracking-widest" style={{ color: 'var(--num-accent)' }}>
                       {String(idx + 1).padStart(2, '0')}
                     </div>
                     <div className="relative z-10 rounded-full flex items-center justify-center mb-5 transition-all duration-300 hover:scale-110"
@@ -254,7 +254,7 @@ export default function B2B() {
                       <Icon size={22} style={{ color: 'white' }} />
                     </div>
                     <div className="pt-2">
-                      <div className="font-display text-xs font-bold tracking-widest mb-1" style={{ color: 'rgba(105,30,185,0.7)' }}>{String(idx + 1).padStart(2, '0')}</div>
+                      <div className="font-display text-xs font-bold tracking-widest mb-1" style={{ color: 'var(--num-accent)' }}>{String(idx + 1).padStart(2, '0')}</div>
                       <div className="font-bold text-base mb-1" style={{ color: 'var(--text-primary)' }}>{tr(step.label)}</div>
                       <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{tr(step.desc)}</p>
                     </div>

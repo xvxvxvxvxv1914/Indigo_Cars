@@ -64,7 +64,7 @@ export default function HowItWorks() {
                   {/* Number */}
                   <div
                     className="font-display text-xs font-bold mb-2 tracking-widest"
-                    style={{ color: 'rgba(105,30,185,0.7)' }}
+                    style={{ color: 'var(--num-accent)' }}
                   >
                     {String(idx + 1).padStart(2, '0')}
                   </div>
@@ -133,7 +133,7 @@ export default function HowItWorks() {
                   <div className="pt-2 pb-2">
                     <div
                       className="font-display text-xs font-bold tracking-widest mb-1"
-                      style={{ color: 'rgba(105,30,185,0.7)' }}
+                      style={{ color: 'var(--num-accent)' }}
                     >
                       {String(idx + 1).padStart(2, '0')}
                     </div>

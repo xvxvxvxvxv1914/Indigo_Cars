@@ -14,8 +14,11 @@
   --border-card: #2e1858;
   --text-primary: #ffffff;
   --text-secondary: #D5C6E0;
-  --text-muted: #9070a8;
+  --text-muted: #9d7eb8;
   --text-placeholder: #9070a8;
+  --num-accent: #c4b5fd;
+  --faq-num-bg: rgba(168,85,247,0.22);
+  --faq-num-text: #e9d5ff;
   --cta-grad: linear-gradient(135deg, #691EB9 0%, #4a158a 100%);
   --cta-grad-hover: linear-gradient(135deg, #4a158a 0%, #330d63 100%);
   --cta-text: #ffffff;
@@ -44,6 +47,9 @@
   --text-secondary: #2d0a5a;
   --text-muted: #5a3a8a;
   --text-placeholder: #b8a0d8;
+  --num-accent: rgba(105,30,185,0.7);
+  --faq-num-bg: rgba(105,30,185,0.15);
+  --faq-num-text: #691EB9;
   --overlay-hero: rgba(0,14,56,0.80);
   --overlay-hero-mid: rgba(0,14,56,0.60);
   --overlay-hero-light: rgba(0,14,56,0.20);
@@ -88,6 +94,17 @@
   @keyframes shimmer {
     0%   { background-position: 0% center; }
     100% { background-position: 200% center; }
+  }
+
+  /* Lighter gradient for the dark-theme hero heading so the accent words
+     stay readable over the brighter areas of the background photo. */
+  .text-gradient-hero {
+    background: linear-gradient(110deg, #c4b5fd 0%, #f5f3ff 40%, #d8b4fe 60%, #c4b5fd 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
   }
 
   .text-gradient-stats {

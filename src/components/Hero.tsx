@@ -176,9 +176,9 @@ function HeroDark() {
           </div>
 
           <h1 className="font-display text-3xl sm:text-5xl md:text-6xl text-white leading-none mb-6 tracking-wide">
-            {t.hero.h1a}{' '}<span className="text-gradient">{t.hero.h1b}</span>
+            {t.hero.h1a}{' '}<span className="text-gradient-hero">{t.hero.h1b}</span>
             <br />
-            {t.hero.h1c}{' '}<span className="text-gradient">{t.hero.h1d}</span>
+            {t.hero.h1c}{' '}<span className="text-gradient-hero">{t.hero.h1d}</span>
           </h1>
 
           <p className="hero-stagger text-dark-300 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.18s' }}>

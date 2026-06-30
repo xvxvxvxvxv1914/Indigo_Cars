@@ -31,10 +31,10 @@ const DEMO_OFFERS = [
 
 function conditionColor(c: string) {
   const lower = c.toLowerCase();
-  if (lower === 'excellent') return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
-  if (lower === 'good') return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
-  if (lower === 'fair') return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
-  return 'bg-red-500/20 text-red-300 border-red-500/30';
+  if (lower === 'excellent') return 'bg-emerald-700 text-white border-transparent shadow-sm';
+  if (lower === 'good') return 'bg-sky-700 text-white border-transparent shadow-sm';
+  if (lower === 'fair') return 'bg-amber-700 text-white border-transparent shadow-sm';
+  return 'bg-red-600 text-white border-transparent shadow-sm';
 }
 
 function DemoOfferCards({ t }: { t: ReturnType<typeof useLang>['t'] }) {
