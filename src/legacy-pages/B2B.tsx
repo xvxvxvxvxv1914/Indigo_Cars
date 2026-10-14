@@ -7,6 +7,7 @@ import {
   Package, MessageCircle, Gavel, Truck, Building2
 } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { SITE, telHref } from '../lib/site';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BottomNav from '../components/BottomNav';
@@ -95,9 +96,9 @@ export default function B2B() {
             </div>
 
             <h1 className="hero-stagger font-display text-3xl sm:text-4xl md:text-5xl leading-tight mb-5" style={{ animationDelay: '0.18s', color: 'white' }}>
-              {lang === 'BG' ? <>Комплексни решения<br /><span className="text-gradient">за вашия бизнес</span></> :
-               lang === 'RU' ? <>Комплексные решения<br /><span className="text-gradient">для вашего бизнеса</span></> :
-               <>Complex solutions<br /><span className="text-gradient">for your business</span></>}
+              {lang === 'BG' ? <>Комплексни решения<br /><span className="text-gradient-hero">за вашия бизнес</span></> :
+               lang === 'RU' ? <>Комплексные решения<br /><span className="text-gradient-hero">для вашего бизнеса</span></> :
+               <>Complex solutions<br /><span className="text-gradient-hero">for your business</span></>}
             </h1>
 
             <p className="hero-stagger text-base md:text-lg leading-relaxed mb-8" style={{ animationDelay: '0.32s', color: 'rgba(213,198,224,0.9)' }}>
@@ -337,22 +338,24 @@ export default function B2B() {
                   : "Contact us and let's grow your business together."}
               </p>
               <div className="flex flex-col gap-4">
-                <a href="tel:+35989123456" className="flex items-center gap-3 group">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105" style={{ background: 'rgba(255,255,255,0.15)' }}>
-                    <Phone size={16} style={{ color: 'white' }} />
-                  </div>
-                  <div>
-                    <div className="text-xs" style={{ color: 'rgba(231,228,240,0.6)' }}>{lang === 'BG' ? 'Телефон' : lang === 'RU' ? 'Телефон' : 'Phone'}</div>
-                    <div className="text-sm font-semibold" style={{ color: 'white' }}>+359 89 123 4567</div>
-                  </div>
-                </a>
-                <a href="mailto:b2b@indigocars.bg" className="flex items-center gap-3 group">
+                {SITE.phone && (
+                  <a href={telHref(SITE.phone)} className="flex items-center gap-3 group">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105" style={{ background: 'rgba(255,255,255,0.15)' }}>
+                      <Phone size={16} style={{ color: 'white' }} />
+                    </div>
+                    <div>
+                      <div className="text-xs" style={{ color: 'rgba(231,228,240,0.6)' }}>{lang === 'BG' ? 'Телефон' : lang === 'RU' ? 'Телефон' : 'Phone'}</div>
+                      <div className="text-sm font-semibold" style={{ color: 'white' }}>{SITE.phone}</div>
+                    </div>
+                  </a>
+                )}
+                <a href={`mailto:${SITE.b2bEmail || SITE.email}`} className="flex items-center gap-3 group">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105" style={{ background: 'rgba(255,255,255,0.15)' }}>
                     <Mail size={16} style={{ color: 'white' }} />
                   </div>
                   <div>
                     <div className="text-xs" style={{ color: 'rgba(231,228,240,0.6)' }}>{lang === 'BG' ? 'Имейл' : lang === 'RU' ? 'Почта' : 'Email'}</div>
-                    <div className="text-sm font-semibold" style={{ color: 'white' }}>b2b@indigocars.bg</div>
+                    <div className="text-sm font-semibold" style={{ color: 'white' }}>{SITE.b2bEmail || SITE.email}</div>
                   </div>
                 </a>
                 <div className="flex items-center gap-3">

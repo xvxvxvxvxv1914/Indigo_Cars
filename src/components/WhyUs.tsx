@@ -86,7 +86,7 @@ export default function WhyUs() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 md:mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 md:mb-16">
           {statsMeta.map(({ value, suffix, icon: Icon }, i) => (
             <div
               key={i}
@@ -105,7 +105,7 @@ export default function WhyUs() {
         </div>
 
         {/* Why Us content */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div className="animate-on-scroll">
             <p className="section-label">{t.whyUs.label}</p>
             <h2 className="section-title mb-8">

@@ -69,7 +69,7 @@ export default function Testimonials() {
               </p>
 
               {/* Author row */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap gap-y-2">
                 {/* Gradient ring avatar */}
                 <div
                   className="flex-shrink-0 rounded-full p-0.5"
@@ -87,10 +87,12 @@ export default function Testimonials() {
                   <div className="text-dark-300 text-xs">{item.location}</div>
                 </div>
 
-                {/* Car badge */}
+                {/* Car badge — was truncated to 120px, cutting "Ford Mustang GT 2019"
+                    down to "Ford Mustang …". Now wraps to its own line instead.
+                    Colour is theme-aware: #E7E4F0 was invisible on the light card. */}
                 <span
-                  className="ml-auto flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-medium truncate max-w-[120px]"
-                  style={{ background: 'rgba(105,30,185,0.12)', color: '#E7E4F0' }}
+                  className="ml-auto flex-shrink-0 text-xs px-2.5 py-1 rounded-full font-medium whitespace-nowrap"
+                  style={{ background: 'rgba(105,30,185,0.12)', color: 'var(--grad-b)' }}
                 >
                   {item.car}
                 </span>

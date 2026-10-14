@@ -41,8 +41,8 @@ function HeroLight() {
           decoding="sync"
         />
         {/* Light theme overlays — bright left, gentle gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/[0.94] via-white/[0.65] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/[0.93] via-white/[0.58] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
         <div className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-[120px]" style={{ background: 'rgba(105,30,185,0.07)' }} />
       </div>
 
@@ -54,11 +54,11 @@ function HeroLight() {
           {/* Eyebrow */}
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
             <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #691EB9, #4a158a)' }} />
-            <span className="text-primary-600 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
+            <span className="text-primary-600 font-semibold text-xs uppercase tracking-[0.25em] leading-relaxed">{t.hero.label}</span>
           </div>
 
           {/* Heading — no entrance animation: LCP element must be visible immediately */}
-          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl leading-none mb-6 tracking-wide" style={{ color: '#1A1A2E' }}>
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl leading-[1.08] mb-6 tracking-wide" style={{ color: '#1A1A2E' }}>
             {t.hero.h1a}{' '}
             <span className="text-gradient">{t.hero.h1b}</span>
             <br />
@@ -172,10 +172,10 @@ function HeroDark() {
         <div className="max-w-3xl">
           <div className="hero-stagger flex items-center gap-3 mb-6" style={{ animationDelay: '0.05s' }}>
             <div className="h-px w-10" style={{ background: 'linear-gradient(to right, #691EB9, #4a158a)' }} />
-            <span className="text-primary-400 font-semibold text-xs uppercase tracking-[0.25em]">{t.hero.label}</span>
+            <span className="text-primary-400 font-semibold text-xs uppercase tracking-[0.25em] leading-relaxed">{t.hero.label}</span>
           </div>
 
-          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl text-white leading-none mb-6 tracking-wide">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl text-white leading-[1.08] mb-6 tracking-wide">
             {t.hero.h1a}{' '}<span className="text-gradient-hero">{t.hero.h1b}</span>
             <br />
             {t.hero.h1c}{' '}<span className="text-gradient-hero">{t.hero.h1d}</span>

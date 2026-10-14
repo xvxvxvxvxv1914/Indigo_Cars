@@ -7,6 +7,7 @@ import { Menu, X, Phone, Sun, Moon, Building2 } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useMagnetic } from '../lib/useMagnetic';
 import { useTheme } from '../context/ThemeContext';
+import { SITE, telHref } from '../lib/site';
 
 const sectionIds = [
   { key: 'home',         href: '#hero',          hideAtLg: true  },
@@ -147,10 +148,12 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
 
           {/* Right controls */}
           <div className="hidden lg:flex items-center gap-3">
-            <a href="#contact" className="flex items-center gap-1.5 text-sm transition-colors" style={{ color: navText }}>
-              <Phone size={14} className="text-primary-500" />
-              <span>—</span>
-            </a>
+            {SITE.phone && (
+              <a href={telHref(SITE.phone)} className="flex items-center gap-1.5 text-sm transition-colors whitespace-nowrap" style={{ color: navText }}>
+                <Phone size={14} className="text-primary-500" />
+                <span>{SITE.phone}</span>
+              </a>
+            )}
 
             {/* Language switcher */}
             <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
@@ -243,10 +246,12 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-3 px-4 py-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            <Phone size={14} className="text-primary-500" />
-            <span>—</span>
-          </div>
+          {SITE.phone && (
+            <a href={telHref(SITE.phone)} className="flex items-center gap-3 px-4 py-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+              <Phone size={14} className="text-primary-500" />
+              <span>{SITE.phone}</span>
+            </a>
+          )}
           <a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }} className="block btn-primary text-center text-sm mt-3">
             {t.nav.cta}
           </a>

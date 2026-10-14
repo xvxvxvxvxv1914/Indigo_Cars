@@ -2,6 +2,7 @@
 
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useLang } from '../context/LangContext';
+import { SITE, telHref } from '../lib/site';
 
 const sectionHrefs = ['#how-it-works', '#how-it-works', '#how-it-works', '#how-it-works', '#how-it-works'];
 const infoHrefs = ['#how-it-works', '#offers', '#why-us', '#testimonials', '#faq'];
@@ -21,27 +22,28 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)' }}>
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                  <path d="M3 14L2 17H20L19 14H3Z" fill="white"/>
-                  <path d="M5 14L6.5 9H15.5L17 14H5Z" fill="white" opacity="0.7"/>
-                  <circle cx="7" cy="17.5" r="1.5" fill="white"/>
-                  <circle cx="15" cy="17.5" r="1.5" fill="white"/>
-                  <path d="M8 9L9 5H13L14 9H8Z" fill="white" opacity="0.5"/>
-                </svg>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-display text-xl text-white tracking-wider">INDIGO</span>
-                <span className="font-display text-xl text-primary-400 tracking-wider">CARS</span>
+            {/* Same brandbook wordmark as the navbar — the footer stays dark in
+                both themes, so it gets the same light plate the navbar uses. */}
+            <div className="mb-4">
+              <div className="inline-block rounded-xl" style={{ padding: '5px 11px', background: 'rgba(255,255,255,0.92)' }}>
+                <img src="/logo.png" alt="Indigo Cars" className="h-7 w-auto" />
               </div>
             </div>
             <p className="text-dark-300 text-sm leading-relaxed mb-6">{t.footer.description}</p>
+            {/* Rendered only for profiles the client has actually given us —
+                these used to be three dead href="#" links. */}
             <div className="flex gap-3">
-              {[Facebook, Instagram, Youtube].map((Icon, i) => (
+              {([
+                { Icon: Facebook, url: SITE.social.facebook, name: 'Facebook' },
+                { Icon: Instagram, url: SITE.social.instagram, name: 'Instagram' },
+                { Icon: Youtube, url: SITE.social.youtube, name: 'YouTube' },
+              ] as const).filter(x => x.url).map(({ Icon, url, name }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={name}
                   className="w-9 h-9 rounded-lg flex items-center justify-center text-dark-300 hover:text-primary-400 transition-all"
                   style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)' }}
                 >
@@ -83,16 +85,20 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{t.footer.contacts}</h4>
             <div className="space-y-3">
-              {[
-                { icon: Phone, value: '—', href: '#' },
-                { icon: Mail, value: 'info@indigocars.eu', href: 'mailto:info@indigocars.eu' },
-                { icon: MapPin, value: t.contact.address, href: '#' },
-              ].map(({ icon: Icon, value, href }) => (
-                <a key={value} href={href} className="flex items-start gap-3 text-dark-300 hover:text-white transition-colors">
-                  <Icon size={15} className="text-primary-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm">{value}</span>
-                </a>
-              ))}
+              {([
+                SITE.phone ? { icon: Phone, value: SITE.phone, href: telHref(SITE.phone) } : null,
+                { icon: Mail, value: SITE.email, href: `mailto:${SITE.email}` },
+                { icon: MapPin, value: t.contact.address, href: SITE.mapsUrl || null },
+              ].filter(Boolean) as { icon: typeof Phone; value: string; href: string | null }[])
+                .map(({ icon: Icon, value, href }) => {
+                  const Wrapper = href ? 'a' : 'div';
+                  return (
+                    <Wrapper key={value} {...(href ? { href } : {})} className={`flex items-start gap-3 text-dark-300 transition-colors${href ? ' hover:text-white' : ''}`}>
+                      <Icon size={15} className="text-primary-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm">{value}</span>
+                    </Wrapper>
+                  );
+                })}
             </div>
           </div>
         </div>

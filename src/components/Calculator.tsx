@@ -5,6 +5,7 @@ import { ChevronRight, TrendingDown, Zap, Ship, Flag, Wrench } from 'lucide-reac
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 import { useScrollReveal } from '../lib/useScrollReveal';
+import { formatNum } from '../lib/site';
 
 const USD_TO_EUR = 0.92;
 const EUR_TO_BGN = 1.956;
@@ -63,7 +64,7 @@ function AnimatedNumber({ value, prefix = '€' }: { value: number; prefix?: str
     raf.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf.current);
   }, [value]);
-  return <>{prefix}{display.toLocaleString('de-DE')}</>;
+  return <>{prefix}{formatNum(display)}</>;
 }
 
 const GROUP_ICONS = [Flag, Ship, Zap, Wrench];
@@ -98,12 +99,12 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
 
         {/* Price slider card */}
         <div className="rounded-2xl p-5" style={{ background: inputCardBg, border: inputCardBorder }}>
-          <div className="flex justify-between items-end mb-5">
+          <div className="flex justify-between items-end gap-3 mb-5">
             <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: labelColor }}>
               {t.calculator.priceLabel}
             </span>
             <span className="font-display text-2xl font-bold" style={{ color: '#c084fc' }}>
-              ${priceUSD.toLocaleString('de-DE')}
+              ${formatNum(priceUSD)}
             </span>
           </div>
 
@@ -123,7 +124,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
           </div>
 
           {/* Presets */}
-          <div className="flex flex-wrap gap-1.5 mt-4">
+          <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-1.5 mt-4">
             {[5000, 10000, 15000, 20000, 30000, 45000].map((p) => (
               <button key={p} onClick={() => setPriceUSD(p)}
                 className="text-xs px-2.5 py-1 rounded-lg font-medium transition-all"
@@ -169,7 +170,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
             <div>
               <div className="text-sm font-semibold" style={{ color: textColor }}>
                 {t.calculator.savingsText}{' '}
-                <span className="text-gradient font-bold">€{r.savings.toLocaleString('de-DE')}</span>
+                <span className="text-gradient-onpurple font-bold">€{formatNum(r.savings)}</span>
               </div>
               <div className="text-xs mt-0.5" style={{ color: labelColor }}>{t.calculator.savingsSub}</div>
             </div>
@@ -239,7 +240,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
   }
 
   return (
-    <section id="calculator" className="py-12 md:py-20 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
+    <section id="calculator" className="py-12 md:py-20 relative scroll-mt-16 overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-alt)' }}>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl p-6 md:p-8 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #691EB9 0%, #000E38 100%)' }}>
@@ -251,7 +252,7 @@ export default function Calculator({ embed = false }: { embed?: boolean }) {
               <p className="section-label" style={{ color: 'rgba(199,168,255,0.9)' }}>{t.calculator.label}</p>
               <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight mb-3" style={{ color: 'white' }}>
                 {t.calculator.title}{' '}
-                <span className="text-gradient section-title-accent">{t.calculator.titleAccent}</span>
+                <span className="text-gradient-onpurple section-title-accent">{t.calculator.titleAccent}</span>
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: 'rgba(231,228,240,0.75)' }}>{t.calculator.sub}</p>
             </div>

@@ -59,6 +59,9 @@ const EU_GEO: Record<number, GeoData> = {
 };
 
 const EU_ISO = new Set(Object.keys(EU_GEO).map(Number));
+// The USA and Canada are where the whole service starts, but they were drawn in
+// the same near-invisible fill as every other non-EU landmass. Give them their own.
+const ORIGIN_ISO = new Set([840, 124]);
 const ROTTERDAM: [number, number] = [4.5, 51.9];
 
 export default function RouteMap() {
@@ -85,10 +88,13 @@ export default function RouteMap() {
   const geoStroke = light ? '#691EB9' : '#7c5dd4';
   const geoActive = light ? '#3d1680' : '#691EB9';
   const mapBg     = light ? '#f0ecff' : '#0c0a22';
-  const landFill   = light ? '#e6e0f7' : '#161232';
-  const landStroke = light ? '#d4c9f2' : '#241a4d';
+  const landFill   = light ? '#e6e0f7' : '#1c1740';
+  const landStroke = light ? '#d4c9f2' : '#2d2359';
+  const originFill   = light ? '#bfe8d4' : '#1d4f3c';
+  const originStroke = light ? '#10b981' : '#3fa882';
 
   const US_PORT: [number, number] = [-74.0, 40.7];
+  const CA_PORT: [number, number] = [-73.6, 45.5];
   const ATLANTIC: [number, number] = [-32, 47];
 
   return (
@@ -259,17 +265,19 @@ export default function RouteMap() {
                       const isEU = EU_ISO.has(numId);
 
                       if (!isEU) {
+                        const isOrigin = ORIGIN_ISO.has(numId);
+                        const f = isOrigin ? originFill : landFill;
                         return (
                           <Geography
                             key={geo.rsmKey}
                             geography={geo}
-                            fill={landFill}
-                            stroke={landStroke}
-                            strokeWidth={0.35}
+                            fill={f}
+                            stroke={isOrigin ? originStroke : landStroke}
+                            strokeWidth={isOrigin ? 0.7 : 0.35}
                             style={{
                               default: { outline: 'none', pointerEvents: 'none' },
-                              hover:   { outline: 'none', fill: landFill },
-                              pressed: { outline: 'none', fill: landFill },
+                              hover:   { outline: 'none', fill: f },
+                              pressed: { outline: 'none', fill: f },
                             }}
                           />
                         );
@@ -316,6 +324,16 @@ export default function RouteMap() {
                   <text y={-10 / zoom} textAnchor="middle" fontSize={9 / zoom} fontWeight="700"
                     fill={light ? '#3d1680' : 'rgba(213,198,224,0.95)'} letterSpacing="0.4">
                     🇺🇸 {t.routeMap.usaLabel}
+                  </text>
+                </Marker>
+
+                {/* Canada origin marker — listed in the sidebar, previously missing here */}
+                <Marker coordinates={CA_PORT}>
+                  <circle r={5 / zoom} fill="rgba(16,185,129,0.22)" stroke="#10b981" strokeWidth={1.3 / zoom} />
+                  <circle r={2.2 / zoom} fill="#10b981" />
+                  <text y={-9 / zoom} textAnchor="middle" fontSize={8 / zoom} fontWeight="700"
+                    fill={light ? '#3d1680' : 'rgba(213,198,224,0.95)'} letterSpacing="0.4">
+                    🇨🇦 {t.routeMap.canadaLabel}
                   </text>
                 </Marker>
 

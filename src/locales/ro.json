@@ -51,7 +51,8 @@
     "inquire": "Solicitare",
     "noOffers": "Nu există oferte active în acest moment.",
     "comingSoon": "În Curând",
-    "customOrder": "Comandă Personalizată"
+    "customOrder": "Comandă Personalizată",
+    "conditions": { "excellent": "Excelentă", "good": "Bună", "fair": "Acceptabilă", "poor": "Slabă" }
   },
   "whyUs": {
     "label": "De Ce Să Ne Alegi",
@@ -180,7 +181,7 @@
     "canadaLabel": "Canada",
     "canadaCities": "Toronto · Vancouver · Montreal",
     "transatlantic": "Traversare transatlantică",
-    "transatlanticDays": "14–21 zile",
+    "transatlanticDays": "21–28 zile",
     "fromRotterdam": "Din Rotterdam",
     "clickHint": "Apasă pe o țară pentru a vedea timpul de livrare",
     "clickHintShort": "Apasă pe o țară",
@@ -235,10 +236,10 @@
       { "city": "Bulgaria", "sub": "Livrare la tine", "flag": "🇧🇬" }
     ],
     "timeline": [
-      { "label": "Pregătire", "days": "7–10 zile" },
-      { "label": "Transport Maritim", "days": "20–30 zile" },
-      { "label": "Vamă", "days": "5–10 zile" },
-      { "label": "Livrare Finală", "days": "3–5 zile" }
+      { "label": "Pregătire", "days": "10–14 zile" },
+      { "label": "Transport Maritim", "days": "21–28 zile" },
+      { "label": "Vamă", "days": "7–9 zile" },
+      { "label": "Livrare Finală", "days": "7–9 zile" }
     ],
     "durations": ["20–30 zile", "7–14 zile"],
     "total": "Total:",

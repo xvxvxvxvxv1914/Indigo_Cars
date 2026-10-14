@@ -51,7 +51,8 @@
     "inquire": "Inquire",
     "noOffers": "No active offers at the moment.",
     "comingSoon": "Coming Soon",
-    "customOrder": "Custom Order"
+    "customOrder": "Custom Order",
+    "conditions": { "excellent": "Excellent", "good": "Good", "fair": "Fair", "poor": "Poor" }
   },
   "whyUs": {
     "label": "Why Choose Us",
@@ -180,7 +181,7 @@
     "canadaLabel": "Canada",
     "canadaCities": "Toronto · Vancouver · Montreal",
     "transatlantic": "Transatlantic voyage",
-    "transatlanticDays": "14–21 days",
+    "transatlanticDays": "21–28 days",
     "fromRotterdam": "From Rotterdam",
     "clickHint": "Click on a country to see delivery time",
     "clickHintShort": "Click on a country",
@@ -235,10 +236,10 @@
       { "city": "Bulgaria", "sub": "Delivery to you", "flag": "🇧🇬" }
     ],
     "timeline": [
-      { "label": "Preparation", "days": "7–10 days" },
-      { "label": "Ocean Transport", "days": "20–30 days" },
-      { "label": "Customs", "days": "5–10 days" },
-      { "label": "Final Delivery", "days": "3–5 days" }
+      { "label": "Preparation", "days": "10–14 days" },
+      { "label": "Ocean Transport", "days": "21–28 days" },
+      { "label": "Customs", "days": "7–9 days" },
+      { "label": "Final Delivery", "days": "7–9 days" }
     ],
     "durations": ["20–30 days", "7–14 days"],
     "total": "Total:",

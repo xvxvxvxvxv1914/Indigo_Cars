@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useTheme } from '../context/ThemeContext';
 import { useScrollReveal } from '../lib/useScrollReveal';
+import { SITE, telHref } from '../lib/site';
 
 const CONFETTI_COLORS = ['#691EB9', '#E7E4F0', '#4a158a', '#25d366', '#f59e0b', '#ec4899'];
 
@@ -65,11 +66,13 @@ export default function Contact() {
   const inputStyle = { background: 'var(--bg-input)', border: '1px solid var(--border)' };
   const inputClass = 'w-full rounded-lg px-4 py-3 placeholder-[#9070a8] focus:outline-none transition-colors text-sm';
 
+  // Items without a real destination are rendered as plain text rather than as a
+  // link to "#", and the phone row is dropped entirely until a number exists.
   const contactItems = [
-    { icon: Phone, label: t.contact.phoneLabel, value: '—', href: '#' },
-    { icon: Mail, label: t.contact.emailLabel, value: 'info@indigocars.eu', href: 'mailto:info@indigocars.eu' },
-    { icon: MapPin, label: t.contact.addressLabel, value: t.contact.address, href: '#' },
-  ];
+    SITE.phone ? { icon: Phone, label: t.contact.phoneLabel, value: SITE.phone, href: telHref(SITE.phone) } : null,
+    { icon: Mail, label: t.contact.emailLabel, value: SITE.email, href: `mailto:${SITE.email}` },
+    { icon: MapPin, label: t.contact.addressLabel, value: t.contact.address, href: SITE.mapsUrl || null },
+  ].filter(Boolean) as { icon: typeof Phone; label: string; value: string; href: string | null }[];
 
   return (
     <section id="contact" className="py-12 md:py-20 relative overflow-hidden" ref={sectionRef} style={{ background: 'var(--bg-main)' }}>
@@ -94,17 +97,20 @@ export default function Contact() {
             <div>
               <h3 className="text-xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>{t.contact.infoTitle}</h3>
               <div className="space-y-4">
-                {contactItems.map(({ icon: Icon, label, value, href }) => (
-                  <a key={label} href={href} className="flex items-start gap-4 group">
-                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all" style={{ background: 'rgba(105,30,185,0.15)', border: '1px solid rgba(105,30,185,0.2)' }}>
-                      <Icon size={20} className="text-primary-400" />
-                    </div>
-                    <div>
-                      <div className="text-dark-300 text-xs uppercase tracking-wider mb-0.5">{label}</div>
-                      <div className="text-white font-medium group-hover:text-primary-400 transition-colors">{value}</div>
-                    </div>
-                  </a>
-                ))}
+                {contactItems.map(({ icon: Icon, label, value, href }) => {
+                  const Wrapper = href ? 'a' : 'div';
+                  return (
+                    <Wrapper key={label} {...(href ? { href } : {})} className="flex items-start gap-4 group">
+                      <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all" style={{ background: 'rgba(105,30,185,0.15)', border: '1px solid rgba(105,30,185,0.2)' }}>
+                        <Icon size={20} className="text-primary-400" />
+                      </div>
+                      <div>
+                        <div className="text-dark-300 text-xs uppercase tracking-wider mb-0.5">{label}</div>
+                        <div className={`text-white font-medium transition-colors${href ? ' group-hover:text-primary-400' : ''}`}>{value}</div>
+                      </div>
+                    </Wrapper>
+                  );
+                })}
               </div>
             </div>
 

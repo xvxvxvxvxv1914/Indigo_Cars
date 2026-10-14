@@ -17,6 +17,10 @@
   --text-muted: #9d7eb8;
   --text-placeholder: #9070a8;
   --num-accent: #c4b5fd;
+  /* Accent-gradient stops — both must stay readable on the dark backgrounds */
+  --grad-a: #c4b5fd;
+  --grad-b: #e9d5ff;
+  --accent-line: linear-gradient(90deg, #a78bfa, #c4b5fd);
   --faq-num-bg: rgba(168,85,247,0.22);
   --faq-num-text: #e9d5ff;
   --cta-grad: linear-gradient(135deg, #691EB9 0%, #4a158a 100%);
@@ -48,6 +52,10 @@
   --text-muted: #5a3a8a;
   --text-placeholder: #b8a0d8;
   --num-accent: rgba(105,30,185,0.7);
+  /* Accent-gradient stops — both must stay readable on the light backgrounds */
+  --grad-a: #691EB9;
+  --grad-b: #4a158a;
+  --accent-line: linear-gradient(90deg, #691EB9, #4a158a);
   --faq-num-bg: rgba(105,30,185,0.15);
   --faq-num-text: #691EB9;
   --overlay-hero: rgba(0,14,56,0.80);
@@ -82,8 +90,14 @@
 }
 
 @layer utilities {
+  /* The shimmer sweeps the gradient through the text, so EVERY stop has to stay
+     readable on its own background — otherwise part of the word disappears for
+     part of the cycle. Stops are theme-aware (see --grad-a/--grad-b):
+       dark  #c4b5fd / #e9d5ff  →  9.4:1 … 13.7:1 on the dark backgrounds
+       light #691EB9 / #4a158a  →  7.6:1 … 11.9:1 on the light backgrounds
+     The old fixed stops dropped to 1.1:1 (light) and 1.5:1 (dark). */
   .text-gradient {
-    background: linear-gradient(110deg, #691EB9 0%, #E7E4F0 40%, #4a158a 60%, #691EB9 100%);
+    background: linear-gradient(110deg, var(--grad-a) 0%, var(--grad-b) 40%, var(--grad-a) 60%, var(--grad-b) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -107,8 +121,22 @@
     animation: shimmer 4s linear infinite;
   }
 
+  /* For headings sitting on the purple calculator card, which stays purple in
+     BOTH themes — so the stops must stay light regardless of the active theme. */
+  .text-gradient-onpurple {
+    background: linear-gradient(110deg, #f5f3ff 0%, #e9d5ff 40%, #f5f3ff 60%, #e9d5ff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+  .text-gradient-onpurple.section-title-accent::after {
+    background: linear-gradient(90deg, #e9d5ff, #f5f3ff);
+  }
+
   .text-gradient-stats {
-    background: linear-gradient(135deg, #E7E4F0 0%, #8b45d0 100%);
+    background: linear-gradient(135deg, var(--grad-b) 0%, var(--grad-a) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -156,7 +184,7 @@
     left: 0;
     width: 48px;
     height: 2px;
-    background: linear-gradient(90deg, #691EB9, #4a158a);
+    background: var(--accent-line);
     border-radius: 2px;
   }
 
