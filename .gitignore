@@ -29,3 +29,8 @@ next-env.d.ts
 
 # Local preview/screenshot tooling (dev artifacts)
 scripts/
+
+# Client assets and local tooling — contain credentials and API tokens,
+# must never reach the repository (brandbook, spec PDFs, logins, Codex config)
+Indigo Cars/
+.codex/
