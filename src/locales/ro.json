@@ -325,5 +325,62 @@
     "privacyLink": "Politica de Confidențialitate",
     "accept": "Accept",
     "decline": "Refuz"
+  },
+  "b2b": {
+    "footerLink": "B2B pentru dealeri",
+    "heroAlt": "Logistică B2B",
+    "eyebrow": "Parteneriat B2B",
+    "h1a": "Soluții complete",
+    "h1b": "pentru afacerea ta",
+    "sub": "INDIGO CARS oferă o gamă completă de servicii pentru partenerii de afaceri – de la achiziția de mașini din SUA, Canada și Coreea până la livrare și vămuire în Bulgaria.",
+    "ctaContact": "Contactează-ne",
+    "ctaHow": "Cum Lucrăm",
+    "badges": ["1500+ livrate", "100% transparență"],
+    "stats": [
+      { "label": "Țări de proveniență", "sub": "🇺🇸 SUA · 🇨🇦 Canada · 🇰🇷 Coreea" },
+      { "label": "Mașini livrate", "sub": "" },
+      { "label": "Parteneri de afaceri", "sub": "" },
+      { "label": "Transparență și control", "sub": "" }
+    ],
+    "servicesLabel": "Servicii",
+    "servicesTitle": "Serviciile noastre",
+    "servicesTitleAccent": "pentru B2B",
+    "servicesSub": "Un pachet complet de soluții pentru partenerii de afaceri — de la licitație până în depozitul tău.",
+    "services": [
+      { "label": "Achiziție de mașini", "desc": "Licităm în numele tău la licitațiile din SUA, Canada și Coreea." },
+      { "label": "Logistică maritimă", "desc": "Organizăm transportul până la Rotterdam și de acolo până la tine." },
+      { "label": "Vămuire", "desc": "Documentație completă pentru importul în UE." },
+      { "label": "Eliberare vamală", "desc": "Procedură rapidă și fără probleme la frontieră." },
+      { "label": "Consultanță la selecție", "desc": "Te ajutăm să găsești mașina potrivită pentru afacerea ta." }
+    ],
+    "processLabel": "Procesul",
+    "processTitle": "Cum lucrăm cu",
+    "processTitleAccent": "partenerii B2B",
+    "processSub": "Un proces transparent și simplificat — noi ne ocupăm de tot ce e complicat.",
+    "steps": [
+      { "label": "Solicitare", "desc": "Împărtășești cerințele și preferințele tale." },
+      { "label": "Selecție și ofertă", "desc": "Găsim cele mai bune opțiuni și îți trimitem o ofertă." },
+      { "label": "Achiziție", "desc": "Cumpărăm mașina la cel mai bun preț." },
+      { "label": "Transport", "desc": "Transportăm mașina în Bulgaria." },
+      { "label": "Vamă și livrare", "desc": "Vămuire și livrare până la tine." }
+    ],
+    "whyLabel": "De ce noi",
+    "whyTitle": "De ce să alegi",
+    "whySub": "Lucrăm cu dealeri, parcuri auto și clienți corporativi din toată Europa.",
+    "whyCta": "Devino Partener",
+    "reasons": ["Acces zilnic la mii de mașini", "Proces transparent și sprijin complet", "Cele mai bune prețuri, fără taxe ascunse", "Livrare oriunde în Bulgaria"],
+    "cards": [
+      { "title": "Pentru dealeri", "desc": "Achiziționăm loturi de la 1 la 50+ mașini pe lună." },
+      { "title": "Prețuri garantate", "desc": "Fără comisioane ascunse — doar prețul convenit." },
+      { "title": "Trei țări", "desc": "🇺🇸 SUA · 🇨🇦 Canada · 🇰🇷 Coreea" },
+      { "title": "Toate mărcile", "desc": "Ford, BMW, Mercedes, Tesla, Jeep și multe altele." }
+    ],
+    "contactLabel": "Contact",
+    "contactTitle": "Gata să lucrăm împreună?",
+    "contactSub": "Contactează-ne și hai să-ți dezvoltăm afacerea împreună.",
+    "phoneLabel": "Telefon",
+    "emailLabel": "Email",
+    "addressLabel": "Adresă",
+    "address": "Sofia, Bulgaria"
   }
 }

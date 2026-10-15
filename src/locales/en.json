@@ -325,5 +325,62 @@
     "privacyLink": "Privacy Policy",
     "accept": "Accept",
     "decline": "Decline"
+  },
+  "b2b": {
+    "footerLink": "B2B for dealers",
+    "heroAlt": "B2B logistics",
+    "eyebrow": "B2B Partnership",
+    "h1a": "Complex solutions",
+    "h1b": "for your business",
+    "sub": "INDIGO CARS offers a full range of services for business partners – from sourcing vehicles in the USA, Canada and Korea to delivery and customs clearance in Bulgaria.",
+    "ctaContact": "Contact Us",
+    "ctaHow": "How We Work",
+    "badges": ["1500+ delivered", "100% transparent"],
+    "stats": [
+      { "label": "Delivery Countries", "sub": "🇺🇸 USA · 🇨🇦 Canada · 🇰🇷 Korea" },
+      { "label": "Cars Delivered", "sub": "" },
+      { "label": "Business Partners", "sub": "" },
+      { "label": "Transparency", "sub": "" }
+    ],
+    "servicesLabel": "Services",
+    "servicesTitle": "Our Services",
+    "servicesTitleAccent": "for B2B",
+    "servicesSub": "A complete package of solutions for business partners — from the auction to your warehouse.",
+    "services": [
+      { "label": "Car Sourcing", "desc": "We bid at auctions in the USA, Canada and Korea on your behalf." },
+      { "label": "Ocean Logistics", "desc": "We arrange transport to Rotterdam and onward to you." },
+      { "label": "Customs Clearance", "desc": "Full documentation and EU import clearance." },
+      { "label": "Customs Release", "desc": "Fast and smooth border clearance procedure." },
+      { "label": "Selection Consulting", "desc": "We help you find the right vehicle for your business." }
+    ],
+    "processLabel": "Process",
+    "processTitle": "How we work with",
+    "processTitleAccent": "B2B partners",
+    "processSub": "Transparent and simplified process — we handle all the complexity.",
+    "steps": [
+      { "label": "Inquiry", "desc": "Share your requirements and preferences." },
+      { "label": "Selection & Quote", "desc": "We find the best options and provide a quote." },
+      { "label": "Purchase", "desc": "We purchase the vehicle at the best price." },
+      { "label": "Shipping", "desc": "We transport the vehicle to Bulgaria." },
+      { "label": "Customs & Delivery", "desc": "Customs clearance and final delivery." }
+    ],
+    "whyLabel": "Why us",
+    "whyTitle": "Why choose",
+    "whySub": "We work with dealers, showrooms and corporate clients across Europe.",
+    "whyCta": "Become a Partner",
+    "reasons": ["Access to thousands of cars every day", "Transparent process and full support", "Best prices with no hidden fees", "Delivery anywhere in Bulgaria"],
+    "cards": [
+      { "title": "For Dealers", "desc": "We source 1 to 50+ vehicles per month." },
+      { "title": "Guaranteed Prices", "desc": "No hidden commissions — only the agreed price." },
+      { "title": "Three Countries", "desc": "🇺🇸 USA · 🇨🇦 Canada · 🇰🇷 Korea" },
+      { "title": "All Brands", "desc": "Ford, BMW, Mercedes, Tesla, Jeep and many more." }
+    ],
+    "contactLabel": "Get in touch",
+    "contactTitle": "Ready to work together?",
+    "contactSub": "Contact us and let's grow your business together.",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "address": "Sofia, Bulgaria"
   }
 }

@@ -60,7 +60,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <link rel="preload" as="image" href="/hero-image.webp" />
+        {/* No global hero preload: it made every page (B2B, privacy, admin…) download the
+            home hero for nothing. On the home page the <img fetchPriority="high"> already
+            gets preloaded through the Link header. */}
       </head>
       <body>
         <ThemeProvider>

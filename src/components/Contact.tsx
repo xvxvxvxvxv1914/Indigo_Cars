@@ -64,7 +64,9 @@ export default function Contact() {
   };
 
   const inputStyle = { background: 'var(--bg-input)', border: '1px solid var(--border)' };
-  const inputClass = 'w-full rounded-lg px-4 py-3 placeholder-[#9070a8] focus:outline-none transition-colors text-sm';
+  // 16px on touch screens: iOS Safari zooms the whole page in on focus for anything
+  // smaller and stays zoomed. Mouse/trackpad devices keep the original 14px.
+  const inputClass = 'w-full rounded-lg px-4 py-3 placeholder-[#9070a8] focus:outline-none transition-colors text-base [@media(pointer:fine)]:text-sm';
 
   // Items without a real destination are rendered as plain text rather than as a
   // link to "#", and the phone row is dropped entirely until a number exists.
@@ -167,17 +169,17 @@ export default function Contact() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-dark-300 text-xs uppercase tracking-wider mb-1.5">{t.contact.name} *</label>
-                    <input type="text" required placeholder={t.contact.namePlaceholder} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} style={inputStyle} />
+                    <input type="text" required autoComplete="name" placeholder={t.contact.namePlaceholder} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} style={inputStyle} />
                   </div>
                   <div>
                     <label className="block text-dark-300 text-xs uppercase tracking-wider mb-1.5">{t.contact.phoneLabel} *</label>
-                    <input type="tel" required placeholder={t.contact.phonePlaceholder} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} style={inputStyle} />
+                    <input type="tel" required minLength={6} autoComplete="tel" inputMode="tel" placeholder={t.contact.phonePlaceholder} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} style={inputStyle} />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-dark-300 text-xs uppercase tracking-wider mb-1.5">{t.contact.emailLabel}</label>
-                  <input type="email" placeholder="ivan@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} style={inputStyle} />
+                  <input type="email" autoComplete="email" placeholder="ivan@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} style={inputStyle} />
                 </div>
 
                 <div>
@@ -205,7 +207,9 @@ export default function Contact() {
                   <input type="checkbox" required className="mt-0.5 w-4 h-4 rounded accent-primary-500 flex-shrink-0" />
                   <span className="text-dark-300 text-xs leading-relaxed">
                     {t.contact.gdprText}
-                    <a href={`/${slug}/privacy`} className="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors">
+                    {/* New tab: in the same tab "Back" reloaded the page (no-store, no
+                        back/forward cache) and the half-filled form came back empty. */}
+                    <a href={`/${slug}/privacy`} target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors">
                       {t.contact.gdprLink}
                     </a>
                   </span>

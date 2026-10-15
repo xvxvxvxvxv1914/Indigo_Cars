@@ -19,7 +19,14 @@ export default function AdminLogin() {
     const { error: err } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (err) {
-      setError(err.message);
+      // Supabase answers with English technical text ("Failed to fetch",
+      // "Invalid login credentials") — show the client something they can act on.
+      const msg = err.message.toLowerCase();
+      setError(
+        msg.includes('invalid login') ? 'Грешен имейл или парола.'
+        : msg.includes('fetch') || msg.includes('network') ? 'Няма връзка със сървъра. Опитайте отново след малко.'
+        : err.message
+      );
     } else {
       router.push('/admin');
     }
@@ -28,7 +35,7 @@ export default function AdminLogin() {
   const inputStyle = { background: 'rgba(10,10,26,0.7)', border: '1px solid #2e1858' };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#0F1A33' }}>
+    <div className="relative overflow-hidden min-h-screen flex items-center justify-center px-4" style={{ background: '#0F1A33' }}>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(14,0,43,0.08)' }} />
 
       <div className="relative w-full max-w-md">
@@ -70,9 +77,10 @@ export default function AdminLogin() {
             <input
               type="email"
               required
+              autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-sm"
+              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-base [@media(pointer:fine)]:text-sm"
               style={inputStyle}
               placeholder="admin@example.com"
             />
@@ -85,9 +93,10 @@ export default function AdminLogin() {
             <input
               type="password"
               required
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-sm"
+              className="w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-base [@media(pointer:fine)]:text-sm"
               style={inputStyle}
               placeholder="••••••••"
             />

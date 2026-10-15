@@ -95,14 +95,18 @@
      part of the cycle. Stops are theme-aware (see --grad-a/--grad-b):
        dark  #c4b5fd / #e9d5ff  →  9.4:1 … 13.7:1 on the dark backgrounds
        light #691EB9 / #4a158a  →  7.6:1 … 11.9:1 on the light backgrounds
-     The old fixed stops dropped to 1.1:1 (light) and 1.5:1 (dark). */
+     The old fixed stops dropped to 1.1:1 (light) and 1.5:1 (dark).
+     The sweep runs ONCE (when the section scrolls into view — see the
+     .animate-on-scroll rule below), not forever: a background-position animation
+     cannot be composited, so the infinite loop repainted every visible gradient
+     heading on every frame for as long as the page stayed open. */
   .text-gradient {
     background: linear-gradient(110deg, var(--grad-a) 0%, var(--grad-b) 40%, var(--grad-a) 60%, var(--grad-b) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: shimmer 4s linear infinite;
+    animation: shimmer 4s linear 1;
   }
 
   @keyframes shimmer {
@@ -118,7 +122,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: shimmer 4s linear infinite;
+    animation: shimmer 4s linear 1;
   }
 
   /* For headings sitting on the purple calculator card, which stays purple in
@@ -129,10 +133,16 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: shimmer 4s linear infinite;
+    animation: shimmer 4s linear 1;
   }
   .text-gradient-onpurple.section-title-accent::after {
     background: linear-gradient(90deg, #e9d5ff, #f5f3ff);
+  }
+
+  /* Hold the single sweep until the section is revealed, so it plays while the
+     visitor is actually looking at the heading. */
+  .animate-on-scroll:not(.visible) :is(.text-gradient, .text-gradient-onpurple) {
+    animation-play-state: paused;
   }
 
   .text-gradient-stats {
@@ -298,6 +308,24 @@
   100% { transform: translate(var(--cx),var(--cy)) rotate(var(--cr)) scale(0.5); opacity: 0; }
 }
 .confetti-piece { position: absolute; width: 8px; height: 8px; border-radius: 2px; top: 50%; left: 50%; animation: confettiFall 0.8s ease-out forwards; }
+
+/* ─── Route map pulse rings ───
+   Replaces SMIL <animate> on the circles' `r`, which forced a style recalc and a
+   layout on every frame for as long as the page was open (~1 s of main-thread work
+   every 5 s while idle). transform/opacity are cheap, follow the reduced-motion rule
+   below, and pause while the map is off-screen (RouteMap sets data-inview).
+   Base opacity 0: when the animation is not running the ring is simply not there. */
+@keyframes mapPulse {
+  from { transform: scale(var(--pulse-from, 0.4)); opacity: var(--pulse-opacity, 0.7); }
+  to   { transform: scale(1); opacity: 0; }
+}
+.map-pulse {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mapPulse var(--pulse-dur, 2s) linear infinite;
+}
+#routemap-map:not([data-inview]) .map-pulse { animation-play-state: paused; }
 
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {

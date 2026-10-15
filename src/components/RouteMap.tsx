@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ComposableMap, Geographies, Geography, Marker, Line, ZoomableGroup } from 'react-simple-maps';
 import { Ship, Clock, MousePointer } from 'lucide-react';
 import { useLang } from '../context/LangContext';
@@ -63,6 +63,25 @@ const EU_ISO = new Set(Object.keys(EU_GEO).map(Number));
 // the same near-invisible fill as every other non-EU landmass. Give them their own.
 const ORIGIN_ISO = new Set([840, 124]);
 const ROTTERDAM: [number, number] = [4.5, 51.9];
+const DEFAULT_CENTER: [number, number] = [-12, 52];
+
+// One finger on the map must scroll the PAGE. d3-zoom used to take every touch, so a
+// thumb swiping past the map (it is a quarter of a phone screen) panned Europe out of
+// view instead of scrolling. Touch now needs two fingers (pinch / two-finger pan); the
+// wheel zooms only with Ctrl — which is also what a trackpad pinch sends — so scrolling
+// up over the map no longer gets hijacked; mouse drag and the +/− buttons are unchanged.
+function mapGestureFilter(event: Event) {
+  if (event.type.startsWith('touch')) return (event as TouchEvent).touches.length > 1;
+  if (event.type === 'wheel') return (event as WheelEvent).ctrlKey;
+  const e = event as MouseEvent;
+  return !e.ctrlKey && !e.button;
+}
+
+// Pulse rings are CSS animations (.map-pulse in globals.css) instead of SMIL <animate>
+// on `r`, which forced a style recalc + layout every frame for as long as the page was
+// open — off-screen and with reduced motion too.
+const pulse = (from: number, opacity: number, duration: string) =>
+  ({ '--pulse-from': from, '--pulse-opacity': opacity, '--pulse-dur': duration } as React.CSSProperties);
 
 export default function RouteMap() {
   const { t } = useLang();
@@ -71,8 +90,30 @@ export default function RouteMap() {
   const [activeIso, setActiveIso] = useState<number | null>(100);
   const [visible, setVisible] = useState(false);
   const [zoom, setZoom] = useState(1);
-  const [center, setCenter] = useState<[number, number]>([-12, 52]);
+  const [center, setCenter] = useState<[number, number]>(DEFAULT_CENTER);
   const ref = useScrollReveal({ threshold: 0.12, stagger: 120, onReveal: () => setVisible(true) });
+  const mapBoxRef = useRef<HTMLDivElement>(null);
+
+  // Pause the pulse animations while the map is out of view.
+  useEffect(() => {
+    const el = mapBoxRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => el.toggleAttribute('data-inview', entry.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Stable reference: react-simple-maps re-binds d3-zoom whenever this prop changes.
+  const handleMoveEnd = useCallback(({ zoom: z, coordinates }: { zoom: number; coordinates: [number, number] }) => {
+    setZoom(z);
+    setCenter(coordinates);
+  }, []);
+
+  // The reset button used to appear only when zoomed in, so a map panned away at zoom 1
+  // had no way back short of reloading the page.
+  const moved = zoom > 1.01
+    || Math.abs(center[0] - DEFAULT_CENTER[0]) > 0.5
+    || Math.abs(center[1] - DEFAULT_CENTER[1]) > 0.5;
 
   const countryNames = t.routeMap.countries as Record<string, { name: string; city: string }>;
   const activeGeo = activeIso !== null ? EU_GEO[activeIso] : null;
@@ -207,7 +248,7 @@ export default function RouteMap() {
 
           {/* ── RIGHT: Interactive Europe map ── */}
           <div className="flex-1 min-w-0 w-full">
-            <div id="routemap-map" className="relative overflow-hidden transition-all duration-700 rounded-2xl" style={{
+            <div id="routemap-map" ref={mapBoxRef} className="relative overflow-hidden transition-all duration-700 rounded-2xl" style={{
               border: '1px solid rgba(105,30,185,0.18)',
               background: mapBg,
               opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(18px)', transitionDelay: '0.25s',
@@ -231,9 +272,9 @@ export default function RouteMap() {
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold transition-all hover:scale-110"
                   style={{ background: 'rgba(105,30,185,0.9)', border: '1px solid rgba(192,132,252,0.6)', color: 'white' }}
                 >−</button>
-                {zoom > 1 && (
+                {moved && (
                   <button
-                    onClick={() => { setZoom(1); setCenter([-12, 52]); }}
+                    onClick={() => { setZoom(1); setCenter(DEFAULT_CENTER); }}
                     className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all hover:scale-110"
                     style={{ background: 'rgba(105,30,185,0.9)', border: '1px solid rgba(192,132,252,0.6)', color: 'white' }}
                     title="Reset"
@@ -251,10 +292,10 @@ export default function RouteMap() {
                 <ZoomableGroup
                   zoom={zoom}
                   center={center}
-                  onMoveEnd={({ zoom: z, coordinates }) => {
-                    setZoom(z);
-                    setCenter(coordinates as [number, number]);
-                  }}
+                  onMoveEnd={handleMoveEnd}
+                  // @types/react-simple-maps declares (element: SVGElement); at runtime
+                  // d3-zoom 2 passes the DOM event (see its defaultFilter(event)).
+                  filterZoomEvent={mapGestureFilter as unknown as (element: SVGElement) => boolean}
                   minZoom={1}
                   maxZoom={12}
                 >
@@ -339,10 +380,8 @@ export default function RouteMap() {
 
                 {/* Ship mid-crossing */}
                 <Marker coordinates={ATLANTIC}>
-                  <circle r={14 / zoom} fill="rgba(105,30,185,0.12)" stroke="rgba(124,93,212,0.4)" strokeWidth={1 / zoom}>
-                    <animate attributeName="r" values={`${7/zoom};${17/zoom}`} dur="2.4s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite" />
-                  </circle>
+                  <circle className="map-pulse" r={17 / zoom} fill="rgba(105,30,185,0.12)" stroke="rgba(124,93,212,0.4)" strokeWidth={1 / zoom}
+                    style={pulse(7 / 17, 0.6, '2.4s')} />
                   <text y={5 / zoom} textAnchor="middle" fontSize={15 / zoom} style={{ pointerEvents: 'none', userSelect: 'none' }}>
                     🚢
                   </text>
@@ -362,10 +401,8 @@ export default function RouteMap() {
 
                 {/* Rotterdam hub */}
                 <Marker coordinates={ROTTERDAM}>
-                  <circle r={20 / zoom} fill="rgba(105,30,185,0.0)" stroke="rgba(105,30,185,0.5)" strokeWidth={1 / zoom}>
-                    <animate attributeName="r" values={`${12/zoom};${30/zoom}`} dur="2.2s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.7;0" dur="2.2s" repeatCount="indefinite" />
-                  </circle>
+                  <circle className="map-pulse" r={30 / zoom} fill="rgba(105,30,185,0.0)" stroke="rgba(105,30,185,0.5)" strokeWidth={1 / zoom}
+                    style={pulse(12 / 30, 0.7, '2.2s')} />
                   <circle r={11 / zoom} fill="rgba(105,30,185,0.35)" stroke="#691EB9" strokeWidth={2 / zoom} />
                   <circle r={5 / zoom} fill="#4a158a" />
                   <text y={21 / zoom} textAnchor="middle" fontSize={7 / zoom} fontWeight="700"
@@ -377,10 +414,8 @@ export default function RouteMap() {
                 {/* Active country capital marker */}
                 {activeCountry && (
                   <Marker coordinates={activeCountry.coordinates}>
-                    <circle r={16 / zoom} fill="rgba(105,30,185,0.15)" stroke="rgba(213,198,224,0.5)" strokeWidth={1 / zoom}>
-                      <animate attributeName="r" values={`${8/zoom};${20/zoom}`} dur="1.8s" repeatCount="indefinite" />
-                      <animate attributeName="opacity" values="0.8;0" dur="1.8s" repeatCount="indefinite" />
-                    </circle>
+                    <circle className="map-pulse" r={20 / zoom} fill="rgba(105,30,185,0.15)" stroke="rgba(213,198,224,0.5)" strokeWidth={1 / zoom}
+                      style={pulse(8 / 20, 0.8, '1.8s')} />
                     <circle r={8 / zoom} fill="#4a158a" stroke="#691EB9" strokeWidth={2 / zoom} />
                     <text y={-13 / zoom} textAnchor="middle" fontSize={14 / zoom} style={{ pointerEvents: 'none', userSelect: 'none' }}>
                       {activeCountry.flag}

@@ -66,7 +66,10 @@ function HeroLight() {
             <span className="text-gradient">{t.hero.h1d}</span>
           </h1>
 
-          <p className="hero-stagger text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.18s', color: '#3D3A5C' }}>
+          {/* No entrance animation either: on phones this paragraph is the largest
+              element above the fold, i.e. the LCP. Starting at opacity 0 it waited
+              10–14 s (Lighthouse mobile) for the main thread before it could count. */}
+          <p className="text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ color: '#3D3A5C' }}>
             {t.hero.sub}
           </p>
 
@@ -181,7 +184,8 @@ function HeroDark() {
             {t.hero.h1c}{' '}<span className="text-gradient-hero">{t.hero.h1d}</span>
           </h1>
 
-          <p className="hero-stagger text-dark-300 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl" style={{ animationDelay: '0.18s' }}>
+          {/* No entrance animation — this paragraph is the LCP element on phones (see HeroLight). */}
+          <p className="text-dark-300 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-2xl">
             {t.hero.sub}
           </p>
 

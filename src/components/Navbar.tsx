@@ -1,13 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone, Sun, Moon, Building2 } from 'lucide-react';
+import { Menu, X, Phone, Sun, Moon, Building2, ChevronDown } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { useMagnetic } from '../lib/useMagnetic';
 import { useTheme } from '../context/ThemeContext';
 import { SITE, telHref } from '../lib/site';
+
+const LANGS = [
+  { code: 'BG', name: 'Български' },
+  { code: 'RO', name: 'Română' },
+  { code: 'EN', name: 'English' },
+  { code: 'RU', name: 'Русский' },
+] as const;
 
 const sectionIds = [
   { key: 'home',         href: '#hero',          hideAtLg: true  },
@@ -24,11 +31,39 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const pathname = usePathname();
   const magCta = useMagnetic(0.3);
   const isLight = theme === 'light';
+  const navRef = useRef<HTMLElement>(null);
+  const langRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // The closed menu is only collapsed visually — keep its links out of the tab order.
+  useEffect(() => {
+    menuRef.current?.toggleAttribute('inert', !mobileOpen);
+  }, [mobileOpen]);
+
+  // Esc closes the menu and the language list; a tap outside closes them too.
+  useEffect(() => {
+    if (!mobileOpen && !langOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setMobileOpen(false); setLangOpen(false); }
+    };
+    const onPointer = (e: PointerEvent) => {
+      const target = e.target as Node;
+      if (langOpen && !langRef.current?.contains(target)) setLangOpen(false);
+      if (mobileOpen && !navRef.current?.contains(target)) setMobileOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [mobileOpen, langOpen]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -93,6 +128,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
 
   return (
     <nav
+      ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}
       style={{
         background: scrolledDesktop
@@ -120,7 +156,7 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
                 background: (theme === 'dark' || onDarkNav) ? 'rgba(255,255,255,0.92)' : 'transparent',
               }}
             >
-              <img src="/logo.png" alt="Indigo Cars" className="h-7 w-auto" />
+              <img src="/logo-nav.png" alt="Indigo Cars" width={121} height={28} className="h-6 min-[360px]:h-7 w-auto" />
             </div>
           </a>
 
@@ -205,15 +241,50 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
 
           {/* Mobile toggle */}
           <div className="lg:hidden flex items-center gap-1.5">
-            <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
-              {(['BG', 'RO', 'EN', 'RU'] as const).map((l) => (
-                <button key={l} onClick={() => setLang(l)}
+            {/* The full BG/RO/EN/RU row needs ~396px together with the logo, so below
+                400px it collapses into one "BG ▾" button — otherwise the menu button
+                was cut in half at 360px and pushed off-screen at 320px. */}
+            <div className="hidden min-[400px]:flex items-center gap-1 rounded-lg p-1" style={{ background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}>
+              {LANGS.map(({ code }) => (
+                <button key={code} onClick={() => setLang(code)}
                   className="px-1.5 py-1 rounded text-xs font-bold transition-all"
-                  style={lang === l
+                  style={lang === code
                     ? { background: 'linear-gradient(135deg, #691EB9, #4a158a)', color: 'white' }
                     : { color: navText }}
-                >{l}</button>
+                >{code}</button>
               ))}
+            </div>
+            <div ref={langRef} className="relative min-[400px]:hidden">
+              <button type="button"
+                onClick={() => { setLangOpen((o) => !o); setMobileOpen(false); }}
+                aria-haspopup="true" aria-expanded={langOpen}
+                className="flex items-center gap-1 h-9 pl-2.5 pr-2 rounded-lg text-xs font-bold transition-colors"
+                style={{ color: navText, background: navCtrlBg, border: `1px solid ${navCtrlBdr}` }}
+              >
+                {lang}
+                <ChevronDown size={14} aria-hidden="true" className={`transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {langOpen && (
+                <ul className="absolute right-0 top-full mt-2 min-w-[10.5rem] rounded-xl p-1.5 shadow-2xl"
+                  style={{ background: 'var(--bg-nav)', border: '1px solid rgba(255,255,255,0.12)' }}
+                >
+                  {LANGS.map(({ code, name }) => (
+                    <li key={code}>
+                      <button type="button"
+                        onClick={() => { setLangOpen(false); if (code !== lang) setLang(code); }}
+                        aria-current={lang === code ? 'true' : undefined}
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-left transition-colors hover:bg-white/5"
+                        style={lang === code
+                          ? { background: 'linear-gradient(135deg, #691EB9, #4a158a)', color: 'white' }
+                          : { color: 'rgba(255,255,255,0.85)' }}
+                      >
+                        <span className="font-bold w-6">{code}</span>
+                        <span>{name}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <button onClick={toggleTheme}
               className="p-2 rounded-lg transition-colors"
@@ -223,7 +294,8 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
               {isLight ? <Moon size={18} /> : <Sun size={18} />}
             </button>
             <button className="p-2 transition-colors" style={{ color: navTextHov }}
-              onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
+              onClick={() => { setMobileOpen(!mobileOpen); setLangOpen(false); }}
+              aria-label="Toggle menu" aria-expanded={mobileOpen} aria-controls="mobile-menu"
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -231,8 +303,13 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`lg:hidden transition-all duration-300 overflow-hidden ${mobileOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+      {/* Mobile Menu — scrolls inside itself when it is taller than the screen
+          (phone in landscape), otherwise the last items sat below the fold, unreachable. */}
+      <div id="mobile-menu" ref={menuRef}
+        className={`lg:hidden transition-all duration-300 ${mobileOpen
+          ? 'max-h-[calc(100vh-3.5rem)] supports-[height:100dvh]:max-h-[calc(100dvh-3.5rem)] overflow-y-auto overscroll-contain opacity-100'
+          : 'max-h-0 overflow-hidden opacity-0'}`}
+      >
         <div className="px-4 py-4" style={{ background: 'var(--bg-nav)', borderTop: '1px solid var(--border)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
           <ul className="space-y-1 mb-4">
             {sectionIds.map(({ key, href }) => (
@@ -245,6 +322,17 @@ export default function Navbar({ darkBg = false }: { darkBg?: boolean }) {
                 </a>
               </li>
             ))}
+            {/* Between 768 and 1023px the bottom bar is hidden and the desktop B2B
+                button not shown yet — this was the only way to reach /b2b there. */}
+            <li>
+              <Link href={`/${slug}/b2b`} onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all text-sm hover:bg-white/5"
+                style={{ color: pathname === `/${slug}/b2b` ? '#c4b5fd' : 'rgba(255,255,255,0.8)' }}
+              >
+                <Building2 size={14} aria-hidden="true" />
+                B2B
+              </Link>
+            </li>
           </ul>
           {SITE.phone && (
             <a href={telHref(SITE.phone)} className="flex items-center gap-3 px-4 py-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>

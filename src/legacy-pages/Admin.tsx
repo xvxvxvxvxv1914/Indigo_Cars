@@ -165,14 +165,15 @@ export default function Admin() {
     );
   }
 
-  const inputCls = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-sm';
+  // 16px on touch screens — iOS Safari zooms the page in on focus below that.
+  const inputCls = 'w-full rounded-lg px-4 py-3 text-white placeholder-[#9070a8] focus:outline-none transition-colors text-base [@media(pointer:fine)]:text-sm';
   const inputStyle = { background: 'rgba(10,10,26,0.6)', border: '1px solid #2e1858' };
 
   return (
     <div className="min-h-screen pt-4 pb-12" style={{ background: '#0F1A33' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8 py-4">
+        {/* Header — stacks on phones: in one row "Изход" ended up off-screen at 390px */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 py-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)' }}>
@@ -187,7 +188,7 @@ export default function Admin() {
             </div>
             <p className="text-dark-300 text-sm">{session?.user?.email}</p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             <a href="/" className="btn-outline text-sm py-2 px-4">
               ← Сайт
             </a>
@@ -354,12 +355,15 @@ export default function Admin() {
                             (e.target as HTMLImageElement).src = '';
                           }}
                         />
+                        {/* Always visible on touch screens — there is no hover there,
+                            so a hover-only button simply did not exist on a phone. */}
                         <button
                           type="button"
                           onClick={() => removeImage(idx)}
-                          className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                          aria-label="Премахни снимката"
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 rounded-full flex items-center justify-center text-white transition-opacity [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 focus-visible:!opacity-100"
                         >
-                          <X size={10} />
+                          <X size={12} />
                         </button>
                       </div>
                     ))}
@@ -368,29 +372,41 @@ export default function Admin() {
               </div>
 
               <div className="md:col-span-2 flex flex-wrap items-center gap-6">
-                <label className="flex items-center gap-2 cursor-pointer select-none">
-                  <div
-                    className="w-10 h-5 rounded-full transition-colors relative cursor-pointer"
+                {/* Real switches: the whole row (pill + text) is the tap target and they
+                    work with the keyboard — before, only the 40×20px pill reacted. */}
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={!!form.active}
+                  onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
+                  className="flex items-center gap-2 cursor-pointer select-none py-1 text-left"
+                >
+                  <span
+                    className="w-10 h-5 rounded-full transition-colors relative flex-shrink-0"
                     style={{ background: form.active ? 'linear-gradient(135deg, #691EB9 0%, #4a158a 100%)' : '#2e1858' }}
-                    onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
                   >
-                    <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.active ? 'left-5' : 'left-0.5'}`} />
-                  </div>
+                    <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.active ? 'left-5' : 'left-0.5'}`} />
+                  </span>
                   <span className="text-sm text-white font-medium">Активно (показва се на сайта)</span>
-                </label>
+                </button>
 
-                <label className="flex items-center gap-2 cursor-pointer select-none">
-                  <div
-                    className="w-10 h-5 rounded-full transition-colors relative cursor-pointer"
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={!!form.carfax_verified}
+                  onClick={() => setForm((f) => ({ ...f, carfax_verified: !f.carfax_verified }))}
+                  className="flex items-center gap-2 cursor-pointer select-none py-1 text-left"
+                >
+                  <span
+                    className="w-10 h-5 rounded-full transition-colors relative flex-shrink-0"
                     style={{ background: form.carfax_verified ? '#e8252a' : '#2e1858' }}
-                    onClick={() => setForm((f) => ({ ...f, carfax_verified: !f.carfax_verified }))}
                   >
-                    <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.carfax_verified ? 'left-5' : 'left-0.5'}`} />
-                  </div>
+                    <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${form.carfax_verified ? 'left-5' : 'left-0.5'}`} />
+                  </span>
                   <span className="text-sm font-medium" style={{ color: form.carfax_verified ? '#e8252a' : '#D5C6E0' }}>
                     CARFAX проверен
                   </span>
-                </label>
+                </button>
               </div>
             </div>
 

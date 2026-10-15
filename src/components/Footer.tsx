@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useLang } from '../context/LangContext';
 import { SITE, telHref } from '../lib/site';
@@ -26,7 +27,7 @@ export default function Footer() {
                 both themes, so it gets the same light plate the navbar uses. */}
             <div className="mb-4">
               <div className="inline-block rounded-xl" style={{ padding: '5px 11px', background: 'rgba(255,255,255,0.92)' }}>
-                <img src="/logo.png" alt="Indigo Cars" className="h-7 w-auto" />
+                <img src="/logo-nav.png" alt="Indigo Cars" width={121} height={28} loading="lazy" decoding="async" className="h-7 w-auto" />
               </div>
             </div>
             <p className="text-dark-300 text-sm leading-relaxed mb-6">{t.footer.description}</p>
@@ -78,6 +79,11 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link href={`/${slug}/b2b`} className="text-dark-300 hover:text-primary-400 transition-colors text-sm">
+                  {t.b2b.footerLink}
+                </Link>
+              </li>
             </ul>
           </div>
 
